@@ -19,10 +19,10 @@
   --parchment-dim: rgba(237,233,227,0.68);
   --parchment-rule: rgba(237,233,227,0.10);
 }
-
+ 
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
 html{scroll-behavior:smooth;}
-
+ 
 body {
   background: var(--obsidian);
   color: var(--parchment);
@@ -31,8 +31,7 @@ body {
   overflow-x: hidden;
   min-height: 100vh;
 }
-
-/* NOISE LAYER */
+ 
 body::before {
   content: '';
   position: fixed;
@@ -42,8 +41,7 @@ body::before {
   pointer-events: none;
   z-index: 9999;
 }
-
-/* ANIMATIONS */
+ 
 @keyframes fadeUp {
   from { opacity: 0; transform: translateY(20px); }
   to   { opacity: 1; transform: translateY(0); }
@@ -56,7 +54,7 @@ body::before {
   0%,100% { opacity: 0.4; }
   50%      { opacity: 1; }
 }
-
+ 
 .reveal {
   opacity: 0;
   animation: fadeUp 0.7s ease both;
@@ -67,8 +65,7 @@ body::before {
 .reveal-4 { animation-delay: 0.4s; }
 .reveal-5 { animation-delay: 0.5s; }
 .reveal-6 { animation-delay: 0.6s; }
-
-/* ── NAV ── */
+ 
 nav {
   position: fixed;
   top: 0; left: 0; right: 0;
@@ -82,7 +79,7 @@ nav {
   backdrop-filter: blur(16px);
   border-bottom: 1px solid var(--parchment-rule);
 }
-
+ 
 .nav-mark {
   font-family: 'Cormorant Garamond', serif;
   font-size: 18px;
@@ -92,13 +89,13 @@ nav {
   text-decoration: none;
 }
 .nav-mark span { color: var(--gold); }
-
+ 
 .nav-right {
   display: flex;
   align-items: center;
   gap: 32px;
 }
-
+ 
 .nav-link {
   font-family: 'DM Mono', monospace;
   font-size: 9px;
@@ -109,7 +106,7 @@ nav {
   transition: color 0.2s;
 }
 .nav-link:hover { color: var(--gold); }
-
+ 
 .nav-cta {
   font-family: 'DM Mono', monospace;
   font-size: 9px;
@@ -122,8 +119,7 @@ nav {
   transition: opacity 0.2s;
 }
 .nav-cta:hover { opacity: 0.85; }
-
-/* ── HERO ── */
+ 
 .hero {
   min-height: 100vh;
   display: flex;
@@ -135,8 +131,7 @@ nav {
   position: relative;
   overflow: hidden;
 }
-
-/* Radial glow */
+ 
 .hero::after {
   content: '';
   position: absolute;
@@ -148,7 +143,7 @@ nav {
   background: radial-gradient(ellipse, rgba(196,160,82,0.07) 0%, transparent 65%);
   pointer-events: none;
 }
-
+ 
 .hero-eyebrow {
   font-family: 'DM Mono', monospace;
   font-size: 9px;
@@ -165,7 +160,7 @@ nav {
   height: 1px;
   background: var(--gold-border-strong);
 }
-
+ 
 .hero-title {
   font-family: 'Cormorant Garamond', serif;
   font-size: clamp(52px, 8vw, 100px);
@@ -179,8 +174,7 @@ nav {
   color: var(--gold);
   font-style: italic;
 }
-
-/* Divider */
+ 
 .hero-divider {
   display: flex;
   align-items: center;
@@ -199,7 +193,7 @@ nav {
   transform: rotate(45deg);
   animation: shimmer 3s ease infinite;
 }
-
+ 
 .hero-sub {
   font-family: 'Cormorant Garamond', serif;
   font-size: clamp(18px, 2.2vw, 24px);
@@ -210,8 +204,7 @@ nav {
   line-height: 1.6;
   margin-bottom: 56px;
 }
-
-/* Audience pills */
+ 
 .hero-tags {
   display: flex;
   gap: 12px;
@@ -228,15 +221,14 @@ nav {
   border: 1px solid var(--parchment-rule);
   padding: 9px 16px;
 }
-
-/* Hero CTA group */
+ 
 .hero-cta-group {
   display: flex;
   flex-direction: column;
   align-items: center;
   gap: 16px;
 }
-
+ 
 .btn-primary {
   font-family: 'DM Mono', monospace;
   font-size: 10px;
@@ -252,7 +244,7 @@ nav {
   transition: opacity 0.2s, transform 0.2s;
 }
 .btn-primary:hover { opacity: 0.88; transform: translateY(-1px); }
-
+ 
 .btn-ghost {
   font-family: 'DM Mono', monospace;
   font-size: 9px;
@@ -266,7 +258,7 @@ nav {
   transition: all 0.2s;
 }
 .btn-ghost:hover { border-color: var(--gold-border); color: var(--gold); }
-
+ 
 .hero-note {
   font-family: 'DM Mono', monospace;
   font-size: 8px;
@@ -275,22 +267,20 @@ nav {
   opacity: 0.4;
   text-transform: uppercase;
 }
-
-/* ── HORIZONTAL RULE ── */
+ 
 .rule {
   width: 100%;
   height: 1px;
   background: var(--parchment-rule);
 }
-
+ 
 .rule-gold {
   max-width: 120px;
   height: 1px;
   background: linear-gradient(to right, transparent, var(--gold), transparent);
   margin: 0 auto;
 }
-
-/* ── PROOF BAR ── */
+ 
 .proof-bar {
   display: flex;
   align-items: center;
@@ -302,9 +292,9 @@ nav {
   border-bottom: 1px solid var(--parchment-rule);
   flex-wrap: wrap;
 }
-
+ 
 .proof-item { text-align: center; }
-
+ 
 .proof-num {
   font-family: 'Cormorant Garamond', serif;
   font-size: 40px;
@@ -314,7 +304,7 @@ nav {
   line-height: 1;
   margin-bottom: 8px;
 }
-
+ 
 .proof-label {
   font-family: 'DM Mono', monospace;
   font-size: 8px;
@@ -323,20 +313,19 @@ nav {
   text-transform: uppercase;
   opacity: 0.6;
 }
-
+ 
 .proof-divider {
   width: 1px;
   height: 48px;
   background: var(--parchment-rule);
 }
-
-/* ── SECTION ── */
+ 
 .section {
   max-width: 1080px;
   margin: 0 auto;
   padding: 100px 40px;
 }
-
+ 
 .section-eyebrow {
   font-family: 'DM Mono', monospace;
   font-size: 9px;
@@ -355,7 +344,7 @@ nav {
   background: var(--parchment-rule);
   max-width: 80px;
 }
-
+ 
 .section-title {
   font-family: 'Cormorant Garamond', serif;
   font-size: clamp(32px, 4vw, 54px);
@@ -364,7 +353,7 @@ nav {
   margin-bottom: 20px;
 }
 .section-title em { color: var(--gold); font-style: italic; }
-
+ 
 .section-body {
   font-size: 14px;
   letter-spacing: 0.05em;
@@ -372,8 +361,7 @@ nav {
   line-height: 1.9;
   max-width: 560px;
 }
-
-/* ── AUDIENCE SPLIT ── */
+ 
 .audience-split {
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -381,7 +369,7 @@ nav {
   background: var(--parchment-rule);
   margin-top: 56px;
 }
-
+ 
 .audience-card {
   background: var(--obsidian-2);
   padding: 52px 48px;
@@ -403,7 +391,7 @@ nav {
 }
 .audience-card:hover { background: var(--obsidian-3); }
 .audience-card:hover::before { transform: scaleX(1); }
-
+ 
 .audience-label {
   font-family: 'DM Mono', monospace;
   font-size: 8px;
@@ -413,7 +401,7 @@ nav {
   margin-bottom: 20px;
   opacity: 0.8;
 }
-
+ 
 .audience-heading {
   font-family: 'Cormorant Garamond', serif;
   font-size: 26px;
@@ -422,7 +410,7 @@ nav {
   color: var(--parchment);
   margin-bottom: 16px;
 }
-
+ 
 .audience-body {
   font-size: 13px;
   letter-spacing: 0.04em;
@@ -430,7 +418,7 @@ nav {
   line-height: 1.85;
   margin-bottom: 32px;
 }
-
+ 
 .audience-cta {
   font-family: 'DM Mono', monospace;
   font-size: 9px;
@@ -443,8 +431,7 @@ nav {
   transition: gap 0.2s;
 }
 .audience-card:hover .audience-cta { gap: 18px; }
-
-/* ── IS IT CLEAN SECTION ── */
+ 
 .episode-strip {
   background: var(--obsidian-2);
   border: 1px solid var(--parchment-rule);
@@ -455,9 +442,9 @@ nav {
   justify-content: space-between;
   gap: 48px;
 }
-
+ 
 .episode-info { flex: 1; }
-
+ 
 .episode-label {
   font-family: 'DM Mono', monospace;
   font-size: 8px;
@@ -467,7 +454,7 @@ nav {
   margin-bottom: 16px;
   opacity: 0.8;
 }
-
+ 
 .episode-title {
   font-family: 'Cormorant Garamond', serif;
   font-size: 32px;
@@ -476,7 +463,7 @@ nav {
   margin-bottom: 12px;
   line-height: 1.2;
 }
-
+ 
 .episode-body {
   font-size: 13px;
   letter-spacing: 0.04em;
@@ -484,19 +471,19 @@ nav {
   line-height: 1.85;
   margin-bottom: 28px;
 }
-
+ 
 .episode-scores {
   display: flex;
   gap: 16px;
   flex-wrap: wrap;
 }
-
+ 
 .score-chip {
   border: 1px solid var(--gold-border);
   padding: 8px 16px;
   background: var(--gold-dim);
 }
-
+ 
 .score-brand {
   font-family: 'DM Mono', monospace;
   font-size: 8px;
@@ -506,7 +493,7 @@ nav {
   display: block;
   margin-bottom: 4px;
 }
-
+ 
 .score-num {
   font-family: 'Cormorant Garamond', serif;
   font-size: 22px;
@@ -515,10 +502,9 @@ nav {
   display: block;
   line-height: 1;
 }
-
+ 
 .episode-cta { flex-shrink: 0; }
-
-/* ── HVCO SECTION ── */
+ 
 .hvco-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
@@ -526,16 +512,17 @@ nav {
   background: var(--parchment-rule);
   margin-top: 56px;
 }
-
+ 
 .hvco-card {
   background: var(--obsidian-2);
   padding: 44px 36px;
   transition: background 0.25s;
   text-decoration: none;
   display: block;
+  cursor: pointer;
 }
 .hvco-card:hover { background: var(--obsidian-3); }
-
+ 
 .hvco-num {
   font-family: 'Cormorant Garamond', serif;
   font-size: 56px;
@@ -545,7 +532,7 @@ nav {
   line-height: 1;
   margin-bottom: 20px;
 }
-
+ 
 .hvco-tag {
   font-family: 'DM Mono', monospace;
   font-size: 8px;
@@ -555,7 +542,7 @@ nav {
   margin-bottom: 12px;
   opacity: 0.8;
 }
-
+ 
 .hvco-name {
   font-family: 'Cormorant Garamond', serif;
   font-size: 20px;
@@ -564,7 +551,7 @@ nav {
   margin-bottom: 12px;
   line-height: 1.3;
 }
-
+ 
 .hvco-pain {
   font-size: 12px;
   letter-spacing: 0.04em;
@@ -573,7 +560,7 @@ nav {
   font-style: italic;
   margin-bottom: 28px;
 }
-
+ 
 .hvco-btn {
   font-family: 'DM Mono', monospace;
   font-size: 9px;
@@ -591,19 +578,18 @@ nav {
   background: var(--gold-dim);
   border-color: var(--gold-border-strong);
 }
-
-/* ── OPT-IN SECTION ── */
-.optin-section {
+ 
+/* ── HVCO FORM SECTIONS ── */
+.hvco-section {
   background: var(--obsidian-2);
   border-top: 1px solid var(--parchment-rule);
   border-bottom: 1px solid var(--parchment-rule);
   padding: 100px 40px;
-  text-align: center;
   position: relative;
   overflow: hidden;
 }
-
-.optin-section::before {
+ 
+.hvco-section::before {
   content: '';
   position: absolute;
   top: -100px;
@@ -614,75 +600,59 @@ nav {
   background: radial-gradient(ellipse, rgba(196,160,82,0.06) 0%, transparent 65%);
   pointer-events: none;
 }
-
-.optin-inner {
-  max-width: 560px;
+ 
+.hvco-section-inner {
+  max-width: 640px;
   margin: 0 auto;
   position: relative;
   z-index: 1;
 }
-
-.optin-title {
+ 
+.hvco-section-title {
   font-family: 'Cormorant Garamond', serif;
-  font-size: clamp(32px, 4vw, 48px);
+  font-size: clamp(28px, 3.5vw, 44px);
   font-weight: 300;
   line-height: 1.15;
   margin-bottom: 16px;
+  text-align: center;
 }
-.optin-title em { color: var(--gold); font-style: italic; }
-
-.optin-sub {
+.hvco-section-title em { color: var(--gold); font-style: italic; }
+ 
+.hvco-section-sub {
   font-size: 13px;
   letter-spacing: 0.05em;
   color: var(--parchment-dim);
   line-height: 1.85;
   margin-bottom: 48px;
+  text-align: center;
 }
-
-/* Kit form embed container */
-.kit-form-container {
+ 
+.kit-embed-wrap {
   background: var(--obsidian-3);
   border: 1px solid var(--gold-border);
   padding: 40px;
 }
-
-/* Fallback form (styled for brand) */
-.optin-form {
-  display: flex;
-  flex-direction: column;
-  gap: 14px;
+ 
+/* Kit form overrides — force brand styling */
+.kit-embed-wrap .formkit-form {
+  background: transparent !important;
 }
-
-.optin-input {
-  background: var(--obsidian);
-  border: 1px solid var(--parchment-rule);
-  color: var(--parchment);
-  font-family: 'Josefin Sans', sans-serif;
-  font-size: 13px;
-  letter-spacing: 0.08em;
-  padding: 16px 20px;
-  outline: none;
-  transition: border-color 0.2s;
-  width: 100%;
+.kit-embed-wrap .formkit-input {
+  background: var(--obsidian) !important;
+  border: 1px solid var(--parchment-rule) !important;
+  color: var(--parchment) !important;
+  font-family: 'Josefin Sans', sans-serif !important;
+  border-radius: 0 !important;
 }
-.optin-input::placeholder { color: rgba(237,233,227,0.25); }
-.optin-input:focus { border-color: var(--gold-border-strong); }
-
-.optin-submit {
-  background: var(--gold);
-  color: var(--obsidian);
-  font-family: 'DM Mono', monospace;
-  font-size: 10px;
-  letter-spacing: 0.3em;
-  text-transform: uppercase;
-  padding: 18px;
-  border: none;
-  cursor: pointer;
-  transition: opacity 0.2s;
-  width: 100%;
+.kit-embed-wrap .formkit-submit {
+  background: var(--gold) !important;
+  color: var(--obsidian) !important;
+  font-family: 'DM Mono', monospace !important;
+  letter-spacing: 0.25em !important;
+  border-radius: 0 !important;
+  text-transform: uppercase !important;
 }
-.optin-submit:hover { opacity: 0.87; }
-
+ 
 .optin-note {
   font-family: 'DM Mono', monospace;
   font-size: 8px;
@@ -691,9 +661,9 @@ nav {
   opacity: 0.4;
   margin-top: 16px;
   text-transform: uppercase;
+  text-align: center;
 }
-
-/* ── ABOUT STRIP ── */
+ 
 .about-strip {
   max-width: 1080px;
   margin: 0 auto;
@@ -703,7 +673,7 @@ nav {
   gap: 80px;
   align-items: center;
 }
-
+ 
 .about-pull {
   font-family: 'Cormorant Garamond', serif;
   font-size: 28px;
@@ -715,7 +685,7 @@ nav {
   margin-bottom: 28px;
   color: var(--parchment);
 }
-
+ 
 .about-body {
   font-size: 13px;
   letter-spacing: 0.05em;
@@ -723,7 +693,7 @@ nav {
   line-height: 1.9;
   margin-bottom: 20px;
 }
-
+ 
 .about-signature {
   font-family: 'Cormorant Garamond', serif;
   font-size: 16px;
@@ -731,11 +701,9 @@ nav {
   color: var(--parchment-dim);
   margin-top: 28px;
 }
-
-.about-img-wrap {
-  position: relative;
-}
-
+ 
+.about-img-wrap { position: relative; }
+ 
 .about-img-frame {
   width: 100%;
   aspect-ratio: 4/5;
@@ -747,8 +715,7 @@ nav {
   align-items: center;
   justify-content: center;
 }
-
-/* Corner brackets */
+ 
 .corner {
   position: absolute;
   width: 24px;
@@ -759,7 +726,7 @@ nav {
 }
 .corner.tl { top: -1px; left: -1px; border-top-width: 2px; border-left-width: 2px; }
 .corner.br { bottom: -1px; right: -1px; border-bottom-width: 2px; border-right-width: 2px; }
-
+ 
 .about-img-placeholder {
   font-family: 'DM Mono', monospace;
   font-size: 9px;
@@ -768,24 +735,23 @@ nav {
   opacity: 0.3;
   text-transform: uppercase;
 }
-
+ 
 .about-img-frame img {
   width: 100%;
   height: 100%;
   object-fit: cover;
   display: block;
 }
-
-/* ── ADVISORY CTA ── */
+ 
 .advisory-section {
   background: var(--obsidian-2);
   border-top: 1px solid var(--parchment-rule);
   padding: 100px 40px;
   text-align: center;
 }
-
+ 
 .advisory-inner { max-width: 600px; margin: 0 auto; }
-
+ 
 .advisory-title {
   font-family: 'Cormorant Garamond', serif;
   font-size: clamp(28px, 3.5vw, 44px);
@@ -794,7 +760,7 @@ nav {
   margin-bottom: 16px;
   line-height: 1.2;
 }
-
+ 
 .advisory-body {
   font-size: 13px;
   letter-spacing: 0.05em;
@@ -802,8 +768,7 @@ nav {
   line-height: 1.9;
   margin-bottom: 40px;
 }
-
-/* ── FOOTER ── */
+ 
 footer {
   border-top: 1px solid var(--parchment-rule);
   padding: 40px 48px;
@@ -813,7 +778,7 @@ footer {
   flex-wrap: wrap;
   gap: 20px;
 }
-
+ 
 .footer-mark {
   font-family: 'DM Mono', monospace;
   font-size: 9px;
@@ -822,14 +787,14 @@ footer {
   opacity: 0.45;
   text-transform: uppercase;
 }
-
+ 
 .footer-links {
   display: flex;
   gap: 28px;
   list-style: none;
   flex-wrap: wrap;
 }
-
+ 
 .footer-links a {
   font-family: 'DM Mono', monospace;
   font-size: 9px;
@@ -841,8 +806,7 @@ footer {
   text-transform: uppercase;
 }
 .footer-links a:hover { opacity: 1; color: var(--gold); }
-
-/* ── RESPONSIVE ── */
+ 
 @media (max-width: 768px) {
   nav { padding: 0 20px; }
   .nav-right { gap: 16px; }
@@ -858,15 +822,15 @@ footer {
   .episode-strip { flex-direction: column; padding: 36px 28px; }
   .about-strip { grid-template-columns: 1fr; gap: 48px; }
   .about-img-wrap { order: -1; }
-  .optin-section { padding: 72px 24px; }
-  .kit-form-container { padding: 28px 24px; }
+  .hvco-section { padding: 72px 24px; }
+  .kit-embed-wrap { padding: 28px 24px; }
   footer { flex-direction: column; text-align: center; padding: 32px 24px; }
 }
 </style>
 </head>
 <body>
-
-<!-- ── NAV ── -->
+ 
+<!-- NAV -->
 <nav>
   <a href="#" class="nav-mark">Lucid Life <span>Co</span></a>
   <div class="nav-right">
@@ -875,45 +839,40 @@ footer {
     <a href="mailto:hello@lucidlifeco.com" class="nav-cta">Work With Me</a>
   </div>
 </nav>
-
-<!-- ── HERO ── -->
+ 
+<!-- HERO -->
 <section class="hero">
   <div class="hero-eyebrow reveal reveal-1">
     <span class="hero-eyebrow-line"></span>
     Clean Living · Honest Evaluations
     <span class="hero-eyebrow-line"></span>
   </div>
-
   <h1 class="hero-title reveal reveal-2">
     Most "clean" products aren't.<br>
     <em>We prove it.</em>
   </h1>
-
   <div class="hero-divider reveal reveal-3">
     <div class="hero-divider-line"></div>
     <div class="hero-divider-diamond"></div>
     <div class="hero-divider-line"></div>
   </div>
-
   <p class="hero-sub reveal reveal-4">
     Lucid Life Co exists to close the gap between what brands claim and what's actually in the products we trust with our health.
   </p>
-
   <div class="hero-tags reveal reveal-5">
     <span class="hero-tag">Evidence-Based</span>
     <span class="hero-tag">No Sponsored Scores</span>
     <span class="hero-tag">Third-Party Verified</span>
     <span class="hero-tag">15 Years of Research</span>
   </div>
-
   <div class="hero-cta-group reveal reveal-6">
     <a href="#audit" class="btn-primary">Find Your Revenue Gap →</a>
     <a href="https://youtube.com/@LucidLifeCo" target="_blank" class="btn-ghost">Watch IS IT CLEAN? ↗</a>
     <span class="hero-note">✦ &nbsp;Free · No pitch · Just the truth</span>
   </div>
 </section>
-
-<!-- ── PROOF BAR ── -->
+ 
+<!-- PROOF BAR -->
 <div class="proof-bar">
   <div class="proof-item">
     <span class="proof-num">15+</span>
@@ -935,43 +894,35 @@ footer {
     <span class="proof-label">Evidence-Based</span>
   </div>
 </div>
-
-<!-- ── AUDIENCE SPLIT ── -->
+ 
+<!-- AUDIENCE SPLIT -->
 <section class="section">
   <p class="section-eyebrow">Who This Is For</p>
   <h2 class="section-title">Two audiences.<br><em>One standard.</em></h2>
   <p class="section-body">Whether you're a consumer tired of being misled or a founder building something worth believing in — this is where the truth lives.</p>
-
   <div class="audience-split">
     <a href="https://youtube.com/@LucidLifeCo" target="_blank" class="audience-card">
       <div class="audience-label">For Consumers</div>
       <h3 class="audience-heading">The truth about what's in your products.</h3>
       <p class="audience-body">Every product scored across five verifiable dimensions. No brand relationships that compromise the verdict. The evidence goes where it leads — full stop.</p>
-      <div class="audience-cta">
-        <span>Watch IS IT CLEAN?</span>
-        <span>→</span>
-      </div>
+      <div class="audience-cta"><span>Watch IS IT CLEAN?</span><span>→</span></div>
     </a>
     <a href="#for-founders" class="audience-card">
       <div class="audience-label">For Founders</div>
       <h3 class="audience-heading">Turn your clean brand mission into revenue.</h3>
       <p class="audience-body">Early-stage clean and wellness founders building a real sales motion — without hiring a full-time sales team they can't afford yet.</p>
-      <div class="audience-cta">
-        <span>Explore Free Resources</span>
-        <span>→</span>
-      </div>
+      <div class="audience-cta"><span>Explore Free Resources</span><span>→</span></div>
     </a>
   </div>
 </section>
-
+ 
 <div class="rule"></div>
-
-<!-- ── IS IT CLEAN EPISODE ── -->
+ 
+<!-- IS IT CLEAN EPISODE -->
 <section class="section">
   <p class="section-eyebrow">Now on YouTube</p>
   <h2 class="section-title">IS IT CLEAN? <em>Episode 001</em></h2>
   <p class="section-body">Natural deodorants under the lens. Three brands. Five dimensions. One uncompromising standard.</p>
-
   <div class="episode-strip">
     <div class="episode-info">
       <div class="episode-label">Episode 001 · Natural Deodorants</div>
@@ -997,15 +948,14 @@ footer {
     </div>
   </div>
 </section>
-
+ 
 <div class="rule"></div>
-
-<!-- ── HVCO SECTION ── -->
+ 
+<!-- HVCO CARDS -->
 <section class="section" id="for-founders">
   <p class="section-eyebrow">Free Resources for Founders</p>
   <h2 class="section-title">Three tools.<br><em>One direction.</em></h2>
   <p class="section-body">Built for clean and wellness founders who are ready to build a real revenue motion — not just a great product.</p>
-
   <div class="hvco-grid">
     <a href="#audit" class="hvco-card">
       <div class="hvco-num">01</div>
@@ -1014,14 +964,14 @@ footer {
       <p class="hvco-pain">"You built something worth believing in. But belief doesn't pay invoices."</p>
       <span class="hvco-btn">Take the Audit →</span>
     </a>
-    <a href="mailto:hello@lucidlifeco.com?subject=Positioning Playbook" class="hvco-card">
+    <a href="#playbook" class="hvco-card">
       <div class="hvco-num">02</div>
       <div class="hvco-tag">Free PDF Guide</div>
       <h3 class="hvco-name">Clean Brand Positioning Playbook</h3>
       <p class="hvco-pain">"If I removed your logo — could your best customer pick you?"</p>
       <span class="hvco-btn">Get the Playbook →</span>
     </a>
-    <a href="mailto:hello@lucidlifeco.com?subject=Pipeline Primer" class="hvco-card">
+    <a href="#primer" class="hvco-card">
       <div class="hvco-num">03</div>
       <div class="hvco-tag">Free Email Course</div>
       <h3 class="hvco-name">The 30-Day Pipeline Primer</h3>
@@ -1030,34 +980,53 @@ footer {
     </a>
   </div>
 </section>
-
-<!-- ── OPT-IN ── -->
-<div class="optin-section" id="audit">
-  <div class="optin-inner">
+ 
+<!-- HVCO 01: REVENUE GAP AUDIT -->
+<div class="hvco-section" id="audit">
+  <div class="hvco-section-inner">
     <p class="section-eyebrow" style="justify-content:center;margin-bottom:20px;">Free · 10 Minutes · Instant Results</p>
-    <h2 class="optin-title">Take the Revenue<br><em>Gap Audit</em></h2>
-    <p class="optin-sub">25 questions. Five dimensions. Your score tells you exactly where your pipeline is leaking — and what it's costing you every month.</p>
-
-    <div class="kit-form-container">
-      <!-- 
-        KIT FORM EMBED GOES HERE
-        Replace this form with your Kit inline form embed code
-        Go to Kit → Grow → Forms → Revenue Gap Audit Opt-in → Embed
-        Copy the script/HTML embed code and paste it here
-      -->
-      <form class="optin-form" onsubmit="handleSubmit(event)">
-        <input class="optin-input" type="text" placeholder="YOUR FIRST NAME" required />
-        <input class="optin-input" type="email" placeholder="YOUR EMAIL ADDRESS" required />
-        <button class="optin-submit" type="submit">Access the Revenue Gap Audit →</button>
-      </form>
+    <h2 class="hvco-section-title">Take the Revenue<br><em>Gap Audit</em></h2>
+    <p class="hvco-section-sub">25 questions. Five dimensions. Your score tells you exactly where your pipeline is leaking — and what it's costing you every month.</p>
+    <div class="kit-embed-wrap">
+      <script async data-uid="581dd84a33" src="https://lucid-life-co.kit.com/581dd84a33/index.js"></script>
     </div>
     <p class="optin-note">No spam · No brand deals · Unsubscribe any time</p>
   </div>
 </div>
-
+ 
 <div class="rule"></div>
-
-<!-- ── ABOUT ── -->
+ 
+<!-- HVCO 02: POSITIONING PLAYBOOK -->
+<div class="hvco-section" id="playbook">
+  <div class="hvco-section-inner">
+    <p class="section-eyebrow" style="justify-content:center;margin-bottom:20px;">Free PDF Guide</p>
+    <h2 class="hvco-section-title">Clean Brand<br><em>Positioning Playbook</em></h2>
+    <p class="hvco-section-sub">If you removed your logo, could your best customer still pick you? This guide helps you build positioning sharp enough to answer yes.</p>
+    <div class="kit-embed-wrap">
+      <script async data-uid="b93bcdd917" src="https://lucid-life-co.kit.com/b93bcdd917/index.js"></script>
+    </div>
+    <p class="optin-note">No spam · No brand deals · Unsubscribe any time</p>
+  </div>
+</div>
+ 
+<div class="rule"></div>
+ 
+<!-- HVCO 03: 30-DAY PIPELINE PRIMER -->
+<div class="hvco-section" id="primer">
+  <div class="hvco-section-inner">
+    <p class="section-eyebrow" style="justify-content:center;margin-bottom:20px;">Free 30-Day Email Course</p>
+    <h2 class="hvco-section-title">The 30-Day<br><em>Pipeline Primer</em></h2>
+    <p class="hvco-section-sub">Hard work without a system just produces a tired founder. Thirty days. One email a day. A real pipeline at the end of it.</p>
+    <div class="kit-embed-wrap">
+      <script async data-uid="615284fc2f" src="https://lucid-life-co.kit.com/615284fc2f/index.js"></script>
+    </div>
+    <p class="optin-note">No spam · No brand deals · Unsubscribe any time</p>
+  </div>
+</div>
+ 
+<div class="rule"></div>
+ 
+<!-- ABOUT -->
 <div class="about-strip">
   <div class="about-content">
     <p class="section-eyebrow">About Cody Martin</p>
@@ -1071,16 +1040,15 @@ footer {
     <div class="about-img-frame">
       <div class="corner tl"></div>
       <div class="corner br"></div>
-      <!-- Replace src with your actual headshot path -->
       <!-- <img src="cody-martin.jpg" alt="Cody Martin — Founder, Lucid Life Co" /> -->
       <span class="about-img-placeholder">Cody Martin</span>
     </div>
   </div>
 </div>
-
+ 
 <div class="rule"></div>
-
-<!-- ── ADVISORY CTA ── -->
+ 
+<!-- ADVISORY CTA -->
 <div class="advisory-section">
   <div class="advisory-inner">
     <p class="section-eyebrow" style="justify-content:center;margin-bottom:20px;">Fractional Advisory</p>
@@ -1089,8 +1057,8 @@ footer {
     <a href="mailto:hello@lucidlifeco.com?subject=Advisory Inquiry" class="btn-primary">Start a Conversation →</a>
   </div>
 </div>
-
-<!-- ── FOOTER ── -->
+ 
+<!-- FOOTER -->
 <footer>
   <span class="footer-mark">Lucid Life Co · IS IT CLEAN?</span>
   <ul class="footer-links">
@@ -1100,14 +1068,6 @@ footer {
     <li><a href="https://instagram.com/LucidLife.Co" target="_blank">Instagram</a></li>
   </ul>
 </footer>
-
-<script>
-function handleSubmit(e) {
-  e.preventDefault();
-  const form = e.target;
-  const name = form.querySelector('input[type="text"]').value;
-  form.innerHTML = '<p style="font-family:\'Cormorant Garamond\',serif;font-size:22px;font-style:italic;color:var(--gold);text-align:center;padding:20px 0">Your audit is ready, ' + name + '. Check your inbox — it will arrive within the next few minutes.</p>';
-}
-</script>
+ 
 </body>
 </html>
