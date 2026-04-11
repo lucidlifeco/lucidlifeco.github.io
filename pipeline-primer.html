@@ -577,18 +577,35 @@ function enrollPrimer() {
     "Check your inbox, " + fname + " — Day 1 is on its way to " + email + ". One email a day for the next 30 days.";
   showScreen("screen-confirm");
 
-  // Kit subscription fires silently in background
+  // Kit subscription via hidden iframe form — avoids CORS
   try {
-    fetch("https://api.convertkit.com/v3/forms/" + PIPELINE_FORM_ID + "/subscribe", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({
-        api_key: KIT_API_KEY,
-        email: email,
-        first_name: fname,
-        fields: { last_name: lname, brand_name: brand }
-      })
-    }).then(function() {}).catch(function() {});
+    var iframe = document.createElement("iframe");
+    iframe.name = "kit-silent-" + Date.now();
+    iframe.style.display = "none";
+    document.body.appendChild(iframe);
+
+    var form = document.createElement("form");
+    form.method = "POST";
+    form.action = "https://app.convertkit.com/forms/" + PIPELINE_FORM_ID + "/subscriptions";
+    form.target = iframe.name;
+    form.style.display = "none";
+
+    var fields = { email_address: email, first_name: fname };
+    Object.keys(fields).forEach(function(key) {
+      var input = document.createElement("input");
+      input.type = "hidden";
+      input.name = key;
+      input.value = fields[key];
+      form.appendChild(input);
+    });
+
+    document.body.appendChild(form);
+    form.submit();
+
+    setTimeout(function() {
+      if (form.parentNode) form.parentNode.removeChild(form);
+      if (iframe.parentNode) iframe.parentNode.removeChild(iframe);
+    }, 5000);
   } catch(e) {}
 }
 
