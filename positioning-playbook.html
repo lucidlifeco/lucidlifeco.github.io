@@ -1,0 +1,688 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="color-scheme" content="dark">
+<title>Clean Brand Positioning Playbook — Lucid Life Co</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=Josefin+Sans:wght@300;400;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --obsidian: #0C0C0E;
+    --gold: #C4A052;
+    --gold-dim: rgba(196,160,82,0.15);
+    --gold-border: rgba(196,160,82,0.3);
+    --gold-border-strong: rgba(196,160,82,0.55);
+    --parchment: #EDE9E3;
+    --parchment-dim: rgba(237,233,227,0.07);
+  }
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; background-color: #0C0C0E !important; }
+  body { background-color: #0C0C0E !important; color: #EDE9E3; font-family: 'Josefin Sans', sans-serif; font-weight: 300; min-height: 100vh; overflow-x: hidden; }
+
+  .screen { display: none; animation: fadeUp 0.5s ease both; background-color: #0C0C0E; min-height: 100vh; }
+  .screen.active { display: block; }
+  @keyframes fadeUp { from { opacity: 0; transform: translateY(18px); } to { opacity: 1; transform: translateY(0); } }
+
+  .wrap { position: relative; z-index: 1; max-width: 720px; margin: 0 auto; padding: 0 24px; }
+
+  /* HEADER */
+  .site-header { padding: 36px 0 0; text-align: center; }
+  .wordmark { font-family: 'Josefin Sans', sans-serif; font-size: 13px; letter-spacing: 0.35em; color: var(--gold); opacity: 0.75; text-transform: uppercase; }
+  .rule { width: 40px; height: 1px; background: var(--gold-border); margin: 16px auto; }
+
+  /* INTRO */
+  .intro-hero { padding: 60px 0 40px; text-align: center; }
+  .eyebrow { font-family: 'Josefin Sans', sans-serif; font-size: 13px; letter-spacing: 0.3em; color: var(--gold); text-transform: uppercase; margin-bottom: 24px; opacity: 0.9; }
+  .hero-title { font-family: 'Cormorant Garamond', serif; font-size: clamp(42px, 8vw, 68px); font-weight: 300; line-height: 1.05; color: var(--parchment); margin-bottom: 28px; }
+  .hero-title em { color: var(--gold); font-style: italic; }
+  .hero-sub { font-size: 17px; line-height: 1.8; color: var(--parchment); opacity: 0.78; max-width: 520px; margin: 0 auto 48px; letter-spacing: 0.02em; }
+
+  .pain-block { border-left: 2px solid var(--gold); padding: 20px 28px; margin: 0 0 48px; text-align: left; background: var(--parchment-dim); }
+  .pain-block p { font-family: 'Cormorant Garamond', serif; font-size: 24px; font-weight: 300; font-style: italic; line-height: 1.6; color: var(--parchment); }
+
+  .dilution-words { display: flex; flex-wrap: wrap; gap: 10px; justify-content: center; margin-bottom: 48px; }
+  .dilution-word { font-family: 'Josefin Sans', sans-serif; font-size: 13px; letter-spacing: 0.2em; text-transform: uppercase; padding: 10px 18px; border: 1px solid rgba(196,82,74,0.3); color: rgba(237,233,227,0.45); background: rgba(196,82,74,0.04); text-decoration: line-through; }
+
+  .modules-preview { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 48px; text-align: left; }
+  .mod-chip { border: 1px solid var(--gold-border); padding: 14px 18px; background: var(--parchment-dim); }
+  .mod-chip .mod-num { font-size: 13px; letter-spacing: 0.3em; color: var(--gold); opacity: 0.7; display: block; margin-bottom: 6px; }
+  .mod-chip .mod-name { font-size: 15px; letter-spacing: 0.06em; color: var(--parchment); }
+
+  .time-note { font-size: 13px; letter-spacing: 0.15em; color: var(--parchment); opacity: 0.6; text-align: center; margin-bottom: 40px; text-transform: uppercase; }
+
+  /* GATE FORM */
+  .gate-form { border: 1px solid var(--gold-border); padding: 40px; background: var(--parchment-dim); margin-bottom: 60px; }
+  .gate-form h3 { font-family: 'Cormorant Garamond', serif; font-size: 30px; font-weight: 300; margin-bottom: 8px; color: var(--parchment); }
+  .gate-form p { font-size: 17px; color: var(--parchment); opacity: 0.7; margin-bottom: 28px; line-height: 1.7; }
+  .field-row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 16px; }
+  .field { display: flex; flex-direction: column; gap: 8px; }
+  .field label { font-size: 13px; letter-spacing: 0.25em; text-transform: uppercase; color: var(--gold); opacity: 0.8; }
+  .field input { background: rgba(237,233,227,0.04); border: 1px solid var(--gold-border); color: var(--parchment); font-family: 'Josefin Sans', sans-serif; font-size: 16px; font-weight: 300; padding: 14px 16px; outline: none; transition: border-color 0.2s; width: 100%; }
+  .field input:focus { border-color: var(--gold); }
+  .field input::placeholder { color: rgba(237,233,227,0.3); }
+  .field.full { grid-column: 1 / -1; }
+  .privacy-note { font-size: 13px; color: var(--parchment); opacity: 0.5; margin-top: 14px; letter-spacing: 0.05em; }
+  .error-msg { font-size: 15px; color: #C4524A; margin-top: 8px; letter-spacing: 0.05em; display: none; }
+
+  /* BUTTONS */
+  .btn-primary { display: inline-block; background: var(--gold); color: #0C0C0E; font-family: 'Josefin Sans', sans-serif; font-size: 15px; font-weight: 600; letter-spacing: 0.25em; text-transform: uppercase; padding: 18px 40px; border: none; cursor: pointer; transition: opacity 0.2s, transform 0.15s; width: 100%; margin-top: 24px; text-decoration: none; text-align: center; }
+  .btn-primary:hover { opacity: 0.88; transform: translateY(-1px); }
+  .btn-secondary { flex: 1; background: transparent; border: 1px solid var(--gold-border); color: var(--parchment); opacity: 0.7; font-family: 'Josefin Sans', sans-serif; font-size: 15px; font-weight: 600; letter-spacing: 0.2em; text-transform: uppercase; padding: 14px 24px; cursor: pointer; transition: all 0.2s; }
+  .btn-secondary:hover { border-color: var(--gold); opacity: 1; }
+  .btn-next { flex: 2; background: var(--gold); border: none; color: #0C0C0E; font-family: 'Josefin Sans', sans-serif; font-size: 15px; font-weight: 600; letter-spacing: 0.25em; text-transform: uppercase; padding: 14px 24px; cursor: pointer; transition: opacity 0.2s; }
+  .btn-next:disabled { opacity: 0.35; cursor: not-allowed; }
+  .btn-next:not(:disabled):hover { opacity: 0.85; }
+
+  /* MODULE PROGRESS */
+  .playbook-header { padding: 40px 0 32px; }
+  .progress-bar-wrap { height: 2px; background: rgba(196,160,82,0.15); margin-bottom: 10px; }
+  .progress-bar-fill { height: 100%; background: var(--gold); transition: width 0.4s ease; width: 0%; }
+  .progress-meta { display: flex; justify-content: space-between; font-size: 13px; letter-spacing: 0.2em; color: var(--parchment); opacity: 0.5; text-transform: uppercase; }
+
+  /* MODULE CONTENT */
+  .module-header { margin: 40px 0 28px; padding-bottom: 20px; border-bottom: 1px solid var(--gold-border); }
+  .module-label { font-size: 13px; letter-spacing: 0.3em; color: var(--gold); text-transform: uppercase; margin-bottom: 10px; opacity: 0.8; }
+  .module-title { font-family: 'Cormorant Garamond', serif; font-size: 36px; font-weight: 300; color: var(--parchment); margin-bottom: 10px; line-height: 1.2; }
+  .module-desc { font-size: 17px; color: var(--parchment); opacity: 0.72; line-height: 1.7; }
+
+  .content-block { margin-bottom: 32px; padding: 28px; border: 1px solid rgba(196,160,82,0.12); background: var(--parchment-dim); }
+  .content-block h4 { font-family: 'Cormorant Garamond', serif; font-size: 24px; font-weight: 300; color: var(--parchment); margin-bottom: 14px; line-height: 1.3; }
+  .content-block p { font-size: 17px; line-height: 1.8; color: var(--parchment); opacity: 0.78; margin-bottom: 14px; }
+  .content-block p:last-child { margin-bottom: 0; }
+
+  .insight-callout { border-left: 2px solid var(--gold); padding: 16px 24px; margin: 24px 0; background: rgba(196,160,82,0.04); }
+  .insight-callout p { font-family: 'Cormorant Garamond', serif; font-size: 22px; font-weight: 300; font-style: italic; line-height: 1.6; color: var(--parchment); margin: 0; opacity: 1; }
+
+  .exercise-block { border: 1px solid var(--gold-border-strong); padding: 28px; margin: 24px 0; background: rgba(196,160,82,0.03); }
+  .exercise-label { font-size: 13px; letter-spacing: 0.3em; color: var(--gold); text-transform: uppercase; margin-bottom: 14px; opacity: 0.9; }
+  .exercise-block p { font-size: 17px; line-height: 1.8; color: var(--parchment); opacity: 0.85; margin-bottom: 12px; }
+  .exercise-block p:last-child { margin-bottom: 0; }
+
+  .word-list { display: flex; flex-wrap: wrap; gap: 10px; margin: 16px 0; }
+  .word-chip { font-size: 13px; letter-spacing: 0.15em; text-transform: uppercase; padding: 8px 16px; border: 1px solid rgba(196,82,74,0.35); color: rgba(237,233,227,0.5); background: rgba(196,82,74,0.04); text-decoration: line-through; }
+  .word-chip.good { border-color: rgba(74,160,110,0.4); color: rgba(237,233,227,0.7); background: rgba(74,160,110,0.04); text-decoration: none; }
+
+  .nav-row { display: flex; gap: 16px; margin: 40px 0 60px; }
+
+  /* RESULTS */
+  .results-header { padding: 60px 0 40px; text-align: center; }
+  .result-headline { font-family: 'Cormorant Garamond', serif; font-size: clamp(34px, 5vw, 50px); font-weight: 300; line-height: 1.2; margin-bottom: 16px; }
+  .result-sub { font-size: 17px; line-height: 1.8; color: var(--parchment); opacity: 0.75; max-width: 540px; margin: 0 auto 48px; }
+
+  .positioning-statement-wrap { border: 1px solid var(--gold-border-strong); padding: 40px; margin: 0 0 48px; background: rgba(196,160,82,0.04); text-align: center; }
+  .ps-label { font-size: 13px; letter-spacing: 0.3em; color: var(--gold); text-transform: uppercase; margin-bottom: 20px; opacity: 0.8; }
+  .ps-statement { font-family: 'Cormorant Garamond', serif; font-size: clamp(22px, 4vw, 32px); font-weight: 300; font-style: italic; line-height: 1.5; color: var(--parchment); }
+
+  .gap-summary { border: 1px solid var(--gold-border); padding: 32px; margin: 48px 0; background: rgba(196,160,82,0.03); position: relative; }
+  .gap-summary::before { content: 'YOUR POSITIONING GAP'; position: absolute; top: 0; left: 24px; transform: translateY(-50%); background: #0C0C0E; padding: 0 12px; font-size: 11px; letter-spacing: 0.3em; color: var(--gold); opacity: 0.8; }
+  .gap-summary h3 { font-family: 'Cormorant Garamond', serif; font-size: 28px; font-weight: 300; margin-bottom: 16px; color: var(--parchment); }
+  .gap-summary p { font-size: 17px; line-height: 1.8; color: var(--parchment); opacity: 0.78; margin-bottom: 12px; }
+
+  .module-results { margin-bottom: 48px; }
+  .mod-result { margin-bottom: 16px; padding: 20px 24px; border: 1px solid rgba(196,160,82,0.12); background: var(--parchment-dim); }
+  .mod-result-label { font-size: 13px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--gold); opacity: 0.8; margin-bottom: 8px; }
+  .mod-result-text { font-size: 17px; line-height: 1.7; color: var(--parchment); opacity: 0.82; }
+
+  .cost-block { background: rgba(196,82,74,0.06); border: 1px solid rgba(196,82,74,0.2); padding: 28px; margin: 32px 0; text-align: center; }
+  .cost-label { font-size: 13px; letter-spacing: 0.25em; text-transform: uppercase; color: #C4524A; margin-bottom: 10px; opacity: 0.85; }
+  .cost-number { font-family: 'Cormorant Garamond', serif; font-size: 48px; font-weight: 300; color: var(--parchment); line-height: 1; margin-bottom: 8px; }
+  .cost-desc { font-size: 15px; color: var(--parchment); opacity: 0.65; letter-spacing: 0.03em; }
+
+  .cta-block { text-align: center; padding: 48px 0 80px; }
+  .cta-block h3 { font-family: 'Cormorant Garamond', serif; font-size: 32px; font-weight: 300; margin-bottom: 16px; color: var(--parchment); }
+  .cta-block p { font-size: 17px; line-height: 1.8; color: var(--parchment); opacity: 0.75; max-width: 460px; margin: 0 auto 32px; }
+  .cta-secondary-link { display: block; font-size: 13px; letter-spacing: 0.2em; color: var(--gold); text-transform: uppercase; margin-top: 20px; opacity: 0.7; text-decoration: none; }
+  .cta-secondary-link:hover { opacity: 1; }
+
+  /* FOOTER */
+  .site-footer { text-align: center; padding: 32px 0 48px; border-top: 1px solid rgba(196,160,82,0.12); }
+  .footer-wordmark { font-family: 'Josefin Sans', sans-serif; font-size: 13px; letter-spacing: 0.4em; color: var(--gold); opacity: 0.7; text-transform: uppercase; }
+
+  @media (max-width: 520px) {
+    .field-row { grid-template-columns: 1fr; }
+    .modules-preview { grid-template-columns: 1fr; }
+    .gate-form { padding: 28px 20px; }
+    .nav-row { flex-direction: column; }
+    .exercise-block { padding: 20px; }
+  }
+</style>
+</head>
+<body style="background-color:#0C0C0E;color:#EDE9E3;">
+
+<!-- ── SCREEN: INTRO ── -->
+<div id="screen-intro" class="screen active">
+  <div class="wrap">
+    <header class="site-header">
+      <div class="wordmark">Lucid Life Co</div>
+      <div class="rule"></div>
+    </header>
+    <div class="intro-hero">
+      <div class="eyebrow">Free Positioning Guide</div>
+      <h1 class="hero-title">Clean Brand<br><em>Positioning Playbook</em></h1>
+      <p class="hero-sub">Five modules. One question at the end that tells you everything: if someone removed your logo — could your best customer still pick you?</p>
+      <div class="pain-block">
+        <p>"Natural. Clean. Transparent. Conscious. These words have been so diluted by greenwashing they now carry zero weight. A founder using them sounds exactly like the brands they are trying to differentiate from."</p>
+      </div>
+      <p class="hero-sub">This playbook walks you through the five-step framework for building positioning language sharp enough to own. No brand can claim it but yours.</p>
+
+      <div style="margin-bottom: 28px;">
+        <p style="font-size:13px;letter-spacing:0.25em;text-transform:uppercase;color:var(--gold);opacity:0.8;text-align:center;margin-bottom:16px;">Words that no longer work</p>
+        <div class="dilution-words">
+          <span class="dilution-word">Natural</span>
+          <span class="dilution-word">Clean</span>
+          <span class="dilution-word">Transparent</span>
+          <span class="dilution-word">Conscious</span>
+          <span class="dilution-word">Sustainable</span>
+          <span class="dilution-word">Pure</span>
+          <span class="dilution-word">Non-Toxic</span>
+          <span class="dilution-word">Honest</span>
+        </div>
+      </div>
+
+      <div class="modules-preview">
+        <div class="mod-chip"><span class="mod-num">01</span><span class="mod-name">The Dilution Diagnosis</span></div>
+        <div class="mod-chip"><span class="mod-num">02</span><span class="mod-name">The Logo Test</span></div>
+        <div class="mod-chip"><span class="mod-num">03</span><span class="mod-name">Your Unfair Differentiator</span></div>
+        <div class="mod-chip"><span class="mod-num">04</span><span class="mod-name">Buyer-Specific Translation</span></div>
+        <div class="mod-chip"><span class="mod-num">05</span><span class="mod-name">The Positioning Statement</span></div>
+      </div>
+      <p class="time-note">Five modules &middot; 15&ndash;20 minutes &middot; One ownable statement at the end</p>
+    </div>
+
+    <div class="gate-form">
+      <h3>Build Your Positioning</h3>
+      <p>Enter your details below to begin. Your positioning statement and gap analysis will be waiting at the end.</p>
+      <div class="field-row">
+        <div class="field"><label for="fname">First Name</label><input type="text" id="fname" placeholder="Sarah"></div>
+        <div class="field"><label for="lname">Last Name</label><input type="text" id="lname" placeholder="Chen"></div>
+      </div>
+      <div class="field full" style="margin-bottom:16px;">
+        <label for="email">Email Address</label><input type="email" id="email" placeholder="sarah@yourbrand.com">
+      </div>
+      <div class="field full" style="margin-bottom:16px;">
+        <label for="brand">Brand Name</label><input type="text" id="brand" placeholder="Your Brand">
+      </div>
+      <div class="field full">
+        <label for="category">Product Category</label><input type="text" id="category" placeholder="e.g. Skincare, Supplements, Household Cleaning">
+      </div>
+      <p class="error-msg" id="gate-error">Please complete all fields to continue.</p>
+      <p class="privacy-note">Your information is never sold or shared.</p>
+      <button class="btn-primary" onclick="startPlaybook()">Begin the Playbook &rarr;</button>
+    </div>
+    <footer class="site-footer"><div class="footer-wordmark">Lucid Life Co &middot; IS IT CLEAN?</div></footer>
+  </div>
+</div>
+
+<!-- ── SCREEN: PLAYBOOK ── -->
+<div id="screen-playbook" class="screen">
+  <div class="wrap">
+    <header class="site-header">
+      <div class="wordmark">Lucid Life Co &middot; Positioning Playbook</div>
+      <div class="rule"></div>
+    </header>
+    <div class="playbook-header">
+      <div class="progress-bar-wrap"><div class="progress-bar-fill" id="progress-fill"></div></div>
+      <div class="progress-meta">
+        <span id="progress-text">Module 1 of 5</span>
+        <span id="progress-pct">0% Complete</span>
+      </div>
+    </div>
+    <div id="module-container"></div>
+    <div class="nav-row">
+      <button class="btn-secondary" id="btn-back" onclick="prevModule()" style="display:none">&larr; Back</button>
+      <button class="btn-next" id="btn-next" onclick="nextModule()">Continue &rarr;</button>
+    </div>
+    <footer class="site-footer"><div class="footer-wordmark">Lucid Life Co &middot; IS IT CLEAN?</div></footer>
+  </div>
+</div>
+
+<!-- ── SCREEN: RESULTS ── -->
+<div id="screen-results" class="screen">
+  <div class="wrap">
+    <header class="site-header">
+      <div class="wordmark">Lucid Life Co &middot; Positioning Playbook</div>
+      <div class="rule"></div>
+    </header>
+    <div class="results-header">
+      <div class="eyebrow" id="result-eyebrow">Your Positioning Statement</div>
+      <h2 class="result-headline" id="result-headline"></h2>
+      <p class="result-sub" id="result-sub"></p>
+    </div>
+
+    <div class="positioning-statement-wrap">
+      <div class="ps-label">Your Draft Positioning Statement</div>
+      <div class="ps-statement" id="ps-display"></div>
+    </div>
+
+    <div class="module-results" id="module-results"></div>
+
+    <div class="gap-summary" id="gap-summary"></div>
+
+    <div class="cost-block">
+      <div class="cost-label">Estimated Monthly Revenue Leakage From Weak Positioning</div>
+      <div class="cost-number" id="cost-display">—</div>
+      <div class="cost-desc">Based on average conversion rate impact of undifferentiated positioning at your brand stage</div>
+    </div>
+
+    <div class="cta-block">
+      <h3 id="cta-headline"></h3>
+      <p id="cta-body"></p>
+      <button class="btn-primary" style="max-width:400px;margin:0 auto;" id="cta-btn">Take the Revenue Gap Audit &rarr;</button>
+      <a href="lucid-revenue-playbook.html" class="cta-secondary-link">Explore the Full Advisory Engagement &rarr;</a>
+    </div>
+    <footer class="site-footer"><div class="footer-wordmark">Lucid Life Co &middot; IS IT CLEAN?</div></footer>
+  </div>
+</div>
+
+<script>
+var userData = {};
+var currentModule = 0;
+var responses = {};
+
+var MODULES = [
+  {
+    id: "dilution",
+    label: "Module 01",
+    title: "The Dilution Diagnosis",
+    desc: "Before you can build positioning that lands, you need to understand why the language you are probably using is actively working against you.",
+    content: [
+      {
+        type: "content",
+        heading: "The greenwashing tax",
+        body: "Every time a large CPG brand slaps 'natural' on a product that contains synthetic fragrance and petroleum derivatives, they borrow your credibility and spend it. By the time a buyer encounters your brand — a brand that actually IS clean — the word means nothing to them. You are paying a greenwashing tax on positioning language you did not dilute.",
+      },
+      {
+        type: "callout",
+        text: "The problem is not your product. The problem is that your positioning language is indistinguishable from the brands you are trying to differentiate from."
+      },
+      {
+        type: "content",
+        heading: "The diluted word test",
+        body: "Read the following words. For each one, ask yourself: does a buyer reading this on a label automatically trust it — or have they been burned enough times to tune it out?"
+      },
+      {
+        type: "wordlist",
+        bad: ["Natural","Clean","Pure","Transparent","Conscious","Sustainable","Non-Toxic","Honest","Green","Eco-Friendly"],
+        good: []
+      },
+      {
+        type: "exercise",
+        label: "Your Diagnosis",
+        text: "Pull up your current website, your social bio, or your last pitch deck. Count how many of those diluted words appear in your positioning language. If you find more than two, you have a positioning gap — and every buyer, retailer, and investor you talk to is filtering through the same skepticism they apply to every other brand making the same claims."
+      }
+    ],
+    question: "How many diluted words currently appear in your main positioning language?",
+    options: ["None — I already avoid these terms.", "One or two — I use them but sparingly.", "Three to five — they are woven throughout my messaging.", "More than five — this is most of how I describe my brand."],
+    scores: [3, 2, 1, 0]
+  },
+  {
+    id: "logotest",
+    label: "Module 02",
+    title: "The Logo Test",
+    desc: "One question that reveals everything about the strength of your positioning.",
+    content: [
+      {
+        type: "callout",
+        text: "\"If I removed your logo — your name, your colors, your packaging — could your best customer still pick you from your words alone?\""
+      },
+      {
+        type: "content",
+        heading: "Most clean brands fail this test",
+        body: "Take any five clean beauty or wellness brands. Remove their logos. Read their about pages side by side. In most cases, the language is interchangeable. Same values. Same mission. Same words. A buyer reading your positioning should feel a specific recognition — not a general nod of agreement they would give to anyone in the category."
+      },
+      {
+        type: "content",
+        heading: "What passing looks like",
+        body: "A brand that passes the logo test has language that does three things: it names a specific enemy (the specific thing they are against), it claims a specific proof (something verifiable, not aspirational), and it speaks to a specific buyer (not 'health-conscious consumers' — a real person with a specific fear or goal)."
+      },
+      {
+        type: "exercise",
+        label: "The Logo Test",
+        text: "Copy your current tagline or positioning statement into a blank document. Remove your brand name. Now read it as a skeptical buyer who has seen a hundred 'clean' brands this year. Does it sound like anyone else in your space? If yes — that is your gap. If you are not sure — that is also your gap."
+      }
+    ],
+    question: "If a buyer read your current positioning language without seeing your brand name — how distinctive would it feel?",
+    options: ["Completely generic — it could be any clean brand in my category.", "Somewhat distinctive — there are hints but nothing that would stop them.", "Distinctive in tone but not in substance — feels different but does not say anything different.", "Unmistakably ours — specific enough that no other brand in our space could credibly claim it."],
+    scores: [0, 1, 2, 3]
+  },
+  {
+    id: "differentiator",
+    label: "Module 03",
+    title: "Your Unfair Differentiator",
+    desc: "Not your values — your proof. The specific thing you know, do, source, test, or refuse that no other brand in your space can credibly claim.",
+    content: [
+      {
+        type: "content",
+        heading: "Values are not differentiators",
+        body: "Every clean brand cares deeply about purity. Every clean brand is committed to transparency. Every clean brand says their standards are higher. None of that differentiates you because none of it is specific enough to be verifiable — or exclusive enough to be owned. A differentiator is not a value. It is a proof."
+      },
+      {
+        type: "callout",
+        text: "The difference between 'we care about purity' and 'we reject 47 ingredients the FDA still classifies as safe' is the difference between a claim and a position."
+      },
+      {
+        type: "content",
+        heading: "Where unfair differentiators live",
+        body: "Look for your differentiator in the specifics: an exact number of banned ingredients, a sourcing standard most suppliers cannot meet, a testing protocol no one else is running, a supply chain commitment that costs you money your competitors would not pay, a founder experience that created a standard the industry does not have. The more specific and verifiable, the stronger the differentiator."
+      },
+      {
+        type: "exercise",
+        label: "Find Your Proof",
+        text: "Answer these questions honestly: What do you know about your ingredients, sourcing, or production process that most buyers do not know? What standard do you hold yourself to that your three closest competitors do not? What have you refused to do — an ingredient, a supplier, a shortcut — that would have been easier and cheaper? Your differentiator is hiding inside one of those answers."
+      }
+    ],
+    question: "How specific and verifiable is your current differentiator?",
+    options: ["We do not have one beyond general clean values.", "We have something specific but have not documented or tested it yet.", "We have a clear differentiator but it is not front and center in our positioning.", "We have a specific, verifiable differentiator that is central to how we present ourselves."],
+    scores: [0, 1, 2, 3]
+  },
+  {
+    id: "translation",
+    label: "Module 04",
+    title: "Buyer-Specific Translation",
+    desc: "Your differentiator means different things to different buyers. The language that converts a consumer will not close a retailer. The proof that excites an investor will confuse a first-time customer.",
+    content: [
+      {
+        type: "content",
+        heading: "One differentiator, three conversations",
+        body: "The same unfair differentiator — say, a supply chain that verifies every ingredient at origin — lands completely differently depending on who you are talking to. A consumer hears: my family is safe. A retail buyer hears: I can defend this to my customers when the next greenwashing scandal hits. An investor hears: defensible IP and premium pricing power. Same fact. Three translations."
+      },
+      {
+        type: "callout",
+        text: "Most founders tell every buyer the same story. That is not positioning — that is hoping someone finds the right meaning on their own."
+      },
+      {
+        type: "content",
+        heading: "The translation framework",
+        body: "For each buyer type, identify: what is the specific fear or goal driving their decision? What does your differentiator mean to them in their language — not yours? What would they lose by choosing a competitor who cannot make the same claim? The answer to those three questions is your buyer-specific translation."
+      },
+      {
+        type: "exercise",
+        label: "Map Your Translations",
+        text: "Take the differentiator you identified in Module 03 and write three versions: one for a consumer (personal safety and family), one for a retail or wholesale buyer (business risk and shelf performance), and one for a press or investor audience (market defensibility and mission integrity). If you cannot write all three — identify which translation is weakest. That is where you are losing conversations."
+      }
+    ],
+    question: "How well have you translated your differentiator for each buyer type you talk to?",
+    options: ["We tell everyone the same story — no translation yet.", "We adjust our tone but not the substance of what we say.", "We have different messaging for different buyers but it is informal and inconsistent.", "We have a documented, tested translation for each primary buyer type we engage."],
+    scores: [0, 1, 2, 3]
+  },
+  {
+    id: "statement",
+    label: "Module 05",
+    title: "The Positioning Statement",
+    desc: "Everything from the previous four modules assembles here. One statement. Specific enough to own. Tested against the logo test.",
+    content: [
+      {
+        type: "content",
+        heading: "What a positioning statement actually is",
+        body: "Not a tagline. Not a mission statement. Not an elevator pitch. A positioning statement is an internal compass — the single sentence that governs every piece of language your brand produces. When in doubt about what to say, you return to it. It answers: who you are for, what specific problem you solve, what proof you hold, and why no other brand can credibly claim the same."
+      },
+      {
+        type: "callout",
+        text: "A positioning statement is not written for your website. It is written for your team — so everyone knows exactly what this brand stands for and what it does not."
+      },
+      {
+        type: "content",
+        heading: "The formula",
+        body: "For [specific buyer] who [specific fear or goal], [your brand] is the [category] that [specific proof or claim] — unlike [the alternative], which [what they cannot claim]. Every word earns its place. Vague words fail the logo test. If another brand could say the same sentence, it is not done yet."
+      },
+      {
+        type: "exercise",
+        label: "Draft Your Statement",
+        text: "Using the formula above, write your first draft positioning statement. It will feel uncomfortable the first time — good positioning always requires you to exclude something. The narrower the claim, the stronger the position. A statement that tries to speak to everyone will be owned by no one. Draft it. Then apply the logo test: remove your brand name and ask whether any other brand in your space could honestly say the same words."
+      }
+    ],
+    question: "Where are you in building your positioning statement?",
+    options: ["I have not started — I do not have the raw material yet.", "I have a draft but it still sounds like something any clean brand could say.", "I have something solid but have not tested it with real buyers.", "I have a tested, ownable positioning statement that consistently resonates with my target buyer."],
+    scores: [0, 1, 2, 3]
+  }
+];
+
+var GAP_TIERS = {
+  low: {
+    headline: "Your positioning is working against you.",
+    sub: "The gap between what you know about your brand and what buyers hear is costing you every conversion. Not because your product is not exceptional — but because your language is giving skeptical buyers no reason to believe you over the last brand that made the same claims.",
+    costBase: 4500,
+    gapHeadline: "What the playbook surfaces versus what a custom engagement builds",
+    gapBody: "The playbook has identified that your positioning gap is structural — it predates your messaging. You cannot write your way out of a positioning problem. A custom engagement with Lucid Life Co builds the full positioning architecture: unfair differentiator documentation, buyer-specific translation, tested statement, and the language system your team uses across every channel. For founders at this stage, the difference between generic and specific positioning typically represents 2 to 4x conversion rates on qualified conversations.",
+    ctaHeadline: "The gap is real. The fix is specific.",
+    ctaBody: "We work directly with a small number of clean and wellness founders — exclusively brands that meet our IS IT CLEAN? standard. One conversation will tell us both whether this is the right fit."
+  },
+  mid: {
+    headline: "You have the foundation. The positioning is not carrying its weight yet.",
+    sub: "You know what makes you different. The gap is in translating that into language specific enough to own and consistent enough to scale. You are leaving conversions behind every time you tell a story that does not fully land.",
+    costBase: 2500,
+    gapHeadline: "What the playbook reveals versus what a custom engagement sharpens",
+    gapBody: "You are closer than most. The gap at this stage is precision — the difference between a positioning idea and a positioning system. A custom engagement takes what you have built and makes it specific enough to be ownable, tested enough to be trusted, and documented enough to be deployed consistently across your team, your channels, and your buyer conversations.",
+    ctaHeadline: "Close the gap between where your positioning is and where it needs to be.",
+    ctaBody: "We work with a select number of clean brand founders ready to turn a good positioning instinct into a repeatable revenue asset. One conversation to see if the fit is right."
+  },
+  high: {
+    headline: "Your positioning foundation is strong. The next constraint is deployment.",
+    sub: "You have done the thinking most clean brand founders skip entirely. The gap at this stage is not in the statement — it is in how consistently it is showing up across every buyer conversation, channel, and team interaction.",
+    costBase: 1200,
+    gapHeadline: "What the playbook confirms versus what a strategic engagement unlocks",
+    gapBody: "Founders at this stage do not need positioning built — they need it pressure-tested and deployed. A strategic engagement focuses on finding where the positioning breaks down in practice: the sales conversation that goes off-script, the channel where the language is not landing, the team member who tells a different story. Precision at this level is what separates brands with good positioning from brands with positioning that compounds.",
+    ctaHeadline: "Strong positioning deserves a rigorous deployment.",
+    ctaBody: "We work with a small number of clean brand founders who are ready to move from positioning instinct to positioning infrastructure. One conversation to determine fit."
+  }
+};
+
+function startPlaybook() {
+  var fname = document.getElementById("fname").value.trim();
+  var lname = document.getElementById("lname").value.trim();
+  var email = document.getElementById("email").value.trim();
+  var brand = document.getElementById("brand").value.trim();
+  var category = document.getElementById("category").value.trim();
+  var err = document.getElementById("gate-error");
+  var btn = document.querySelector(".gate-form .btn-primary");
+
+  if (!fname || !lname || !email || !brand || !category) { err.style.display = "block"; return; }
+  if (email.indexOf("@") < 0 || email.indexOf(".") < 0) {
+    err.textContent = "Please enter a valid email address.";
+    err.style.display = "block"; return;
+  }
+  err.style.display = "none";
+  userData = { fname: fname, lname: lname, email: email, brand: brand, category: category };
+  btn.disabled = true;
+  btn.textContent = "Starting\u2026";
+
+  fetch("https://api.convertkit.com/v3/forms/9271420/subscribe", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({
+      api_key: "RDXWqC14zyJ7DW2LQVD_lA",
+      email: email,
+      first_name: fname,
+      fields: { last_name: lname, brand_name: brand, product_category: category }
+    })
+  })
+  .catch(function() {})
+  .finally(function() {
+    btn.disabled = false;
+    btn.textContent = "Begin the Playbook \u2192";
+    currentModule = 0;
+    responses = {};
+    showScreen("screen-playbook");
+    renderModule();
+  });
+}
+
+function showScreen(id) {
+  var screens = document.querySelectorAll(".screen");
+  for (var i = 0; i < screens.length; i++) { screens[i].classList.remove("active"); }
+  document.getElementById(id).classList.add("active");
+  window.scrollTo(0, 0);
+}
+
+function renderModule() {
+  var mod = MODULES[currentModule];
+  var html = "<div class='module-header'><div class='module-label'>" + mod.label + " of 5 &mdash; " + mod.title + "</div><h2 class='module-title'>" + mod.title + "</h2><p class='module-desc'>" + mod.desc + "</p></div>";
+
+  mod.content.forEach(function(block) {
+    if (block.type === "content") {
+      html += "<div class='content-block'><h4>" + block.heading + "</h4><p>" + block.body + "</p></div>";
+    } else if (block.type === "callout") {
+      html += "<div class='insight-callout'><p>" + block.text + "</p></div>";
+    } else if (block.type === "exercise") {
+      html += "<div class='exercise-block'><div class='exercise-label'>\u270e " + block.label + "</div><p>" + block.text + "</p></div>";
+    } else if (block.type === "wordlist") {
+      html += "<div class='exercise-block'><div class='exercise-label'>Diluted Words</div><div class='word-list'>";
+      block.bad.forEach(function(w) { html += "<span class='word-chip'>" + w + "</span>"; });
+      html += "</div></div>";
+    }
+  });
+
+  // Reflection question
+  var saved = responses[mod.id];
+  html += "<div style='margin-top:36px;padding-top:28px;border-top:1px solid var(--gold-border)'>";
+  html += "<div class='module-label' style='margin-bottom:16px;'>Reflection</div>";
+  html += "<p style='font-size:18px;line-height:1.65;color:var(--parchment);margin-bottom:20px;letter-spacing:0.01em;'>" + mod.question + "</p>";
+  html += "<div class='options' id='options-wrap'>";
+  mod.options.forEach(function(opt, i) {
+    var sel = saved === i ? " selected" : "";
+    html += "<label class='option-label" + sel + "' data-idx='" + i + "' onclick='selectOption(" + i + ", this)'>";
+    html += "<span class='radio-dot'></span>";
+    html += "<span class='option-text'>" + opt + "</span></label>";
+  });
+  html += "</div></div>";
+
+  document.getElementById("module-container").innerHTML = html;
+
+  // Re-apply styles for option elements (inline for dynamic content)
+  document.querySelectorAll(".option-label").forEach(function(el) {
+    el.style.display = "flex";
+    el.style.alignItems = "flex-start";
+    el.style.gap = "12px";
+    el.style.cursor = "pointer";
+    el.style.padding = "12px 14px";
+    el.style.border = el.classList.contains("selected") ? "1px solid var(--gold)" : "1px solid transparent";
+    el.style.transition = "all 0.18s";
+    el.style.background = el.classList.contains("selected") ? "rgba(196,160,82,0.08)" : "transparent";
+    el.style.marginBottom = "8px";
+  });
+
+  updateNav();
+  updateProgress();
+}
+
+function selectOption(idx, labelEl) {
+  var mod = MODULES[currentModule];
+  responses[mod.id] = idx;
+  var labels = document.querySelectorAll(".option-label");
+  labels.forEach(function(l) {
+    l.classList.remove("selected");
+    l.style.border = "1px solid transparent";
+    l.style.background = "transparent";
+  });
+  labelEl.classList.add("selected");
+  labelEl.style.border = "1px solid var(--gold)";
+  labelEl.style.background = "rgba(196,160,82,0.08)";
+  document.getElementById("btn-next").disabled = false;
+}
+
+function updateNav() {
+  var mod = MODULES[currentModule];
+  var answered = responses[mod.id] !== undefined;
+  document.getElementById("btn-next").disabled = !answered;
+  document.getElementById("btn-back").style.display = currentModule > 0 ? "block" : "none";
+  var isLast = currentModule === MODULES.length - 1;
+  document.getElementById("btn-next").innerHTML = isLast ? "See My Results &rarr;" : "Continue &rarr;";
+}
+
+function updateProgress() {
+  var pct = Math.round((currentModule / MODULES.length) * 100);
+  document.getElementById("progress-fill").style.width = pct + "%";
+  document.getElementById("progress-text").textContent = "Module " + (currentModule + 1) + " of " + MODULES.length;
+  document.getElementById("progress-pct").textContent = pct + "% Complete";
+}
+
+function nextModule() {
+  var mod = MODULES[currentModule];
+  if (responses[mod.id] === undefined) return;
+  if (currentModule < MODULES.length - 1) {
+    currentModule++;
+    renderModule();
+    window.scrollTo(0, 0);
+  } else {
+    showResults();
+  }
+}
+
+function prevModule() {
+  if (currentModule > 0) { currentModule--; renderModule(); window.scrollTo(0, 0); }
+}
+
+function showResults() {
+  showScreen("screen-results");
+
+  // Calculate total score
+  var totalScore = 0;
+  var maxScore = MODULES.length * 3;
+  MODULES.forEach(function(mod) {
+    var idx = responses[mod.id] || 0;
+    totalScore += mod.scores[idx];
+  });
+
+  var pct = totalScore / maxScore;
+  var tier = pct < 0.4 ? "low" : pct < 0.75 ? "mid" : "high";
+  var content = GAP_TIERS[tier];
+
+  // Header
+  document.getElementById("result-eyebrow").textContent = userData.fname + "'s Positioning Assessment";
+  document.getElementById("result-headline").textContent = content.headline;
+  document.getElementById("result-sub").textContent = content.sub;
+
+  // Build draft positioning statement from responses
+  var differentiatorScore = responses["differentiator"] || 0;
+  var translationScore = responses["translation"] || 0;
+  var statementScore = responses["statement"] || 0;
+  var ps = buildPositioningStatement(differentiatorScore, translationScore, statementScore);
+  document.getElementById("ps-display").textContent = ps;
+
+  // Module results
+  var modHtml = "<p style='font-size:13px;letter-spacing:0.3em;color:var(--gold);text-transform:uppercase;margin-bottom:20px;opacity:0.8;'>Module Findings</p>";
+  var modInsights = {
+    dilution: ["Your messaging is carrying significant greenwashing drag. Every diluted word is costing you credibility with the buyers who matter most.", "You are partially exposed. Two or three language shifts could meaningfully improve how differentiated buyers perceive you.", "You have reduced your exposure to diluted language. The next step is replacing what you removed with something ownable.", "You have already done the hard work of removing generic language. The foundation is ready for sharp positioning."],
+    logotest: ["Your positioning is currently invisible without the logo. Any competitor could say the same things.", "There are hints of distinctiveness but nothing specific enough to stop a skeptical buyer.", "Your tone is distinctive but your substance needs sharpening. Tone without proof does not convert.", "Your positioning passes the logo test. The work now is deployment and consistency."],
+    differentiator: ["You do not yet have a documented differentiator. This is the most urgent gap in your positioning.", "You have the seed of a differentiator but it is not documented or tested. It cannot do its job until it is.", "You have a differentiator but it is not front and center. Buyers should not have to find it.", "Your differentiator is specific and verifiable. That is the hardest part of positioning done right."],
+    translation: ["You are telling everyone the same story. Every buyer type you talk to is hearing messaging built for someone else.", "You adjust tone but not substance. Buyers hear the same claim delivered differently — not a message built for them.", "You have started translating but inconsistency is leaving conversions behind. Systematize what is working.", "You have buyer-specific translations. The gap now is consistency and documentation across your team."],
+    statement: ["You do not yet have the raw material for a positioning statement. The modules above are where to start.", "Your draft exists but it is not ownable yet. It needs a specific proof that no other brand can claim.", "You are close. A tested statement is worth more than a perfect draft. Get it in front of real buyers.", "You have a working positioning statement. The work now is making sure it governs everything your brand says."]
+  };
+  MODULES.forEach(function(mod) {
+    var idx = responses[mod.id] || 0;
+    var insight = modInsights[mod.id][idx];
+    modHtml += "<div class='mod-result'><div class='mod-result-label'>" + mod.title + "</div><div class='mod-result-text'>" + insight + "</div></div>";
+  });
+  document.getElementById("module-results").innerHTML = modHtml;
+
+  // Gap summary
+  document.getElementById("gap-summary").innerHTML = "<h3>" + content.gapHeadline + "</h3><p>" + content.gapBody + "</p>";
+
+  // Cost estimate
+  var costEstimate = Math.round(content.costBase * (1 + (maxScore - totalScore) / maxScore) / 500) * 500;
+  document.getElementById("cost-display").textContent = "$" + costEstimate.toLocaleString() + "/mo";
+
+  // CTA
+  document.getElementById("cta-headline").textContent = content.ctaHeadline;
+  document.getElementById("cta-body").textContent = content.ctaBody;
+  document.getElementById("cta-btn").onclick = function() {
+    window.location.href = "revenue-gap-audit.html";
+  };
+}
+
+function buildPositioningStatement(diffScore, transScore, statScore) {
+  var brand = userData.brand || "Your Brand";
+  var category = userData.category || "clean products";
+
+  if (statScore >= 2) {
+    return "For discerning buyers who can no longer trust 'clean' at face value — " + brand + " is the " + category + " brand that makes its standards verifiable, not just visible. Unlike the category default, we give buyers the specific proof they need to trust what they are putting in and on their bodies.";
+  } else if (diffScore >= 2) {
+    return "For buyers who have been burned by greenwashing — " + brand + " offers " + category + " built on a standard specific enough to verify and different enough to defend. We are not asking you to take our word for it.";
+  } else {
+    return brand + " exists for the buyer who knows that 'natural' and 'clean' have been borrowed by too many brands to mean anything on their own. Our position is simple: we show our work. Every claim we make is specific enough to prove — and specific enough that no other brand in our space can honestly make the same one.";
+  }
+}
+</script>
+</body>
+</html>
