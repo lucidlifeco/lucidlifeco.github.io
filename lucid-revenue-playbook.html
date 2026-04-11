@@ -1,0 +1,1798 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Lucid Revenue Playbook</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500&family=Josefin+Sans:wght@200;300;400;600&family=DM+Mono:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+:root {
+  --obsidian: #0C0C0E;
+  --obsidian-2: #111113;
+  --obsidian-3: #171719;
+  --obsidian-4: #1e1e20;
+  --gold: #C4A052;
+  --gold-light: #D4B472;
+  --gold-dim: rgba(196,160,82,0.10);
+  --gold-dim2: rgba(196,160,82,0.06);
+  --gold-border: rgba(196,160,82,0.22);
+  --gold-border-strong: rgba(196,160,82,0.55);
+  --parchment: #EDE9E3;
+  --parchment-dim: rgba(237,233,227,0.78);
+  --parchment-faint: rgba(237,233,227,0.08);
+  --parchment-rule: rgba(237,233,227,0.12);
+  --green: #4A8C6A;
+  --green-dim: rgba(74,140,106,0.12);
+  --sidebar-w: 280px;
+}
+
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+html{scroll-behavior:smooth;}
+body{
+  background:var(--obsidian);
+  color:var(--parchment);
+  font-family:'Josefin Sans',sans-serif;
+  font-weight:300;
+  overflow-x:hidden;
+  min-height:100vh;
+}
+
+/* NOISE */
+body::after{
+  content:'';
+  position:fixed;inset:0;
+  background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 512 512' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='1'/%3E%3C/svg%3E");
+  opacity:0.022;pointer-events:none;z-index:9999;
+}
+
+/* ── SCREENS ── */
+.screen{display:none;}
+.screen.active{display:block;animation:fadeUp 0.55s ease both;}
+@keyframes fadeUp{from{opacity:0;transform:translateY(14px);}to{opacity:1;transform:translateY(0);}}
+
+/* ══════════════════════════════════
+   SALES PAGE
+══════════════════════════════════ */
+.sales-page{max-width:100%;overflow:hidden;}
+
+.sales-nav{
+  display:flex;align-items:center;justify-content:space-between;
+  padding:0 48px;height:68px;
+  border-bottom:1px solid var(--parchment-rule);
+  position:sticky;top:0;z-index:50;
+  background:rgba(12,12,14,0.95);backdrop-filter:blur(12px);
+}
+.sales-nav-mark{
+  font-family:'Cormorant Garamond',serif;font-size:17px;
+  letter-spacing:0.12em;font-weight:400;
+}
+.sales-nav-mark span{color:var(--gold);}
+.sales-nav-tag{
+  font-family:'DM Mono',monospace;font-size:8px;
+  letter-spacing:0.3em;color:var(--gold);text-transform:uppercase;
+  border:1px solid var(--gold-border);padding:7px 14px;
+}
+
+/* HERO */
+.sales-hero{
+  min-height:92vh;display:flex;flex-direction:column;
+  align-items:center;justify-content:center;
+  text-align:center;padding:100px 40px 80px;
+  position:relative;overflow:hidden;
+}
+.sales-hero::before{
+  content:'';position:absolute;
+  top:-100px;left:50%;transform:translateX(-50%);
+  width:900px;height:600px;
+  background:radial-gradient(ellipse,rgba(196,160,82,0.07) 0%,transparent 65%);
+  pointer-events:none;
+}
+
+.price-badge{
+  display:inline-flex;align-items:center;gap:16px;
+  border:1px solid var(--gold-border);
+  padding:12px 24px;margin-bottom:36px;
+  animation:fadeUp 0.6s 0.1s ease both;opacity:0;
+}
+.price-badge-was{
+  font-family:'DM Mono',monospace;font-size:10px;
+  letter-spacing:0.2em;color:var(--parchment-dim);
+  text-decoration:line-through;
+}
+.price-badge-now{
+  font-family:'Cormorant Garamond',serif;font-size:22px;
+  font-weight:500;color:var(--gold);
+}
+.price-badge-label{
+  font-family:'DM Mono',monospace;font-size:8px;
+  letter-spacing:0.25em;color:var(--parchment-dim);text-transform:uppercase;
+}
+
+.sales-eyebrow{
+  font-family:'DM Mono',monospace;font-size:9px;
+  letter-spacing:0.4em;color:var(--gold);text-transform:uppercase;
+  margin-bottom:24px;
+  animation:fadeUp 0.6s 0.15s ease both;opacity:0;
+}
+
+.sales-title{
+  font-family:'Cormorant Garamond',serif;
+  font-size:clamp(48px,7.5vw,96px);
+  font-weight:300;line-height:1.02;
+  letter-spacing:0.01em;
+  max-width:900px;margin-bottom:12px;
+  animation:fadeUp 0.6s 0.2s ease both;opacity:0;
+}
+.sales-title em{color:var(--gold);font-style:italic;}
+
+.sales-subtitle{
+  font-family:'Cormorant Garamond',serif;
+  font-size:clamp(18px,2.2vw,26px);
+  font-weight:300;font-style:italic;
+  color:var(--parchment-dim);
+  max-width:680px;margin:0 auto 52px;
+  line-height:1.5;
+  animation:fadeUp 0.6s 0.25s ease both;opacity:0;
+}
+
+.sales-cta-group{
+  display:flex;flex-direction:column;align-items:center;gap:16px;
+  animation:fadeUp 0.6s 0.3s ease both;opacity:0;
+}
+
+.btn-primary{
+  background:var(--gold);color:var(--obsidian);
+  font-family:'DM Mono',monospace;font-size:11px;
+  letter-spacing:0.3em;text-transform:uppercase;
+  padding:20px 48px;border:none;cursor:pointer;
+  transition:opacity 0.2s,transform 0.2s;
+  display:inline-block;text-decoration:none;
+}
+.btn-primary:hover{opacity:0.88;transform:translateY(-1px);}
+
+.sales-guarantee{
+  font-family:'DM Mono',monospace;font-size:8px;
+  letter-spacing:0.2em;color:var(--parchment-dim);
+  opacity:0.5;text-transform:uppercase;
+}
+
+/* SOCIAL PROOF BAR */
+.proof-bar{
+  border-top:1px solid var(--parchment-rule);
+  border-bottom:1px solid var(--parchment-rule);
+  padding:28px 48px;
+  display:flex;align-items:center;justify-content:center;gap:64px;
+  background:var(--obsidian-2);
+}
+.proof-item{text-align:center;}
+.proof-num{
+  font-family:'Cormorant Garamond',serif;
+  font-size:36px;font-weight:300;color:var(--gold);
+  display:block;line-height:1;margin-bottom:6px;
+}
+.proof-label{
+  font-family:'DM Mono',monospace;font-size:8px;
+  letter-spacing:0.25em;color:var(--parchment-dim);
+  text-transform:uppercase;opacity:0.6;
+}
+
+/* WHAT YOU GET */
+.sales-section{
+  max-width:1000px;margin:0 auto;padding:100px 40px;
+}
+.sales-section-eyebrow{
+  font-family:'DM Mono',monospace;font-size:9px;
+  letter-spacing:0.35em;color:var(--gold);text-transform:uppercase;
+  margin-bottom:20px;
+}
+.sales-section-title{
+  font-family:'Cormorant Garamond',serif;
+  font-size:clamp(32px,4vw,54px);font-weight:300;
+  line-height:1.12;margin-bottom:56px;
+}
+.sales-section-title em{color:var(--gold);font-style:italic;}
+
+.module-list{
+  display:flex;flex-direction:column;gap:1px;
+  background:var(--parchment-rule);
+}
+.module-item{
+  background:var(--obsidian-2);
+  display:grid;grid-template-columns:80px 1fr auto;
+  gap:32px;padding:36px 40px;align-items:start;
+  transition:background 0.25s;cursor:default;
+}
+.module-item:hover{background:var(--obsidian-3);}
+.module-num{
+  font-family:'Cormorant Garamond',serif;
+  font-size:48px;font-weight:300;font-style:italic;
+  color:rgba(196,160,82,0.18);line-height:1;padding-top:4px;
+}
+.module-content-title{
+  font-family:'Cormorant Garamond',serif;
+  font-size:22px;font-weight:400;margin-bottom:10px;
+}
+.module-content-body{
+  font-size:13px;letter-spacing:0.04em;
+  color:var(--parchment-dim);line-height:1.85;
+}
+.module-output{
+  font-family:'DM Mono',monospace;font-size:8px;
+  letter-spacing:0.2em;color:var(--gold);
+  text-transform:uppercase;white-space:nowrap;
+  border:1px solid var(--gold-border);
+  padding:8px 14px;margin-top:4px;
+  text-align:center;
+}
+
+/* WHAT'S INSIDE */
+.inside-grid{
+  display:grid;grid-template-columns:repeat(3,1fr);
+  gap:1px;background:var(--parchment-rule);margin-top:48px;
+}
+.inside-card{
+  background:var(--obsidian-2);padding:36px 32px;
+}
+.inside-icon{
+  font-size:20px;margin-bottom:16px;display:block;
+}
+.inside-title{
+  font-family:'Cormorant Garamond',serif;
+  font-size:18px;font-weight:400;margin-bottom:10px;
+}
+.inside-body{
+  font-size:11px;letter-spacing:0.04em;
+  color:var(--parchment-dim);line-height:1.8;
+}
+
+/* PAIN SECTION */
+.pain-section{
+  background:var(--obsidian-2);
+  border-top:1px solid var(--parchment-rule);
+  border-bottom:1px solid var(--parchment-rule);
+  padding:80px 40px;text-align:center;
+}
+.pain-title{
+  font-family:'Cormorant Garamond',serif;
+  font-size:clamp(28px,3.5vw,46px);font-weight:300;
+  font-style:italic;max-width:720px;
+  margin:0 auto 48px;line-height:1.3;
+}
+.pain-list{
+  display:flex;flex-wrap:wrap;justify-content:center;
+  gap:12px;max-width:700px;margin:0 auto;
+}
+.pain-tag{
+  font-family:'DM Mono',monospace;font-size:9px;
+  letter-spacing:0.2em;text-transform:uppercase;
+  border:1px solid var(--parchment-rule);
+  padding:10px 18px;color:var(--parchment-dim);
+}
+
+/* TESTIMONIAL */
+.testimonial-block{
+  max-width:680px;margin:80px auto;
+  padding:56px;border:1px solid var(--gold-border);
+  background:var(--gold-dim);position:relative;
+  text-align:center;
+}
+.testimonial-block::before{
+  content:'\201C';
+  position:absolute;top:16px;left:32px;
+  font-family:'Cormorant Garamond',serif;
+  font-size:80px;color:var(--gold);opacity:0.2;line-height:1;
+}
+.testimonial-text{
+  font-family:'Cormorant Garamond',serif;
+  font-size:22px;font-weight:300;font-style:italic;
+  line-height:1.55;margin-bottom:24px;
+}
+.testimonial-attr{
+  font-family:'DM Mono',monospace;font-size:8px;
+  letter-spacing:0.3em;color:var(--gold);text-transform:uppercase;
+}
+
+/* SALES FOOTER CTA */
+.sales-footer-cta{
+  text-align:center;padding:100px 40px;
+  background:linear-gradient(to bottom,var(--obsidian),var(--obsidian-2));
+}
+.sales-footer-cta .sales-section-title{margin-bottom:32px;}
+
+.rule{width:100%;height:1px;background:var(--parchment-rule);}
+
+/* ══════════════════════════════════
+   PAYMENT WALL
+══════════════════════════════════ */
+.payment-wall{
+  min-height:100vh;display:flex;align-items:center;
+  justify-content:center;padding:80px 24px;
+}
+.payment-card{
+  max-width:520px;width:100%;
+  border:1px solid var(--gold-border);
+  background:var(--obsidian-2);
+  padding:56px 48px;
+  text-align:center;
+}
+.payment-logo{
+  font-family:'Cormorant Garamond',serif;
+  font-size:14px;letter-spacing:0.2em;
+  color:var(--parchment-dim);margin-bottom:32px;display:block;
+}
+.payment-logo span{color:var(--gold);}
+.payment-title{
+  font-family:'Cormorant Garamond',serif;
+  font-size:32px;font-weight:300;
+  margin-bottom:8px;line-height:1.2;
+}
+.payment-sub{
+  font-size:12px;letter-spacing:0.06em;
+  color:var(--parchment-dim);margin-bottom:40px;
+  line-height:1.8;
+}
+.payment-price-wrap{
+  border:1px solid var(--parchment-rule);
+  padding:28px;margin-bottom:32px;
+  background:var(--parchment-faint);
+}
+.payment-was{
+  font-family:'DM Mono',monospace;font-size:10px;
+  letter-spacing:0.2em;color:var(--parchment-dim);
+  text-decoration:line-through;opacity:0.5;
+  display:block;margin-bottom:8px;
+}
+.payment-now{
+  font-family:'Cormorant Garamond',serif;
+  font-size:56px;font-weight:300;color:var(--gold);
+  display:block;line-height:1;margin-bottom:8px;
+}
+.payment-period{
+  font-family:'DM Mono',monospace;font-size:8px;
+  letter-spacing:0.25em;color:var(--parchment-dim);
+  text-transform:uppercase;opacity:0.6;
+}
+.payment-includes{
+  text-align:left;margin-bottom:32px;
+}
+.payment-include-item{
+  display:flex;align-items:flex-start;gap:12px;
+  padding:10px 0;border-bottom:1px solid var(--parchment-rule);
+  font-size:12px;letter-spacing:0.04em;
+  color:var(--parchment-dim);line-height:1.5;
+}
+.payment-include-item:last-child{border-bottom:none;}
+.payment-check{
+  color:var(--gold);font-size:12px;margin-top:1px;flex-shrink:0;
+}
+.payment-form{display:flex;flex-direction:column;gap:14px;}
+.payment-input{
+  background:var(--obsidian-3);
+  border:1px solid var(--parchment-rule);
+  color:var(--parchment);
+  font-family:'Josefin Sans',sans-serif;
+  font-size:12px;letter-spacing:0.08em;
+  padding:15px 18px;outline:none;
+  transition:border-color 0.2s;width:100%;
+}
+.payment-input::placeholder{color:rgba(237,233,227,0.22);}
+.payment-input:focus{border-color:var(--gold-border-strong);}
+.payment-submit{
+  background:var(--gold);color:var(--obsidian);
+  font-family:'DM Mono',monospace;font-size:10px;
+  letter-spacing:0.3em;text-transform:uppercase;
+  padding:18px;border:none;cursor:pointer;
+  transition:opacity 0.2s;width:100%;
+  margin-top:4px;
+}
+.payment-submit:hover{opacity:0.85;}
+.payment-secure{
+  font-family:'DM Mono',monospace;font-size:8px;
+  letter-spacing:0.2em;color:var(--parchment-dim);
+  opacity:0.4;margin-top:16px;text-align:center;
+}
+
+/* ══════════════════════════════════
+   APP SHELL
+══════════════════════════════════ */
+.app-shell{
+  display:grid;
+  grid-template-columns:var(--sidebar-w) 1fr;
+  min-height:100vh;
+}
+
+/* SIDEBAR */
+.sidebar{
+  background:var(--obsidian-2);
+  border-right:1px solid var(--parchment-rule);
+  position:sticky;top:0;height:100vh;
+  overflow-y:auto;display:flex;flex-direction:column;
+}
+.sidebar-header{
+  padding:28px 24px 24px;
+  border-bottom:1px solid var(--parchment-rule);
+}
+.sidebar-mark{
+  font-family:'Cormorant Garamond',serif;
+  font-size:13px;letter-spacing:0.15em;
+  margin-bottom:4px;display:block;
+}
+.sidebar-mark span{color:var(--gold);}
+.sidebar-product{
+  font-family:'DM Mono',monospace;font-size:7.5px;
+  letter-spacing:0.3em;color:var(--gold);
+  text-transform:uppercase;opacity:0.7;
+}
+
+/* PROGRESS */
+.sidebar-progress{padding:20px 24px;border-bottom:1px solid var(--parchment-rule);}
+.progress-label{
+  font-family:'DM Mono',monospace;font-size:7.5px;
+  letter-spacing:0.25em;color:var(--parchment-dim);
+  text-transform:uppercase;margin-bottom:10px;
+  display:flex;justify-content:space-between;
+}
+.progress-track{
+  height:2px;background:var(--parchment-rule);position:relative;
+}
+.progress-fill{
+  height:100%;background:var(--gold);
+  transition:width 0.5s ease;
+}
+
+/* NAV ITEMS */
+.sidebar-nav{flex:1;padding:16px 0;}
+.nav-item{
+  display:flex;align-items:center;gap:14px;
+  padding:14px 24px;cursor:pointer;
+  transition:background 0.2s;position:relative;
+  border-left:2px solid transparent;
+}
+.nav-item:hover{background:var(--parchment-faint);}
+.nav-item.active{
+  background:var(--gold-dim);
+  border-left-color:var(--gold);
+}
+.nav-item.completed .nav-dot{background:var(--green);}
+.nav-dot{
+  width:8px;height:8px;border-radius:50%;
+  background:var(--parchment-rule);
+  flex-shrink:0;transition:background 0.3s;
+}
+.nav-item.active .nav-dot{background:var(--gold);}
+.nav-item-text{flex:1;}
+.nav-item-num{
+  font-family:'DM Mono',monospace;font-size:7px;
+  letter-spacing:0.25em;color:var(--parchment-dim);
+  opacity:0.5;text-transform:uppercase;
+  display:block;margin-bottom:3px;
+}
+.nav-item-title{
+  font-family:'Josefin Sans',sans-serif;
+  font-size:11px;letter-spacing:0.06em;
+  color:var(--parchment);font-weight:400;
+}
+.nav-item.active .nav-item-title{color:var(--gold);}
+.nav-check{
+  font-size:11px;color:var(--green);opacity:0;
+  transition:opacity 0.3s;
+}
+.nav-item.completed .nav-check{opacity:1;}
+
+.sidebar-footer{
+  padding:20px 24px;
+  border-top:1px solid var(--parchment-rule);
+}
+.sidebar-retainer{
+  font-family:'DM Mono',monospace;font-size:7.5px;
+  letter-spacing:0.18em;color:var(--gold);
+  text-transform:uppercase;opacity:0.6;
+  cursor:pointer;transition:opacity 0.2s;
+  text-decoration:none;display:block;
+  text-align:center;padding:10px;
+  border:1px solid var(--gold-border);
+}
+.sidebar-retainer:hover{opacity:1;}
+
+/* MAIN CONTENT */
+.main-content{
+  padding:0;overflow-y:auto;
+  background:var(--obsidian);
+}
+
+/* MODULE HEADER */
+.module-header{
+  padding:52px 64px 40px;
+  border-bottom:1px solid var(--parchment-rule);
+  position:relative;overflow:hidden;
+}
+.module-header::before{
+  content:'';position:absolute;
+  top:-80px;right:-80px;
+  width:300px;height:300px;
+  background:radial-gradient(circle,rgba(196,160,82,0.05) 0%,transparent 65%);
+  pointer-events:none;
+}
+.module-header-num{
+  font-family:'Cormorant Garamond',serif;
+  font-size:100px;font-weight:300;font-style:italic;
+  color:rgba(196,160,82,0.08);
+  position:absolute;top:20px;right:56px;
+  line-height:1;pointer-events:none;
+  user-select:none;
+}
+.module-tag{
+  font-family:'DM Mono',monospace;font-size:8px;
+  letter-spacing:0.35em;color:var(--gold);
+  text-transform:uppercase;margin-bottom:16px;
+  display:flex;align-items:center;gap:10px;
+}
+.module-tag-line{width:24px;height:1px;background:var(--gold-border-strong);}
+.module-title{
+  font-family:'Cormorant Garamond',serif;
+  font-size:clamp(32px,4vw,52px);font-weight:300;
+  line-height:1.1;margin-bottom:16px;
+}
+.module-title em{color:var(--gold);font-style:italic;}
+.module-desc{
+  font-size:14px;letter-spacing:0.05em;
+  color:var(--parchment-dim);line-height:1.9;
+  max-width:580px;
+}
+
+/* VIDEO PLACEHOLDER */
+.video-wrap{
+  margin:40px 64px;
+  background:var(--obsidian-3);
+  border:1px solid var(--parchment-rule);
+  aspect-ratio:16/9;
+  display:flex;flex-direction:column;
+  align-items:center;justify-content:center;
+  position:relative;overflow:hidden;cursor:pointer;
+  transition:border-color 0.3s;
+}
+.video-wrap:hover{border-color:var(--gold-border);}
+.video-glow{
+  position:absolute;inset:0;
+  background:radial-gradient(circle at center,rgba(196,160,82,0.04) 0%,transparent 60%);
+}
+.video-play{
+  width:64px;height:64px;border-radius:50%;
+  border:1px solid var(--gold-border-strong);
+  display:flex;align-items:center;justify-content:center;
+  margin-bottom:20px;
+  background:rgba(196,160,82,0.08);
+  transition:background 0.3s,transform 0.3s;
+}
+.video-wrap:hover .video-play{
+  background:rgba(196,160,82,0.15);
+  transform:scale(1.05);
+}
+.video-play-icon{
+  font-size:20px;color:var(--gold);
+  margin-left:4px;
+}
+.video-label{
+  font-family:'DM Mono',monospace;font-size:9px;
+  letter-spacing:0.3em;color:var(--parchment-dim);
+  text-transform:uppercase;opacity:0.6;
+}
+.video-duration{
+  position:absolute;bottom:16px;right:16px;
+  font-family:'DM Mono',monospace;font-size:8px;
+  letter-spacing:0.15em;color:var(--parchment-dim);opacity:0.4;
+}
+
+/* MODULE BODY */
+.module-body{padding:40px 64px 80px;}
+
+.step-block{
+  margin-bottom:48px;
+}
+.step-label{
+  font-family:'DM Mono',monospace;font-size:8px;
+  letter-spacing:0.3em;color:var(--gold);
+  text-transform:uppercase;margin-bottom:12px;
+  display:flex;align-items:center;gap:10px;
+}
+.step-label::after{content:'';flex:1;height:1px;background:var(--parchment-rule);}
+.step-title{
+  font-family:'Cormorant Garamond',serif;
+  font-size:24px;font-weight:400;margin-bottom:12px;
+}
+.step-body{
+  font-size:13px;letter-spacing:0.04em;
+  color:var(--parchment-dim);line-height:1.9;
+  margin-bottom:20px;
+}
+
+/* WORKSHEET */
+.worksheet{
+  background:#080809;
+  border:1px solid rgba(196,160,82,0.18);
+  padding:36px;margin-top:20px;
+}
+.worksheet-title{
+  font-family:'DM Mono',monospace;font-size:8px;
+  letter-spacing:0.3em;text-transform:uppercase;
+  color:var(--gold);margin-bottom:24px;
+  padding-bottom:16px;
+  border-bottom:1px solid var(--parchment-rule);
+}
+.ws-field{margin-bottom:20px;}
+.ws-label{
+  font-family:'DM Mono',monospace;font-size:9px;
+  letter-spacing:0.2em;text-transform:uppercase;
+  color:var(--gold);opacity:0.75;
+  margin-bottom:8px;display:block;
+}
+.ws-input{
+  width:100%;background:#111113;
+  border:1px solid rgba(237,233,227,0.15);
+  color:var(--parchment);
+  font-family:'Josefin Sans',sans-serif;
+  font-size:13px;letter-spacing:0.05em;
+  padding:14px 16px;outline:none;
+  transition:border-color 0.2s;resize:vertical;
+  font-weight:300;line-height:1.7;
+}
+.ws-input::placeholder{color:rgba(237,233,227,0.28);}
+.ws-input:focus{border-color:var(--gold-border-strong);}
+.ws-textarea{min-height:100px;}
+.ws-hint{
+  font-size:11px;letter-spacing:0.03em;
+  color:var(--parchment-dim);opacity:0.6;
+  margin-top:6px;line-height:1.6;font-style:italic;
+}
+.ws-row{display:grid;grid-template-columns:1fr 1fr;gap:16px;}
+
+/* EXAMPLE BOX */
+.example-box{
+  background:#080809;
+  border-left:2px solid var(--gold);
+  padding:24px 28px;margin:20px 0;
+}
+.example-label{
+  font-family:'DM Mono',monospace;font-size:8px;
+  letter-spacing:0.3em;color:var(--gold);
+  text-transform:uppercase;margin-bottom:12px;
+  opacity:0.85;
+}
+.example-text{
+  font-family:'Cormorant Garamond',serif;
+  font-size:17px;font-style:italic;
+  color:var(--parchment);line-height:1.65;
+}
+.example-text{
+  font-family:'Cormorant Garamond',serif;
+  font-size:17px;font-style:italic;
+  color:var(--parchment);line-height:1.55;
+}
+
+/* INSIGHT BOX */
+.insight-box{
+  background:#0d0d0f;
+  border:1px solid rgba(196,160,82,0.18);
+  padding:24px;margin:24px 0;
+  display:flex;gap:16px;
+}
+.insight-icon{font-size:16px;flex-shrink:0;margin-top:2px;color:var(--gold);}
+.insight-body{
+  font-size:13px;letter-spacing:0.04em;
+  color:var(--parchment-dim);line-height:1.85;
+}
+.insight-body strong{
+  color:var(--parchment);font-weight:400;
+  display:block;margin-bottom:6px;
+  font-family:'Cormorant Garamond',serif;font-size:16px;
+}
+
+/* RETAINER BRIDGE */
+.retainer-bridge{
+  background:#0a0a0c;
+  border:1px solid var(--gold-border);
+  padding:32px 36px;margin:40px 0;
+  position:relative;
+}
+.retainer-bridge::before{
+  content:'';position:absolute;top:0;left:0;
+  width:3px;height:100%;background:var(--gold);
+}
+.retainer-bridge-label{
+  font-family:'DM Mono',monospace;font-size:7.5px;
+  letter-spacing:0.3em;color:var(--gold);
+  text-transform:uppercase;margin-bottom:12px;opacity:0.8;
+}
+.retainer-bridge-title{
+  font-family:'Cormorant Garamond',serif;
+  font-size:20px;font-weight:400;font-style:italic;
+  margin-bottom:10px;
+}
+.retainer-bridge-body{
+  font-size:13px;letter-spacing:0.04em;
+  color:var(--parchment-dim);line-height:1.85;
+  margin-bottom:16px;
+}
+.retainer-bridge-link{
+  font-family:'DM Mono',monospace;font-size:8.5px;
+  letter-spacing:0.25em;color:var(--gold);
+  text-transform:uppercase;cursor:pointer;
+  text-decoration:none;
+  display:inline-flex;align-items:center;gap:8px;
+  transition:gap 0.2s;
+}
+.retainer-bridge-link:hover{gap:14px;}
+
+/* MODULE COMPLETE */
+.module-complete-btn{
+  width:100%;background:var(--gold);
+  color:var(--obsidian);
+  font-family:'DM Mono',monospace;font-size:10px;
+  letter-spacing:0.3em;text-transform:uppercase;
+  padding:18px;border:none;cursor:pointer;
+  transition:opacity 0.2s;margin-top:40px;
+}
+.module-complete-btn:hover{opacity:0.85;}
+.module-complete-btn.completed-state{
+  background:var(--green-dim);color:var(--green);
+  border:1px solid rgba(74,140,106,0.3);
+  cursor:default;
+}
+
+/* MODULE NAV ARROWS */
+.module-nav-arrows{
+  display:flex;justify-content:space-between;align-items:center;
+  padding:32px 64px;
+  border-top:1px solid var(--parchment-rule);
+  background:var(--obsidian-2);
+}
+.arrow-btn{
+  font-family:'DM Mono',monospace;font-size:9px;
+  letter-spacing:0.25em;text-transform:uppercase;
+  color:var(--parchment-dim);
+  background:none;border:1px solid var(--parchment-rule);
+  padding:12px 24px;cursor:pointer;
+  transition:all 0.2s;
+}
+.arrow-btn:hover{border-color:var(--gold-border);color:var(--gold);}
+.arrow-btn:disabled{opacity:0.2;cursor:default;}
+
+/* DASHBOARD */
+.dashboard{padding:64px;}
+.dashboard-greeting{
+  font-family:'Cormorant Garamond',serif;
+  font-size:clamp(32px,4vw,52px);font-weight:300;
+  line-height:1.1;margin-bottom:12px;
+}
+.dashboard-greeting em{color:var(--gold);font-style:italic;}
+.dashboard-sub{
+  font-size:13px;letter-spacing:0.05em;
+  color:var(--parchment-dim);line-height:1.8;
+  margin-bottom:56px;max-width:560px;
+}
+.dashboard-grid{
+  display:grid;grid-template-columns:repeat(3,1fr);
+  gap:1px;background:var(--parchment-rule);margin-bottom:48px;
+}
+.dash-card{
+  background:var(--obsidian-2);padding:32px 28px;
+  cursor:pointer;transition:background 0.2s;
+  border-bottom:2px solid transparent;
+}
+.dash-card:hover{background:var(--obsidian-3);}
+.dash-card.active-module{border-bottom-color:var(--gold);}
+.dash-card.done-module{border-bottom-color:var(--green);}
+.dash-card-num{
+  font-family:'Cormorant Garamond',serif;
+  font-size:40px;font-weight:300;font-style:italic;
+  color:rgba(196,160,82,0.15);line-height:1;margin-bottom:12px;
+}
+.dash-card-tag{
+  font-family:'DM Mono',monospace;font-size:7.5px;
+  letter-spacing:0.25em;color:var(--gold);
+  text-transform:uppercase;margin-bottom:8px;
+  opacity:0.7;
+}
+.dash-card-title{
+  font-family:'Cormorant Garamond',serif;
+  font-size:16px;font-weight:400;margin-bottom:8px;
+}
+.dash-card-status{
+  font-family:'DM Mono',monospace;font-size:7.5px;
+  letter-spacing:0.2em;text-transform:uppercase;
+  opacity:0.45;
+}
+.dash-card.done-module .dash-card-status{color:var(--green);opacity:1;}
+.dash-card.active-module .dash-card-status{color:var(--gold);opacity:1;}
+
+/* RESPONSIVE */
+@media(max-width:900px){
+  .app-shell{grid-template-columns:1fr;}
+  .sidebar{display:none;}
+  .module-header{padding:40px 24px 32px;}
+  .module-header-num{font-size:60px;right:20px;}
+  .video-wrap{margin:32px 24px;}
+  .module-body{padding:32px 24px 60px;}
+  .module-nav-arrows{padding:24px;}
+  .dashboard{padding:32px 24px;}
+  .dashboard-grid{grid-template-columns:1fr 1fr;}
+  .inside-grid{grid-template-columns:1fr;}
+  .module-item{grid-template-columns:60px 1fr;gap:20px;}
+  .module-output{display:none;}
+  .proof-bar{flex-wrap:wrap;gap:32px;padding:28px 24px;}
+  .ws-row{grid-template-columns:1fr;}
+}
+</style>
+</head>
+<body>
+
+<!-- ══════════════════════════ SALES PAGE ══════════════════════════ -->
+<div id="screen-sales" class="screen active">
+<div class="sales-page">
+
+  <nav class="sales-nav">
+    <div class="sales-nav-mark">Lucid Life <span>Co</span></div>
+    <div class="sales-nav-tag">The Lucid Revenue Playbook</div>
+  </nav>
+
+  <section class="sales-hero">
+    <div class="price-badge">
+      <span class="price-badge-was">$999</span>
+      <span class="price-badge-now">$197</span>
+      <span class="price-badge-label">Limited Launch Pricing</span>
+    </div>
+    <p class="sales-eyebrow">For Clean &amp; Wellness Brand Founders</p>
+    <h1 class="sales-title">The Lucid Revenue<br><em>Playbook</em></h1>
+    <p class="sales-subtitle">The complete step-by-step system for clean and wellness founders — from ideal customer to closed deal to repeatable revenue.</p>
+    <div class="sales-cta-group">
+      <button class="btn-primary" onclick="showScreen('payment')">Get Instant Access — $197 →</button>
+      <span class="sales-guarantee">✦ &nbsp;30-Day Money-Back Guarantee &nbsp;✦ &nbsp;Instant Access &nbsp;✦ &nbsp;Yours Forever</span>
+    </div>
+  </section>
+
+  <div class="proof-bar">
+    <div class="proof-item">
+      <span class="proof-num">6</span>
+      <span class="proof-label">Core Modules</span>
+    </div>
+    <div class="proof-item">
+      <span class="proof-num">6+</span>
+      <span class="proof-label">Video Walkthroughs</span>
+    </div>
+    <div class="proof-item">
+      <span class="proof-num">18</span>
+      <span class="proof-label">Executable Worksheets</span>
+    </div>
+    <div class="proof-item">
+      <span class="proof-num">$802</span>
+      <span class="proof-label">You Save Today</span>
+    </div>
+  </div>
+
+  <!-- Pain Section -->
+  <section class="pain-section">
+    <h2 class="pain-title">"You have a product worth believing in. You just don't have a system that turns belief into revenue."</h2>
+    <div class="pain-list">
+      <span class="pain-tag">Revenue is inconsistent</span>
+      <span class="pain-tag">Referral-dependent pipeline</span>
+      <span class="pain-tag">Can't describe your ICP precisely</span>
+      <span class="pain-tag">Outreach feels awkward</span>
+      <span class="pain-tag">No follow-up cadence</span>
+      <span class="pain-tag">Deals stall after discovery</span>
+      <span class="pain-tag">Can't see 60 days forward</span>
+      <span class="pain-tag">Busy but not building</span>
+    </div>
+  </section>
+
+  <!-- What's Inside -->
+  <section class="sales-section">
+    <p class="sales-section-eyebrow">What You Get</p>
+    <h2 class="sales-section-title">Six modules.<br><em>One complete system.</em></h2>
+
+    <div class="module-list">
+      <div class="module-item">
+        <div class="module-num">01</div>
+        <div>
+          <div class="module-content-title">Your One Buyer</div>
+          <p class="module-content-body">Identify your ideal customer with the precision that changes every conversation. Not a demographic — a specific person, problem, and cost of inaction. Walk away with a complete ICP document you'll use in every sales interaction.</p>
+        </div>
+        <div class="module-output">ICP Document</div>
+      </div>
+      <div class="module-item">
+        <div class="module-num">02</div>
+        <div>
+          <div class="module-content-title">Your Gap Statement</div>
+          <p class="module-content-body">Build the single sentence that names the distance between where your buyer is and where they need to be. This is the engine of every sales conversation, piece of outreach, and content you'll create going forward.</p>
+        </div>
+        <div class="module-output">Gap Statement</div>
+      </div>
+      <div class="module-item">
+        <div class="module-num">03</div>
+        <div>
+          <div class="module-content-title">Your Lead Generation Engine</div>
+          <p class="module-content-body">Map your five warmest doors. Build your outreach sequence. Design a follow-up cadence that creates conversations without a cold list or a large audience. Stop relying on referrals you can't control.</p>
+        </div>
+        <div class="module-output">30-Day Outreach Plan</div>
+      </div>
+      <div class="module-item">
+        <div class="module-num">04</div>
+        <div>
+          <div class="module-content-title">Present and Close</div>
+          <p class="module-content-body">Learn to run a discovery conversation that doesn't feel like a sales call. Present without pitching. Ask for the commitment without it feeling like a close. Built on Gap Selling principles, designed for founders who hate selling.</p>
+        </div>
+        <div class="module-output">Discovery Framework</div>
+      </div>
+      <div class="module-item">
+        <div class="module-num">05</div>
+        <div>
+          <div class="module-content-title">Deliver and Obsess</div>
+          <p class="module-content-body">Deliver at a level that generates referrals and renewals automatically. Onboard with intention. Communicate with cadence. Build the feedback system that turns one client's result into the next client's reason to buy.</p>
+        </div>
+        <div class="module-output">Delivery Playbook</div>
+      </div>
+      <div class="module-item">
+        <div class="module-num">06</div>
+        <div>
+          <div class="module-content-title">Repeat and Compound</div>
+          <p class="module-content-body">Close the loop. Turn feedback into innovation. Turn results into referrals. Build the repeatability system that means you're never starting from zero again.</p>
+        </div>
+        <div class="module-output">Referral System</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- What's included breakdown -->
+  <div class="rule"></div>
+  <section class="sales-section">
+    <p class="sales-section-eyebrow">Everything Included</p>
+    <h2 class="sales-section-title">Built for founders who<br><em>execute</em>, not just read.</h2>
+    <div class="inside-grid">
+      <div class="inside-card">
+        <span class="inside-icon">▶</span>
+        <h3 class="inside-title">Video Walkthroughs</h3>
+        <p class="inside-body">A short walkthrough video for every module. Cody walks you through the framework, the common mistakes, and exactly how to apply it to a clean brand at your stage.</p>
+      </div>
+      <div class="inside-card">
+        <span class="inside-icon">◈</span>
+        <h3 class="inside-title">Interactive Worksheets</h3>
+        <p class="inside-body">Every module has structured, fillable worksheets built directly into the platform. Complete them as you go. Download your outputs when you're done.</p>
+      </div>
+      <div class="inside-card">
+        <span class="inside-icon">↓</span>
+        <h3 class="inside-title">Downloadable Outputs</h3>
+        <p class="inside-body">Every completed worksheet exports as a clean document. By the end you have a complete revenue playbook built for your specific brand — not a generic template.</p>
+      </div>
+      <div class="inside-card">
+        <span class="inside-icon">✦</span>
+        <h3 class="inside-title">Real Examples</h3>
+        <p class="inside-body">Every concept includes a before/after example from a real clean or wellness brand context. Not SaaS. Not e-commerce. Your category.</p>
+      </div>
+      <div class="inside-card">
+        <span class="inside-icon">◎</span>
+        <h3 class="inside-title">Progress Tracking</h3>
+        <p class="inside-body">Work through the playbook at your own pace. Your progress is saved. Pick up exactly where you left off across sessions.</p>
+      </div>
+      <div class="inside-card">
+        <span class="inside-icon">∞</span>
+        <h3 class="inside-title">Lifetime Access</h3>
+        <p class="inside-body">The playbook is yours forever. Return to it as your brand evolves, your offer changes, or your team grows. The system scales with you.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Testimonial -->
+  <div class="rule"></div>
+  <div class="sales-section">
+    <div class="testimonial-block">
+      <p class="testimonial-text">"Most revenue advice is built for tech companies. This is the first system I've found that actually understands the clean brand founder's situation — mission-driven, resource-constrained, and deeply skeptical of anything that feels like conventional sales."</p>
+      <span class="testimonial-attr">Clean Brand Founder · Functional Wellness Category</span>
+    </div>
+  </div>
+
+  <!-- Footer CTA -->
+  <div class="sales-footer-cta">
+    <p class="sales-section-eyebrow" style="text-align:center">Get Instant Access</p>
+    <h2 class="sales-section-title" style="text-align:center;max-width:600px;margin:0 auto 32px">The system your mission<br><em>deserves.</em></h2>
+    <div style="text-align:center;margin-bottom:20px;">
+      <div class="price-badge" style="display:inline-flex;margin-bottom:28px;">
+        <span class="price-badge-was">$999</span>
+        <span class="price-badge-now">$197</span>
+        <span class="price-badge-label">Limited Launch Pricing</span>
+      </div>
+    </div>
+    <div style="text-align:center;">
+      <button class="btn-primary" onclick="showScreen('payment')">Get The Lucid Revenue Playbook →</button>
+      <p style="margin-top:16px;" class="sales-guarantee">✦ &nbsp;30-Day Money-Back Guarantee &nbsp;✦ &nbsp;Instant Lifetime Access</p>
+    </div>
+  </div>
+
+</div>
+</div>
+
+<!-- ══════════════════════════ PAYMENT ══════════════════════════ -->
+<div id="screen-payment" class="screen">
+  <div class="payment-wall">
+    <div class="payment-card">
+      <span class="payment-logo">Lucid Life <span>Co</span></span>
+      <h2 class="payment-title">The Lucid Revenue Playbook</h2>
+      <p class="payment-sub">Complete your purchase for instant lifetime access. All six modules, video walkthroughs, and interactive worksheets — unlocked immediately.</p>
+
+      <div class="payment-price-wrap">
+        <span class="payment-was">Regular Price: $999</span>
+        <span class="payment-now">$197</span>
+        <span class="payment-period">One-time · Lifetime Access · 30-Day Guarantee</span>
+      </div>
+
+      <div class="payment-includes">
+        <div class="payment-include-item"><span class="payment-check">✦</span>6 core modules with video walkthroughs</div>
+        <div class="payment-include-item"><span class="payment-check">✦</span>18 interactive worksheets &amp; downloadable outputs</div>
+        <div class="payment-include-item"><span class="payment-check">✦</span>Real clean brand examples throughout</div>
+        <div class="payment-include-item"><span class="payment-check">✦</span>Lifetime access — yours forever</div>
+        <div class="payment-include-item"><span class="payment-check">✦</span>30-day money-back guarantee</div>
+      </div>
+
+      <form class="payment-form" onsubmit="handlePurchase(event)">
+        <input class="payment-input" type="text" placeholder="YOUR NAME" required />
+        <input class="payment-input" type="email" placeholder="EMAIL ADDRESS" required />
+        <input class="payment-input" type="text" placeholder="CARD NUMBER" required />
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:14px;">
+          <input class="payment-input" type="text" placeholder="MM / YY" required />
+          <input class="payment-input" type="text" placeholder="CVC" required />
+        </div>
+        <button class="payment-submit" type="submit">Complete Purchase — $197 →</button>
+      </form>
+      <p class="payment-secure">🔒 &nbsp;Secured by Stripe · SSL Encrypted · 30-Day Guarantee</p>
+      <p style="margin-top:16px;text-align:center;">
+        <span onclick="showScreen('sales')" style="font-family:'DM Mono',monospace;font-size:8px;letter-spacing:0.2em;color:var(--parchment-dim);opacity:0.4;cursor:pointer;text-transform:uppercase;">← Back to Sales Page</span>
+      </p>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════════ APP ══════════════════════════ -->
+<div id="screen-app" class="screen">
+<div class="app-shell">
+
+  <!-- SIDEBAR -->
+  <aside class="sidebar">
+    <div class="sidebar-header">
+      <span class="sidebar-mark">Lucid Life <span>Co</span></span>
+      <span class="sidebar-product">The Lucid Revenue Playbook</span>
+    </div>
+
+    <div class="sidebar-progress">
+      <div class="progress-label">
+        <span>Your Progress</span>
+        <span id="progress-pct">0%</span>
+      </div>
+      <div class="progress-track">
+        <div class="progress-fill" id="progress-fill" style="width:0%"></div>
+      </div>
+    </div>
+
+    <nav class="sidebar-nav" id="sidebar-nav">
+      <div class="nav-item active" onclick="showModule(0)" id="nav-dash">
+        <div class="nav-dot"></div>
+        <div class="nav-item-text">
+          <span class="nav-item-num">Start Here</span>
+          <span class="nav-item-title">Dashboard</span>
+        </div>
+        <span class="nav-check">✓</span>
+      </div>
+      <div class="nav-item" onclick="showModule(1)" id="nav-m1">
+        <div class="nav-dot"></div>
+        <div class="nav-item-text">
+          <span class="nav-item-num">Module 01</span>
+          <span class="nav-item-title">Your One Buyer</span>
+        </div>
+        <span class="nav-check">✓</span>
+      </div>
+      <div class="nav-item" onclick="showModule(2)" id="nav-m2">
+        <div class="nav-dot"></div>
+        <div class="nav-item-text">
+          <span class="nav-item-num">Module 02</span>
+          <span class="nav-item-title">Your Gap Statement</span>
+        </div>
+        <span class="nav-check">✓</span>
+      </div>
+      <div class="nav-item" onclick="showModule(3)" id="nav-m3">
+        <div class="nav-dot"></div>
+        <div class="nav-item-text">
+          <span class="nav-item-num">Module 03</span>
+          <span class="nav-item-title">Lead Generation</span>
+        </div>
+        <span class="nav-check">✓</span>
+      </div>
+      <div class="nav-item" onclick="showModule(4)" id="nav-m4">
+        <div class="nav-dot"></div>
+        <div class="nav-item-text">
+          <span class="nav-item-num">Module 04</span>
+          <span class="nav-item-title">Present &amp; Close</span>
+        </div>
+        <span class="nav-check">✓</span>
+      </div>
+      <div class="nav-item" onclick="showModule(5)" id="nav-m5">
+        <div class="nav-dot"></div>
+        <div class="nav-item-text">
+          <span class="nav-item-num">Module 05</span>
+          <span class="nav-item-title">Deliver &amp; Obsess</span>
+        </div>
+        <span class="nav-check">✓</span>
+      </div>
+      <div class="nav-item" onclick="showModule(6)" id="nav-m6">
+        <div class="nav-dot"></div>
+        <div class="nav-item-text">
+          <span class="nav-item-num">Module 06</span>
+          <span class="nav-item-title">Repeat &amp; Compound</span>
+        </div>
+        <span class="nav-check">✓</span>
+      </div>
+    </nav>
+
+    <div class="sidebar-footer">
+      <a class="sidebar-retainer" href="mailto:hello@lucidlifeco.com?subject=Advisory Inquiry — Playbook Graduate">Work With Cody Directly →</a>
+    </div>
+  </aside>
+
+  <!-- MAIN -->
+  <main class="main-content" id="main-content">
+
+    <!-- DASHBOARD -->
+    <div id="mod-0">
+      <div class="dashboard">
+        <h1 class="dashboard-greeting">Welcome to<br><em>The Lucid Revenue Playbook.</em></h1>
+        <p class="dashboard-sub">You have a product worth believing in. This system gives it the revenue motion it deserves. Work through each module in sequence. Complete the worksheets. By Module 6 you'll have a complete, custom-built revenue playbook for your specific brand.</p>
+
+        <div class="dashboard-grid" id="dashboard-grid">
+          <!-- filled by JS -->
+        </div>
+
+        <div class="insight-box">
+          <span class="insight-icon">◎</span>
+          <div class="insight-body">
+            <strong>How to use this playbook</strong>
+            Work through each module in order. Watch the video, read the framework, complete the worksheets. Don't skip ahead — each module builds directly on the last. Set aside 60–90 minutes per module. The system works when you do the work.
+          </div>
+        </div>
+
+        <div class="retainer-bridge">
+          <div class="retainer-bridge-label">A note from Cody</div>
+          <div class="retainer-bridge-title">This playbook works generically. A custom engagement makes it work for your specific brand.</div>
+          <p class="retainer-bridge-body">Every tool here is real and executable. What no playbook can do is look at your specific gap statement, your specific buyer, your specific offer — and tell you exactly what's wrong and in what order to fix it. If at any point you hit a wall, or want someone to pressure-test your work before you take it to market, that's what I'm here for.</p>
+          <a class="retainer-bridge-link" href="mailto:hello@lucidlifeco.com?subject=Advisory Inquiry">Start a conversation →</a>
+        </div>
+
+        <button class="btn-primary" onclick="showModule(1)" style="margin-top:8px;">Begin Module 01: Your One Buyer →</button>
+      </div>
+    </div>
+
+    <!-- MODULE 1: YOUR ONE BUYER -->
+    <div id="mod-1" style="display:none;">
+      <div class="module-header">
+        <div class="module-header-num">01</div>
+        <div class="module-tag"><div class="module-tag-line"></div>Module 01</div>
+        <h1 class="module-title">Your One <em>Buyer</em></h1>
+        <p class="module-desc">Most clean brand founders describe their ideal customer as "health-conscious consumers aged 25–45." That's a demographic. It's not a buyer. This module gives you the precision that changes every conversation you have from here forward.</p>
+      </div>
+
+      <div class="video-wrap" onclick="alert('Connect your Loom or Vimeo embed URL here.')">
+        <div class="video-glow"></div>
+        <div class="video-play"><span class="video-play-icon">▶</span></div>
+        <span class="video-label">Module 01 Walkthrough — Your One Buyer</span>
+        <span class="video-duration">8 min</span>
+      </div>
+
+      <div class="module-body">
+
+        <div class="step-block">
+          <div class="step-label">Step 1</div>
+          <h2 class="step-title">Name the person, not the segment.</h2>
+          <p class="step-body">Your ICP isn't a demographic. It's a person — with a job, a specific frustration, a specific cost of doing nothing, and a specific reason they'd trust you over the alternative. The more precisely you can describe this person, the more specifically you can speak to them. And specificity is what closes.</p>
+
+          <div class="example-box">
+            <div class="example-label">Before → After</div>
+            <p class="example-text">Before: "Health-conscious women 30–45 who care about clean ingredients."<br><br>After: "A 38-year-old functional wellness practitioner who recommends products to clients and has been burned twice by brands that greenwashed their sourcing. She needs third-party verified proof before she'll put her name on anything."</p>
+          </div>
+
+          <div class="worksheet">
+            <div class="worksheet-title">◈ &nbsp;Worksheet 1.1 — Your Buyer Profile</div>
+            <div class="ws-row">
+              <div class="ws-field">
+                <label class="ws-label">Name (give them one)</label>
+                <input class="ws-input" type="text" placeholder="e.g. Sarah" />
+              </div>
+              <div class="ws-field">
+                <label class="ws-label">Role / Title</label>
+                <input class="ws-input" type="text" placeholder="e.g. Functional Wellness Practitioner" />
+              </div>
+            </div>
+            <div class="ws-field">
+              <label class="ws-label">Their specific, named frustration right now</label>
+              <textarea class="ws-input ws-textarea" placeholder="What keeps them up at night? Be specific — not 'marketing challenges' but 'I keep recommending products my clients later find are greenwashed and it's eroding my credibility.'"></textarea>
+              <span class="ws-hint">If you can describe this in your buyer's exact words, you've found it.</span>
+            </div>
+            <div class="ws-field">
+              <label class="ws-label">The cost of them doing nothing (in real terms)</label>
+              <textarea class="ws-input ws-textarea" placeholder="What happens in 6 months if they don't solve this? Lost clients? Damaged reputation? Revenue stall?"></textarea>
+            </div>
+            <div class="ws-field">
+              <label class="ws-label">Why would they trust you specifically over the alternative?</label>
+              <textarea class="ws-input ws-textarea" placeholder="Not your mission statement. The specific reason this specific person would choose you."></textarea>
+            </div>
+          </div>
+        </div>
+
+        <div class="step-block">
+          <div class="step-label">Step 2</div>
+          <h2 class="step-title">Identify the identity trigger.</h2>
+          <p class="step-body">The most durable buyers don't just have a problem — they have an identity at stake. Your clean brand buyer isn't just solving a sourcing problem. They're protecting who they are. Who does your buyer think they are when they buy from you? Name the identity, and you've found the deepest lever in the sale.</p>
+
+          <div class="insight-box">
+            <span class="insight-icon">◎</span>
+            <div class="insight-body">
+              <strong>The Identity Test</strong>
+              Finish this sentence about your buyer: "When I buy from this brand, I am the kind of person who ___." The answer is your identity trigger. If you can reflect that back in your messaging, you stop selling and start resonating.
+            </div>
+          </div>
+
+          <div class="worksheet">
+            <div class="worksheet-title">◈ &nbsp;Worksheet 1.2 — Identity &amp; Proof</div>
+            <div class="ws-field">
+              <label class="ws-label">Complete the sentence: "When I buy from this brand, I am the kind of person who..."</label>
+              <textarea class="ws-input ws-textarea" placeholder="e.g. ...does the research most people don't have time to do. I don't accept marketing claims at face value."></textarea>
+            </div>
+            <div class="ws-field">
+              <label class="ws-label">What proof does this buyer require before they trust a brand?</label>
+              <textarea class="ws-input ws-textarea" placeholder="Third-party certification? Supply chain documentation? Founder story? Peer recommendation?"></textarea>
+            </div>
+            <div class="ws-field">
+              <label class="ws-label">In one sentence — your complete ICP statement</label>
+              <textarea class="ws-input ws-textarea" placeholder="e.g. A functional wellness practitioner who recommends clean products to clients and needs third-party verified proof to protect her professional credibility."></textarea>
+              <span class="ws-hint">This sentence goes at the top of every sales document, outreach template, and content brief from here forward.</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="retainer-bridge">
+          <div class="retainer-bridge-label">Where the playbook ends and custom work begins</div>
+          <div class="retainer-bridge-title">The ICP you built here is a hypothesis until it's validated in real conversations.</div>
+          <p class="retainer-bridge-body">The profile you built in this module is your best current thinking. What it can't tell you is whether the identity trigger you named actually resonates, whether the cost of inaction you described is how your buyer actually experiences the problem, or whether you're targeting the right buyer at all. A custom engagement takes this ICP into real market conversations and tells you what to keep, what to change, and what you missed.</p>
+          <a class="retainer-bridge-link" href="mailto:hello@lucidlifeco.com?subject=ICP Validation — Advisory Inquiry">Explore custom engagement →</a>
+        </div>
+
+        <button class="module-complete-btn" id="complete-1" onclick="completeModule(1)">Mark Module 01 Complete &amp; Continue →</button>
+      </div>
+
+      <div class="module-nav-arrows">
+        <button class="arrow-btn" onclick="showModule(0)">← Dashboard</button>
+        <button class="arrow-btn" onclick="showModule(2)">Module 02: Gap Statement →</button>
+      </div>
+    </div>
+
+    <!-- MODULE 2: GAP STATEMENT -->
+    <div id="mod-2" style="display:none;">
+      <div class="module-header">
+        <div class="module-header-num">02</div>
+        <div class="module-tag"><div class="module-tag-line"></div>Module 02</div>
+        <h1 class="module-title">Your Gap <em>Statement</em></h1>
+        <p class="module-desc">One sentence. It names the distance between where your buyer is and where they need to be. When you get this right, it becomes the engine of every sales conversation, every piece of outreach, and every content decision you make.</p>
+      </div>
+
+      <div class="video-wrap" onclick="alert('Connect your Loom or Vimeo embed URL here.')">
+        <div class="video-glow"></div>
+        <div class="video-play"><span class="video-play-icon">▶</span></div>
+        <span class="video-label">Module 02 Walkthrough — The Gap Statement</span>
+        <span class="video-duration">7 min</span>
+      </div>
+
+      <div class="module-body">
+        <div class="step-block">
+          <div class="step-label">The Framework</div>
+          <h2 class="step-title">Problem → Impact → Solution. In that order.</h2>
+          <p class="step-body">A gap statement is not a tagline. It's not a value proposition. It's the sentence that makes your buyer think: "That is exactly my situation." It works because it names their problem specifically, connects it to a real cost, and implies there's a better state available. Most founders lead with the solution. Buyers don't care about the solution until they feel understood.</p>
+
+          <div class="example-box">
+            <div class="example-label">Gap Statement Formula</div>
+            <p class="example-text">[Buyer type] who [specific current problem] — which is [specific cost or consequence] — and [the gap you bridge].</p>
+          </div>
+
+          <div class="example-box">
+            <div class="example-label">Real Example — Clean Supplement Brand</div>
+            <p class="example-text">"Functional wellness practitioners who recommend supplement brands to clients without being able to verify the sourcing claims — which erodes their professional credibility every time a client does their own research — and haven't found a brand that treats third-party certification as the floor, not a marketing badge."</p>
+          </div>
+
+          <div class="insight-box">
+            <span class="insight-icon">◎</span>
+            <div class="insight-body">
+              <strong>The Resonance Test</strong>
+              Read your gap statement out loud to someone who matches your ICP. If they say "that's exactly it" — you have it. If they nod politely, you're still too generic. Keep sharpening until you get the visceral reaction.
+            </div>
+          </div>
+
+          <div class="worksheet">
+            <div class="worksheet-title">◈ &nbsp;Worksheet 2.1 — Build Your Gap Statement</div>
+            <div class="ws-field">
+              <label class="ws-label">Your buyer type (from Module 01)</label>
+              <input class="ws-input" type="text" placeholder="Pull directly from your ICP statement" />
+            </div>
+            <div class="ws-field">
+              <label class="ws-label">Their specific current problem</label>
+              <textarea class="ws-input ws-textarea" placeholder="Not a category problem. Their specific, named situation right now."></textarea>
+            </div>
+            <div class="ws-field">
+              <label class="ws-label">The real cost or consequence of that problem</label>
+              <textarea class="ws-input ws-textarea" placeholder="Lost revenue? Damaged credibility? Wasted time? The more specific and visceral, the better."></textarea>
+            </div>
+            <div class="ws-field">
+              <label class="ws-label">The gap your brand bridges</label>
+              <textarea class="ws-input ws-textarea" placeholder="Not your solution. The gap between where they are and where they need to be that you uniquely address."></textarea>
+            </div>
+            <div class="ws-field">
+              <label class="ws-label">Your complete gap statement (one sentence)</label>
+              <textarea class="ws-input ws-textarea" placeholder="Write the full sentence using the formula. Then edit it until it sounds like how your buyer describes their own problem — not how you describe your solution."></textarea>
+              <span class="ws-hint">This sentence leads every outreach message, discovery call opening, and sales page from here forward.</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="retainer-bridge">
+          <div class="retainer-bridge-label">Where the playbook ends</div>
+          <div class="retainer-bridge-title">A gap statement that feels right internally often doesn't land in the market.</div>
+          <p class="retainer-bridge-body">The most common failure here: founders write a gap statement that describes their product's category, not their buyer's actual experience. It sounds right internally. It doesn't stop the scroll. A custom engagement takes your gap statement into real outreach, measures how buyers respond, and refines it until it consistently produces the visceral reaction — "that's exactly my problem."</p>
+          <a class="retainer-bridge-link" href="mailto:hello@lucidlifeco.com?subject=Gap Statement Review — Advisory Inquiry">Get your gap statement reviewed →</a>
+        </div>
+
+        <button class="module-complete-btn" id="complete-2" onclick="completeModule(2)">Mark Module 02 Complete &amp; Continue →</button>
+      </div>
+
+      <div class="module-nav-arrows">
+        <button class="arrow-btn" onclick="showModule(1)">← Module 01</button>
+        <button class="arrow-btn" onclick="showModule(3)">Module 03: Lead Generation →</button>
+      </div>
+    </div>
+
+    <!-- MODULE 3: LEAD GENERATION -->
+    <div id="mod-3" style="display:none;">
+      <div class="module-header">
+        <div class="module-header-num">03</div>
+        <div class="module-tag"><div class="module-tag-line"></div>Module 03</div>
+        <h1 class="module-title">Your Lead Generation <em>Engine</em></h1>
+        <p class="module-desc">Referral-dependent revenue is not a pipeline. It's a prayer. This module builds the infrastructure to generate consistent conversations — without a cold list, a large audience, or a sales team.</p>
+      </div>
+
+      <div class="video-wrap" onclick="alert('Connect your Loom or Vimeo embed URL here.')">
+        <div class="video-glow"></div>
+        <div class="video-play"><span class="video-play-icon">▶</span></div>
+        <span class="video-label">Module 03 Walkthrough — Lead Generation Engine</span>
+        <span class="video-duration">10 min</span>
+      </div>
+
+      <div class="module-body">
+        <div class="step-block">
+          <div class="step-label">Step 1</div>
+          <h2 class="step-title">Map your five warmest doors.</h2>
+          <p class="step-body">Not a list of industries. Not a cold database. Five actual people or brands already in your orbit who have the highest probability of moving. You likely already know who they are. Most founders don't act on them because they're waiting until everything is perfect. Nothing is ever perfect. Start with the warmest door you have.</p>
+
+          <div class="worksheet">
+            <div class="worksheet-title">◈ &nbsp;Worksheet 3.1 — Your Five Warmest Doors</div>
+            <div class="ws-field">
+              <label class="ws-label">Door 1 — Name &amp; Why They're Warm</label>
+              <textarea class="ws-input" placeholder="Who are they? What's the existing relationship? Why do they qualify based on your ICP?"></textarea>
+            </div>
+            <div class="ws-field">
+              <label class="ws-label">Door 2</label>
+              <textarea class="ws-input" placeholder="Name, relationship, ICP fit"></textarea>
+            </div>
+            <div class="ws-field">
+              <label class="ws-label">Door 3</label>
+              <textarea class="ws-input" placeholder="Name, relationship, ICP fit"></textarea>
+            </div>
+            <div class="ws-field">
+              <label class="ws-label">Door 4</label>
+              <textarea class="ws-input" placeholder="Name, relationship, ICP fit"></textarea>
+            </div>
+            <div class="ws-field">
+              <label class="ws-label">Door 5</label>
+              <textarea class="ws-input" placeholder="Name, relationship, ICP fit"></textarea>
+            </div>
+          </div>
+        </div>
+
+        <div class="step-block">
+          <div class="step-label">Step 2</div>
+          <h2 class="step-title">Build your outreach message.</h2>
+          <p class="step-body">One message. Built on your gap statement. Written to start a conversation — not close a deal. The goal of outreach is a meeting, not a sale. Most founders make their first message too long, too feature-heavy, and too obviously a pitch. Lead with the gap. Keep it short. Ask one question.</p>
+
+          <div class="example-box">
+            <div class="example-label">Outreach Template — Warm Contact</div>
+            <p class="example-text">"Hi [Name] — [one sentence of genuine connection]. I've been working with [brand type] founders on a problem I suspect you've run into: [gap statement in two sentences]. Would it make sense to spend 20 minutes comparing notes? No agenda beyond that."</p>
+          </div>
+
+          <div class="worksheet">
+            <div class="worksheet-title">◈ &nbsp;Worksheet 3.2 — Your First Outreach Message</div>
+            <div class="ws-field">
+              <label class="ws-label">Genuine connection sentence (for Door 1)</label>
+              <input class="ws-input" type="text" placeholder="Something real — not flattery. A shared contact, a piece of their content you respected, a relevant observation." />
+            </div>
+            <div class="ws-field">
+              <label class="ws-label">Your gap statement (2 sentences max)</label>
+              <textarea class="ws-input ws-textarea" placeholder="Pull from Module 02. Sharpen it for this specific person."></textarea>
+            </div>
+            <div class="ws-field">
+              <label class="ws-label">Your complete first outreach message</label>
+              <textarea class="ws-input ws-textarea" style="min-height:140px;" placeholder="Write the full message. Under 120 words. One question at the end."></textarea>
+              <span class="ws-hint">Read it back. If it sounds like a pitch, rewrite it. If it sounds like a genuine conversation opener, send it.</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="step-block">
+          <div class="step-label">Step 3</div>
+          <h2 class="step-title">Build your follow-up cadence.</h2>
+          <p class="step-body">Most founders follow up once, get no response, and go quiet. That's where deals die. A non-response is not a no. It's noise. The cadence below keeps you visible without becoming a pest. Five touches over 30 days. After that, you move on — but you've earned the right to have tried.</p>
+
+          <div class="insight-box">
+            <span class="insight-icon">◎</span>
+            <div class="insight-body">
+              <strong>The 5-Touch Cadence</strong>
+              Day 1: First outreach. Day 4: Short follow-up with one new value point. Day 10: Share a relevant piece of content or observation — no ask. Day 18: One final direct ask. Day 30: Graceful close — "Leaving the door open" message. Then move on and let inbound do its work.
+            </div>
+          </div>
+
+          <div class="worksheet">
+            <div class="worksheet-title">◈ &nbsp;Worksheet 3.3 — Your 30-Day Outreach Plan</div>
+            <div class="ws-field">
+              <label class="ws-label">Week 1 — Who you're reaching out to &amp; when</label>
+              <textarea class="ws-input ws-textarea" placeholder="Which of your 5 doors? What day? What channel (email, LinkedIn, phone)?"></textarea>
+            </div>
+            <div class="ws-field">
+              <label class="ws-label">Week 2 — Follow-up sequence</label>
+              <textarea class="ws-input ws-textarea" placeholder="Day 4 follow-up angle. Day 10 value-add content or observation."></textarea>
+            </div>
+            <div class="ws-field">
+              <label class="ws-label">Week 3–4 — Final ask &amp; graceful close</label>
+              <textarea class="ws-input ws-textarea" placeholder="Day 18 direct ask. Day 30 close message."></textarea>
+            </div>
+          </div>
+        </div>
+
+        <div class="retainer-bridge">
+          <div class="retainer-bridge-label">Where the playbook ends</div>
+          <div class="retainer-bridge-title">Outreach built in isolation often breaks down in execution.</div>
+          <p class="retainer-bridge-body">The message template here is a starting point. What breaks down in real outreach: the connection sentence feels forced, the gap statement is still too generic for this specific person, or the follow-up timing is off for your specific industry's buying cycle. A custom engagement reviews your actual outreach before you send it — and tells you what to fix before it costs you the relationship.</p>
+          <a class="retainer-bridge-link" href="mailto:hello@lucidlifeco.com?subject=Outreach Review — Advisory Inquiry">Get your outreach reviewed →</a>
+        </div>
+
+        <button class="module-complete-btn" id="complete-3" onclick="completeModule(3)">Mark Module 03 Complete &amp; Continue →</button>
+      </div>
+
+      <div class="module-nav-arrows">
+        <button class="arrow-btn" onclick="showModule(2)">← Module 02</button>
+        <button class="arrow-btn" onclick="showModule(4)">Module 04: Present &amp; Close →</button>
+      </div>
+    </div>
+
+    <!-- MODULE 4: PRESENT & CLOSE -->
+    <div id="mod-4" style="display:none;">
+      <div class="module-header">
+        <div class="module-header-num">04</div>
+        <div class="module-tag"><div class="module-tag-line"></div>Module 04</div>
+        <h1 class="module-title">Present and <em>Close</em></h1>
+        <p class="module-desc">A discovery conversation that doesn't feel like a sales call. A presentation that doesn't feel like a pitch. A close that doesn't feel like a close. This is the module most founders skip — and where most deals are lost.</p>
+      </div>
+
+      <div class="video-wrap" onclick="alert('Connect your Loom or Vimeo embed URL here.')">
+        <div class="video-glow"></div>
+        <div class="video-play"><span class="video-play-icon">▶</span></div>
+        <span class="video-label">Module 04 Walkthrough — Present &amp; Close</span>
+        <span class="video-duration">12 min</span>
+      </div>
+
+      <div class="module-body">
+        <div class="step-block">
+          <div class="step-label">The Discovery Framework</div>
+          <h2 class="step-title">Ask before you answer.</h2>
+          <p class="step-body">Most founders arrive at a discovery call ready to present. The buyer hasn't asked you to present yet. The entire purpose of discovery is to understand the gap so precisely that when you do present, you're reflecting the buyer's own situation back to them — not pitching features at them. Questions close deals. Presentations open objections.</p>
+
+          <div class="example-box">
+            <div class="example-label">Discovery Call Structure — 30 Minutes</div>
+            <p class="example-text">0–5 min: Set the agenda and earn the right to ask questions.<br>5–20 min: Gap questions — current state, desired state, cost of gap, previous attempts to fix it, what's stopped them.<br>20–25 min: Present only what directly addresses the gap they described. Nothing else.<br>25–30 min: Ask for the next step — not the sale.</p>
+          </div>
+
+          <div class="worksheet">
+            <div class="worksheet-title">◈ &nbsp;Worksheet 4.1 — Your Discovery Question Bank</div>
+            <div class="ws-field">
+              <label class="ws-label">Current state question (what's actually happening now)</label>
+              <input class="ws-input" type="text" placeholder="e.g. 'Walk me through how you're currently generating new brand partnerships — from first contact to signed agreement.'" />
+            </div>
+            <div class="ws-field">
+              <label class="ws-label">Gap question (what the problem is costing them)</label>
+              <input class="ws-input" type="text" placeholder="e.g. 'What does a month look like when the pipeline is thin — how does that affect the business beyond just the revenue number?'" />
+            </div>
+            <div class="ws-field">
+              <label class="ws-label">Desired state question (what good looks like)</label>
+              <input class="ws-input" type="text" placeholder="e.g. 'If this was working the way you want it to — what does the business look like in 12 months?'" />
+            </div>
+            <div class="ws-field">
+              <label class="ws-label">Previous attempt question (what they've tried)</label>
+              <input class="ws-input" type="text" placeholder="e.g. 'What have you already tried to solve this? What worked, what didn't?'" />
+            </div>
+            <div class="ws-field">
+              <label class="ws-label">Your close question (not a close — a next step)</label>
+              <input class="ws-input" type="text" placeholder="e.g. 'Based on what you've shared — it sounds like [reflect the gap]. Does it make sense to map out what a 90-day engagement would look like?'" />
+            </div>
+          </div>
+        </div>
+
+        <div class="retainer-bridge">
+          <div class="retainer-bridge-label">Where the playbook ends</div>
+          <div class="retainer-bridge-title">Discovery frameworks work in theory. Real calls are messier.</div>
+          <p class="retainer-bridge-body">The questions in this module are the right questions. What a playbook can't do is tell you how to redirect when a buyer goes off-script, how to handle an objection that appears mid-discovery, or why your close question keeps getting a "let me think about it." Those patterns only become visible across multiple real calls — and they require an outside eye to diagnose.</p>
+          <a class="retainer-bridge-link" href="mailto:hello@lucidlifeco.com?subject=Discovery Call Review — Advisory Inquiry">Get your discovery process reviewed →</a>
+        </div>
+
+        <button class="module-complete-btn" id="complete-4" onclick="completeModule(4)">Mark Module 04 Complete &amp; Continue →</button>
+      </div>
+
+      <div class="module-nav-arrows">
+        <button class="arrow-btn" onclick="showModule(3)">← Module 03</button>
+        <button class="arrow-btn" onclick="showModule(5)">Module 05: Deliver &amp; Obsess →</button>
+      </div>
+    </div>
+
+    <!-- MODULE 5: DELIVER & OBSESS -->
+    <div id="mod-5" style="display:none;">
+      <div class="module-header">
+        <div class="module-header-num">05</div>
+        <div class="module-tag"><div class="module-tag-line"></div>Module 05</div>
+        <h1 class="module-title">Deliver and <em>Obsess</em></h1>
+        <p class="module-desc">The easiest lead you'll ever close is a client you've already impressed. This module builds a delivery standard that generates referrals and renewals automatically — without asking for them.</p>
+      </div>
+
+      <div class="video-wrap" onclick="alert('Connect your Loom or Vimeo embed URL here.')">
+        <div class="video-glow"></div>
+        <div class="video-play"><span class="video-play-icon">▶</span></div>
+        <span class="video-label">Module 05 Walkthrough — Deliver &amp; Obsess</span>
+        <span class="video-duration">9 min</span>
+      </div>
+
+      <div class="module-body">
+        <div class="step-block">
+          <div class="step-label">The Framework</div>
+          <h2 class="step-title">Delivery is your best sales tool.</h2>
+          <p class="step-body">Most founders under-invest in the delivery experience because the hard work of closing the deal is done. That's exactly backwards. The delivery experience is what determines whether this client renews, refers, or quietly disappears. Obsessing over delivery is not service — it's pipeline strategy.</p>
+
+          <div class="worksheet">
+            <div class="worksheet-title">◈ &nbsp;Worksheet 5.1 — Your Client Delivery Standard</div>
+            <div class="ws-field">
+              <label class="ws-label">Onboarding — What happens in the first 48 hours after someone signs?</label>
+              <textarea class="ws-input ws-textarea" placeholder="Welcome message, onboarding document, first call agenda, access to materials. Map every step."></textarea>
+            </div>
+            <div class="ws-field">
+              <label class="ws-label">Communication cadence — How often do you communicate and in what format?</label>
+              <textarea class="ws-input ws-textarea" placeholder="Weekly update? Bi-weekly call? Async video? Define it and make it consistent."></textarea>
+            </div>
+            <div class="ws-field">
+              <label class="ws-label">Milestone markers — How does the client know progress is being made?</label>
+              <textarea class="ws-input ws-textarea" placeholder="What do you measure? What do you share? When? Clients who can't see progress assume there isn't any."></textarea>
+            </div>
+            <div class="ws-field">
+              <label class="ws-label">Feedback moment — When and how do you ask for honest feedback during the engagement?</label>
+              <textarea class="ws-input ws-textarea" placeholder="Not at the end. Mid-engagement. What's your check-in question?"></textarea>
+            </div>
+          </div>
+        </div>
+
+        <div class="retainer-bridge">
+          <div class="retainer-bridge-label">Where the playbook ends</div>
+          <div class="retainer-bridge-title">A delivery system built in isolation misses the signals only real clients send.</div>
+          <p class="retainer-bridge-body">The framework here gives you structure. What it can't give you is visibility into the moments where clients quietly disengage — the unreturned message, the suddenly short calls, the delayed approvals. These are signals. Learning to read them in real time, for your specific engagement type, requires someone who's seen these patterns across multiple client relationships.</p>
+          <a class="retainer-bridge-link" href="mailto:hello@lucidlifeco.com?subject=Delivery System Review — Advisory Inquiry">Review your delivery system →</a>
+        </div>
+
+        <button class="module-complete-btn" id="complete-5" onclick="completeModule(5)">Mark Module 05 Complete &amp; Continue →</button>
+      </div>
+
+      <div class="module-nav-arrows">
+        <button class="arrow-btn" onclick="showModule(4)">← Module 04</button>
+        <button class="arrow-btn" onclick="showModule(6)">Module 06: Repeat &amp; Compound →</button>
+      </div>
+    </div>
+
+    <!-- MODULE 6: REPEAT & COMPOUND -->
+    <div id="mod-6" style="display:none;">
+      <div class="module-header">
+        <div class="module-header-num">06</div>
+        <div class="module-tag"><div class="module-tag-line"></div>Module 06</div>
+        <h1 class="module-title">Repeat and <em>Compound</em></h1>
+        <p class="module-desc">The system only compounds when every client becomes a case study, every case study becomes the next pitch, and every result becomes the proof that the next founder needs to trust you. This module closes the loop.</p>
+      </div>
+
+      <div class="video-wrap" onclick="alert('Connect your Loom or Vimeo embed URL here.')">
+        <div class="video-glow"></div>
+        <div class="video-play"><span class="video-play-icon">▶</span></div>
+        <span class="video-label">Module 06 Walkthrough — Repeat &amp; Compound</span>
+        <span class="video-duration">8 min</span>
+      </div>
+
+      <div class="module-body">
+        <div class="step-block">
+          <div class="step-label">The Framework</div>
+          <h2 class="step-title">Turn one result into the next reason to buy.</h2>
+          <p class="step-body">Every client engagement ends with two outcomes: a result and a story. Most founders document neither. The result goes untracked. The story goes untold. This module builds the system that captures both — and turns them into the evidence your next prospect needs to take the leap.</p>
+
+          <div class="worksheet">
+            <div class="worksheet-title">◈ &nbsp;Worksheet 6.1 — Your Result Capture System</div>
+            <div class="ws-field">
+              <label class="ws-label">What specific results do you commit to tracking for every client?</label>
+              <textarea class="ws-input ws-textarea" placeholder="Revenue growth? Pipeline created? Close rate improvement? Conversion lift? Name the metrics you own."></textarea>
+            </div>
+            <div class="ws-field">
+              <label class="ws-label">Your end-of-engagement feedback question (the one that surfaces the story)</label>
+              <input class="ws-input" type="text" placeholder="e.g. 'What changed for you that you didn't expect when we started?'" />
+              <span class="ws-hint">The unexpected change is always the most compelling part of the story. Ask for it specifically.</span>
+            </div>
+            <div class="ws-field">
+              <label class="ws-label">Your referral activation moment — when and how do you ask?</label>
+              <textarea class="ws-input ws-textarea" placeholder="Not at the end of the engagement. At the moment of highest satisfaction — when the client first sees a result. That's when you ask."></textarea>
+            </div>
+          </div>
+        </div>
+
+        <div class="step-block">
+          <div class="step-label">Your Repeatability Loop</div>
+          <h2 class="step-title">Close the loop. Start again stronger.</h2>
+          <p class="step-body">The revenue motion you've built in this playbook compounds over time — but only if you run the loop deliberately. Every 90 days: audit your ICP (has it shifted?), sharpen your gap statement (is it still landing?), review your outreach (what's converting?), and update your case studies (what new proof do you have?). The loop is the system.</p>
+
+          <div class="worksheet">
+            <div class="worksheet-title">◈ &nbsp;Worksheet 6.2 — Your 90-Day Audit Checklist</div>
+            <div class="ws-field">
+              <label class="ws-label">ICP — Has your ideal buyer profile shifted based on who's actually buying?</label>
+              <textarea class="ws-input ws-textarea" placeholder="Who are your best clients? Are they who you thought they'd be? What's different?"></textarea>
+            </div>
+            <div class="ws-field">
+              <label class="ws-label">Gap Statement — Is it still landing? What reaction are you getting?</label>
+              <textarea class="ws-input ws-textarea" placeholder="Are prospects saying 'that's exactly it' or are they nodding politely? What needs to change?"></textarea>
+            </div>
+            <div class="ws-field">
+              <label class="ws-label">Pipeline — What's your conversion rate from outreach to meeting? Meeting to proposal? Proposal to close?</label>
+              <textarea class="ws-input ws-textarea" placeholder="Where are deals falling out? That's where the next 90 days of optimization lives."></textarea>
+            </div>
+            <div class="ws-field">
+              <label class="ws-label">What new proof do you have that needs to be in your case studies and outreach?</label>
+              <textarea class="ws-input ws-textarea" placeholder="New results, new client types, new problems you solved that you didn't anticipate. Update your story."></textarea>
+            </div>
+          </div>
+        </div>
+
+        <!-- COMPLETION CALLOUT -->
+        <div style="background:var(--green-dim);border:1px solid rgba(74,140,106,0.3);padding:40px;text-align:center;margin:40px 0;">
+          <div style="font-family:'DM Mono',monospace;font-size:8px;letter-spacing:0.3em;color:#4A8C6A;text-transform:uppercase;margin-bottom:16px;">You've completed the playbook</div>
+          <h2 style="font-family:'Cormorant Garamond',serif;font-size:32px;font-weight:300;font-style:italic;margin-bottom:12px;color:var(--parchment);">The system is built.<br>Now execute it.</h2>
+          <p style="font-size:12px;letter-spacing:0.05em;color:var(--parchment-dim);line-height:1.9;max-width:480px;margin:0 auto 28px;">You now have a complete, custom-built revenue playbook for your specific brand. ICP document, gap statement, outreach plan, discovery framework, delivery standard, and repeatability loop. This is the foundation. What you do with it is the work.</p>
+        </div>
+
+        <div class="retainer-bridge">
+          <div class="retainer-bridge-label">The next level</div>
+          <div class="retainer-bridge-title">The playbook gave you the architecture. A custom engagement builds the motion.</div>
+          <p class="retainer-bridge-body">You've built something real here. Every piece of this system is executable. What a playbook can't do is work alongside you as you execute — reviewing your actual outreach, listening to your actual discovery calls, and telling you in real time what to adjust. If you want to accelerate the compounding, that's what a direct engagement is for. I work with a small number of clean and wellness founders exclusively. One conversation will tell us both if it's the right fit.</p>
+          <a class="retainer-bridge-link" href="mailto:hello@lucidlifeco.com?subject=Advisory Inquiry — Playbook Graduate">I'm ready to go further →</a>
+        </div>
+
+        <button class="module-complete-btn" id="complete-6" onclick="completeModule(6)">Complete the Playbook ✓</button>
+      </div>
+
+      <div class="module-nav-arrows">
+        <button class="arrow-btn" onclick="showModule(5)">← Module 05</button>
+        <button class="arrow-btn" onclick="showModule(0)">← Return to Dashboard</button>
+      </div>
+    </div>
+
+  </main>
+</div>
+</div>
+
+<script>
+// ── STATE ──
+var completed = {};
+var currentModule = 0;
+
+var MODULES = [
+  {id:0, title:'Dashboard', tag:'Start Here'},
+  {id:1, title:'Your One Buyer', tag:'Module 01'},
+  {id:2, title:'Your Gap Statement', tag:'Module 02'},
+  {id:3, title:'Lead Generation Engine', tag:'Module 03'},
+  {id:4, title:'Present &amp; Close', tag:'Module 04'},
+  {id:5, title:'Deliver &amp; Obsess', tag:'Module 05'},
+  {id:6, title:'Repeat &amp; Compound', tag:'Module 06'}
+];
+
+function showScreen(id) {
+  document.querySelectorAll('.screen').forEach(function(s){s.classList.remove('active');});
+  var t = document.getElementById('screen-'+id);
+  if(t){t.classList.add('active');window.scrollTo({top:0,behavior:'smooth'});}
+}
+
+function handlePurchase(e) {
+  e.preventDefault();
+  showScreen('app');
+  buildDashboard();
+  updateProgress();
+}
+
+function showModule(idx) {
+  // hide all
+  for(var i=0;i<=6;i++){
+    var el = document.getElementById('mod-'+i);
+    if(el) el.style.display='none';
+  }
+  var target = document.getElementById('mod-'+idx);
+  if(target){
+    target.style.display='block';
+    target.style.animation='fadeUp 0.45s ease both';
+  }
+  // update nav
+  document.querySelectorAll('.nav-item').forEach(function(n,i){
+    n.classList.remove('active');
+    if(i===idx) n.classList.add('active');
+  });
+  currentModule = idx;
+  window.scrollTo({top:0,behavior:'smooth'});
+}
+
+function completeModule(idx) {
+  completed[idx] = true;
+  // Update button
+  var btn = document.getElementById('complete-'+idx);
+  if(btn){
+    btn.textContent = '✓ Module '+String(idx).padStart(2,'0')+' Complete';
+    btn.classList.add('completed-state');
+  }
+  // Update sidebar nav
+  var navEl = document.getElementById('nav-m'+idx);
+  if(navEl){
+    navEl.classList.add('completed');
+  }
+  updateProgress();
+  buildDashboard();
+  // Auto-advance
+  if(idx < 6){
+    setTimeout(function(){showModule(idx+1);},600);
+  }
+}
+
+function updateProgress() {
+  var count = Object.keys(completed).length;
+  var pct = Math.round((count/6)*100);
+  var fill = document.getElementById('progress-fill');
+  var label = document.getElementById('progress-pct');
+  if(fill) fill.style.width = pct+'%';
+  if(label) label.textContent = pct+'%';
+}
+
+function buildDashboard() {
+  var grid = document.getElementById('dashboard-grid');
+  if(!grid) return;
+  var html = '';
+  for(var i=1;i<=6;i++){
+    var m = MODULES[i];
+    var done = completed[i];
+    var isCurrent = !done && !completed[i-1] && (i===1 || completed[i-1]);
+    var cls = done ? 'dash-card done-module' : (i===1 && !completed[1]) ? 'dash-card active-module' : 'dash-card';
+    var status = done ? '✓ Complete' : 'Not started';
+    if(!done && i > 1 && completed[i-1]) status = 'Up next';
+    html += '<div class="'+cls+'" onclick="showModule('+i+')">';
+    html += '<div class="dash-card-num">0'+i+'</div>';
+    html += '<div class="dash-card-tag">'+m.tag+'</div>';
+    html += '<div class="dash-card-title">'+m.title+'</div>';
+    html += '<div class="dash-card-status">'+status+'</div>';
+    html += '</div>';
+  }
+  grid.innerHTML = html;
+}
+
+// Init dashboard
+buildDashboard();
+</script>
+</body>
+</html>
