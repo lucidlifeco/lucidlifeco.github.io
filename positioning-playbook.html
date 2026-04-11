@@ -475,8 +475,6 @@ function startPlaybook() {
   var brand = document.getElementById("brand").value.trim();
   var category = document.getElementById("category").value.trim();
   var err = document.getElementById("gate-error");
-  var btn = document.querySelector(".gate-form .btn-primary");
-
   if (!fname || !lname || !email || !brand || !category) { err.style.display = "block"; return; }
   if (email.indexOf("@") < 0 || email.indexOf(".") < 0) {
     err.textContent = "Please enter a valid email address.";
@@ -484,28 +482,42 @@ function startPlaybook() {
   }
   err.style.display = "none";
   userData = { fname: fname, lname: lname, email: email, brand: brand, category: category };
-  btn.disabled = true;
-  btn.textContent = "Starting\u2026";
 
-  fetch("https://api.convertkit.com/v3/forms/9271538/subscribe", {
-    method: "POST",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify({
-      api_key: "RDXWqC14zyJ7DW2LQVD_lA",
-      email: email,
-      first_name: fname,
-      fields: { last_name: lname, brand_name: brand, product_category: category }
-    })
-  })
-  .catch(function() {})
-  .finally(function() {
-    btn.disabled = false;
-    btn.textContent = "Begin the Playbook \u2192";
-    currentModule = 0;
-    responses = {};
-    showScreen("screen-playbook");
-    renderModule();
-  });
+  // Launch playbook immediately
+  currentModule = 0;
+  responses = {};
+  showScreen("screen-playbook");
+  renderModule();
+
+  // Kit subscription fires silently in background
+  try {
+    fetch("https://api.convertkit.com/v3/forms/9271538/subscribe", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        api_key: "RDXWqC14zyJ7DW2LQVD_lA",
+        email: email,
+        first_name: fname,
+        fields: { last_name: lname, brand_name: brand, product_category: category }
+      })
+    }).then(function() {}).catch(function() {});
+  } catch(e) {}
+}
+
+  try {
+    fetch("https://api.convertkit.com/v3/forms/9271538/subscribe", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        api_key: "RDXWqC14zyJ7DW2LQVD_lA",
+        email: email,
+        first_name: fname,
+        fields: { last_name: lname, brand_name: brand, product_category: category }
+      })
+    }).then(function() { }).catch(function() { });
+  } catch(e) {}
+
+  setTimeout(launchPlaybook, 400);
 }
 
 function showScreen(id) {

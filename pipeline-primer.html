@@ -556,7 +556,7 @@
    Find it at: app.kit.com/forms/designers/YOUR_ID/edit
    Current placeholder uses the Revenue Gap Audit form as fallback.
 ─────────────────────────────────────────────────────────────── */
-var PIPELINE_FORM_ID = "9271561";
+var PIPELINE_FORM_ID = "REPLACE_WITH_PIPELINE_FORM_ID";
 var KIT_API_KEY = "RDXWqC14zyJ7DW2LQVD_lA";
 
 function enrollPrimer() {
@@ -565,35 +565,47 @@ function enrollPrimer() {
   var email = document.getElementById("email").value.trim();
   var brand = document.getElementById("brand").value.trim();
   var err = document.getElementById("gate-error");
-  var btn = document.querySelector(".gate-form .btn-primary");
-
   if (!fname || !lname || !email || !brand) { err.style.display = "block"; return; }
   if (email.indexOf("@") < 0 || email.indexOf(".") < 0) {
     err.textContent = "Please enter a valid email address.";
     err.style.display = "block"; return;
   }
   err.style.display = "none";
-  btn.disabled = true;
-  btn.textContent = "Enrolling\u2026";
 
-  fetch("https://api.convertkit.com/v3/forms/" + PIPELINE_FORM_ID + "/subscribe", {
-    method: "POST",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify({
-      api_key: KIT_API_KEY,
-      email: email,
-      first_name: fname,
-      fields: { last_name: lname, brand_name: brand }
-    })
-  })
-  .catch(function() {})
-  .finally(function() {
-    btn.disabled = false;
-    btn.textContent = "Start Day 1 \u2192";
-    document.getElementById("confirm-sub").textContent =
-      "Check your inbox, " + fname + " — Day 1 is on its way to " + email + ". One email a day for the next 30 days.";
-    showScreen("screen-confirm");
-  });
+  // Show confirmation immediately
+  document.getElementById("confirm-sub").textContent =
+    "Check your inbox, " + fname + " — Day 1 is on its way to " + email + ". One email a day for the next 30 days.";
+  showScreen("screen-confirm");
+
+  // Kit subscription fires silently in background
+  try {
+    fetch("https://api.convertkit.com/v3/forms/" + PIPELINE_FORM_ID + "/subscribe", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        api_key: KIT_API_KEY,
+        email: email,
+        first_name: fname,
+        fields: { last_name: lname, brand_name: brand }
+      })
+    }).then(function() {}).catch(function() {});
+  } catch(e) {}
+}
+
+  try {
+    fetch("https://api.convertkit.com/v3/forms/" + PIPELINE_FORM_ID + "/subscribe", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        api_key: KIT_API_KEY,
+        email: email,
+        first_name: fname,
+        fields: { last_name: lname, brand_name: brand }
+      })
+    }).then(function() { }).catch(function() { });
+  } catch(e) {}
+
+  setTimeout(launchConfirm, 400);
 }
 
 function showScreen(id) {

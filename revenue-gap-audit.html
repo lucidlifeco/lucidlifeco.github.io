@@ -389,7 +389,6 @@ function startAudit() {
   var email = document.getElementById("email").value.trim();
   var brand = document.getElementById("brand").value.trim();
   var err = document.getElementById("gate-error");
-  var btn = document.querySelector(".gate-form .btn-primary");
   if (!fname || !lname || !email || !brand) { err.style.display = "block"; return; }
   if (email.indexOf("@") < 0 || email.indexOf(".") < 0) {
     err.textContent = "Please enter a valid email address.";
@@ -397,27 +396,26 @@ function startAudit() {
   }
   err.style.display = "none";
   userData = { fname: fname, lname: lname, email: email, brand: brand };
-  btn.disabled = true;
-  btn.textContent = "Starting…";
-  fetch("https://api.convertkit.com/v3/forms/9271420/subscribe", {
-    method: "POST",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify({
-      api_key: "RDXWqC14zyJ7DW2LQVD_lA",
-      email: email,
-      first_name: fname,
-      fields: { last_name: lname, brand_name: brand }
-    })
-  })
-  .catch(function() {})
-  .finally(function() {
-    btn.disabled = false;
-    btn.textContent = "Begin the Audit →";
-    currentDim = 0;
-    DIMS.forEach(function(d) { answers[d.id] = {}; });
-    showScreen("screen-audit");
-    renderDimension();
-  });
+
+  // Launch audit immediately
+  currentDim = 0;
+  DIMS.forEach(function(d) { answers[d.id] = {}; });
+  showScreen("screen-audit");
+  renderDimension();
+
+  // Kit subscription fires silently in background
+  try {
+    fetch("https://api.convertkit.com/v3/forms/9271420/subscribe", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        api_key: "RDXWqC14zyJ7DW2LQVD_lA",
+        email: email,
+        first_name: fname,
+        fields: { last_name: lname, brand_name: brand }
+      })
+    }).then(function() {}).catch(function() {});
+  } catch(e) {}
 }
 
 function showScreen(id) {
