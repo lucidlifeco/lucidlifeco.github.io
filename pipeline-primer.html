@@ -1,0 +1,615 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="color-scheme" content="dark">
+<title>The 30-Day Pipeline Primer — Lucid Life Co</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=Josefin+Sans:wght@300;400;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --obsidian: #0C0C0E;
+    --gold: #C4A052;
+    --gold-dim: rgba(196,160,82,0.15);
+    --gold-border: rgba(196,160,82,0.3);
+    --gold-border-strong: rgba(196,160,82,0.55);
+    --parchment: #EDE9E3;
+    --parchment-dim: rgba(237,233,227,0.07);
+    --green: #4A8C6A;
+    --green-dim: rgba(74,140,106,0.10);
+    --green-border: rgba(74,140,106,0.3);
+  }
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; background-color: #0C0C0E !important; }
+  body { background-color: #0C0C0E !important; color: #EDE9E3; font-family: 'Josefin Sans', sans-serif; font-weight: 300; min-height: 100vh; overflow-x: hidden; }
+
+  .screen { display: none; animation: fadeUp 0.5s ease both; background-color: #0C0C0E; min-height: 100vh; }
+  .screen.active { display: block; }
+  @keyframes fadeUp { from { opacity: 0; transform: translateY(18px); } to { opacity: 1; transform: translateY(0); } }
+
+  .wrap { position: relative; z-index: 1; max-width: 720px; margin: 0 auto; padding: 0 24px; }
+
+  /* HEADER */
+  .site-header { padding: 36px 0 0; text-align: center; }
+  .wordmark { font-family: 'Josefin Sans', sans-serif; font-size: 13px; letter-spacing: 0.35em; color: var(--gold); opacity: 0.75; text-transform: uppercase; }
+  .rule { width: 40px; height: 1px; background: var(--gold-border); margin: 16px auto; }
+
+  /* INTRO */
+  .intro-hero { padding: 60px 0 40px; text-align: center; }
+  .eyebrow { font-family: 'Josefin Sans', sans-serif; font-size: 13px; letter-spacing: 0.3em; color: var(--gold); text-transform: uppercase; margin-bottom: 24px; opacity: 0.9; }
+  .hero-title { font-family: 'Cormorant Garamond', serif; font-size: clamp(42px, 8vw, 68px); font-weight: 300; line-height: 1.05; color: var(--parchment); margin-bottom: 28px; }
+  .hero-title em { color: var(--gold); font-style: italic; }
+  .hero-sub { font-size: 17px; line-height: 1.8; color: var(--parchment); opacity: 0.78; max-width: 520px; margin: 0 auto 48px; letter-spacing: 0.02em; }
+
+  .pain-block { border-left: 2px solid var(--gold); padding: 20px 28px; margin: 0 0 48px; text-align: left; background: var(--parchment-dim); }
+  .pain-block p { font-family: 'Cormorant Garamond', serif; font-size: 24px; font-weight: 300; font-style: italic; line-height: 1.6; color: var(--parchment); }
+
+  /* GAP BLOCK */
+  .gap-block { border: 1px solid rgba(196,82,74,0.25); padding: 32px; margin: 0 0 48px; background: rgba(196,82,74,0.04); }
+  .gap-block-label { font-size: 13px; letter-spacing: 0.3em; text-transform: uppercase; color: #C4524A; opacity: 0.85; margin-bottom: 16px; }
+  .gap-block h3 { font-family: 'Cormorant Garamond', serif; font-size: 26px; font-weight: 300; color: var(--parchment); margin-bottom: 14px; line-height: 1.3; }
+  .gap-block p { font-size: 17px; line-height: 1.8; color: var(--parchment); opacity: 0.78; margin-bottom: 10px; }
+  .gap-block p:last-child { margin-bottom: 0; }
+
+  /* WHAT YOU GET */
+  .what-label { font-size: 13px; letter-spacing: 0.3em; text-transform: uppercase; color: var(--gold); opacity: 0.85; text-align: center; margin-bottom: 28px; }
+
+  .phase-block { border: 1px solid var(--gold-border); margin-bottom: 2px; background: var(--parchment-dim); }
+  .phase-header { display: flex; align-items: center; justify-content: space-between; padding: 20px 24px; cursor: pointer; transition: background 0.2s; }
+  .phase-header:hover { background: rgba(196,160,82,0.04); }
+  .phase-meta { display: flex; align-items: center; gap: 16px; }
+  .phase-num { font-family: 'Cormorant Garamond', serif; font-size: 32px; font-weight: 300; font-style: italic; color: rgba(196,160,82,0.25); line-height: 1; }
+  .phase-info {}
+  .phase-tag { font-size: 11px; letter-spacing: 0.25em; text-transform: uppercase; color: var(--gold); opacity: 0.7; margin-bottom: 4px; }
+  .phase-title { font-family: 'Cormorant Garamond', serif; font-size: 22px; font-weight: 300; color: var(--parchment); }
+  .phase-toggle { font-size: 13px; letter-spacing: 0.15em; color: var(--gold); opacity: 0.6; text-transform: uppercase; flex-shrink: 0; }
+  .phase-days { display: none; border-top: 1px solid rgba(196,160,82,0.12); padding: 0 24px 20px; }
+  .phase-days.open { display: block; }
+  .day-row { display: flex; gap: 16px; padding: 14px 0; border-bottom: 1px solid rgba(237,233,227,0.05); }
+  .day-row:last-child { border-bottom: none; }
+  .day-num { font-size: 13px; letter-spacing: 0.2em; color: var(--gold); opacity: 0.55; text-transform: uppercase; flex-shrink: 0; width: 52px; padding-top: 2px; }
+  .day-content {}
+  .day-title { font-size: 16px; color: var(--parchment); margin-bottom: 4px; letter-spacing: 0.02em; }
+  .day-desc { font-size: 15px; color: var(--parchment); opacity: 0.6; line-height: 1.6; }
+
+  /* WHAT YOU WILL HAVE */
+  .outcome-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin: 0 0 48px; }
+  .outcome-chip { border: 1px solid var(--green-border); padding: 16px 18px; background: var(--green-dim); }
+  .outcome-chip .oc-num { font-size: 13px; letter-spacing: 0.25em; color: var(--green); opacity: 0.8; display: block; margin-bottom: 6px; text-transform: uppercase; }
+  .outcome-chip .oc-text { font-size: 15px; color: var(--parchment); line-height: 1.5; }
+
+  /* COST BLOCK */
+  .cost-block { background: rgba(196,82,74,0.06); border: 1px solid rgba(196,82,74,0.2); padding: 28px; margin: 0 0 48px; text-align: center; }
+  .cost-label { font-size: 13px; letter-spacing: 0.25em; text-transform: uppercase; color: #C4524A; margin-bottom: 10px; opacity: 0.85; }
+  .cost-number { font-family: 'Cormorant Garamond', serif; font-size: 48px; font-weight: 300; color: var(--parchment); line-height: 1; margin-bottom: 8px; }
+  .cost-desc { font-size: 15px; color: var(--parchment); opacity: 0.65; letter-spacing: 0.03em; }
+
+  /* GATE FORM */
+  .gate-form { border: 1px solid var(--gold-border); padding: 40px; background: var(--parchment-dim); margin-bottom: 60px; }
+  .gate-form h3 { font-family: 'Cormorant Garamond', serif; font-size: 30px; font-weight: 300; margin-bottom: 8px; color: var(--parchment); }
+  .gate-form p { font-size: 17px; color: var(--parchment); opacity: 0.7; margin-bottom: 28px; line-height: 1.7; }
+  .field-row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 16px; }
+  .field { display: flex; flex-direction: column; gap: 8px; }
+  .field label { font-size: 13px; letter-spacing: 0.25em; text-transform: uppercase; color: var(--gold); opacity: 0.8; }
+  .field input { background: rgba(237,233,227,0.04); border: 1px solid var(--gold-border); color: var(--parchment); font-family: 'Josefin Sans', sans-serif; font-size: 16px; font-weight: 300; padding: 14px 16px; outline: none; transition: border-color 0.2s; width: 100%; }
+  .field input:focus { border-color: var(--gold); }
+  .field input::placeholder { color: rgba(237,233,227,0.3); }
+  .field.full { grid-column: 1 / -1; }
+  .privacy-note { font-size: 13px; color: var(--parchment); opacity: 0.5; margin-top: 14px; letter-spacing: 0.05em; }
+  .error-msg { font-size: 15px; color: #C4524A; margin-top: 8px; letter-spacing: 0.05em; display: none; }
+
+  /* BUTTONS */
+  .btn-primary { display: inline-block; background: var(--gold); color: #0C0C0E; font-family: 'Josefin Sans', sans-serif; font-size: 15px; font-weight: 600; letter-spacing: 0.25em; text-transform: uppercase; padding: 18px 40px; border: none; cursor: pointer; transition: opacity 0.2s, transform 0.15s; width: 100%; margin-top: 24px; text-decoration: none; text-align: center; }
+  .btn-primary:hover { opacity: 0.88; transform: translateY(-1px); }
+  .btn-ghost { display: inline-block; background: transparent; border: 1px solid var(--gold-border); color: var(--parchment); font-family: 'Josefin Sans', sans-serif; font-size: 15px; font-weight: 300; letter-spacing: 0.2em; text-transform: uppercase; padding: 16px 32px; cursor: pointer; transition: all 0.2s; text-decoration: none; text-align: center; }
+  .btn-ghost:hover { border-color: var(--gold); color: var(--gold); }
+
+  /* CONFIRMATION SCREEN */
+  .confirm-hero { padding: 80px 0 48px; text-align: center; }
+  .confirm-icon { width: 64px; height: 64px; border: 1px solid var(--green-border); border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 28px; background: var(--green-dim); }
+  .confirm-title { font-family: 'Cormorant Garamond', serif; font-size: clamp(34px, 5vw, 48px); font-weight: 300; line-height: 1.15; margin-bottom: 16px; }
+  .confirm-title em { color: var(--gold); font-style: italic; }
+  .confirm-sub { font-size: 17px; line-height: 1.8; color: var(--parchment); opacity: 0.75; max-width: 480px; margin: 0 auto 48px; }
+
+  .confirm-what { border: 1px solid var(--gold-border); padding: 32px; margin-bottom: 32px; background: var(--parchment-dim); }
+  .confirm-what-label { font-size: 13px; letter-spacing: 0.3em; text-transform: uppercase; color: var(--gold); opacity: 0.8; margin-bottom: 20px; }
+  .confirm-step { display: flex; gap: 16px; margin-bottom: 20px; padding-bottom: 20px; border-bottom: 1px solid rgba(237,233,227,0.06); }
+  .confirm-step:last-child { margin-bottom: 0; padding-bottom: 0; border-bottom: none; }
+  .confirm-step-num { font-family: 'Cormorant Garamond', serif; font-size: 28px; font-weight: 300; font-style: italic; color: rgba(196,160,82,0.35); line-height: 1; flex-shrink: 0; width: 32px; }
+  .confirm-step-text {}
+  .confirm-step-title { font-size: 17px; color: var(--parchment); margin-bottom: 4px; }
+  .confirm-step-desc { font-size: 15px; color: var(--parchment); opacity: 0.6; line-height: 1.6; }
+
+  .cta-block { text-align: center; padding: 48px 0 80px; }
+  .cta-block h3 { font-family: 'Cormorant Garamond', serif; font-size: 30px; font-weight: 300; margin-bottom: 16px; color: var(--parchment); }
+  .cta-block p { font-size: 17px; line-height: 1.8; color: var(--parchment); opacity: 0.75; max-width: 460px; margin: 0 auto 32px; }
+  .cta-row { display: flex; flex-direction: column; align-items: center; gap: 16px; }
+  .cta-secondary-link { font-size: 13px; letter-spacing: 0.2em; color: var(--gold); text-transform: uppercase; opacity: 0.7; text-decoration: none; }
+  .cta-secondary-link:hover { opacity: 1; }
+
+  /* FOOTER */
+  .site-footer { text-align: center; padding: 32px 0 48px; border-top: 1px solid rgba(196,160,82,0.12); }
+  .footer-wordmark { font-family: 'Josefin Sans', sans-serif; font-size: 13px; letter-spacing: 0.4em; color: var(--gold); opacity: 0.7; text-transform: uppercase; }
+
+  @media (max-width: 520px) {
+    .field-row { grid-template-columns: 1fr; }
+    .outcome-grid { grid-template-columns: 1fr; }
+    .gate-form { padding: 28px 20px; }
+    .phase-header { padding: 16px 18px; }
+    .phase-days { padding: 0 18px 16px; }
+  }
+</style>
+</head>
+<body style="background-color:#0C0C0E;color:#EDE9E3;">
+
+<!-- ── SCREEN: INTRO ── -->
+<div id="screen-intro" class="screen active">
+  <div class="wrap">
+    <header class="site-header">
+      <div class="wordmark">Lucid Life Co</div>
+      <div class="rule"></div>
+    </header>
+
+    <div class="intro-hero">
+      <div class="eyebrow">Free 30-Day Email Course</div>
+      <h1 class="hero-title">The 30-Day<br><em>Pipeline Primer</em></h1>
+      <p class="hero-sub">One email a day for 30 days. By the end, you will have built a real outreach system — not a collection of tactics, but a repeatable pipeline with a documented process behind it.</p>
+      <div class="pain-block">
+        <p>"Hard work without a system just produces a tired founder. You cannot hustle your way to a predictable pipeline. At some point, the effort has to become a process."</p>
+      </div>
+      <p class="hero-sub">Most clean brand founders do not have a pipeline problem. They have a system problem. Revenue is inconsistent not because the product is wrong — but because outreach is founder-dependent, undocumented, and unrepeatable.</p>
+    </div>
+
+    <!-- THE GAP -->
+    <div class="gap-block">
+      <div class="gap-block-label">The Gap This Course Closes</div>
+      <h3>You are generating revenue. You cannot predict it, replicate it, or hand it off.</h3>
+      <p>A founder-dependent pipeline is a ceiling. Every new conversation requires the same energy as the last one. Nothing compounds. Nothing scales. When life gets hard or capacity drops — revenue drops with it.</p>
+      <p>The gap is not effort. The gap is infrastructure. Thirty days builds the infrastructure.</p>
+    </div>
+
+    <!-- COST BLOCK -->
+    <div class="cost-block">
+      <div class="cost-label">What an Unsystematized Pipeline Costs You</div>
+      <div class="cost-number">$2,400&ndash;$6,000/mo</div>
+      <div class="cost-desc">Estimated monthly revenue leakage from inconsistent outreach, missed follow-up, and unqualified time investment at early-stage clean brand revenue levels</div>
+    </div>
+
+    <!-- WHAT YOU GET -->
+    <div style="margin-bottom: 48px;">
+      <p class="what-label">What arrives in your inbox — day by day</p>
+
+      <div class="phase-block">
+        <div class="phase-header" onclick="togglePhase(this)">
+          <div class="phase-meta">
+            <div class="phase-num">01</div>
+            <div class="phase-info">
+              <div class="phase-tag">Days 1&ndash;7 &middot; Week One</div>
+              <div class="phase-title">Foundation — Know Exactly Who You Are Going After</div>
+            </div>
+          </div>
+          <div class="phase-toggle">View Days +</div>
+        </div>
+        <div class="phase-days">
+          <div class="day-row">
+            <div class="day-num">Day 1</div>
+            <div class="day-content">
+              <div class="day-title">The Pipeline Problem Diagnosis</div>
+              <div class="day-desc">Why most clean brand pipelines are founder-dependent by accident — and what that costs you every month.</div>
+            </div>
+          </div>
+          <div class="day-row">
+            <div class="day-num">Day 2</div>
+            <div class="day-content">
+              <div class="day-title">Who Buys — And Why They Actually Do It</div>
+              <div class="day-desc">Move past demographics. Identify the specific emotional trigger and decision context of your ideal buyer.</div>
+            </div>
+          </div>
+          <div class="day-row">
+            <div class="day-num">Day 3</div>
+            <div class="day-content">
+              <div class="day-title">The ICP Document — Build It Today</div>
+              <div class="day-desc">A one-page Ideal Customer Profile you will reference every time you decide who to reach out to and how.</div>
+            </div>
+          </div>
+          <div class="day-row">
+            <div class="day-num">Day 4</div>
+            <div class="day-content">
+              <div class="day-title">Where Your Buyer Spends Attention</div>
+              <div class="day-desc">Map the specific channels, communities, and contexts where your ideal buyer encounters new brands.</div>
+            </div>
+          </div>
+          <div class="day-row">
+            <div class="day-num">Day 5</div>
+            <div class="day-content">
+              <div class="day-title">The Qualification Framework</div>
+              <div class="day-desc">How to identify a qualified prospect in under five minutes — before you invest a single hour of selling time.</div>
+            </div>
+          </div>
+          <div class="day-row">
+            <div class="day-num">Day 6</div>
+            <div class="day-content">
+              <div class="day-title">Your Buyer's Three Objections — And How to Disarm Them</div>
+              <div class="day-desc">Map the three objections your ideal buyer raises before buying. Build your response before the conversation starts.</div>
+            </div>
+          </div>
+          <div class="day-row">
+            <div class="day-num">Day 7</div>
+            <div class="day-content">
+              <div class="day-title">Week One Review — Your Foundation Checklist</div>
+              <div class="day-desc">Audit what you have built. Identify what is still missing. Set the target for Week Two.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="phase-block">
+        <div class="phase-header" onclick="togglePhase(this)">
+          <div class="phase-meta">
+            <div class="phase-num">02</div>
+            <div class="phase-info">
+              <div class="phase-tag">Days 8&ndash;14 &middot; Week Two</div>
+              <div class="phase-title">Outreach — Build the Sequence That Runs Without You</div>
+            </div>
+          </div>
+          <div class="phase-toggle">View Days +</div>
+        </div>
+        <div class="phase-days">
+          <div class="day-row">
+            <div class="day-num">Day 8</div>
+            <div class="day-content">
+              <div class="day-title">The Outreach Message That Leads With Their Pain</div>
+              <div class="day-desc">Why features-first outreach gets ignored — and how to open a conversation around a buyer's specific problem.</div>
+            </div>
+          </div>
+          <div class="day-row">
+            <div class="day-num">Day 9</div>
+            <div class="day-content">
+              <div class="day-title">Channel Selection — Where to Show Up First</div>
+              <div class="day-desc">LinkedIn, email, DM, referral — which channel earns the most qualified response for your specific buyer type.</div>
+            </div>
+          </div>
+          <div class="day-row">
+            <div class="day-num">Day 10</div>
+            <div class="day-content">
+              <div class="day-title">Write Your First Outreach Sequence — Three Touches</div>
+              <div class="day-desc">A documented three-message sequence: opening, follow-up, and close. Built around your buyer's gap, not your product.</div>
+            </div>
+          </div>
+          <div class="day-row">
+            <div class="day-num">Day 11</div>
+            <div class="day-content">
+              <div class="day-title">The Follow-Up System That Keeps Warm Leads Warm</div>
+              <div class="day-desc">How to follow up without being a pest — and how to define when a lead is cold enough to release.</div>
+            </div>
+          </div>
+          <div class="day-row">
+            <div class="day-num">Day 12</div>
+            <div class="day-content">
+              <div class="day-title">Volume and Cadence — How Many Prospects Per Week</div>
+              <div class="day-desc">Set a weekly outreach target that is realistic for a founder operating without a full sales team.</div>
+            </div>
+          </div>
+          <div class="day-row">
+            <div class="day-num">Day 13</div>
+            <div class="day-content">
+              <div class="day-title">Tracking — Your Simple Pipeline Dashboard</div>
+              <div class="day-desc">A one-page tracking system that shows you exactly where every prospect is — without a CRM you will not use.</div>
+            </div>
+          </div>
+          <div class="day-row">
+            <div class="day-num">Day 14</div>
+            <div class="day-content">
+              <div class="day-title">Week Two Review — Run Your First Week of the Sequence</div>
+              <div class="day-desc">Activate the sequence you built. Send your first real outreach using the new framework. Document what happened.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="phase-block">
+        <div class="phase-header" onclick="togglePhase(this)">
+          <div class="phase-meta">
+            <div class="phase-num">03</div>
+            <div class="phase-info">
+              <div class="phase-tag">Days 15&ndash;21 &middot; Week Three</div>
+              <div class="phase-title">Conversion — Turn Conversations Into Committed Buyers</div>
+            </div>
+          </div>
+          <div class="phase-toggle">View Days +</div>
+        </div>
+        <div class="phase-days">
+          <div class="day-row">
+            <div class="day-num">Day 15</div>
+            <div class="day-content">
+              <div class="day-title">The Discovery Conversation Structure</div>
+              <div class="day-desc">A six-stage conversation framework that moves a buyer from interest to decision — without a pitch.</div>
+            </div>
+          </div>
+          <div class="day-row">
+            <div class="day-num">Day 16</div>
+            <div class="day-content">
+              <div class="day-title">The Diagnostic Questions That Uncover the Real Gap</div>
+              <div class="day-desc">How to ask the questions that surface a buyer's actual problem — the one they will pay to solve — before you ever present your offer.</div>
+            </div>
+          </div>
+          <div class="day-row">
+            <div class="day-num">Day 17</div>
+            <div class="day-content">
+              <div class="day-title">Presenting Value Without Pitching Features</div>
+              <div class="day-desc">How to describe your offer in the language of the buyer's gap — not the language of your product's ingredients.</div>
+            </div>
+          </div>
+          <div class="day-row">
+            <div class="day-num">Day 18</div>
+            <div class="day-content">
+              <div class="day-title">Handling Price Resistance Without Discounting</div>
+              <div class="day-desc">Why price objections are almost always value framing problems — and how to resolve them without dropping your number.</div>
+            </div>
+          </div>
+          <div class="day-row">
+            <div class="day-num">Day 19</div>
+            <div class="day-content">
+              <div class="day-title">The Next Step Close — Every Conversation Ends With One</div>
+              <div class="day-desc">A defined, time-bound next step at the end of every conversation — regardless of outcome. No more waiting to hear back.</div>
+            </div>
+          </div>
+          <div class="day-row">
+            <div class="day-num">Day 20</div>
+            <div class="day-content">
+              <div class="day-title">Tracking Your Close Rate — And What It Tells You</div>
+              <div class="day-desc">How to use a simple close rate metric to identify which part of your conversion process is leaking the most revenue.</div>
+            </div>
+          </div>
+          <div class="day-row">
+            <div class="day-num">Day 21</div>
+            <div class="day-content">
+              <div class="day-title">Week Three Review — Your First Full-Cycle Assessment</div>
+              <div class="day-desc">Run a full retrospective on your first cycle of outreach through conversion. Document what is working. Identify one change.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="phase-block">
+        <div class="phase-header" onclick="togglePhase(this)">
+          <div class="phase-meta">
+            <div class="phase-num">04</div>
+            <div class="phase-info">
+              <div class="phase-tag">Days 22&ndash;30 &middot; Week Four</div>
+              <div class="phase-title">Predictability — Build the System That Compounds</div>
+            </div>
+          </div>
+          <div class="phase-toggle">View Days +</div>
+        </div>
+        <div class="phase-days">
+          <div class="day-row">
+            <div class="day-num">Day 22</div>
+            <div class="day-content">
+              <div class="day-title">Your First Revenue Forecast</div>
+              <div class="day-desc">How to build a simple pipeline forecast using the data you have collected over the last three weeks.</div>
+            </div>
+          </div>
+          <div class="day-row">
+            <div class="day-num">Day 23</div>
+            <div class="day-content">
+              <div class="day-title">The Referral System — Building Pipeline From Existing Customers</div>
+              <div class="day-desc">How to ask for referrals in a way that produces warm introductions — not awkward silence.</div>
+            </div>
+          </div>
+          <div class="day-row">
+            <div class="day-num">Day 24</div>
+            <div class="day-content">
+              <div class="day-title">Re-Engaging Dead Leads Without Feeling Desperate</div>
+              <div class="day-desc">A framework for returning to conversations that went quiet — and determining which ones are worth re-opening.</div>
+            </div>
+          </div>
+          <div class="day-row">
+            <div class="day-num">Day 25</div>
+            <div class="day-content">
+              <div class="day-title">Expanding Revenue From Existing Clients</div>
+              <div class="day-desc">How to identify expansion opportunities in your current customer base — and when it is appropriate to surface them.</div>
+            </div>
+          </div>
+          <div class="day-row">
+            <div class="day-num">Day 26</div>
+            <div class="day-content">
+              <div class="day-title">Delegating Outreach — When and How to Hand This Off</div>
+              <div class="day-desc">What needs to be documented before you can delegate outreach without the quality dropping.</div>
+            </div>
+          </div>
+          <div class="day-row">
+            <div class="day-num">Day 27</div>
+            <div class="day-content">
+              <div class="day-title">Reviewing Your Pipeline Metrics — Monthly Cadence</div>
+              <div class="day-desc">The four numbers every clean brand founder should review at the start of every month.</div>
+            </div>
+          </div>
+          <div class="day-row">
+            <div class="day-num">Day 28</div>
+            <div class="day-content">
+              <div class="day-title">When to Adjust Your ICP — Signals That Your Targeting Is Off</div>
+              <div class="day-desc">How to recognize when your ideal customer definition needs to evolve — and how to update it without starting over.</div>
+            </div>
+          </div>
+          <div class="day-row">
+            <div class="day-num">Day 29</div>
+            <div class="day-content">
+              <div class="day-title">Your Full Pipeline System — One-Page Documentation</div>
+              <div class="day-desc">Assemble everything you have built into a single reference document. This is your pipeline playbook.</div>
+            </div>
+          </div>
+          <div class="day-row">
+            <div class="day-num">Day 30</div>
+            <div class="day-content">
+              <div class="day-title">What Comes Next — The Gap Between a System and Scale</div>
+              <div class="day-desc">What you have built in 30 days and what the next constraint is. The honest assessment of where a custom engagement accelerates what you started.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- OUTCOMES -->
+    <p class="what-label" style="margin-bottom:20px;">What you will have built after 30 days</p>
+    <div class="outcome-grid" style="margin-bottom:56px;">
+      <div class="outcome-chip"><span class="oc-num">01</span><span class="oc-text">A documented Ideal Customer Profile that drives every targeting decision</span></div>
+      <div class="outcome-chip"><span class="oc-num">02</span><span class="oc-text">A three-touch outreach sequence built around your buyer's specific gap</span></div>
+      <div class="outcome-chip"><span class="oc-num">03</span><span class="oc-text">A discovery conversation framework you can run consistently and refine</span></div>
+      <div class="outcome-chip"><span class="oc-num">04</span><span class="oc-text">A simple pipeline tracking system that shows you exactly what to act on next</span></div>
+      <div class="outcome-chip"><span class="oc-num">05</span><span class="oc-text">A monthly revenue forecast based on real pipeline data — not intuition</span></div>
+      <div class="outcome-chip"><span class="oc-num">06</span><span class="oc-text">A one-page pipeline playbook documented well enough to eventually delegate</span></div>
+    </div>
+
+    <!-- GATE FORM -->
+    <div class="gate-form" id="gate-form">
+      <h3>Start the 30-Day Pipeline Primer</h3>
+      <p>Enter your details below. Day 1 arrives in your inbox within the hour. One email a day for 30 days — no more, no less.</p>
+      <div class="field-row">
+        <div class="field"><label for="fname">First Name</label><input type="text" id="fname" placeholder="Sarah"></div>
+        <div class="field"><label for="lname">Last Name</label><input type="text" id="lname" placeholder="Chen"></div>
+      </div>
+      <div class="field full" style="margin-bottom:16px;">
+        <label for="email">Email Address</label>
+        <input type="email" id="email" placeholder="sarah@yourbrand.com">
+      </div>
+      <div class="field full">
+        <label for="brand">Brand Name</label>
+        <input type="text" id="brand" placeholder="Your Brand">
+      </div>
+      <p class="error-msg" id="gate-error">Please complete all fields to continue.</p>
+      <p class="privacy-note">One email per day. No spam. No brand deals. Unsubscribe any time.</p>
+      <button class="btn-primary" onclick="enrollPrimer()">Start Day 1 &rarr;</button>
+    </div>
+
+    <footer class="site-footer"><div class="footer-wordmark">Lucid Life Co &middot; IS IT CLEAN?</div></footer>
+  </div>
+</div>
+
+<!-- ── SCREEN: CONFIRMATION ── -->
+<div id="screen-confirm" class="screen">
+  <div class="wrap">
+    <header class="site-header">
+      <div class="wordmark">Lucid Life Co</div>
+      <div class="rule"></div>
+    </header>
+
+    <div class="confirm-hero">
+      <div class="confirm-icon">
+        <svg width="28" height="28" viewBox="0 0 28 28" fill="none">
+          <polyline points="5,14 11,20 23,8" stroke="#4A8C6A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </div>
+      <h1 class="confirm-title">You are enrolled.<br><em>Day 1 is on its way.</em></h1>
+      <p class="confirm-sub" id="confirm-sub">Check your inbox — your first email will arrive within the hour. One email a day for the next 30 days.</p>
+    </div>
+
+    <div class="confirm-what">
+      <div class="confirm-what-label">What to expect</div>
+      <div class="confirm-step">
+        <div class="confirm-step-num">1</div>
+        <div class="confirm-step-text">
+          <div class="confirm-step-title">Day 1 arrives today</div>
+          <div class="confirm-step-desc">The Pipeline Problem Diagnosis — understanding exactly what kind of pipeline gap you have and what it is costing you.</div>
+        </div>
+      </div>
+      <div class="confirm-step">
+        <div class="confirm-step-num">2</div>
+        <div class="confirm-step-text">
+          <div class="confirm-step-title">One email per day, every day</div>
+          <div class="confirm-step-desc">Each email takes under 10 minutes to read and includes one concrete action to build your pipeline system.</div>
+        </div>
+      </div>
+      <div class="confirm-step">
+        <div class="confirm-step-num">3</div>
+        <div class="confirm-step-text">
+          <div class="confirm-step-title">By Day 30 — a documented pipeline system</div>
+          <div class="confirm-step-desc">ICP, outreach sequence, discovery framework, tracking system, and a one-page pipeline playbook ready to run or hand off.</div>
+        </div>
+      </div>
+      <div class="confirm-step">
+        <div class="confirm-step-num">4</div>
+        <div class="confirm-step-text">
+          <div class="confirm-step-title">Day 30 introduces the next step</div>
+          <div class="confirm-step-desc">The last email is an honest assessment of where a custom engagement with Lucid Life Co accelerates what you have built.</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="cta-block">
+      <h3>While you wait for Day 1 —</h3>
+      <p>If you have not taken the Revenue Gap Audit, it is the fastest way to understand exactly where your pipeline is leaking right now. Ten minutes. Instant results.</p>
+      <div class="cta-row">
+        <a href="revenue-gap-audit.html" class="btn-primary" style="max-width:400px;">Take the Revenue Gap Audit &rarr;</a>
+        <a href="lucid-revenue-playbook.html" class="cta-secondary-link">Explore the Full Advisory Engagement &rarr;</a>
+      </div>
+    </div>
+
+    <footer class="site-footer"><div class="footer-wordmark">Lucid Life Co &middot; IS IT CLEAN?</div></footer>
+  </div>
+</div>
+
+<script>
+/* ── KIT CONFIGURATION ──────────────────────────────────────────
+   IMPORTANT: Replace PIPELINE_FORM_ID below with the numeric
+   form ID for your Pipeline Primer Kit form.
+   Find it at: app.kit.com/forms/designers/YOUR_ID/edit
+   Current placeholder uses the Revenue Gap Audit form as fallback.
+─────────────────────────────────────────────────────────────── */
+var PIPELINE_FORM_ID = "REPLACE_WITH_PIPELINE_FORM_ID";
+var KIT_API_KEY = "RDXWqC14zyJ7DW2LQVD_lA";
+
+function enrollPrimer() {
+  var fname = document.getElementById("fname").value.trim();
+  var lname = document.getElementById("lname").value.trim();
+  var email = document.getElementById("email").value.trim();
+  var brand = document.getElementById("brand").value.trim();
+  var err = document.getElementById("gate-error");
+  var btn = document.querySelector(".gate-form .btn-primary");
+
+  if (!fname || !lname || !email || !brand) { err.style.display = "block"; return; }
+  if (email.indexOf("@") < 0 || email.indexOf(".") < 0) {
+    err.textContent = "Please enter a valid email address.";
+    err.style.display = "block"; return;
+  }
+  err.style.display = "none";
+  btn.disabled = true;
+  btn.textContent = "Enrolling\u2026";
+
+  fetch("https://api.convertkit.com/v3/forms/" + PIPELINE_FORM_ID + "/subscribe", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({
+      api_key: KIT_API_KEY,
+      email: email,
+      first_name: fname,
+      fields: { last_name: lname, brand_name: brand }
+    })
+  })
+  .catch(function() {})
+  .finally(function() {
+    btn.disabled = false;
+    btn.textContent = "Start Day 1 \u2192";
+    document.getElementById("confirm-sub").textContent =
+      "Check your inbox, " + fname + " — Day 1 is on its way to " + email + ". One email a day for the next 30 days.";
+    showScreen("screen-confirm");
+  });
+}
+
+function showScreen(id) {
+  var screens = document.querySelectorAll(".screen");
+  for (var i = 0; i < screens.length; i++) { screens[i].classList.remove("active"); }
+  document.getElementById(id).classList.add("active");
+  window.scrollTo(0, 0);
+}
+
+function togglePhase(header) {
+  var days = header.nextElementSibling;
+  var toggle = header.querySelector(".phase-toggle");
+  var isOpen = days.classList.contains("open");
+  days.classList.toggle("open");
+  toggle.textContent = isOpen ? "View Days +" : "Hide Days \u2212";
+}
+</script>
+</body>
+</html>
