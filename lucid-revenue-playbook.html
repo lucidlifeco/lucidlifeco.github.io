@@ -822,12 +822,102 @@ body::after{
   .proof-bar{flex-wrap:wrap;gap:32px;padding:28px 24px;}
   .ws-row{grid-template-columns:1fr;}
 }
+
+/* ══════════════════════════════════
+   ACCESS GATE
+══════════════════════════════════ */
+.gate-screen{
+  min-height:100vh;display:flex;align-items:center;
+  justify-content:center;padding:40px;
+  background:var(--obsidian);
+}
+.gate-card{
+  max-width:440px;width:100%;text-align:center;
+}
+.gate-wordmark{
+  font-family:'Cormorant Garamond',serif;font-size:17px;
+  letter-spacing:0.12em;font-weight:400;margin-bottom:32px;
+  display:block;
+}
+.gate-wordmark span{color:var(--gold);}
+.gate-rule{height:1px;background:var(--gold-border);margin-bottom:40px;}
+.gate-title{
+  font-family:'Cormorant Garamond',serif;
+  font-size:clamp(28px,4vw,38px);font-weight:300;
+  line-height:1.2;margin-bottom:12px;
+}
+.gate-title em{color:var(--gold);font-style:italic;}
+.gate-sub{
+  font-size:15px;line-height:1.8;color:var(--parchment-dim);
+  margin-bottom:36px;letter-spacing:0.02em;
+}
+.gate-input-wrap{margin-bottom:16px;}
+.gate-input{
+  width:100%;background:rgba(237,233,227,0.04);
+  border:1px solid var(--gold-border);
+  color:var(--parchment);
+  font-family:'DM Mono',monospace;font-size:15px;
+  font-weight:300;letter-spacing:0.2em;
+  padding:16px 20px;outline:none;
+  text-align:center;text-transform:uppercase;
+  transition:border-color 0.2s;
+}
+.gate-input:focus{border-color:var(--gold);}
+.gate-input::placeholder{
+  color:rgba(237,233,227,0.25);
+  letter-spacing:0.2em;text-transform:uppercase;
+}
+.gate-btn{
+  width:100%;background:var(--gold);color:var(--obsidian);
+  font-family:'DM Mono',monospace;font-size:12px;
+  font-weight:600;letter-spacing:0.3em;text-transform:uppercase;
+  padding:18px 40px;border:none;cursor:pointer;
+  transition:opacity 0.2s,transform 0.15s;margin-bottom:16px;
+}
+.gate-btn:hover{opacity:0.88;transform:translateY(-1px);}
+.gate-error{
+  font-family:'DM Mono',monospace;font-size:11px;
+  letter-spacing:0.15em;color:#C4524A;
+  text-transform:uppercase;margin-top:8px;
+  display:none;
+}
+.gate-help{
+  font-size:12px;color:var(--parchment-dim);
+  opacity:0.45;letter-spacing:0.04em;margin-top:20px;
+  line-height:1.7;
+}
+.gate-help a{
+  color:var(--gold);opacity:0.7;text-decoration:none;
+}
+.gate-help a:hover{opacity:1;}
+
 </style>
 </head>
 <body>
 
+<!-- ══════════════════════════ ACCESS GATE ══════════════════════════ -->
+<div id="screen-gate" class="screen active">
+  <div class="gate-screen">
+    <div class="gate-card">
+      <span class="gate-wordmark">Lucid Life <span>Co</span></span>
+      <div class="gate-rule"></div>
+      <h1 class="gate-title">The Lucid Revenue<br><em>Playbook</em></h1>
+      <p class="gate-sub">Enter your access code to unlock the full playbook. Your code was included in your purchase confirmation from Gumroad.</p>
+      <div class="gate-input-wrap">
+        <input class="gate-input" type="text" id="access-code-input" placeholder="Enter Access Code" autocomplete="off" autocorrect="off" autocapitalize="characters" spellcheck="false" onkeydown="if(event.key==='Enter')checkCode()" />
+        <div class="gate-error" id="gate-error">Incorrect code. Check your purchase confirmation and try again.</div>
+      </div>
+      <button class="gate-btn" onclick="checkCode()">Unlock the Playbook →</button>
+      <p class="gate-help">
+        Don't have an access code? <a href="GUMROAD_CHECKOUT_URL" target="_blank">Purchase here →</a><br>
+        Need help? <a href="mailto:hello@lucidlifeco.com">hello@lucidlifeco.com</a>
+      </p>
+    </div>
+  </div>
+</div>
+
 <!-- ══════════════════════════ SALES PAGE ══════════════════════════ -->
-<div id="screen-sales" class="screen active">
+<div id="screen-sales" class="screen">
 <div class="sales-page">
 
   <nav class="sales-nav">
@@ -1770,8 +1860,26 @@ function buildDashboard() {
   grid.innerHTML = html;
 }
 
-// Init
-showScreen('sales');
+
+// ── ACCESS CODE GATE ──
+var ACCESS_CODE = 'LUCID197';
+
+function checkCode() {
+  var input = document.getElementById('access-code-input');
+  var err = document.getElementById('gate-error');
+  var val = input.value.trim().toUpperCase();
+  if(val === ACCESS_CODE) {
+    err.style.display = 'none';
+    showScreen('sales');
+  } else {
+    err.style.display = 'block';
+    input.style.borderColor = '#C4524A';
+    setTimeout(function(){ input.style.borderColor = ''; }, 1500);
+  }
+}
+
+// Init — show gate on load
+showScreen('gate');
 </script>
 </body>
 </html>
