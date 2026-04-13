@@ -150,14 +150,17 @@
 /* ── GAP COMPLEXITY ── */
 .gap-complexity { margin: 48px 0; }
 .gap-complexity-label { font-size: 13px; letter-spacing: 0.3em; color: var(--gold); text-transform: uppercase; margin-bottom: 24px; opacity: 0.8; }
-.gap-matrix { display: grid; grid-template-columns: repeat(5, 1fr); gap: 8px; margin-bottom: 20px; }
-.gap-cell { border: 1px solid rgba(196,160,82,0.12); padding: 20px 14px; text-align: center; position: relative; transition: border-color 0.3s; }
-.gap-cell.gap-low { border-color: rgba(196,82,74,0.4); background: rgba(196,82,74,0.06); }
-.gap-cell.gap-mid { border-color: rgba(196,154,82,0.4); background: rgba(196,154,82,0.06); }
-.gap-cell.gap-high { border-color: rgba(82,160,110,0.4); background: rgba(82,160,110,0.06); }
-.gap-cell-name { font-size: 13px; letter-spacing: 0.04em; text-transform: uppercase; color: var(--parchment); margin-bottom: 12px; line-height: 1.5; opacity: 0.85; }
-.gap-cell-score { font-family: 'Cormorant Garamond', serif; font-size: 36px; font-weight: 300; line-height: 1; }
-.gap-cell-status { font-size: 12px; letter-spacing: 0.1em; text-transform: uppercase; margin-top: 8px; opacity: 0.9; }
+.gap-matrix { display: flex; flex-direction: column; gap: 8px; margin-bottom: 28px; }
+.gap-cell { border: 1px solid rgba(196,160,82,0.12); padding: 20px 28px; display: flex; align-items: center; justify-content: space-between; gap: 20px; transition: border-color 0.3s; }
+.gap-cell.gap-low { border-color: rgba(196,82,74,0.4); background: rgba(196,82,74,0.05); }
+.gap-cell.gap-mid { border-color: rgba(196,154,82,0.4); background: rgba(196,154,82,0.05); }
+.gap-cell.gap-high { border-color: rgba(82,160,110,0.4); background: rgba(82,160,110,0.05); }
+.gap-cell-name { font-size: 16px; letter-spacing: 0.04em; color: var(--parchment); line-height: 1.4; flex: 1; }
+.gap-cell-right { display: flex; align-items: center; gap: 20px; flex-shrink: 0; }
+.gap-cell-bar-wrap { width: 120px; height: 3px; background: rgba(196,160,82,0.1); }
+.gap-cell-bar-fill { height: 100%; transition: width 1s ease 0.3s; }
+.gap-cell-score { font-family: 'Cormorant Garamond', serif; font-size: 32px; font-weight: 300; line-height: 1; width: 52px; text-align: right; }
+.gap-cell-status { font-size: 12px; letter-spacing: 0.12em; text-transform: uppercase; width: 90px; text-align: right; }
 .gap-complexity-note { font-size: 16px; line-height: 1.8; color: var(--parchment); opacity: 0.82; font-style: italic; border-left: 2px solid var(--gold-border); padding-left: 20px; }
 
 /* ── THREE-TIER OFFER ── */
@@ -797,11 +800,14 @@ function showResults() {
     if (cellTier === "low") lowCount++;
     else if (cellTier === "mid") midCount++;
     else highCount++;
+    var barPct = (ds.score10 / 10) * 100;
     matrixHtml += "<div class='gap-cell gap-" + cellTier + "'>";
     matrixHtml += "<div class='gap-cell-name'>" + dim.name + "</div>";
+    matrixHtml += "<div class='gap-cell-right'>";
+    matrixHtml += "<div class='gap-cell-bar-wrap'><div class='gap-cell-bar-fill' style='background:" + cellColor + ";width:" + barPct + "%'></div></div>";
     matrixHtml += "<div class='gap-cell-score' style='color:" + cellColor + "'>" + ds.score10 + "</div>";
     matrixHtml += "<div class='gap-cell-status' style='color:" + cellColor + "'>" + statusLabel + "</div>";
-    matrixHtml += "</div>";
+    matrixHtml += "</div></div>";
   });
   document.getElementById("gap-matrix").innerHTML = matrixHtml;
 
