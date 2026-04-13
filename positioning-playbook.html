@@ -146,6 +146,77 @@
     .nav-row { flex-direction: column; }
     .exercise-block { padding: 20px; }
   }
+
+/* ── PRINT / EXECUTIVE BRIEF ── */
+.brief-section { margin: 56px 0 0; }
+.brief-header { text-align: center; padding: 48px 0 32px; border-bottom: 1px solid var(--gold-border); margin-bottom: 40px; }
+.brief-title { font-family: 'Cormorant Garamond', serif; font-size: clamp(28px,4vw,40px); font-weight: 300; line-height: 1.2; margin-bottom: 8px; }
+.brief-title em { color: var(--gold); font-style: italic; }
+.brief-meta { font-size: 13px; letter-spacing: 0.15em; color: var(--parchment-dim); opacity: 0.6; text-transform: uppercase; }
+.brief-block { border: 1px solid rgba(196,160,82,0.12); padding: 24px 28px; margin-bottom: 16px; background: var(--parchment-dim); }
+.brief-block-label { font-size: 11px; letter-spacing: 0.3em; color: var(--gold); text-transform: uppercase; margin-bottom: 8px; opacity: 0.8; }
+.brief-block-value { font-size: 17px; line-height: 1.7; color: var(--parchment); }
+.brief-block-value strong { color: var(--gold); font-weight: 400; }
+.brief-priority { padding: 16px 0; border-bottom: 1px solid rgba(237,233,227,0.06); }
+.brief-priority:last-child { border-bottom: none; }
+.brief-priority-num { font-size: 11px; letter-spacing: 0.25em; color: var(--gold); opacity: 0.7; text-transform: uppercase; margin-bottom: 4px; }
+.brief-priority-text { font-size: 16px; line-height: 1.6; color: var(--parchment); }
+.print-btn { display: flex; align-items: center; justify-content: center; gap: 12px; background: transparent; border: 1px solid var(--gold-border); color: var(--parchment); font-family: 'Josefin Sans', sans-serif; font-size: 13px; font-weight: 400; letter-spacing: 0.2em; text-transform: uppercase; padding: 16px 32px; cursor: pointer; transition: all 0.2s; margin: 32px auto 0; width: 100%; max-width: 360px; }
+.print-btn:hover { border-color: var(--gold-border-strong); color: var(--gold); }
+
+/* ── OFFER SECTION ── */
+.offer-section { margin: 56px 0; }
+.offer-section-label { font-size: 13px; letter-spacing: 0.3em; color: var(--gold); text-transform: uppercase; margin-bottom: 8px; opacity: 0.8; }
+.offer-section-title { font-family: 'Cormorant Garamond', serif; font-size: clamp(26px,3.5vw,38px); font-weight: 300; line-height: 1.2; margin-bottom: 40px; }
+.offer-section-title em { color: var(--gold); font-style: italic; }
+.offer-tier { border: 1px solid rgba(196,160,82,0.15); margin-bottom: 12px; background: var(--parchment-dim); transition: border-color 0.2s; }
+.offer-tier:hover { border-color: var(--gold-border); }
+.offer-tier.offer-featured { border-color: var(--gold-border-strong); background: rgba(196,160,82,0.04); }
+.offer-tier-inner { padding: 28px 32px; }
+.offer-tier-header { display: flex; align-items: flex-start; justify-content: space-between; gap: 20px; margin-bottom: 16px; }
+.offer-tier-badge { font-size: 11px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--gold); opacity: 1; margin-bottom: 6px; }
+.offer-tier-name { font-family: 'Cormorant Garamond', serif; font-size: 24px; font-weight: 300; line-height: 1.2; color: var(--parchment); }
+.offer-tier-price-wrap { text-align: right; flex-shrink: 0; }
+.offer-tier-was { font-size: 13px; letter-spacing: 0.1em; color: var(--parchment); text-decoration: line-through; opacity: 0.55; display: block; }
+.offer-tier-price { font-family: 'Cormorant Garamond', serif; font-size: 36px; font-weight: 300; color: var(--gold); line-height: 1; margin-bottom: 8px; display: block; }
+.offer-tier-period { font-size: 11px; letter-spacing: 0.15em; color: var(--parchment); opacity: 0.65; text-transform: uppercase; display: block; margin-top: 10px; padding-top: 6px; border-top: 1px solid rgba(196,160,82,0.15); }
+.offer-tier-desc { font-size: 16px; line-height: 1.8; color: var(--parchment); opacity: 0.85; margin-bottom: 20px; }
+.offer-tier-points { list-style: none; margin-bottom: 24px; }
+.offer-tier-points li { font-size: 15px; line-height: 1.6; color: var(--parchment); opacity: 0.82; padding: 8px 0; border-bottom: 1px solid rgba(237,233,227,0.07); padding-left: 20px; position: relative; }
+.offer-tier-points li:last-child { border-bottom: none; }
+.offer-tier-points li::before { content: '✦'; position: absolute; left: 0; color: var(--gold); font-size: 10px; top: 11px; opacity: 0.7; }
+.offer-tier-btn { display: block; text-align: center; font-family: 'Josefin Sans', sans-serif; font-size: 13px; font-weight: 600; letter-spacing: 0.25em; text-transform: uppercase; padding: 16px 32px; cursor: pointer; border: none; transition: opacity 0.2s, transform 0.15s; text-decoration: none; }
+.offer-tier-btn:hover { opacity: 0.88; transform: translateY(-1px); }
+.offer-tier-btn.btn-gold { background: var(--gold); color: #0C0C0E; }
+.offer-tier-btn.btn-outline { background: transparent; border: 1px solid var(--gold-border-strong); color: var(--parchment); opacity: 1; }
+.offer-tier-btn.btn-outline:hover { border-color: var(--gold); color: var(--gold); }
+.offer-tier-note { font-size: 11px; letter-spacing: 0.12em; color: var(--parchment); opacity: 0.55; text-align: center; margin-top: 12px; text-transform: uppercase; }
+.offer-free-block { border: 1px solid rgba(237,233,227,0.08); padding: 24px 32px; margin-bottom: 12px; display: flex; align-items: center; justify-content: space-between; gap: 24px; flex-wrap: wrap; }
+.offer-free-badge { font-size: 11px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--gold); opacity: 0.75; margin-bottom: 4px; }
+.offer-free-name { font-family: 'Cormorant Garamond', serif; font-size: 20px; font-weight: 300; color: var(--parchment); opacity: 0.9; }
+
+/* ── PRINT STYLES ── */
+@media print {
+  nav, .playbook-header, .nav-row, #screen-intro, #screen-playbook,
+  .offer-section, .site-footer, .print-btn { display: none !important; }
+  body { background: #fff !important; color: #0C0C0E !important; }
+  .screen { display: block !important; }
+  #screen-results { display: block !important; }
+  .wrap { max-width: 100% !important; padding: 0 !important; }
+  .brief-block { border: 1px solid #ccc !important; background: #f9f8f6 !important; }
+  .brief-block-label { color: #8a6a20 !important; }
+  .brief-block-value, .brief-priority-text { color: #0C0C0E !important; }
+  .result-headline, .result-sub { color: #0C0C0E !important; opacity: 1 !important; }
+  .positioning-statement-wrap { border: 1px solid #ccc !important; background: #f9f8f6 !important; }
+  .ps-statement, .ps-label { color: #0C0C0E !important; }
+  .module-results .mod-result { border: 1px solid #ddd !important; background: #f9f8f6 !important; }
+  .mod-result-label { color: #8a6a20 !important; }
+  .mod-result-text { color: #0C0C0E !important; opacity: 1 !important; }
+  .gap-summary { border: 1px solid #ccc !important; background: #f9f8f6 !important; }
+  .gap-summary h3, .gap-summary p { color: #0C0C0E !important; opacity: 1 !important; }
+  .wordmark { color: #8a6a20 !important; }
+}
+
 </style>
 </head>
 <body style="background-color:#0C0C0E;color:#EDE9E3;">
@@ -244,33 +315,132 @@
       <div class="wordmark">Lucid Life Co &middot; Positioning Playbook</div>
       <div class="rule"></div>
     </header>
+
+    <!-- RESULTS HEADER -->
     <div class="results-header">
-      <div class="eyebrow" id="result-eyebrow">Your Positioning Statement</div>
+      <div class="eyebrow" id="result-eyebrow">Your Positioning Assessment</div>
       <h2 class="result-headline" id="result-headline"></h2>
       <p class="result-sub" id="result-sub"></p>
     </div>
 
+    <!-- DRAFT POSITIONING STATEMENT -->
     <div class="positioning-statement-wrap">
       <div class="ps-label">Your Draft Positioning Statement</div>
       <div class="ps-statement" id="ps-display"></div>
     </div>
 
+    <!-- MODULE FINDINGS -->
     <div class="module-results" id="module-results"></div>
 
+    <!-- GAP NARRATIVE -->
     <div class="gap-summary" id="gap-summary"></div>
 
-    <div class="cost-block">
-      <div class="cost-label">Estimated Monthly Revenue Leakage From Weak Positioning</div>
-      <div class="cost-number" id="cost-display">—</div>
-      <div class="cost-desc">Based on average conversion rate impact of undifferentiated positioning at your brand stage</div>
+    <!-- EXECUTIVE BRIEF -->
+    <div class="brief-section" id="brief-section">
+      <div class="brief-header">
+        <h2 class="brief-title">Positioning Gap<br><em>Executive Brief</em></h2>
+        <div class="brief-meta" id="brief-meta"></div>
+      </div>
+      <div class="brief-block">
+        <div class="brief-block-label">Brand</div>
+        <div class="brief-block-value" id="brief-brand"></div>
+      </div>
+      <div class="brief-block">
+        <div class="brief-block-label">Positioning Readiness</div>
+        <div class="brief-block-value" id="brief-score"></div>
+      </div>
+      <div class="brief-block">
+        <div class="brief-block-label">Draft Positioning Statement</div>
+        <div class="brief-block-value" id="brief-statement"></div>
+      </div>
+      <div class="brief-block">
+        <div class="brief-block-label">Assessment Summary</div>
+        <div class="brief-block-value" id="brief-summary"></div>
+      </div>
+      <div class="brief-block">
+        <div class="brief-block-label">Module Findings</div>
+        <div id="brief-findings"></div>
+      </div>
+      <div class="brief-block">
+        <div class="brief-block-label">Priority Actions</div>
+        <div id="brief-priorities"></div>
+      </div>
+      <div class="brief-block">
+        <div class="brief-block-label">Recommended Next Step</div>
+        <div class="brief-block-value" id="brief-next-step"></div>
+      </div>
+      <button class="print-btn" onclick="window.print()">↓ &nbsp; Save or Print This Brief</button>
     </div>
 
-    <div class="cta-block">
-      <h3 id="cta-headline"></h3>
-      <p id="cta-body"></p>
-      <button class="btn-primary" style="max-width:400px;margin:0 auto;" id="cta-btn">Take the Revenue Gap Audit &rarr;</button>
-      <a href="lucid-revenue-playbook.html" class="cta-secondary-link">Explore the Full Advisory Engagement &rarr;</a>
+    <!-- THREE-TIER OFFER -->
+    <div class="offer-section">
+      <div class="offer-section-label">What Comes Next</div>
+      <h2 class="offer-section-title">The playbook identified the positioning gap.<br><em>Here is how to close it.</em></h2>
+      <p style="font-size:17px;line-height:1.85;color:var(--parchment);opacity:0.82;margin-bottom:36px;">Your brief is yours to keep. The positioning gaps it surfaces are specific to your brand. What you do with that information determines whether this was useful or just interesting. Three paths forward — in the order that makes sense.</p>
+
+      <!-- STEP 1: FREE -->
+      <div class="offer-free-block">
+        <div class="offer-free-text">
+          <div class="offer-free-badge">Step 1 &middot; Free &middot; Already Yours</div>
+          <div class="offer-free-name">Save your Positioning Gap Executive Brief and share it with your team.</div>
+        </div>
+        <button class="offer-tier-btn btn-outline" onclick="window.print()" style="flex-shrink:0;padding:12px 24px;">Save Brief &darr;</button>
+      </div>
+
+      <!-- STEP 2: $197 PLAYBOOK -->
+      <div class="offer-tier offer-featured">
+        <div class="offer-tier-inner">
+          <div class="offer-tier-header">
+            <div>
+              <div class="offer-tier-badge">Step 2 &middot; Do It Yourself &middot; Instant Access</div>
+              <div class="offer-tier-name">The Lucid Revenue Playbook</div>
+            </div>
+            <div class="offer-tier-price-wrap">
+              <span class="offer-tier-was">$997</span>
+              <span class="offer-tier-price">$197</span>
+              <span class="offer-tier-period">One-time &middot; Yours forever</span>
+            </div>
+          </div>
+          <p class="offer-tier-desc">The complete six-module revenue system that takes the positioning gap this playbook identified and builds a full revenue motion around it — ICP, gap statement, outreach, discovery, delivery, and compounding.</p>
+          <ul class="offer-tier-points">
+            <li>Six modules built specifically for clean and wellness brand founders</li>
+            <li>18 interactive worksheets with downloadable outputs</li>
+            <li>Video walkthrough for every module</li>
+            <li>Lifetime access and all future updates</li>
+            <li>30-day money-back guarantee</li>
+          </ul>
+          <a href="https://lucidlife0.gumroad.com/l/lucid-revenue-playbook" target="_blank" class="offer-tier-btn btn-gold">Get the Playbook &mdash; $197 &rarr;</a>
+          <div class="offer-tier-note">Not available at this price publicly &middot; Exclusive to playbook completers</div>
+        </div>
+      </div>
+
+      <!-- STEP 3: CUSTOM ENGAGEMENT -->
+      <p style="font-size:16px;line-height:1.8;color:var(--parchment);opacity:0.7;text-align:center;padding:12px 0 20px;font-style:italic;">For founders who want maximum results with minimum internal effort — and are ready to move now.</p>
+      <div class="offer-tier">
+        <div class="offer-tier-inner">
+          <div class="offer-tier-header">
+            <div>
+              <div class="offer-tier-badge">Step 3 &middot; Done With You &middot; By Application</div>
+              <div class="offer-tier-name">Custom Revenue Engagement</div>
+            </div>
+            <div class="offer-tier-price-wrap" style="text-align:right;">
+              <span style="font-family:'Cormorant Garamond',serif;font-size:18px;font-weight:300;font-style:italic;color:var(--parchment);opacity:0.7;display:block;line-height:1.4;">Scoped to your<br>brand and gaps</span>
+            </div>
+          </div>
+          <p class="offer-tier-desc">Cody works directly with you to build a complete positioning system for your specific brand — differentiator documentation, buyer translations, tested statement, and the language architecture your team deploys consistently.</p>
+          <ul class="offer-tier-points">
+            <li>Full positioning diagnosis using your actual brand data — not a playbook score</li>
+            <li>Unfair differentiator documented and verified</li>
+            <li>Buyer-specific translations built for consumer, retail, and investor audiences</li>
+            <li>Positioning statement tested against real buyers</li>
+            <li>Exclusively for brands that meet the IS IT CLEAN? standard</li>
+          </ul>
+          <a href="https://calendly.com/hello-lucidlifeco/30min" target="_blank" class="offer-tier-btn btn-outline">Apply for a Strategy Call &rarr;</a>
+          <div class="offer-tier-note">Pricing scoped after discovery &middot; Limited engagements available</div>
+        </div>
+      </div>
     </div>
+
     <footer class="site-footer"><div class="footer-wordmark">Lucid Life Co &middot; IS IT CLEAN?</div></footer>
   </div>
 </div>
@@ -443,8 +613,8 @@ var GAP_TIERS = {
     headline: "Your positioning is working against you.",
     sub: "The gap between what you know about your brand and what buyers hear is costing you every conversion. Not because your product is not exceptional — but because your language is giving skeptical buyers no reason to believe you over the last brand that made the same claims.",
     costBase: 4500,
-    gapHeadline: "What the playbook surfaces versus what a custom engagement builds",
-    gapBody: "The playbook has identified that your positioning gap is structural — it predates your messaging. You cannot write your way out of a positioning problem. A custom engagement with Lucid Life Co builds the full positioning architecture: unfair differentiator documentation, buyer-specific translation, tested statement, and the language system your team uses across every channel. For founders at this stage, the difference between generic and specific positioning typically represents 2 to 4x conversion rates on qualified conversations.",
+    gapHeadline: "What the playbook identified — and what to do with it",
+    gapBody: "The playbook has surfaced that your positioning gap is structural. The language you are using is indistinguishable from the brands you are trying to differentiate from. The Lucid Revenue Playbook gives you the complete framework to build ownable positioning — unfair differentiator documentation, buyer translation, and a tested statement — at your own pace for $197. For founders who want this built with direct guidance applied to their specific brand, a custom engagement is available. Scope and pricing are determined after a discovery conversation.",
     ctaHeadline: "The gap is real. The fix is specific.",
     ctaBody: "We work directly with a small number of clean and wellness founders — exclusively brands that meet our IS IT CLEAN? standard. One conversation will tell us both whether this is the right fit."
   },
@@ -452,8 +622,8 @@ var GAP_TIERS = {
     headline: "You have the foundation. The positioning is not carrying its weight yet.",
     sub: "You know what makes you different. The gap is in translating that into language specific enough to own and consistent enough to scale. You are leaving conversions behind every time you tell a story that does not fully land.",
     costBase: 2500,
-    gapHeadline: "What the playbook reveals versus what a custom engagement sharpens",
-    gapBody: "You are closer than most. The gap at this stage is precision — the difference between a positioning idea and a positioning system. A custom engagement takes what you have built and makes it specific enough to be ownable, tested enough to be trusted, and documented enough to be deployed consistently across your team, your channels, and your buyer conversations.",
+    gapHeadline: "What the playbook revealed — and where to sharpen next",
+    gapBody: "You have the foundation. The gap is precision — the difference between a positioning idea and a positioning system. The Lucid Revenue Playbook gives you the structured framework to close that gap module by module, at your own pace. For founders who want an outside eye to pressure-test their positioning before taking it to market, a custom engagement is available. Scope and pricing are determined after a discovery conversation.",
     ctaHeadline: "Close the gap between where your positioning is and where it needs to be.",
     ctaBody: "We work with a select number of clean brand founders ready to turn a good positioning instinct into a repeatable revenue asset. One conversation to see if the fit is right."
   },
@@ -461,8 +631,8 @@ var GAP_TIERS = {
     headline: "Your positioning foundation is strong. The next constraint is deployment.",
     sub: "You have done the thinking most clean brand founders skip entirely. The gap at this stage is not in the statement — it is in how consistently it is showing up across every buyer conversation, channel, and team interaction.",
     costBase: 1200,
-    gapHeadline: "What the playbook confirms versus what a strategic engagement unlocks",
-    gapBody: "Founders at this stage do not need positioning built — they need it pressure-tested and deployed. A strategic engagement focuses on finding where the positioning breaks down in practice: the sales conversation that goes off-script, the channel where the language is not landing, the team member who tells a different story. Precision at this level is what separates brands with good positioning from brands with positioning that compounds.",
+    gapHeadline: "A strong positioning foundation — and where to deploy it",
+    gapBody: "You have done the thinking most clean brand founders skip entirely. The gap now is deployment — ensuring your positioning shows up consistently across every conversation, channel, and team member. The Lucid Revenue Playbook helps you formalize and document what you have built so it runs predictably. For founders who want a specific outside perspective on where their positioning breaks down in practice, a custom engagement is available. Scope and pricing are determined after a discovery conversation.",
     ctaHeadline: "Strong positioning deserves a rigorous deployment.",
     ctaBody: "We work with a small number of clean brand founders who are ready to move from positioning instinct to positioning infrastructure. One conversation to determine fit."
   }
@@ -521,21 +691,7 @@ function startPlaybook() {
   } catch(e) {}
 }
 
-  try {
-    fetch("https://api.convertkit.com/v3/forms/9271538/subscribe", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({
-        api_key: "RDXWqC14zyJ7DW2LQVD_lA",
-        email: email,
-        first_name: fname,
-        fields: { last_name: lname, brand_name: brand, product_category: category }
-      })
-    }).then(function() { }).catch(function() { });
-  } catch(e) {}
 
-  setTimeout(launchPlaybook, 400);
-}
 
 function showScreen(id) {
   var screens = document.querySelectorAll(".screen");
@@ -645,7 +801,6 @@ function prevModule() {
 function showResults() {
   showScreen("screen-results");
 
-  // Calculate total score
   var totalScore = 0;
   var maxScore = MODULES.length * 3;
   MODULES.forEach(function(mod) {
@@ -655,49 +810,114 @@ function showResults() {
 
   var pct = totalScore / maxScore;
   var tier = pct < 0.4 ? "low" : pct < 0.75 ? "mid" : "high";
-  var content = GAP_TIERS[tier];
+  var gc = GAP_TIERS[tier];
 
-  // Header
+  // ── Header ──────────────────────────────────────────────────────
   document.getElementById("result-eyebrow").textContent = userData.fname + "'s Positioning Assessment";
-  document.getElementById("result-headline").textContent = content.headline;
-  document.getElementById("result-sub").textContent = content.sub;
+  document.getElementById("result-headline").textContent = gc.headline;
+  document.getElementById("result-sub").textContent = gc.sub;
 
-  // Build draft positioning statement from responses
+  // ── Draft positioning statement ─────────────────────────────────
   var differentiatorScore = responses["differentiator"] || 0;
   var translationScore = responses["translation"] || 0;
   var statementScore = responses["statement"] || 0;
   var ps = buildPositioningStatement(differentiatorScore, translationScore, statementScore);
   document.getElementById("ps-display").textContent = ps;
 
-  // Module results
-  var modHtml = "<p style='font-size:13px;letter-spacing:0.3em;color:var(--gold);text-transform:uppercase;margin-bottom:20px;opacity:0.8;'>Module Findings</p>";
+  // ── Module findings ─────────────────────────────────────────────
   var modInsights = {
-    dilution: ["Your messaging is carrying significant greenwashing drag. Every diluted word is costing you credibility with the buyers who matter most.", "You are partially exposed. Two or three language shifts could meaningfully improve how differentiated buyers perceive you.", "You have reduced your exposure to diluted language. The next step is replacing what you removed with something ownable.", "You have already done the hard work of removing generic language. The foundation is ready for sharp positioning."],
+    dilution: ["Your messaging is carrying significant greenwashing drag. Every diluted word is costing you credibility with the buyers who matter most.", "You are partially exposed. Two or three language shifts could meaningfully improve how buyers perceive your differentiation.", "You have reduced your exposure to diluted language. The next step is replacing what you removed with something ownable.", "You have already done the hard work of removing generic language. The foundation is ready for sharp positioning."],
     logotest: ["Your positioning is currently invisible without the logo. Any competitor could say the same things.", "There are hints of distinctiveness but nothing specific enough to stop a skeptical buyer.", "Your tone is distinctive but your substance needs sharpening. Tone without proof does not convert.", "Your positioning passes the logo test. The work now is deployment and consistency."],
     differentiator: ["You do not yet have a documented differentiator. This is the most urgent gap in your positioning.", "You have the seed of a differentiator but it is not documented or tested. It cannot do its job until it is.", "You have a differentiator but it is not front and center. Buyers should not have to find it.", "Your differentiator is specific and verifiable. That is the hardest part of positioning done right."],
-    translation: ["You are telling everyone the same story. Every buyer type you talk to is hearing messaging built for someone else.", "You adjust tone but not substance. Buyers hear the same claim delivered differently — not a message built for them.", "You have started translating but inconsistency is leaving conversions behind. Systematize what is working.", "You have buyer-specific translations. The gap now is consistency and documentation across your team."],
-    statement: ["You do not yet have the raw material for a positioning statement. The modules above are where to start.", "Your draft exists but it is not ownable yet. It needs a specific proof that no other brand can claim.", "You are close. A tested statement is worth more than a perfect draft. Get it in front of real buyers.", "You have a working positioning statement. The work now is making sure it governs everything your brand says."]
+    translation: ["You are telling everyone the same story. Every buyer type you talk to is hearing messaging built for someone else.", "You adjust tone but not substance. Buyers hear the same claim delivered differently — not a message built for them.", "You have started translating but inconsistency is leaving conversions behind.", "You have buyer-specific translations in place. The gap now is consistency across your team."],
+    statement: ["You do not yet have the raw material for a positioning statement. The modules above are where to start.", "Your draft exists but it is not ownable yet. It needs a specific proof no other brand can claim.", "You are close. A tested statement is worth more than a perfect draft. Get it in front of real buyers.", "You have a working positioning statement. The work now is deployment consistency."]
   };
+  var modHtml = "";
   MODULES.forEach(function(mod) {
     var idx = responses[mod.id] || 0;
-    var insight = modInsights[mod.id][idx];
+    var insight = modInsights[mod.id] ? modInsights[mod.id][idx] : "";
     modHtml += "<div class='mod-result'><div class='mod-result-label'>" + mod.title + "</div><div class='mod-result-text'>" + insight + "</div></div>";
   });
   document.getElementById("module-results").innerHTML = modHtml;
 
-  // Gap summary
-  document.getElementById("gap-summary").innerHTML = "<h3>" + content.gapHeadline + "</h3><p>" + content.gapBody + "</p>";
+  // ── Gap summary ─────────────────────────────────────────────────
+  var gapHtml = "<h3>" + gc.gapHeadline + "</h3><p>" + gc.gapBody + "</p>";
+  document.getElementById("gap-summary").innerHTML = gapHtml;
 
-  // Cost estimate
-  var costEstimate = Math.round(content.costBase * (1 + (maxScore - totalScore) / maxScore) / 500) * 500;
-  document.getElementById("cost-display").textContent = "$" + costEstimate.toLocaleString() + "/mo";
+  // ── Executive Brief ─────────────────────────────────────────────
+  var today = new Date();
+  var dateStr = today.toLocaleDateString("en-US", { year: "numeric", month: "long", day: "numeric" });
+  document.getElementById("brief-meta").textContent = "Prepared: " + dateStr + "  ·  Confidential";
+  document.getElementById("brief-brand").innerHTML = "<strong>" + userData.brand + "</strong>  ·  " + userData.fname + " " + userData.lname + "  ·  " + userData.email;
 
-  // CTA
-  document.getElementById("cta-headline").textContent = content.ctaHeadline;
-  document.getElementById("cta-body").textContent = content.ctaBody;
-  document.getElementById("cta-btn").onclick = function() {
-    window.location.href = "revenue-gap-audit.html";
+  var tierLabel = tier === "low" ? "Critical — Structural positioning gaps present" : tier === "mid" ? "Developing — Foundation present, precision needed" : "Strong — Deployment and consistency is the constraint";
+  document.getElementById("brief-score").innerHTML = "<strong>" + tierLabel + "</strong>";
+  document.getElementById("brief-statement").textContent = ps;
+  document.getElementById("brief-summary").textContent = gc.headline + " " + gc.sub;
+
+  var findingsHtml = "";
+  MODULES.forEach(function(mod) {
+    var idx = responses[mod.id] || 0;
+    var insight = modInsights[mod.id] ? modInsights[mod.id][idx] : "";
+    findingsHtml += "<div class='brief-priority'><div class='brief-priority-num'>" + mod.title + "</div><div class='brief-priority-text'>" + insight + "</div></div>";
+  });
+  document.getElementById("brief-findings").innerHTML = findingsHtml;
+
+  // Priority actions — lowest scoring modules first
+  var priorityActions = {
+    dilution: "Audit your current website, social bio, and pitch deck. Remove every diluted word — natural, clean, transparent, conscious, sustainable. Replace each one with a specific, verifiable claim unique to your brand.",
+    logotest: "Apply the logo test to every piece of positioning copy you own. Remove your brand name and read it as a skeptical buyer. If another brand could say the same words, rewrite until they cannot.",
+    differentiator: "Document your unfair differentiator this week. Find the specific thing — an ingredient standard, a sourcing commitment, a testing protocol — that is verifiable and exclusive to your brand. Write it in one sentence.",
+    translation: "Write three versions of your differentiator — one for consumers, one for retail buyers, one for press or investors. Each version should speak in that buyer's language, addressing their specific fear or goal.",
+    statement: "Draft your positioning statement using the formula: For [specific buyer] who [specific problem], [brand] is the [category] that [specific proof] — unlike [alternative], which [what they cannot claim]. Test it with three real buyers."
   };
+
+  var sortedMods = MODULES.slice().sort(function(a,b) {
+    return (responses[a.id] || 0) - (responses[b.id] || 0);
+  });
+  var prioritiesHtml = "";
+  sortedMods.slice(0, 3).forEach(function(mod, i) {
+    prioritiesHtml += "<div class='brief-priority'><div class='brief-priority-num'>Priority " + (i+1) + " — " + mod.title + "</div><div class='brief-priority-text'>" + (priorityActions[mod.id] || "") + "</div></div>";
+  });
+  document.getElementById("brief-priorities").innerHTML = prioritiesHtml;
+
+  var nextStep = tier === "low"
+    ? "The positioning gaps identified across multiple modules require a structured build — not incremental edits. The Lucid Revenue Playbook provides the complete framework to close them at your own pace. For brand-specific, accelerated results, a custom engagement is available for qualified founders."
+    : tier === "mid"
+    ? "You have the raw material. The Lucid Revenue Playbook gives you the structured system to sharpen and deploy it. For founders who want an outside perspective to pressure-test their positioning before taking it to market, a custom engagement is available."
+    : "Your foundation is strong. The Lucid Revenue Playbook helps you formalize and document what you have built so it deploys consistently across every channel and team member. A custom engagement is available for founders who want a specific outside perspective on the next lever.";
+  document.getElementById("brief-next-step").textContent = nextStep;
+
+  // ── Kit notification ────────────────────────────────────────────
+  try {
+    var notifyIframe = document.createElement("iframe");
+    notifyIframe.name = "kit-notify-" + Date.now();
+    notifyIframe.style.display = "none";
+    document.body.appendChild(notifyIframe);
+    var notifyForm = document.createElement("form");
+    notifyForm.method = "POST";
+    notifyForm.action = "https://app.convertkit.com/forms/9271538/subscriptions";
+    notifyForm.target = notifyIframe.name;
+    notifyForm.style.display = "none";
+    var notifyFields = {
+      email_address: userData.email,
+      first_name: userData.fname,
+      "fields[last_name]": userData.lname,
+      "fields[brand_name]": userData.brand,
+      "fields[positioning_tier]": tier
+    };
+    Object.keys(notifyFields).forEach(function(key) {
+      var inp = document.createElement("input");
+      inp.type = "hidden"; inp.name = key; inp.value = notifyFields[key];
+      notifyForm.appendChild(inp);
+    });
+    document.body.appendChild(notifyForm);
+    notifyForm.submit();
+    setTimeout(function() {
+      if (notifyForm.parentNode) notifyForm.parentNode.removeChild(notifyForm);
+      if (notifyIframe.parentNode) notifyIframe.parentNode.removeChild(notifyIframe);
+    }, 5000);
+  } catch(e) {}
 }
 
 function buildPositioningStatement(diffScore, transScore, statScore) {
