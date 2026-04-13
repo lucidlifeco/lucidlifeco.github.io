@@ -600,4 +600,11 @@ function animateCost(id, target) {
     var t = Math.min((now - start) / duration, 1);
     var ease = 1 - Math.pow(1 - t, 3);
     var val = Math.round(target * ease);
- 
+    el.textContent = "$" + val.toLocaleString() + "/mo";
+    if (t < 1) { requestAnimationFrame(step); } else { el.textContent = "$" + target.toLocaleString() + "/mo"; }
+  }
+  requestAnimationFrame(step);
+}
+</script>
+</body>
+</html>
