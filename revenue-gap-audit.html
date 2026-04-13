@@ -119,6 +119,109 @@
     .gate-form { padding: 28px 20px; }
     .nav-row { flex-direction: column; }
   }
+
+/* ── PRINT / EXECUTIVE BRIEF ── */
+.brief-section { margin: 56px 0 0; }
+.brief-header { text-align: center; padding: 48px 0 32px; border-bottom: 1px solid var(--gold-border); margin-bottom: 40px; }
+.brief-title { font-family: 'Cormorant Garamond', serif; font-size: clamp(28px,4vw,40px); font-weight: 300; line-height: 1.2; margin-bottom: 8px; }
+.brief-title em { color: var(--gold); font-style: italic; }
+.brief-meta { font-size: 13px; letter-spacing: 0.15em; color: var(--parchment-dim); opacity: 0.6; text-transform: uppercase; }
+
+.brief-block { border: 1px solid rgba(196,160,82,0.12); padding: 24px 28px; margin-bottom: 16px; background: var(--parchment-dim); }
+.brief-block-label { font-size: 11px; letter-spacing: 0.3em; color: var(--gold); text-transform: uppercase; margin-bottom: 8px; opacity: 0.8; }
+.brief-block-value { font-size: 17px; line-height: 1.7; color: var(--parchment); }
+.brief-block-value strong { color: var(--gold); font-weight: 400; }
+
+.brief-dim-row { display: flex; justify-content: space-between; align-items: center; padding: 14px 0; border-bottom: 1px solid rgba(237,233,227,0.06); }
+.brief-dim-row:last-child { border-bottom: none; }
+.brief-dim-name { font-size: 15px; letter-spacing: 0.04em; color: var(--parchment); }
+.brief-dim-score { font-family: 'Cormorant Garamond', serif; font-size: 22px; font-weight: 300; }
+.brief-dim-bar-wrap { flex: 1; margin: 0 16px; height: 2px; background: rgba(196,160,82,0.1); }
+.brief-dim-bar-fill { height: 100%; transition: width 1s ease 0.5s; width: 0%; }
+
+.brief-priority { padding: 16px 0; border-bottom: 1px solid rgba(237,233,227,0.06); }
+.brief-priority:last-child { border-bottom: none; }
+.brief-priority-num { font-size: 11px; letter-spacing: 0.25em; color: var(--gold); opacity: 0.7; text-transform: uppercase; margin-bottom: 4px; }
+.brief-priority-text { font-size: 16px; line-height: 1.6; color: var(--parchment); }
+
+.print-btn { display: flex; align-items: center; justify-content: center; gap: 12px; background: transparent; border: 1px solid var(--gold-border); color: var(--parchment); font-family: 'Josefin Sans', sans-serif; font-size: 13px; font-weight: 400; letter-spacing: 0.2em; text-transform: uppercase; padding: 16px 32px; cursor: pointer; transition: all 0.2s; margin: 32px auto 0; width: 100%; max-width: 360px; }
+.print-btn:hover { border-color: var(--gold-border-strong); color: var(--gold); }
+
+/* ── GAP COMPLEXITY ── */
+.gap-complexity { margin: 48px 0; }
+.gap-complexity-label { font-size: 13px; letter-spacing: 0.3em; color: var(--gold); text-transform: uppercase; margin-bottom: 24px; opacity: 0.8; }
+.gap-matrix { display: grid; grid-template-columns: repeat(5, 1fr); gap: 8px; margin-bottom: 20px; }
+.gap-cell { border: 1px solid rgba(196,160,82,0.12); padding: 16px 12px; text-align: center; position: relative; transition: border-color 0.3s; }
+.gap-cell.gap-low { border-color: rgba(196,82,74,0.4); background: rgba(196,82,74,0.06); }
+.gap-cell.gap-mid { border-color: rgba(196,154,82,0.4); background: rgba(196,154,82,0.06); }
+.gap-cell.gap-high { border-color: rgba(82,160,110,0.4); background: rgba(82,160,110,0.06); }
+.gap-cell-name { font-size: 10px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--parchment-dim); margin-bottom: 10px; line-height: 1.4; }
+.gap-cell-score { font-family: 'Cormorant Garamond', serif; font-size: 28px; font-weight: 300; line-height: 1; }
+.gap-cell-status { font-size: 10px; letter-spacing: 0.15em; text-transform: uppercase; margin-top: 6px; opacity: 0.7; }
+.gap-complexity-note { font-size: 15px; line-height: 1.8; color: var(--parchment-dim); opacity: 0.85; font-style: italic; border-left: 2px solid var(--gold-border); padding-left: 20px; }
+
+/* ── THREE-TIER OFFER ── */
+.offer-section { margin: 56px 0; }
+.offer-section-label { font-size: 13px; letter-spacing: 0.3em; color: var(--gold); text-transform: uppercase; margin-bottom: 8px; opacity: 0.8; }
+.offer-section-title { font-family: 'Cormorant Garamond', serif; font-size: clamp(26px,3.5vw,38px); font-weight: 300; line-height: 1.2; margin-bottom: 40px; }
+.offer-section-title em { color: var(--gold); font-style: italic; }
+
+.offer-tier { border: 1px solid rgba(196,160,82,0.15); margin-bottom: 12px; background: var(--parchment-dim); transition: border-color 0.2s; }
+.offer-tier:hover { border-color: var(--gold-border); }
+.offer-tier.offer-featured { border-color: var(--gold-border-strong); background: rgba(196,160,82,0.04); }
+.offer-tier-inner { padding: 28px 32px; }
+.offer-tier-header { display: flex; align-items: flex-start; justify-content: space-between; gap: 20px; margin-bottom: 16px; }
+.offer-tier-badge { font-size: 11px; letter-spacing: 0.25em; text-transform: uppercase; color: var(--gold); opacity: 0.8; margin-bottom: 6px; }
+.offer-tier-name { font-family: 'Cormorant Garamond', serif; font-size: 24px; font-weight: 300; line-height: 1.2; color: var(--parchment); }
+.offer-tier-price-wrap { text-align: right; flex-shrink: 0; }
+.offer-tier-was { font-size: 13px; letter-spacing: 0.1em; color: var(--parchment-dim); text-decoration: line-through; opacity: 0.45; display: block; }
+.offer-tier-price { font-family: 'Cormorant Garamond', serif; font-size: 36px; font-weight: 300; color: var(--gold); line-height: 1; }
+.offer-tier-period { font-size: 11px; letter-spacing: 0.15em; color: var(--parchment-dim); opacity: 0.5; text-transform: uppercase; display: block; margin-top: 2px; }
+.offer-tier-desc { font-size: 16px; line-height: 1.8; color: var(--parchment-dim); margin-bottom: 20px; }
+.offer-tier-points { list-style: none; margin-bottom: 24px; }
+.offer-tier-points li { font-size: 15px; line-height: 1.6; color: var(--parchment-dim); padding: 6px 0; border-bottom: 1px solid rgba(237,233,227,0.05); padding-left: 20px; position: relative; }
+.offer-tier-points li:last-child { border-bottom: none; }
+.offer-tier-points li::before { content: '✦'; position: absolute; left: 0; color: var(--gold); font-size: 10px; top: 9px; opacity: 0.7; }
+.offer-tier-btn { display: block; text-align: center; font-family: 'Josefin Sans', sans-serif; font-size: 13px; font-weight: 600; letter-spacing: 0.25em; text-transform: uppercase; padding: 16px 32px; cursor: pointer; border: none; transition: opacity 0.2s, transform 0.15s; text-decoration: none; }
+.offer-tier-btn:hover { opacity: 0.88; transform: translateY(-1px); }
+.offer-tier-btn.btn-gold { background: var(--gold); color: #0C0C0E; }
+.offer-tier-btn.btn-outline { background: transparent; border: 1px solid var(--gold-border-strong); color: var(--parchment); }
+.offer-tier-btn.btn-outline:hover { border-color: var(--gold); color: var(--gold); }
+.offer-tier-note { font-size: 11px; letter-spacing: 0.12em; color: var(--parchment-dim); opacity: 0.4; text-align: center; margin-top: 12px; text-transform: uppercase; }
+
+.offer-free-block { border: 1px solid rgba(237,233,227,0.08); padding: 24px 32px; margin-bottom: 12px; display: flex; align-items: center; justify-content: space-between; gap: 24px; flex-wrap: wrap; }
+.offer-free-text {}
+.offer-free-badge { font-size: 11px; letter-spacing: 0.25em; text-transform: uppercase; color: var(--parchment-dim); opacity: 0.5; margin-bottom: 4px; }
+.offer-free-name { font-family: 'Cormorant Garamond', serif; font-size: 20px; font-weight: 300; color: var(--parchment); }
+
+/* ── PRINT STYLES ── */
+@media print {
+  nav, .audit-header, .progress-bar-wrap, .nav-row,
+  #screen-intro, #screen-audit, .offer-section,
+  .gap-complexity, .gap-callout, .cta-block,
+  .site-footer, .print-btn { display: none !important; }
+  body { background: #fff !important; color: #0C0C0E !important; }
+  .screen { display: block !important; }
+  #screen-results { display: block !important; }
+  .wrap { max-width: 100% !important; padding: 0 !important; }
+  .brief-section { display: block !important; }
+  .results-header { padding: 20px 0 !important; }
+  .score-ring-wrap { display: none !important; }
+  .brief-block { border: 1px solid #ccc !important; background: #f9f8f6 !important; }
+  .brief-block-label { color: #8a6a20 !important; }
+  .brief-block-value { color: #0C0C0E !important; }
+  .dim-result { border: 1px solid #ddd !important; background: #f9f8f6 !important; }
+  .dim-result-name { color: #0C0C0E !important; }
+  .dim-insight { color: #333 !important; opacity: 1 !important; }
+  .brief-dim-name { color: #0C0C0E !important; }
+  .brief-priority-text { color: #0C0C0E !important; }
+  .result-headline { color: #0C0C0E !important; }
+  .result-sub { color: #333 !important; opacity: 1 !important; }
+  .gap-complexity-note { color: #333 !important; border-color: #8a6a20 !important; }
+  .wordmark { color: #8a6a20 !important; }
+  .breakdown-title { color: #8a6a20 !important; }
+}
+
 </style>
 </head>
 <body style="background-color:#0C0C0E;color:#EDE9E3;">
@@ -195,6 +298,8 @@
       <div class="wordmark">Lucid Life Co &middot; Revenue Gap Audit</div>
       <div class="rule"></div>
     </header>
+
+    <!-- SCORE HEADER -->
     <div class="results-header">
       <div class="eyebrow" id="result-eyebrow">Your Revenue Gap Score</div>
       <div class="score-ring-wrap">
@@ -213,20 +318,131 @@
       <h2 class="result-headline" id="result-headline"></h2>
       <p class="result-sub" id="result-sub"></p>
     </div>
+
+    <!-- DIMENSION BREAKDOWN -->
     <div class="breakdown-title">Dimension Breakdown</div>
     <div id="dim-breakdown"></div>
-    <div class="cost-block">
-      <div class="cost-label">Estimated Monthly Revenue Leakage</div>
-      <div class="cost-number" id="cost-display">$0/mo</div>
-      <div class="cost-desc">Based on your score profile and typical stage-appropriate revenue benchmarks</div>
+
+    <!-- GAP COMPLEXITY VISUALIZATION -->
+    <div class="gap-complexity">
+      <div class="gap-complexity-label">Gap Complexity Analysis</div>
+      <div class="gap-matrix" id="gap-matrix"></div>
+      <p class="gap-complexity-note" id="gap-complexity-note"></p>
     </div>
+
+    <!-- GAP NARRATIVE -->
     <div class="gap-callout" id="gap-callout"></div>
-    <div class="cta-block">
-      <h3 id="cta-headline"></h3>
-      <p id="cta-body"></p>
-      <button class="btn-primary" style="max-width:360px;margin:0 auto;" id="cta-btn">Get the Full Playbook &rarr;</button>
-      <span class="cta-url"><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="cea6aba2a2a18ea2bbada7aaa2a7a8abada1e0ada1a3">[email&#160;protected]</a> &middot; lucidlifeco.com</span>
+
+    <!-- EXECUTIVE BRIEF -->
+    <div class="brief-section" id="brief-section">
+      <div class="brief-header">
+        <h2 class="brief-title">Revenue Gap<br><em>Executive Brief</em></h2>
+        <div class="brief-meta" id="brief-meta"></div>
+      </div>
+
+      <div class="brief-block">
+        <div class="brief-block-label">Brand</div>
+        <div class="brief-block-value" id="brief-brand"></div>
+      </div>
+
+      <div class="brief-block">
+        <div class="brief-block-label">Overall Revenue Readiness Score</div>
+        <div class="brief-block-value" id="brief-score"></div>
+      </div>
+
+      <div class="brief-block">
+        <div class="brief-block-label">Assessment Summary</div>
+        <div class="brief-block-value" id="brief-summary"></div>
+      </div>
+
+      <div class="brief-block">
+        <div class="brief-block-label">Dimension Scores</div>
+        <div id="brief-dims"></div>
+      </div>
+
+      <div class="brief-block">
+        <div class="brief-block-label">Priority Action Areas</div>
+        <div id="brief-priorities"></div>
+      </div>
+
+      <div class="brief-block">
+        <div class="brief-block-label">Recommended Next Step</div>
+        <div class="brief-block-value" id="brief-next-step"></div>
+      </div>
+
+      <button class="print-btn" onclick="window.print()">
+        ↓ &nbsp; Save or Print This Brief
+      </button>
     </div>
+
+    <!-- THREE-TIER OFFER -->
+    <div class="offer-section">
+      <div class="offer-section-label">Your Next Step</div>
+      <h2 class="offer-section-title">The audit showed you the gap.<br><em>Choose how you close it.</em></h2>
+
+      <!-- TIER 0: FREE — Executive Brief -->
+      <div class="offer-free-block">
+        <div class="offer-free-text">
+          <div class="offer-free-badge">Free &middot; Already Yours</div>
+          <div class="offer-free-name">Revenue Gap Executive Brief &mdash; Print or save the brief above for your records.</div>
+        </div>
+        <button class="offer-tier-btn btn-outline" onclick="window.print()" style="flex-shrink:0;padding:12px 24px;">Save Brief &darr;</button>
+      </div>
+
+      <!-- TIER 1: $197 Playbook -->
+      <div class="offer-tier offer-featured">
+        <div class="offer-tier-inner">
+          <div class="offer-tier-header">
+            <div>
+              <div class="offer-tier-badge">Do It Yourself &middot; Instant Access</div>
+              <div class="offer-tier-name">The Lucid Revenue Playbook</div>
+            </div>
+            <div class="offer-tier-price-wrap">
+              <span class="offer-tier-was">$997</span>
+              <span class="offer-tier-price">$197</span>
+              <span class="offer-tier-period">One-time &middot; Yours forever</span>
+            </div>
+          </div>
+          <p class="offer-tier-desc">The complete six-module revenue system for clean and wellness brand founders. Built to close the exact gaps this audit identified — at your own pace, on your own schedule.</p>
+          <ul class="offer-tier-points">
+            <li>Six modules covering ICP, gap statement, outreach, discovery, delivery, and compounding</li>
+            <li>18 interactive worksheets with downloadable outputs</li>
+            <li>Video walkthrough for every module</li>
+            <li>Lifetime access and all future updates</li>
+            <li>30-day money-back guarantee</li>
+          </ul>
+          <a href="https://lucidlife0.gumroad.com/l/lucid-revenue-playbook" target="_blank" class="offer-tier-btn btn-gold">Get the Playbook &mdash; $197 &rarr;</a>
+          <div class="offer-tier-note">Not available at this price publicly &middot; Exclusive to audit completers</div>
+        </div>
+      </div>
+
+      <!-- TIER 2: Custom Engagement -->
+      <div class="offer-tier">
+        <div class="offer-tier-inner">
+          <div class="offer-tier-header">
+            <div>
+              <div class="offer-tier-badge">Done With You &middot; Limited Availability</div>
+              <div class="offer-tier-name">Custom Revenue Engagement</div>
+            </div>
+            <div class="offer-tier-price-wrap">
+              <span class="offer-tier-price" style="font-size:28px;">$5,000</span>
+              <span class="offer-tier-period">Custom engagement</span>
+            </div>
+          </div>
+          <p class="offer-tier-desc">Cody works directly with you to map, build, and activate the specific revenue motion your brand needs. Not a generic framework — a custom-built system for your specific brand, buyer, and gaps.</p>
+          <ul class="offer-tier-points">
+            <li>Full revenue gap diagnosis using your actual brand data — not a scorecard</li>
+            <li>Custom ICP document, gap statement, and outreach sequence built for your brand</li>
+            <li>Discovery conversation framework tested against your real buyer</li>
+            <li>Direct access to Cody throughout the engagement</li>
+            <li>Exclusively for brands that meet the IS IT CLEAN? standard</li>
+          </ul>
+          <a href="https://calendly.com/hello-lucidlifeco/30min" target="_blank" class="offer-tier-btn btn-outline">Book a Strategy Call &rarr;</a>
+          <div class="offer-tier-note">One conversation determines fit &middot; Limited engagements available</div>
+        </div>
+      </div>
+    </div>
+
     <footer class="site-footer"><div class="footer-wordmark">Lucid Life Co &middot; IS IT CLEAN?</div></footer>
   </div>
 </div>
@@ -541,26 +757,24 @@ function showResults() {
 
   finalScore = parseFloat((totalRaw / totalMax * 10).toFixed(1));
   var tier = finalScore < 4 ? "low" : finalScore < 7 ? "mid" : "high";
-  var content = GAP_CONTENT[tier];
+  var gc = GAP_CONTENT[tier];
 
+  // ── Score ring ──────────────────────────────────────────────────
   setTimeout(function() {
     var circ = 2 * Math.PI * 80;
     var ring = document.getElementById("ring-fill");
-    ring.style.stroke = content.color;
+    ring.style.stroke = gc.color;
     ring.style.strokeDashoffset = circ - (finalScore / 10) * circ;
   }, 300);
-
   setTimeout(function() { animateNumber("score-display", finalScore, 1); }, 400);
 
   document.getElementById("result-eyebrow").textContent = userData.fname + "'s Revenue Gap Score";
-  document.getElementById("score-label-text").textContent = "Revenue Readiness: " + content.label;
-  document.getElementById("score-label-text").style.color = content.color;
-  document.getElementById("result-headline").textContent = content.headline;
-  document.getElementById("result-sub").textContent = content.sub;
+  document.getElementById("score-label-text").textContent = "Revenue Readiness: " + gc.label;
+  document.getElementById("score-label-text").style.color = gc.color;
+  document.getElementById("result-headline").textContent = gc.headline;
+  document.getElementById("result-sub").textContent = gc.sub;
 
-  var costEstimate = Math.round((10 - finalScore) * content.costMultiplier / 1000) * 1000;
-  setTimeout(function() { animateCost("cost-display", costEstimate); }, 600);
-
+  // ── Dimension breakdown ─────────────────────────────────────────
   var breakdownHtml = "";
   DIMS.forEach(function(dim) {
     var ds = dimScores[dim.id];
@@ -568,15 +782,124 @@ function showResults() {
     var t2 = ds.score10 < 4 ? "low" : ds.score10 < 7 ? "mid" : "high";
     var insight = DIM_INSIGHTS[dim.id][t2];
     var barColor = ds.score10 < 4 ? "#C4524A" : ds.score10 < 7 ? "#C49A52" : "#52A06E";
-    breakdownHtml += "<div class=\"dim-result\"><div class=\"dim-result-top\"><span class=\"dim-result-name\">" + dim.name + "</span><span class=\"dim-result-score\" style=\"color:" + barColor + "\">" + ds.score10 + "</span></div><div class=\"dim-bar\"><div class=\"dim-bar-fill\" style=\"background:" + barColor + ";width:" + pct + "%\"></div></div><div class=\"dim-insight\">" + insight + "</div></div>";
+    breakdownHtml += "<div class='dim-result'><div class='dim-result-top'><span class='dim-result-name'>" + dim.name + "</span><span class='dim-result-score' style='color:" + barColor + "'>" + ds.score10 + "</span></div><div class='dim-bar'><div class='dim-bar-fill' style='background:" + barColor + ";width:" + pct + "%'></div></div><div class='dim-insight'>" + insight + "</div></div>";
   });
   document.getElementById("dim-breakdown").innerHTML = breakdownHtml;
-  document.getElementById("gap-callout").innerHTML = "<h3>" + content.gapHeadline + "</h3>" + content.gapBody;
-  document.getElementById("cta-headline").textContent = content.ctaHeadline;
-  document.getElementById("cta-body").textContent = content.ctaBody;
-  document.getElementById("cta-btn").onclick = function() {
-    window.location.href = "lucid-revenue-playbook.html";
+
+  // ── Gap complexity matrix ───────────────────────────────────────
+  var lowCount = 0; var midCount = 0; var highCount = 0;
+  var matrixHtml = "";
+  DIMS.forEach(function(dim) {
+    var ds = dimScores[dim.id];
+    var cellTier = ds.score10 < 4 ? "low" : ds.score10 < 7 ? "mid" : "high";
+    var cellColor = ds.score10 < 4 ? "#C4524A" : ds.score10 < 7 ? "#C49A52" : "#52A06E";
+    var statusLabel = ds.score10 < 4 ? "Critical" : ds.score10 < 7 ? "Needs Work" : "Strong";
+    if (cellTier === "low") lowCount++;
+    else if (cellTier === "mid") midCount++;
+    else highCount++;
+    matrixHtml += "<div class='gap-cell gap-" + cellTier + "'>";
+    matrixHtml += "<div class='gap-cell-name'>" + dim.name + "</div>";
+    matrixHtml += "<div class='gap-cell-score' style='color:" + cellColor + "'>" + ds.score10 + "</div>";
+    matrixHtml += "<div class='gap-cell-status' style='color:" + cellColor + "'>" + statusLabel + "</div>";
+    matrixHtml += "</div>";
+  });
+  document.getElementById("gap-matrix").innerHTML = matrixHtml;
+
+  var complexityNote = "";
+  if (lowCount >= 3) {
+    complexityNote = "Three or more dimensions are in critical territory. Gaps at this scale compound — each weak dimension amplifies the others. Offer clarity problems make outreach harder. Weak outreach reduces conversion opportunities. Conversion gaps prevent the predictability that would let you fix the other two. The sequence in which you address these matters as much as the fixes themselves.";
+  } else if (lowCount === 2) {
+    complexityNote = "Two dimensions in critical territory create a compounding effect. Fixing them independently will produce slower results than addressing them as a connected system. The weakest dimension is almost always the right place to start — it is the bottleneck the others are waiting on.";
+  } else if (lowCount === 1) {
+    complexityNote = "One critical dimension is creating drag across your entire revenue motion. The other dimensions cannot fully perform while this gap remains open. Identifying and closing this single constraint will have disproportionate impact on the overall system.";
+  } else {
+    complexityNote = "No critical gaps — but the mid-range dimensions are where most founders plateau. The difference between inconsistent and predictable revenue is almost always found in these middle scores. Refinement here compounds faster than starting from scratch.";
+  }
+  document.getElementById("gap-complexity-note").textContent = complexityNote;
+
+  // ── Gap callout narrative ───────────────────────────────────────
+  document.getElementById("gap-callout").innerHTML = "<h3>" + gc.gapHeadline + "</h3>" + gc.gapBody;
+
+  // ── Executive Brief ─────────────────────────────────────────────
+  var today = new Date();
+  var dateStr = today.toLocaleDateString("en-US", { year: "numeric", month: "long", day: "numeric" });
+
+  document.getElementById("brief-meta").textContent = "Prepared: " + dateStr + "  ·  Confidential";
+  document.getElementById("brief-brand").innerHTML = "<strong>" + userData.brand + "</strong>  ·  " + userData.fname + " " + userData.lname + "  ·  " + userData.email;
+  document.getElementById("brief-score").innerHTML = "<strong style='font-size:22px;'>" + finalScore + " / 10</strong>  &mdash;  Revenue Readiness: " + gc.label;
+
+  document.getElementById("brief-summary").textContent = gc.headline + " " + gc.sub;
+
+  var briefDimsHtml = "";
+  DIMS.forEach(function(dim) {
+    var ds = dimScores[dim.id];
+    var barColor = ds.score10 < 4 ? "#C4524A" : ds.score10 < 7 ? "#C49A52" : "#52A06E";
+    briefDimsHtml += "<div class='brief-dim-row'>";
+    briefDimsHtml += "<span class='brief-dim-name'>" + dim.name + "</span>";
+    briefDimsHtml += "<div class='brief-dim-bar-wrap'><div class='brief-dim-bar-fill' style='background:" + barColor + ";width:" + ((ds.score10/10)*100) + "%'></div></div>";
+    briefDimsHtml += "<span class='brief-dim-score' style='color:" + barColor + "'>" + ds.score10 + "</span>";
+    briefDimsHtml += "</div>";
+  });
+  document.getElementById("brief-dims").innerHTML = briefDimsHtml;
+
+  // Priority actions — surfaces the lowest scoring dims
+  var sortedDims = DIMS.slice().sort(function(a,b) {
+    return dimScores[a.id].score10 - dimScores[b.id].score10;
+  });
+  var priorityActions = {
+    offer: "Clarify and test your offer statement. Define the specific outcome your buyer receives — not the features or ingredients. Your offer should consistently produce the same answer regardless of who is asking.",
+    customer: "Document your Ideal Customer Profile beyond demographics. Identify the specific emotional trigger, the named objection, and the cost of inaction for your primary buyer type.",
+    outreach: "Build a documented, repeatable outreach sequence. Define what you say, in what order, on which channel, over what timeframe — and ensure it runs consistently regardless of your capacity on any given week.",
+    conversion: "Establish a structured discovery conversation framework. Define the diagnostic questions you ask before presenting your offer. Track your close rate on qualified conversations.",
+    predictability: "Implement a simple pipeline tracking system. Document your pipeline stages, the value of opportunities at each stage, and your conversion rate between stages. Use this to build a monthly revenue forecast."
   };
+  var prioritiesHtml = "";
+  sortedDims.slice(0, 3).forEach(function(dim, i) {
+    prioritiesHtml += "<div class='brief-priority'>";
+    prioritiesHtml += "<div class='brief-priority-num'>Priority " + (i+1) + " &mdash; " + dim.name + " (" + dimScores[dim.id].score10 + "/10)</div>";
+    prioritiesHtml += "<div class='brief-priority-text'>" + (priorityActions[dim.id] || "") + "</div>";
+    prioritiesHtml += "</div>";
+  });
+  document.getElementById("brief-priorities").innerHTML = prioritiesHtml;
+
+  var nextStepText = tier === "low"
+    ? "The structural gaps identified across " + lowCount + " critical dimensions require sequenced intervention — not generic advice. A custom engagement builds the specific tools your brand needs in the right order. Book a strategy call to determine fit."
+    : tier === "mid"
+    ? "The gaps at this stage are less about starting and more about systematizing. The Lucid Revenue Playbook provides the framework to close each dimension at your own pace. For faster, brand-specific results, a custom engagement is available for qualified founders."
+    : "Your foundation is strong. The next level of performance is in refinement and deployment. Start with the Lucid Revenue Playbook to formalize what you have built, or book a strategy call to identify the specific lever that moves your number next.";
+  document.getElementById("brief-next-step").textContent = nextStepText;
+
+  // ── Kit notification to hello@lucidlifeco.com ───────────────────
+  try {
+    var notifyIframe = document.createElement("iframe");
+    notifyIframe.name = "kit-notify-" + Date.now();
+    notifyIframe.style.display = "none";
+    document.body.appendChild(notifyIframe);
+    var notifyForm = document.createElement("form");
+    notifyForm.method = "POST";
+    notifyForm.action = "https://app.convertkit.com/forms/9271420/subscriptions";
+    notifyForm.target = notifyIframe.name;
+    notifyForm.style.display = "none";
+    var notifyFields = {
+      email_address: userData.email,
+      first_name: userData.fname,
+      "fields[last_name]": userData.lname,
+      "fields[brand_name]": userData.brand,
+      "fields[audit_score]": String(finalScore),
+      "fields[audit_tier]": tier
+    };
+    Object.keys(notifyFields).forEach(function(key) {
+      var inp = document.createElement("input");
+      inp.type = "hidden"; inp.name = key; inp.value = notifyFields[key];
+      notifyForm.appendChild(inp);
+    });
+    document.body.appendChild(notifyForm);
+    notifyForm.submit();
+    setTimeout(function() {
+      if (notifyForm.parentNode) notifyForm.parentNode.removeChild(notifyForm);
+      if (notifyIframe.parentNode) notifyIframe.parentNode.removeChild(notifyIframe);
+    }, 5000);
+  } catch(e) {}
 }
 
 function animateNumber(id, target, decimals) {
