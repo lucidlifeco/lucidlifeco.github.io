@@ -1,0 +1,1101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>The 30-Day Identity Reset Accelerator — Lucid Life Co</title>
+  <meta name="description" content="You now have the map. This gives you the guide. Direct access to Cody Martin for the 30 days you are running the COA Framework reset." />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500&family=Josefin+Sans:wght@300;400;600&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet" />
+
+  <style>
+    /* =============================================
+       DESIGN TOKENS
+    ============================================= */
+    :root {
+      --obsidian: #0C0C0E;
+      --obsidian-soft: #111114;
+      --obsidian-mid: #1A1A1F;
+      --obsidian-light: #242428;
+      --gold: #C4A052;
+      --gold-light: #D4B572;
+      --gold-dim: #8A7038;
+      --parchment: #EDE9E3;
+      --parchment-dim: #B8B4AE;
+      --parchment-muted: #7A7874;
+      --white: #FFFFFF;
+
+      --font-display: 'Cormorant Garamond', Georgia, serif;
+      --font-body: 'Josefin Sans', sans-serif;
+      --font-mono: 'DM Mono', monospace;
+
+      --max-width: 760px;
+      --section-gap: 80px;
+      --transition: 0.3s ease;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--obsidian);
+      color: var(--parchment);
+      font-family: var(--font-body);
+      font-size: 16px;
+      line-height: 1.7;
+      -webkit-font-smoothing: antialiased;
+      overflow-x: hidden;
+    }
+
+    ::selection { background: var(--gold); color: var(--obsidian); }
+
+    /* =============================================
+       SCROLL REVEAL
+    ============================================= */
+    .reveal {
+      opacity: 0;
+      transform: translateY(24px);
+      transition: opacity 0.65s ease, transform 0.65s ease;
+    }
+    .reveal.visible { opacity: 1; transform: translateY(0); }
+    .reveal-delay-1 { transition-delay: 0.1s; }
+    .reveal-delay-2 { transition-delay: 0.2s; }
+    .reveal-delay-3 { transition-delay: 0.3s; }
+
+    /* =============================================
+       LAYOUT
+    ============================================= */
+    .container {
+      max-width: var(--max-width);
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+
+    section {
+      padding: var(--section-gap) 0;
+      border-bottom: 1px solid rgba(196, 160, 82, 0.07);
+    }
+
+    /* =============================================
+       CONFIRMATION BAR
+    ============================================= */
+    .confirm-bar {
+      background: rgba(196, 160, 82, 0.1);
+      border-bottom: 1px solid rgba(196, 160, 82, 0.2);
+      padding: 14px 24px;
+      text-align: center;
+    }
+
+    .confirm-bar p {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--gold);
+    }
+
+    .confirm-bar span {
+      color: var(--parchment-dim);
+      text-transform: none;
+      letter-spacing: 0.05em;
+    }
+
+    /* =============================================
+       TOPBAR
+    ============================================= */
+    .topbar {
+      background: var(--obsidian);
+      border-bottom: 1px solid rgba(196, 160, 82, 0.12);
+      padding: 14px 24px;
+      display: flex;
+      justify-content: center;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      backdrop-filter: blur(12px);
+    }
+
+    .topbar-inner {
+      max-width: var(--max-width);
+      width: 100%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .brand-logo {
+      font-family: var(--font-body);
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--gold);
+      text-decoration: none;
+    }
+
+    .topbar-cta {
+      font-family: var(--font-body);
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--obsidian);
+      background: var(--gold);
+      padding: 8px 18px;
+      text-decoration: none;
+      transition: background var(--transition);
+    }
+
+    .topbar-cta:hover { background: var(--gold-light); }
+
+    /* =============================================
+       HERO — SECTION 1
+    ============================================= */
+    .hero {
+      padding: 80px 0 60px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 50%;
+      transform: translateX(-50%);
+      width: 500px; height: 1px;
+      background: linear-gradient(90deg, transparent, var(--gold), transparent);
+    }
+
+    .eyebrow {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 24px;
+      display: block;
+    }
+
+    .hero-kicker {
+      font-family: var(--font-display);
+      font-size: clamp(1rem, 2.5vw, 1.3rem);
+      font-weight: 400;
+      font-style: italic;
+      color: var(--parchment-dim);
+      margin-bottom: 16px;
+    }
+
+    .hero-headline {
+      font-family: var(--font-display);
+      font-size: clamp(2.2rem, 5vw, 3.2rem);
+      font-weight: 400;
+      line-height: 1.15;
+      color: var(--parchment);
+      margin-bottom: 24px;
+      letter-spacing: -0.01em;
+    }
+
+    .hero-headline em { font-style: italic; color: var(--gold); }
+
+    .hero-subhead {
+      font-family: var(--font-body);
+      font-size: 15px;
+      font-weight: 300;
+      color: var(--parchment-dim);
+      max-width: 600px;
+      margin-bottom: 40px;
+      line-height: 1.75;
+    }
+
+    .hero-subhead strong { color: var(--parchment); font-weight: 400; }
+
+    /* =============================================
+       TYPOGRAPHY SYSTEM
+    ============================================= */
+    .section-label {
+      font-family: var(--font-mono);
+      font-size: 10px;
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+      color: var(--gold-dim);
+      margin-bottom: 28px;
+      display: block;
+    }
+
+    .h2 {
+      font-family: var(--font-display);
+      font-size: clamp(1.7rem, 4vw, 2.4rem);
+      font-weight: 400;
+      color: var(--parchment);
+      line-height: 1.25;
+      margin-bottom: 28px;
+    }
+
+    .h2 em { font-style: italic; color: var(--gold); }
+
+    .body-copy {
+      font-family: var(--font-body);
+      font-size: 15px;
+      font-weight: 300;
+      color: var(--parchment-dim);
+      line-height: 1.85;
+      margin-bottom: 20px;
+    }
+
+    .body-copy strong { color: var(--parchment); font-weight: 400; }
+    .body-copy em { font-style: italic; color: var(--parchment); }
+
+    .key-insight {
+      background: var(--obsidian-mid);
+      border-left: 3px solid var(--gold);
+      padding: 28px 32px;
+      margin: 32px 0;
+    }
+
+    .key-insight p {
+      font-family: var(--font-display);
+      font-size: clamp(1.1rem, 2.5vw, 1.3rem);
+      font-weight: 400;
+      color: var(--parchment);
+      line-height: 1.55;
+    }
+
+    .key-insight p em { font-style: italic; color: var(--gold); }
+
+    /* =============================================
+       CTA BUTTONS
+    ============================================= */
+    .cta-primary {
+      display: inline-block;
+      background: var(--gold);
+      color: var(--obsidian);
+      font-family: var(--font-body);
+      font-size: 12px;
+      font-weight: 600;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      padding: 18px 40px;
+      text-decoration: none;
+      transition: background var(--transition), transform var(--transition);
+    }
+
+    .cta-primary:hover {
+      background: var(--gold-light);
+      transform: translateY(-1px);
+    }
+
+    .cta-decline {
+      display: block;
+      font-family: var(--font-body);
+      font-size: 12px;
+      font-weight: 300;
+      color: var(--parchment-muted);
+      text-decoration: none;
+      margin-top: 16px;
+      letter-spacing: 0.05em;
+      transition: color var(--transition);
+    }
+
+    .cta-decline:hover { color: var(--parchment-dim); }
+
+    .cta-price-note {
+      display: block;
+      font-family: var(--font-mono);
+      font-size: 11px;
+      color: var(--parchment-muted);
+      margin-top: 12px;
+      letter-spacing: 0.08em;
+    }
+
+    /* =============================================
+       SECTION 1 — INTERRUPTION
+    ============================================= */
+    .interruption {
+      background: var(--obsidian-soft);
+      padding: var(--section-gap) 0;
+      border-bottom: 1px solid rgba(196, 160, 82, 0.07);
+    }
+
+    .interruption-box {
+      background: var(--obsidian-mid);
+      border: 1px solid rgba(196, 160, 82, 0.2);
+      padding: 36px 40px;
+      position: relative;
+    }
+
+    .interruption-box::before {
+      content: 'BEFORE YOU GO';
+      position: absolute;
+      top: -10px; left: 28px;
+      background: var(--obsidian-mid);
+      padding: 0 10px;
+      font-family: var(--font-mono);
+      font-size: 9px;
+      letter-spacing: 0.3em;
+      color: var(--gold);
+    }
+
+    /* =============================================
+       WEEK BREAKDOWN
+    ============================================= */
+    .week-grid {
+      display: grid;
+      gap: 2px;
+      margin: 32px 0;
+    }
+
+    .week-card {
+      background: var(--obsidian-mid);
+      padding: 24px 28px;
+      display: grid;
+      grid-template-columns: auto 1fr;
+      gap: 20px;
+      align-items: start;
+    }
+
+    .week-number {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      letter-spacing: 0.2em;
+      color: var(--gold);
+      white-space: nowrap;
+      padding-top: 2px;
+    }
+
+    .week-content h4 {
+      font-family: var(--font-display);
+      font-size: 1.15rem;
+      font-weight: 500;
+      color: var(--parchment);
+      margin-bottom: 8px;
+    }
+
+    .week-content p {
+      font-family: var(--font-body);
+      font-size: 13px;
+      font-weight: 300;
+      color: var(--parchment-dim);
+      line-height: 1.7;
+    }
+
+    /* =============================================
+       COMPONENT CARDS
+    ============================================= */
+    .component-grid {
+      display: grid;
+      gap: 2px;
+      margin: 32px 0;
+    }
+
+    .component-card {
+      background: var(--obsidian-mid);
+      padding: 32px;
+      border-left: 3px solid transparent;
+      transition: border-color var(--transition);
+    }
+
+    .component-card:hover { border-left-color: var(--gold); }
+
+    .component-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      gap: 16px;
+      margin-bottom: 14px;
+    }
+
+    .component-number {
+      font-family: var(--font-mono);
+      font-size: 9px;
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 6px;
+      display: block;
+    }
+
+    .component-name {
+      font-family: var(--font-display);
+      font-size: 1.2rem;
+      font-weight: 500;
+      color: var(--parchment);
+    }
+
+    .component-value {
+      font-family: var(--font-mono);
+      font-size: 12px;
+      color: var(--parchment-muted);
+      white-space: nowrap;
+      text-align: right;
+      flex-shrink: 0;
+    }
+
+    .component-card p {
+      font-family: var(--font-body);
+      font-size: 13px;
+      font-weight: 300;
+      color: var(--parchment-dim);
+      line-height: 1.75;
+    }
+
+    .component-card strong { color: var(--parchment); font-weight: 400; }
+
+    /* =============================================
+       VALUE TABLE
+    ============================================= */
+    .value-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 28px;
+    }
+
+    .value-table td {
+      padding: 12px 16px;
+      font-family: var(--font-body);
+      font-size: 13px;
+      font-weight: 300;
+      color: var(--parchment-dim);
+      border-bottom: 1px solid rgba(196, 160, 82, 0.06);
+    }
+
+    .value-table td:last-child {
+      text-align: right;
+      font-family: var(--font-mono);
+      font-size: 12px;
+    }
+
+    .value-table tr.total td {
+      background: var(--obsidian-mid);
+      color: var(--parchment);
+      font-weight: 400;
+      border-bottom: none;
+    }
+
+    .value-table tr.price-row td {
+      background: var(--gold);
+      color: var(--obsidian);
+      font-family: var(--font-mono);
+      font-weight: 500;
+      font-size: 14px;
+      border-bottom: none;
+    }
+
+    /* =============================================
+       ROLLING ACCESS BOX
+    ============================================= */
+    .access-box {
+      background: var(--obsidian-mid);
+      border-top: 2px solid var(--gold);
+      padding: 32px;
+      margin: 32px 0;
+    }
+
+    .access-box p {
+      font-family: var(--font-body);
+      font-size: 14px;
+      font-weight: 300;
+      color: var(--parchment-dim);
+      line-height: 1.8;
+      margin-bottom: 14px;
+    }
+
+    .access-box p:last-child { margin-bottom: 0; }
+    .access-box strong { color: var(--parchment); font-weight: 400; }
+
+    /* =============================================
+       BINARY CHOICE
+    ============================================= */
+    .binary-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 2px;
+      margin: 32px 0;
+    }
+
+    .choice-card {
+      padding: 28px;
+      background: var(--obsidian-mid);
+    }
+
+    .choice-card.choice-yes { border-top: 2px solid var(--gold); }
+    .choice-card.choice-no { border-top: 2px solid var(--obsidian-light); opacity: 0.55; }
+
+    .choice-label {
+      font-family: var(--font-mono);
+      font-size: 10px;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      margin-bottom: 14px;
+      display: block;
+    }
+
+    .choice-yes .choice-label { color: var(--gold); }
+    .choice-no .choice-label { color: var(--parchment-muted); }
+
+    .choice-card p {
+      font-family: var(--font-body);
+      font-size: 13px;
+      font-weight: 300;
+      color: var(--parchment-dim);
+      line-height: 1.7;
+    }
+
+    .choice-card strong { color: var(--parchment); font-weight: 400; }
+
+    .binary-close {
+      font-family: var(--font-display);
+      font-size: clamp(1.2rem, 2.5vw, 1.5rem);
+      font-weight: 400;
+      font-style: italic;
+      color: var(--parchment);
+      text-align: center;
+      margin: 32px 0;
+      line-height: 1.4;
+    }
+
+    /* =============================================
+       GUARANTEE
+    ============================================= */
+    .guarantee-box {
+      border: 1px solid rgba(196, 160, 82, 0.25);
+      padding: 36px;
+      position: relative;
+      margin: 32px 0;
+    }
+
+    .guarantee-box::before {
+      content: 'THE FIRST WIN GUARANTEE';
+      position: absolute;
+      top: -10px; left: 28px;
+      background: var(--obsidian);
+      padding: 0 10px;
+      font-family: var(--font-mono);
+      font-size: 9px;
+      letter-spacing: 0.3em;
+      color: var(--gold);
+    }
+
+    .guarantee-box p {
+      font-family: var(--font-body);
+      font-size: 14px;
+      font-weight: 300;
+      color: var(--parchment-dim);
+      line-height: 1.8;
+      margin-bottom: 14px;
+    }
+
+    .guarantee-box p:last-child { margin-bottom: 0; }
+    .guarantee-box strong { color: var(--parchment); font-weight: 400; }
+
+    /* =============================================
+       PROOF STATS
+    ============================================= */
+    .proof-stats {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 2px;
+      margin: 28px 0;
+    }
+
+    .stat-card {
+      background: var(--obsidian-mid);
+      padding: 24px 16px;
+      text-align: center;
+    }
+
+    .stat-number {
+      font-family: var(--font-mono);
+      font-size: clamp(1.4rem, 3.5vw, 1.9rem);
+      color: var(--gold);
+      display: block;
+      margin-bottom: 6px;
+    }
+
+    .stat-label {
+      font-family: var(--font-body);
+      font-size: 10px;
+      font-weight: 300;
+      letter-spacing: 0.1em;
+      color: var(--parchment-muted);
+      text-transform: uppercase;
+    }
+
+    /* =============================================
+       FINAL CLOSE
+    ============================================= */
+    .final-close {
+      background: var(--obsidian-soft);
+      text-align: center;
+      padding: var(--section-gap) 0;
+      position: relative;
+    }
+
+    .final-close::after {
+      content: '';
+      position: absolute;
+      bottom: 0; left: 50%;
+      transform: translateX(-50%);
+      width: 500px; height: 1px;
+      background: linear-gradient(90deg, transparent, var(--gold), transparent);
+    }
+
+    .final-bookend {
+      font-family: var(--font-display);
+      font-size: clamp(1.5rem, 4vw, 2.2rem);
+      font-weight: 400;
+      color: var(--parchment);
+      line-height: 1.3;
+      margin: 0 auto 20px;
+      max-width: 560px;
+    }
+
+    .final-bookend em { font-style: italic; color: var(--gold); }
+
+    .final-p {
+      font-family: var(--font-body);
+      font-size: 14px;
+      font-weight: 300;
+      color: var(--parchment-dim);
+      line-height: 1.8;
+      max-width: 540px;
+      margin: 0 auto 20px;
+    }
+
+    .final-signature {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      letter-spacing: 0.18em;
+      color: var(--parchment-muted);
+      margin-top: 40px;
+      display: block;
+    }
+
+    /* =============================================
+       FOOTER
+    ============================================= */
+    footer {
+      padding: 28px 0;
+      border-top: 1px solid rgba(196, 160, 82, 0.07);
+      text-align: center;
+    }
+
+    footer p {
+      font-family: var(--font-mono);
+      font-size: 10px;
+      letter-spacing: 0.13em;
+      color: var(--parchment-muted);
+      line-height: 1.8;
+    }
+
+    footer a { color: var(--gold-dim); text-decoration: none; }
+    footer a:hover { color: var(--gold); }
+
+    /* =============================================
+       RESPONSIVE
+    ============================================= */
+    @media (max-width: 600px) {
+      :root { --section-gap: 56px; }
+
+      .binary-grid,
+      .proof-stats { grid-template-columns: 1fr; }
+
+      .week-card { grid-template-columns: 1fr; gap: 8px; }
+
+      .component-header { flex-direction: column; gap: 6px; }
+
+      .topbar-inner { gap: 10px; }
+
+      .interruption-box { padding: 28px 24px; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- CONFIRMATION BAR -->
+  <div class="confirm-bar">
+    <p>Order Confirmed — Stop Faking Fine &nbsp;·&nbsp; <span>Access details are on their way to your inbox</span></p>
+  </div>
+
+  <!-- TOPBAR -->
+  <nav class="topbar">
+    <div class="topbar-inner">
+      <a href="https://lucidlifeco.com" class="brand-logo">Lucid Life Co</a>
+      <a href="#add-accelerator" class="topbar-cta">Add Accelerator — $97</a>
+    </div>
+  </nav>
+
+  <!-- =============================================
+       SECTION 1 — INTERRUPTION PATTERN
+  ============================================= -->
+  <section class="interruption">
+    <div class="container">
+      <div class="interruption-box reveal">
+        <span class="eyebrow">One moment before you access your purchase</span>
+        <p class="body-copy">Your order for <strong>Stop Faking Fine</strong> is confirmed. You will receive access shortly.</p>
+        <p class="body-copy">Before you go, there is something worth reading — not because it is urgent in the manufactured sense, but because <strong>the next 30 days are the most important window in this process,</strong> and what you decide in the next few minutes will determine how you move through them.</p>
+        <p class="body-copy">You just made a real decision. Not a casual one. You paid $27 for a framework that asks you to be honest with yourself in a way most people never attempt. That took something. It means you are actually ready to close the gap — not just think about closing it.</p>
+        <p class="body-copy" style="margin-bottom: 0;"><strong>The question now is how you want to use these 30 days.</strong></p>
+      </div>
+    </div>
+  </section>
+
+  <!-- =============================================
+       SECTION 2 — REVELATION HOOK
+  ============================================= -->
+  <section>
+    <div class="container">
+      <span class="section-label reveal">The Implementation Gap</span>
+      <h2 class="h2 reveal">Most people who buy a framework <em>don't implement it.</em></h2>
+
+      <p class="body-copy reveal">Not because the framework is wrong. Not because they aren't motivated. Not because they don't understand what to do. They don't implement it because <strong>implementation without accountability defaults — reliably, predictably — to the same patterns that created the gap in the first place.</strong></p>
+
+      <p class="body-copy reveal">You have just purchased the most honest, structurally sound framework for closing the Identity Gap that exists. The information is complete. The exercises are specific. The 30-day arc is clear.</p>
+
+      <p class="body-copy reveal">And there is still a gap between having the map and walking the path.</p>
+
+      <div class="key-insight reveal">
+        <p>That gap is not a character flaw. It is a behavioral reality. <em>The same identity that created the problem is the one being asked to implement the solution.</em> That is a real tension, and it is the reason accountability is not a luxury in this process — it is the mechanism.</p>
+      </div>
+
+      <p class="body-copy reveal">What I am offering you right now is <strong>direct access to me for the exact 30 days you are running this reset.</strong> Not a course. Not a pre-recorded video library. Me, in a live group setting, four times over the course of the month you are doing this work.</p>
+    </div>
+  </section>
+
+  <!-- =============================================
+       SECTION 3 — GAP REVELATION
+  ============================================= -->
+  <section style="background: var(--obsidian-soft);">
+    <div class="container">
+      <span class="section-label reveal">What the Guide Gives You. What This Gives You.</span>
+
+      <p class="body-copy reveal">You now have <em>Stop Faking Fine.</em> That guide gives you everything you need to understand the COA Framework, complete the Identity Audit, work through the Willpower Autopsy, write your Identity Declaration, and run the Small Wins Engine for 30 days.</p>
+
+      <p class="body-copy reveal">The next logical step is doing it.</p>
+
+      <p class="body-copy reveal">And here is what I know from having lived this process: <strong>the moments that matter most are not the ones where the path is clear. They are the moments where it isn't.</strong></p>
+
+      <div class="week-grid reveal">
+        <div class="week-card">
+          <span class="week-number">Week 02</span>
+          <div class="week-content">
+            <h4>The Pattern Resurfaces</h4>
+            <p>The old pattern shows up and you are not sure whether what you are feeling is resistance or legitimate recalibration. This is the most common exit point.</p>
+          </div>
+        </div>
+        <div class="week-card">
+          <span class="week-number">Week 02–03</span>
+          <div class="week-content">
+            <h4>The Declaration Starts to Feel Like a Performance</h4>
+            <p>Your Identity Declaration — the one that felt true when you wrote it — starts to feel hollow. You need someone who can tell the difference between doubt and drift.</p>
+          </div>
+        </div>
+        <div class="week-card">
+          <span class="week-number">Week 03</span>
+          <div class="week-content">
+            <h4>The Wins Feel Too Small</h4>
+            <p>The Small Wins Engine is working — but the wins feel too incremental to matter. This is where most people quietly stop. Not dramatically. They just slow down, then pause, then drift back toward baseline.</p>
+          </div>
+        </div>
+      </div>
+
+      <p class="body-copy reveal">Having someone in the room who has been through those exact moments — and who can name what is happening before it becomes a full retreat — <strong>is the difference between a framework that changes your life and a framework that sits in your downloads folder.</strong></p>
+
+      <p class="body-copy reveal" style="color: var(--parchment);">The guide gives you the structure. This gives you the navigation.</p>
+    </div>
+  </section>
+
+  <!-- =============================================
+       SECTION 4 — SPEED & ACCOUNTABILITY PROMISE
+  ============================================= -->
+  <section>
+    <div class="container">
+      <span class="section-label reveal">What the Accelerator Does</span>
+
+      <p class="body-copy reveal">The COA Framework works. I know this because I lived it. But I also know that I did not live it alone. The accountability of having someone witness your declared identity — and gently, honestly hold you to it — is not a soft benefit. <strong>It is a structural one.</strong></p>
+
+      <p class="body-copy reveal">What the 30-Day Identity Reset Accelerator does is <strong>compress the implementation timeline</strong> by removing the most common failure point: the moment you hit friction and have no one to help you interpret it.</p>
+
+      <div class="key-insight reveal">
+        <p>This is not more information. You have the information. This is the <em>accountability structure that makes the information real.</em></p>
+      </div>
+    </div>
+  </section>
+
+  <!-- =============================================
+       SECTION 5 — PROOF
+  ============================================= -->
+  <section style="background: var(--obsidian-soft);">
+    <div class="container">
+      <span class="section-label reveal">Who Is in the Room With You</span>
+
+      <div class="proof-stats reveal">
+        <div class="stat-card">
+          <span class="stat-number">100+</span>
+          <span class="stat-label">Pounds Lost</span>
+        </div>
+        <div class="stat-card">
+          <span class="stat-number">109</span>
+          <span class="stat-label">Days Sober</span>
+        </div>
+        <div class="stat-card">
+          <span class="stat-number">33yrs</span>
+          <span class="stat-label">Finally Free</span>
+        </div>
+      </div>
+
+      <p class="body-copy reveal">I am 109 days sober. I have lost over 100 pounds. I am currently at 240 pounds, working toward 220. <strong>I am not a finished product, and I am not presenting myself as one.</strong></p>
+
+      <p class="body-copy reveal">What I am is someone who has been through the exact 30-day window you are about to enter — the weeks immediately following the decision to close the gap — and who came out the other side with the internal war quiet for the first time in decades.</p>
+
+      <p class="body-copy reveal">The proof is not a transformation photo. The proof is that the desire to numb, which ran daily for 33 years, is gone. Not suppressed. Gone. The proof is that the framework I am teaching you is <strong>the exact process I lived through, not a system I designed in theory and handed to others to test.</strong></p>
+
+      <p class="body-copy reveal">I have been where you are. I know what the friction feels like at week two. I know what the Small Wins Engine produces when you stay with it. And I know what it costs to try to do this alone.</p>
+    </div>
+  </section>
+
+  <!-- =============================================
+       SECTION 6 — LIFESTYLE TRANSFORMATION
+  ============================================= -->
+  <section>
+    <div class="container">
+      <span class="section-label reveal">What 30 Days Produces</span>
+      <h2 class="h2 reveal">Not as a promise — as a <em>structural outcome</em> of the work.</h2>
+
+      <div class="week-grid reveal">
+        <div class="week-card">
+          <span class="week-number">Week 01</span>
+          <div class="week-content">
+            <h4>The Gap Is Named</h4>
+            <p>The Identity Audit shows you exactly where your declared identity and your enacted identity diverge — with a specificity you have never had before. That clarity alone changes the internal conversation.</p>
+          </div>
+        </div>
+        <div class="week-card">
+          <span class="week-number">Week 02</span>
+          <div class="week-content">
+            <h4>The Shame Narrative Dismantles</h4>
+            <p>The Willpower Autopsy shows you that your past failures were the predictable outcome of a wrong sequence — not evidence of weakness. When you understand that, the shame lifts. And when the shame lifts, you can move.</p>
+          </div>
+        </div>
+        <div class="week-card">
+          <span class="week-number">Week 03</span>
+          <div class="week-content">
+            <h4>Visible Evidence Accumulates</h4>
+            <p>The Small Wins Engine has produced tangible proof that you are already becoming the person you declared. Not in a dramatic way. In the quiet, compounding way that actually holds.</p>
+          </div>
+        </div>
+        <div class="week-card">
+          <span class="week-number">Week 04</span>
+          <div class="week-content">
+            <h4>The War Goes Quieter</h4>
+            <p>The internal war is not gone — that takes longer. But it is measurably, noticeably quieter. And you did it with someone in the room who could tell the difference between a moment of genuine resistance and a moment of growth.</p>
+          </div>
+        </div>
+      </div>
+
+      <p class="body-copy reveal">That is the 30 days. The question is whether you want to walk it with a guide or walk it alone. <strong>Both work. One is faster, and one has a higher chance of defaulting to old patterns at the friction points.</strong></p>
+    </div>
+  </section>
+
+  <!-- =============================================
+       SECTION 7 — PRODUCT INTRODUCTION
+  ============================================= -->
+  <section style="background: var(--obsidian-soft);" id="add-accelerator">
+    <div class="container">
+      <span class="section-label reveal">The Offer</span>
+      <h2 class="h2 reveal">The 30-Day Identity Reset <em>Accelerator</em></h2>
+
+      <p class="body-copy reveal">Direct access to Cody Martin for the exact 30 days you are running the COA Framework reset. Four live group coaching calls, an expanded COA deep-dive, Q&A access throughout the month, and the Clean Living Starter Kit. Built specifically to close the implementation gap — the distance between having the framework and actually living it.</p>
+
+      <p class="body-copy reveal" style="color: var(--parchment);">This is a separate, considered decision from your $27 purchase. Not an impulse — a deliberate second commitment to the same work.</p>
+
+      <p class="body-copy reveal"><strong>$97. One time.</strong></p>
+
+      <div style="margin-top: 32px; text-align: center;" class="reveal">
+        <a href="#checkout" class="cta-primary">Add the Accelerator — $97</a>
+        <span class="cta-price-note">One-time · Instant access · First Win Guarantee</span>
+        <a href="#decline" class="cta-decline">No thank you — I'll implement the framework on my own</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- =============================================
+       SECTION 8 — COMPONENT BREAKDOWN
+  ============================================= -->
+  <section>
+    <div class="container">
+      <span class="section-label reveal">What's Included</span>
+
+      <div class="component-grid reveal">
+        <div class="component-card">
+          <div class="component-header">
+            <div>
+              <span class="component-number">Component 01</span>
+              <h3 class="component-name">Four Weekly Group Coaching Calls with Cody</h3>
+            </div>
+            <span class="component-value">$197 value</span>
+          </div>
+          <p>One live call per week for the four weeks of your reset. Each call is structured around the COA phase you are in that week: Clarity in week one, Ownership in week two, Alignment in week three, and a full integration session in week four. <strong>These are not pre-recorded.</strong> They are live, with real people doing the same work you are doing. The group context is not incidental — it is part of the mechanism. Hearing someone else name the exact friction you are feeling is one of the most powerful forms of identity reinforcement available.</p>
+        </div>
+
+        <div class="component-card">
+          <div class="component-header">
+            <div>
+              <span class="component-number">Component 02</span>
+              <h3 class="component-name">The COA Framework Deep-Dive</h3>
+            </div>
+            <span class="component-value">$97 value</span>
+          </div>
+          <p>An expanded walkthrough of the COA Identity Gap Framework that goes beyond the core guide. This covers the nuance behind each phase — the specific psychological mechanisms at work in the Identity Audit, the common failure points in the Willpower Autopsy and how to move through them, and the advanced application of the Small Wins Engine for <strong>high-achievers whose identity resistance is more sophisticated than average.</strong> If the core guide is the map, this is the terrain briefing.</p>
+        </div>
+
+        <div class="component-card">
+          <div class="component-header">
+            <div>
+              <span class="component-number">Component 03</span>
+              <h3 class="component-name">Direct Q&A Access Throughout the 30 Days</h3>
+            </div>
+            <span class="component-value">$97 value</span>
+          </div>
+          <p>Between calls, you will have access to submit questions directly. <strong>Not a community forum. Not a chatbot. A direct line to Cody</strong> during the specific 30-day window when the questions that matter most will arise. The moments of friction in this process are not predictable. They do not wait for the next scheduled call. Having a channel to name what is happening in real time — and receive a direct, honest response — is the accountability layer that makes the difference between a framework that holds and one that quietly collapses.</p>
+        </div>
+
+        <div class="component-card">
+          <div class="component-header">
+            <div>
+              <span class="component-number">Component 04</span>
+              <h3 class="component-name">The Clean Living Starter Kit</h3>
+            </div>
+            <span class="component-value">$47 value</span>
+          </div>
+          <p>The first practical bridge from identity shift to daily clean living practice. Built on 15+ years of clean living research, this kit gives you the <strong>first ten clean swaps that require zero willpower to implement</strong> — because by the time you reach this point in the reset, your identity is already shifting, and the behavior follows naturally. This is the entry point to the broader Lucid Life Co <em>Is It Clean?</em> ecosystem, designed to work with the momentum you have already built, not against it.</p>
+        </div>
+      </div>
+
+      <table class="value-table reveal">
+        <tr><td>Four Weekly Group Coaching Calls with Cody</td><td>$197</td></tr>
+        <tr><td>The COA Framework Deep-Dive</td><td>$97</td></tr>
+        <tr><td>Direct Q&A Access Throughout the 30 Days</td><td>$97</td></tr>
+        <tr><td>The Clean Living Starter Kit</td><td>$47</td></tr>
+        <tr class="total"><td><strong>Total Stack Value</strong></td><td><strong>$438</strong></td></tr>
+        <tr class="price-row"><td><strong>Your Price Today</strong></td><td><strong>$97</strong></td></tr>
+      </table>
+    </div>
+  </section>
+
+  <!-- =============================================
+       SECTION 9 — ACCESS MODEL
+  ============================================= -->
+  <section style="background: var(--obsidian-soft);">
+    <div class="container">
+      <span class="section-label reveal">How Access Works</span>
+
+      <div class="access-box reveal">
+        <p>This offer is available to buyers of <em>Stop Faking Fine</em> who are ready to begin their reset now.</p>
+        <p>The four group coaching calls run on a monthly cycle. When you join the Accelerator, <strong>you are added to the next available call cycle — which means your access begins immediately, and your first live call is within the current month.</strong> Direct Q&A access opens the moment you purchase.</p>
+        <p>This is not a course you sit on. It is a live structure built around the 30 days you are actively doing the work. The window that matters is the one you are in right now — when the decision is fresh, the framework is new, and the friction points have not arrived yet. <strong>That is the window this is designed for.</strong></p>
+      </div>
+    </div>
+  </section>
+
+  <!-- =============================================
+       SECTION 10 — BINARY CHOICE
+  ============================================= -->
+  <section>
+    <div class="container">
+      <span class="section-label reveal">The Honest Choice</span>
+      <p class="body-copy reveal">Total stack value: <strong>$438.</strong> Your price today: <strong>$97.</strong></p>
+      <p class="body-copy reveal">You just paid $27 for the framework. This is a separate, considered decision — $97 for the accountability structure that makes the framework real. The first gives you the information. This gives you the implementation support.</p>
+
+      <div class="binary-grid reveal">
+        <div class="choice-card choice-yes">
+          <span class="choice-label">Yes — Add the Accelerator</span>
+          <p>Enter the 30-day reset with four live touchpoints, an expanded deep-dive, direct Q&A access, and the Clean Living Starter Kit. <strong>Compress the implementation timeline. Have someone in the room at the friction points.</strong> Give yourself the highest possible chance of coming out of these 30 days with the internal war measurably quieter.</p>
+        </div>
+        <div class="choice-card choice-no">
+          <span class="choice-label">No — Implement Alone</span>
+          <p>The guide is complete. The exercises are specific. Many people will close the Identity Gap using only the core product. It will take longer, and the friction points in weeks two and three will require more self-navigation. That is a legitimate path.</p>
+        </div>
+      </div>
+
+      <p class="binary-close reveal">The question is not which path is <em>possible.</em><br>The question is which path you want to walk.</p>
+
+      <div style="text-align: center;" class="reveal" id="checkout">
+        <a href="#" class="cta-primary">Add the Accelerator — $97</a>
+        <span class="cta-price-note">$438 in value · One-time · Instant access</span>
+        <a href="#decline" class="cta-decline">No thank you — I'll implement the framework on my own</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- =============================================
+       SECTION 11 — GUARANTEE
+  ============================================= -->
+  <section style="background: var(--obsidian-soft);">
+    <div class="container">
+      <span class="section-label reveal">The Promise</span>
+      <div class="guarantee-box reveal">
+        <p>Complete the framework. Attend the calls. Engage with the Q&A. If you do the work and do not experience a measurable shift in your daily decision-making within 30 days, email <a href="mailto:hello@lucidlifeco.com" style="color: var(--gold);">hello@lucidlifeco.com</a> for a full refund.</p>
+        <p><strong>You have to show you tried.</strong> The guarantee is for people who engage honestly — with the framework, with the calls, and with themselves. It is not for people who purchase and disengage.</p>
+        <p>If you do the work and it does not move the needle, you pay nothing. That is the commitment.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- =============================================
+       SECTION 12 — FINAL CLOSE
+  ============================================= -->
+  <section class="final-close" id="decline">
+    <div class="container">
+      <span class="section-label reveal">Before You Go</span>
+
+      <p class="final-p reveal">You made a real decision today. You purchased a framework that asks more of you than any diet or program you have tried before — because it asks you to look directly at the gap instead of papering over it with another tactic.</p>
+
+      <p class="final-p reveal">That decision matters. Honor it by giving yourself the best possible conditions to follow through.</p>
+
+      <p class="final-p reveal">The 30-Day Identity Reset Accelerator is $97. One time. It closes the implementation gap — the distance between having the map and actually walking the path. It gives you four live touchpoints with someone who has been through the exact terrain you are about to enter. It gives you direct access when the friction arrives. And it gives you the Clean Living Starter Kit as the practical bridge to the life on the other side of this reset.</p>
+
+      <h2 class="final-bookend reveal">
+        The 30 days starts now.<br>
+        <em>The question is whether you walk it alone or with a guide.</em>
+      </h2>
+
+      <p class="final-bookend reveal" style="font-size: clamp(1.2rem, 3vw, 1.6rem); margin-top: 20px;">
+        You now have the map.<br><em>This gives you the guide.</em>
+      </p>
+
+      <div style="margin-top: 40px;" class="reveal">
+        <a href="#checkout" class="cta-primary">Add the Accelerator — $97</a>
+        <span class="cta-price-note">Protected by the First Win Guarantee · $438 in value · Instant access</span>
+        <a href="https://lucidlifeco.com" class="cta-decline" style="margin-top: 20px;">No thank you — take me to my purchase</a>
+      </div>
+
+      <span class="final-signature reveal">— Cody Martin, Founder · Lucid Life Co</span>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="container">
+      <p>
+        <a href="https://lucidlifeco.com">Lucid Life Co</a> &nbsp;·&nbsp;
+        <a href="mailto:hello@lucidlifeco.com">hello@lucidlifeco.com</a> &nbsp;·&nbsp;
+        lucidlifeco.com
+      </p>
+      <p style="margin-top: 8px;">Questions? Email hello@lucidlifeco.com — we respond within 24 hours.</p>
+    </div>
+  </footer>
+
+  <script>
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) entry.target.classList.add('visible');
+      });
+    }, { threshold: 0.08, rootMargin: '0px 0px -30px 0px' });
+
+    document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+  </script>
+
+</body>
+</html>

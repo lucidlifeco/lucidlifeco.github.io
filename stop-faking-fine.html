@@ -1,0 +1,1565 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Stop Faking Fine — Lucid Life Co</title>
+  <meta name="description" content="What if the reason every diet failed you had nothing to do with willpower — and everything to do with your Identity Gap? The COA Identity Gap Framework by Lucid Life Co." />
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500&family=Josefin+Sans:wght@300;400;600&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet" />
+
+  <style>
+    /* =============================================
+       DESIGN TOKENS
+    ============================================= */
+    :root {
+      --obsidian: #0C0C0E;
+      --obsidian-soft: #111114;
+      --obsidian-mid: #1A1A1F;
+      --obsidian-light: #242428;
+      --gold: #C4A052;
+      --gold-light: #D4B572;
+      --gold-dim: #8A7038;
+      --parchment: #EDE9E3;
+      --parchment-dim: #B8B4AE;
+      --parchment-muted: #7A7874;
+      --white: #FFFFFF;
+      --danger-soft: #8B2020;
+
+      --font-display: 'Cormorant Garamond', Georgia, serif;
+      --font-body: 'Josefin Sans', sans-serif;
+      --font-mono: 'DM Mono', monospace;
+
+      --max-width: 760px;
+      --section-gap: 100px;
+      --transition: 0.3s ease;
+    }
+
+    /* =============================================
+       RESET & BASE
+    ============================================= */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--obsidian);
+      color: var(--parchment);
+      font-family: var(--font-body);
+      font-size: 16px;
+      line-height: 1.7;
+      -webkit-font-smoothing: antialiased;
+      overflow-x: hidden;
+    }
+
+    ::selection { background: var(--gold); color: var(--obsidian); }
+
+    /* =============================================
+       SCROLL REVEAL
+    ============================================= */
+    .reveal {
+      opacity: 0;
+      transform: translateY(28px);
+      transition: opacity 0.7s ease, transform 0.7s ease;
+    }
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    .reveal-delay-1 { transition-delay: 0.1s; }
+    .reveal-delay-2 { transition-delay: 0.2s; }
+    .reveal-delay-3 { transition-delay: 0.3s; }
+    .reveal-delay-4 { transition-delay: 0.4s; }
+
+    /* =============================================
+       LAYOUT
+    ============================================= */
+    .container {
+      max-width: var(--max-width);
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+
+    section {
+      padding: var(--section-gap) 0;
+      border-bottom: 1px solid rgba(196, 160, 82, 0.08);
+    }
+
+    /* =============================================
+       TOPBAR
+    ============================================= */
+    .topbar {
+      background: var(--obsidian);
+      border-bottom: 1px solid rgba(196, 160, 82, 0.15);
+      padding: 14px 24px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      backdrop-filter: blur(12px);
+    }
+
+    .topbar-inner {
+      max-width: var(--max-width);
+      width: 100%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .brand-logo {
+      font-family: var(--font-body);
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--gold);
+      text-decoration: none;
+    }
+
+    .topbar-cta {
+      font-family: var(--font-body);
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--obsidian);
+      background: var(--gold);
+      padding: 8px 18px;
+      text-decoration: none;
+      transition: background var(--transition);
+    }
+
+    .topbar-cta:hover { background: var(--gold-light); }
+
+    /* =============================================
+       HERO — SECTION 1
+    ============================================= */
+    .hero {
+      padding: 100px 0 80px;
+      border-bottom: 1px solid rgba(196, 160, 82, 0.08);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 50%;
+      transform: translateX(-50%);
+      width: 600px;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, var(--gold), transparent);
+    }
+
+    .eyebrow {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 28px;
+      display: block;
+    }
+
+    .hero-headline {
+      font-family: var(--font-display);
+      font-size: clamp(2.4rem, 5vw, 3.6rem);
+      font-weight: 400;
+      line-height: 1.15;
+      color: var(--parchment);
+      margin-bottom: 28px;
+      letter-spacing: -0.01em;
+    }
+
+    .hero-headline em {
+      font-style: italic;
+      color: var(--gold);
+    }
+
+    .hero-subhead {
+      font-family: var(--font-body);
+      font-size: 15px;
+      font-weight: 300;
+      letter-spacing: 0.05em;
+      color: var(--parchment-dim);
+      line-height: 1.7;
+      max-width: 620px;
+      margin-bottom: 48px;
+    }
+
+    .hero-subhead strong {
+      color: var(--parchment);
+      font-weight: 400;
+    }
+
+    .cta-primary {
+      display: inline-block;
+      background: var(--gold);
+      color: var(--obsidian);
+      font-family: var(--font-body);
+      font-size: 12px;
+      font-weight: 600;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      padding: 18px 40px;
+      text-decoration: none;
+      transition: background var(--transition), transform var(--transition);
+      position: relative;
+    }
+
+    .cta-primary:hover {
+      background: var(--gold-light);
+      transform: translateY(-1px);
+    }
+
+    .cta-price-note {
+      display: block;
+      font-family: var(--font-mono);
+      font-size: 11px;
+      color: var(--parchment-muted);
+      margin-top: 14px;
+      letter-spacing: 0.1em;
+    }
+
+    /* =============================================
+       SECTION LABEL
+    ============================================= */
+    .section-label {
+      font-family: var(--font-mono);
+      font-size: 10px;
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+      color: var(--gold-dim);
+      margin-bottom: 32px;
+      display: block;
+    }
+
+    /* =============================================
+       PATTERN INTERRUPT — SECTION 2
+    ============================================= */
+    .two-types {
+      padding: var(--section-gap) 0;
+    }
+
+    .two-types-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 2px;
+      margin: 40px 0;
+    }
+
+    .type-card {
+      padding: 32px;
+      background: var(--obsidian-mid);
+    }
+
+    .type-card.type-bad {
+      border-top: 2px solid var(--obsidian-light);
+    }
+
+    .type-card.type-good {
+      border-top: 2px solid var(--gold);
+    }
+
+    .type-label {
+      font-family: var(--font-mono);
+      font-size: 10px;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      margin-bottom: 16px;
+      display: block;
+    }
+
+    .type-bad .type-label { color: var(--parchment-muted); }
+    .type-good .type-label { color: var(--gold); }
+
+    .type-card p {
+      font-family: var(--font-body);
+      font-size: 14px;
+      font-weight: 300;
+      color: var(--parchment-dim);
+      line-height: 1.7;
+    }
+
+    .type-card.type-good p { color: var(--parchment); }
+
+    .reveal-line {
+      font-family: var(--font-display);
+      font-size: clamp(1.4rem, 3vw, 1.9rem);
+      font-weight: 400;
+      font-style: italic;
+      color: var(--parchment);
+      line-height: 1.4;
+      border-left: 2px solid var(--gold);
+      padding-left: 24px;
+      margin-top: 40px;
+    }
+
+    /* =============================================
+       PROBLEM AGITATION — SECTION 3
+    ============================================= */
+    .problem {
+      background: var(--obsidian-soft);
+    }
+
+    .body-copy {
+      font-family: var(--font-body);
+      font-size: 15px;
+      font-weight: 300;
+      color: var(--parchment-dim);
+      line-height: 1.85;
+      margin-bottom: 20px;
+    }
+
+    .body-copy strong {
+      color: var(--parchment);
+      font-weight: 400;
+    }
+
+    .tried-list {
+      list-style: none;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin: 28px 0;
+    }
+
+    .tried-list li {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      letter-spacing: 0.08em;
+      color: var(--parchment-muted);
+      background: var(--obsidian-light);
+      padding: 6px 14px;
+      border: 1px solid rgba(196, 160, 82, 0.1);
+      text-decoration: line-through;
+      text-decoration-color: rgba(196, 160, 82, 0.3);
+    }
+
+    .key-insight {
+      background: var(--obsidian-mid);
+      border-left: 3px solid var(--gold);
+      padding: 28px 32px;
+      margin: 36px 0;
+    }
+
+    .key-insight p {
+      font-family: var(--font-display);
+      font-size: clamp(1.1rem, 2.5vw, 1.35rem);
+      font-weight: 400;
+      color: var(--parchment);
+      line-height: 1.55;
+    }
+
+    .key-insight p em {
+      font-style: italic;
+      color: var(--gold);
+    }
+
+    .diagnosis-statement {
+      font-family: var(--font-display);
+      font-size: clamp(1.6rem, 4vw, 2.4rem);
+      font-weight: 500;
+      color: var(--parchment);
+      margin-top: 40px;
+      line-height: 1.2;
+    }
+
+    .diagnosis-statement em {
+      font-style: italic;
+      color: var(--gold);
+    }
+
+    /* =============================================
+       OPPORTUNITY — SECTION 4
+    ============================================= */
+    .h2 {
+      font-family: var(--font-display);
+      font-size: clamp(1.8rem, 4vw, 2.6rem);
+      font-weight: 400;
+      color: var(--parchment);
+      line-height: 1.25;
+      margin-bottom: 28px;
+    }
+
+    .h2 em { font-style: italic; color: var(--gold); }
+
+    /* =============================================
+       FUTURE PACING — SECTION 5
+    ============================================= */
+    .future-pacing {
+      background: var(--obsidian-soft);
+      position: relative;
+    }
+
+    .tuesday {
+      font-family: var(--font-display);
+      font-size: clamp(2rem, 5vw, 3rem);
+      font-weight: 300;
+      font-style: italic;
+      color: var(--gold);
+      margin-bottom: 36px;
+      line-height: 1.2;
+    }
+
+    .grace-line {
+      font-family: var(--font-display);
+      font-size: clamp(1.3rem, 3vw, 1.7rem);
+      font-weight: 500;
+      color: var(--parchment);
+      border-top: 1px solid rgba(196, 160, 82, 0.2);
+      padding-top: 32px;
+      margin-top: 32px;
+      line-height: 1.4;
+    }
+
+    .grace-line em { font-style: italic; color: var(--gold); }
+
+    /* =============================================
+       STORY — SECTION 6
+    ============================================= */
+    .story-from {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 36px;
+      display: block;
+    }
+
+    .story-hook {
+      font-family: var(--font-display);
+      font-size: clamp(1.5rem, 3.5vw, 2.1rem);
+      font-weight: 400;
+      color: var(--parchment);
+      line-height: 1.35;
+      margin-bottom: 36px;
+      padding-bottom: 36px;
+      border-bottom: 1px solid rgba(196, 160, 82, 0.15);
+    }
+
+    .story-divider {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      margin: 36px 0;
+    }
+
+    .story-divider span {
+      font-family: var(--font-mono);
+      font-size: 10px;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      color: var(--gold-dim);
+      white-space: nowrap;
+    }
+
+    .story-divider::before,
+    .story-divider::after {
+      content: '';
+      flex: 1;
+      height: 1px;
+      background: rgba(196, 160, 82, 0.15);
+    }
+
+    .date-callout {
+      background: var(--obsidian-mid);
+      border: 1px solid rgba(196, 160, 82, 0.2);
+      padding: 24px 28px;
+      margin: 28px 0;
+      display: flex;
+      align-items: center;
+      gap: 20px;
+    }
+
+    .date-callout .date {
+      font-family: var(--font-mono);
+      font-size: 13px;
+      color: var(--gold);
+      letter-spacing: 0.1em;
+      white-space: nowrap;
+      flex-shrink: 0;
+    }
+
+    .date-callout p {
+      font-family: var(--font-body);
+      font-size: 14px;
+      font-weight: 300;
+      color: var(--parchment-dim);
+      line-height: 1.6;
+    }
+
+    .power-quote {
+      font-family: var(--font-display);
+      font-size: clamp(1.1rem, 2.5vw, 1.4rem);
+      font-style: italic;
+      font-weight: 400;
+      color: var(--gold);
+      line-height: 1.5;
+      padding: 24px 0;
+      border-top: 1px solid rgba(196, 160, 82, 0.15);
+      border-bottom: 1px solid rgba(196, 160, 82, 0.15);
+      margin: 28px 0;
+    }
+
+    /* =============================================
+       MECHANISM — SECTION 7
+    ============================================= */
+    .mechanism {
+      background: var(--obsidian-soft);
+    }
+
+    .mechanism-elevator {
+      font-family: var(--font-display);
+      font-size: clamp(1.2rem, 2.5vw, 1.5rem);
+      font-weight: 400;
+      color: var(--parchment);
+      line-height: 1.5;
+      border: 1px solid rgba(196, 160, 82, 0.25);
+      padding: 28px 32px;
+      margin: 36px 0;
+      position: relative;
+    }
+
+    .mechanism-elevator::before {
+      content: 'THE FRAMEWORK';
+      position: absolute;
+      top: -10px;
+      left: 24px;
+      background: var(--obsidian-soft);
+      padding: 0 8px;
+      font-family: var(--font-mono);
+      font-size: 9px;
+      letter-spacing: 0.3em;
+      color: var(--gold);
+    }
+
+    .phase-grid {
+      display: grid;
+      gap: 2px;
+      margin: 36px 0;
+    }
+
+    .phase-card {
+      background: var(--obsidian-mid);
+      padding: 32px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .phase-card::before {
+      content: '';
+      position: absolute;
+      left: 0; top: 0; bottom: 0;
+      width: 3px;
+      background: var(--gold);
+    }
+
+    .phase-number {
+      font-family: var(--font-mono);
+      font-size: 10px;
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 8px;
+      display: block;
+    }
+
+    .phase-name {
+      font-family: var(--font-display);
+      font-size: 1.5rem;
+      font-weight: 500;
+      color: var(--parchment);
+      margin-bottom: 16px;
+    }
+
+    .phase-card p {
+      font-family: var(--font-body);
+      font-size: 14px;
+      font-weight: 300;
+      color: var(--parchment-dim);
+      line-height: 1.75;
+    }
+
+    .phase-card strong {
+      color: var(--parchment);
+      font-weight: 400;
+    }
+
+    .mechanism-close {
+      font-family: var(--font-display);
+      font-size: clamp(1.3rem, 3vw, 1.7rem);
+      font-weight: 400;
+      font-style: italic;
+      color: var(--parchment);
+      text-align: center;
+      padding: 36px 0 0;
+      border-top: 1px solid rgba(196, 160, 82, 0.15);
+    }
+
+    .mechanism-close em { color: var(--gold); }
+
+    /* =============================================
+       PROOF — SECTION 8
+    ============================================= */
+    .proof-stats {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 2px;
+      margin: 36px 0;
+    }
+
+    .stat-card {
+      background: var(--obsidian-mid);
+      padding: 28px 20px;
+      text-align: center;
+    }
+
+    .stat-number {
+      font-family: var(--font-mono);
+      font-size: clamp(1.6rem, 4vw, 2.2rem);
+      color: var(--gold);
+      display: block;
+      margin-bottom: 8px;
+    }
+
+    .stat-label {
+      font-family: var(--font-body);
+      font-size: 11px;
+      font-weight: 300;
+      letter-spacing: 0.1em;
+      color: var(--parchment-muted);
+      text-transform: uppercase;
+    }
+
+    .proof-honest {
+      background: var(--obsidian-mid);
+      border-top: 2px solid var(--gold);
+      padding: 28px 32px;
+      margin-top: 32px;
+    }
+
+    .proof-honest p {
+      font-family: var(--font-body);
+      font-size: 14px;
+      font-weight: 300;
+      color: var(--parchment-dim);
+      line-height: 1.75;
+    }
+
+    .proof-honest strong { color: var(--parchment); font-weight: 400; }
+
+    /* =============================================
+       OFFER — SECTION 9
+    ============================================= */
+    .offer-stack {
+      display: grid;
+      gap: 2px;
+      margin: 36px 0;
+    }
+
+    .offer-item {
+      background: var(--obsidian-mid);
+      padding: 28px 32px;
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 16px;
+      align-items: start;
+      border-left: 3px solid transparent;
+      transition: border-color var(--transition);
+    }
+
+    .offer-item:first-child {
+      border-left-color: var(--gold);
+      background: var(--obsidian-light);
+    }
+
+    .offer-item:hover { border-left-color: var(--gold); }
+
+    .offer-badge {
+      font-family: var(--font-mono);
+      font-size: 9px;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 8px;
+      display: block;
+    }
+
+    .offer-title {
+      font-family: var(--font-display);
+      font-size: 1.2rem;
+      font-weight: 500;
+      color: var(--parchment);
+      margin-bottom: 10px;
+    }
+
+    .offer-desc {
+      font-family: var(--font-body);
+      font-size: 13px;
+      font-weight: 300;
+      color: var(--parchment-dim);
+      line-height: 1.65;
+    }
+
+    .offer-value {
+      font-family: var(--font-mono);
+      font-size: 12px;
+      color: var(--parchment-muted);
+      white-space: nowrap;
+      text-align: right;
+    }
+
+    .offer-value s { opacity: 0.5; font-size: 11px; }
+
+    .value-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 32px;
+    }
+
+    .value-table td {
+      padding: 12px 16px;
+      font-family: var(--font-body);
+      font-size: 13px;
+      font-weight: 300;
+      color: var(--parchment-dim);
+      border-bottom: 1px solid rgba(196, 160, 82, 0.06);
+    }
+
+    .value-table td:last-child {
+      text-align: right;
+      font-family: var(--font-mono);
+      font-size: 12px;
+      color: var(--parchment-muted);
+    }
+
+    .value-table tr.total td {
+      background: var(--obsidian-mid);
+      color: var(--parchment);
+      font-weight: 400;
+      border-bottom: none;
+    }
+
+    .value-table tr.total td:last-child {
+      color: var(--parchment);
+    }
+
+    .value-table tr.price-row td {
+      background: var(--gold);
+      color: var(--obsidian);
+      font-family: var(--font-mono);
+      font-weight: 500;
+      font-size: 14px;
+      border-bottom: none;
+    }
+
+    /* =============================================
+       PRICE STACK — SECTION 10
+    ============================================= */
+    .price-section {
+      background: var(--obsidian-soft);
+    }
+
+    .cost-layer {
+      padding: 28px 0;
+      border-bottom: 1px solid rgba(196, 160, 82, 0.08);
+    }
+
+    .cost-layer-label {
+      font-family: var(--font-mono);
+      font-size: 10px;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      color: var(--gold-dim);
+      margin-bottom: 12px;
+      display: block;
+    }
+
+    .price-final {
+      background: var(--gold);
+      color: var(--obsidian);
+      padding: 36px 32px;
+      margin-top: 36px;
+      display: grid;
+      grid-template-columns: 1fr auto;
+      align-items: center;
+      gap: 24px;
+    }
+
+    .price-final-label {
+      font-family: var(--font-body);
+      font-size: 12px;
+      font-weight: 600;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--obsidian);
+      display: block;
+      margin-bottom: 4px;
+    }
+
+    .price-final-note {
+      font-family: var(--font-body);
+      font-size: 13px;
+      font-weight: 300;
+      color: rgba(12, 12, 14, 0.7);
+    }
+
+    .price-number {
+      font-family: var(--font-mono);
+      font-size: clamp(2.4rem, 6vw, 3.2rem);
+      font-weight: 500;
+      color: var(--obsidian);
+    }
+
+    /* =============================================
+       GUARANTEE — SECTION 11
+    ============================================= */
+    .guarantee-box {
+      border: 1px solid rgba(196, 160, 82, 0.3);
+      padding: 40px;
+      position: relative;
+    }
+
+    .guarantee-box::before {
+      content: 'THE FIRST WIN GUARANTEE';
+      position: absolute;
+      top: -10px;
+      left: 32px;
+      background: var(--obsidian);
+      padding: 0 10px;
+      font-family: var(--font-mono);
+      font-size: 9px;
+      letter-spacing: 0.3em;
+      color: var(--gold);
+    }
+
+    .guarantee-box p {
+      font-family: var(--font-body);
+      font-size: 14px;
+      font-weight: 300;
+      color: var(--parchment-dim);
+      line-height: 1.75;
+      margin-bottom: 16px;
+    }
+
+    .guarantee-box p:last-child { margin-bottom: 0; }
+    .guarantee-box strong { color: var(--parchment); font-weight: 400; }
+
+    /* =============================================
+       URGENCY — SECTION 12
+    ============================================= */
+    .urgency-real {
+      font-family: var(--font-display);
+      font-size: clamp(1.3rem, 3vw, 1.7rem);
+      font-style: italic;
+      font-weight: 400;
+      color: var(--parchment);
+      line-height: 1.4;
+      margin: 28px 0;
+    }
+
+    .urgency-real em { color: var(--gold); }
+
+    /* =============================================
+       CTA — SECTION 13
+    ============================================= */
+    .cta-section {
+      background: var(--obsidian-mid);
+      text-align: center;
+      padding: var(--section-gap) 0;
+    }
+
+    .cta-paths {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 2px;
+      margin: 40px 0;
+      text-align: left;
+    }
+
+    .path-card {
+      padding: 28px;
+      background: var(--obsidian);
+    }
+
+    .path-card.path-no { opacity: 0.5; }
+
+    .path-label {
+      font-family: var(--font-mono);
+      font-size: 10px;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      margin-bottom: 14px;
+      display: block;
+    }
+
+    .path-yes .path-label { color: var(--gold); }
+    .path-no .path-label { color: var(--parchment-muted); }
+
+    .path-card p {
+      font-family: var(--font-body);
+      font-size: 13px;
+      font-weight: 300;
+      color: var(--parchment-dim);
+      line-height: 1.65;
+    }
+
+    .cta-close {
+      font-family: var(--font-display);
+      font-size: clamp(1.2rem, 2.5vw, 1.5rem);
+      font-weight: 400;
+      font-style: italic;
+      color: var(--parchment);
+      margin: 36px 0 40px;
+      line-height: 1.4;
+    }
+
+    /* =============================================
+       FAQ — SECTION 14
+    ============================================= */
+    .faq-item {
+      border-bottom: 1px solid rgba(196, 160, 82, 0.08);
+      padding: 28px 0;
+    }
+
+    .faq-item:first-child { border-top: 1px solid rgba(196, 160, 82, 0.08); }
+
+    .faq-q {
+      font-family: var(--font-display);
+      font-size: 1.15rem;
+      font-weight: 500;
+      color: var(--parchment);
+      margin-bottom: 14px;
+      cursor: pointer;
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      gap: 16px;
+    }
+
+    .faq-q::after {
+      content: '+';
+      font-family: var(--font-mono);
+      font-size: 16px;
+      color: var(--gold);
+      flex-shrink: 0;
+      transition: transform var(--transition);
+    }
+
+    .faq-item.open .faq-q::after {
+      transform: rotate(45deg);
+    }
+
+    .faq-a {
+      font-family: var(--font-body);
+      font-size: 14px;
+      font-weight: 300;
+      color: var(--parchment-dim);
+      line-height: 1.8;
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.4s ease;
+    }
+
+    .faq-item.open .faq-a { max-height: 400px; }
+
+    /* =============================================
+       FINAL CLOSE — SECTION 15
+    ============================================= */
+    .final-close {
+      background: var(--obsidian-soft);
+      text-align: center;
+      padding: 100px 0;
+      position: relative;
+    }
+
+    .final-close::after {
+      content: '';
+      position: absolute;
+      bottom: 0; left: 50%;
+      transform: translateX(-50%);
+      width: 600px;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, var(--gold), transparent);
+    }
+
+    .final-p {
+      font-family: var(--font-body);
+      font-size: 14px;
+      font-weight: 300;
+      color: var(--parchment-dim);
+      line-height: 1.8;
+      max-width: 560px;
+      margin: 0 auto 20px;
+    }
+
+    .final-close-headline {
+      font-family: var(--font-display);
+      font-size: clamp(1.6rem, 4vw, 2.4rem);
+      font-weight: 400;
+      color: var(--parchment);
+      line-height: 1.3;
+      max-width: 600px;
+      margin: 36px auto 40px;
+    }
+
+    .final-close-headline em { font-style: italic; color: var(--gold); }
+
+    .final-signature {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      letter-spacing: 0.2em;
+      color: var(--parchment-muted);
+      margin-top: 48px;
+      display: block;
+    }
+
+    /* =============================================
+       FOOTER
+    ============================================= */
+    footer {
+      padding: 32px 0;
+      border-top: 1px solid rgba(196, 160, 82, 0.08);
+      text-align: center;
+    }
+
+    footer p {
+      font-family: var(--font-mono);
+      font-size: 10px;
+      letter-spacing: 0.15em;
+      color: var(--parchment-muted);
+      line-height: 1.8;
+    }
+
+    footer a {
+      color: var(--gold-dim);
+      text-decoration: none;
+    }
+
+    footer a:hover { color: var(--gold); }
+
+    /* =============================================
+       RESPONSIVE
+    ============================================= */
+    @media (max-width: 640px) {
+      :root { --section-gap: 64px; }
+
+      .two-types-grid,
+      .cta-paths,
+      .proof-stats {
+        grid-template-columns: 1fr;
+      }
+
+      .price-final {
+        grid-template-columns: 1fr;
+        text-align: center;
+      }
+
+      .offer-item {
+        grid-template-columns: 1fr;
+      }
+
+      .date-callout {
+        flex-direction: column;
+        gap: 12px;
+      }
+
+      .topbar-inner {
+        gap: 12px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- TOPBAR -->
+  <nav class="topbar">
+    <div class="topbar-inner">
+      <a href="https://lucidlifeco.com" class="brand-logo">Lucid Life Co</a>
+      <a href="#get-access" class="topbar-cta">Get Access — $27</a>
+    </div>
+  </nav>
+
+  <!-- =============================================
+       SECTION 1 — HEADLINE
+  ============================================= -->
+  <section class="hero">
+    <div class="container">
+      <span class="eyebrow reveal">For High-Achieving Professionals Over 35</span>
+      <h1 class="hero-headline reveal reveal-delay-1">
+        What if the reason every diet failed you had nothing to do with willpower —
+        and everything to do with your <em>Identity Gap?</em>
+      </h1>
+      <p class="hero-subhead reveal reveal-delay-2">
+        Introducing the <strong>COA Identity Gap Framework</strong> — the 30-day identity architecture system that ends the internal war and makes healthy decisions your default state. <strong>Finally.</strong>
+      </p>
+      <a href="#get-access" class="cta-primary reveal reveal-delay-3">
+        I'm Ready to Close the Gap — $27
+      </a>
+      <span class="cta-price-note reveal reveal-delay-4">One-time payment · Instant digital access · $225 in total value</span>
+    </div>
+  </section>
+
+  <!-- =============================================
+       SECTION 2 — PATTERN INTERRUPT
+  ============================================= -->
+  <section class="two-types">
+    <div class="container">
+      <span class="section-label reveal">The Two Types</span>
+      <div class="two-types-grid reveal">
+        <div class="type-card type-bad">
+          <span class="type-label">Type One</span>
+          <p>Keeps searching for the right program. Has done Keto. Whole30. Hired trainers, bought memberships, downloaded apps. Every time a new approach gains traction, tries it. Every time it collapses — and it always collapses — quietly adds it to the list of things that didn't work.</p>
+        </div>
+        <div class="type-card type-good">
+          <span class="type-label">Type Two</span>
+          <p>Finally understands something the first type hasn't been told yet: <strong>the program was never the problem.</strong> If you are reading this, you already suspect you might be the second type. You are right.</p>
+        </div>
+      </div>
+      <blockquote class="reveal-line reveal">
+        "The program was never the problem. The problem was the layer beneath the program that nobody addressed."
+      </blockquote>
+    </div>
+  </section>
+
+  <!-- =============================================
+       SECTION 3 — PROBLEM AGITATION
+  ============================================= -->
+  <section class="problem">
+    <div class="container">
+      <span class="section-label reveal">The Real Problem</span>
+      <p class="body-copy reveal">You are <strong>smart. Successful. Respected</strong> by the people around you.</p>
+      <p class="body-copy reveal">And privately, you are exhausted.</p>
+      <p class="body-copy reveal">Not just physically — though you are that too. You are exhausted from the <strong>performance</strong>. From presenting as someone who has it together while spending your nights making choices that directly contradict the person you claim to be. From falling asleep replaying the day's decisions. From waking up and doing it again.</p>
+      <p class="body-copy reveal">You know exactly what you should be doing. That is the part that makes it worse. You have read the books. Done the research. At various points in your life, you actually <em>were</em> the person you're trying to become. And then something shifted.</p>
+
+      <p class="body-copy reveal" style="margin-top: 28px;">You've tried everything on this list.</p>
+
+      <ul class="tried-list reveal">
+        <li>Whole30</li><li>Keto</li><li>Atkins</li><li>Vegan</li><li>Carnivore</li>
+        <li>CrossFit</li><li>Peloton</li><li>P90X</li><li>Yoga</li>
+        <li>Gym Membership</li><li>Weight Watchers</li><li>Nutrisystem</li>
+        <li>Medifast / Optavia</li><li>Nutritionists</li><li>Personal Trainers</li>
+        <li>Functional Medicine</li>
+      </ul>
+
+      <p class="body-copy reveal">You've spent real money. Made real effort. And you've watched it collapse, every single time, at roughly the same point in the cycle.</p>
+
+      <div class="key-insight reveal">
+        <p>Every single one of those programs addressed <em>what you were doing.</em> None of them addressed <em>who you believed you were.</em> They tried to change your behavior while your identity stayed exactly the same. And <em>identity always wins.</em> You can force a behavior for a few weeks on willpower alone — but the moment your willpower depletes, your identity snaps you back to baseline. Every time. Predictably. Not because you are broken. Because the sequence was wrong.</p>
+      </div>
+
+      <p class="body-copy reveal">The secret belief you carry — that you are somehow uniquely unable to do what everyone else seems to manage — is not a character flaw. <strong>It is the predictable outcome of applying tactical solutions to an identity-level problem.</strong></p>
+
+      <p class="diagnosis-statement reveal">You don't have a diet problem.<br>You have an <em>Identity Gap.</em></p>
+    </div>
+  </section>
+
+  <!-- =============================================
+       SECTION 4 — OPPORTUNITY WINDOW
+  ============================================= -->
+  <section>
+    <div class="container">
+      <span class="section-label reveal">What's Different Now</span>
+      <h2 class="h2 reveal">Here is what is <em>actually</em> different.</h2>
+      <p class="body-copy reveal">Not AI. Not a new market trend. Not a better version of the same program that failed you last time.</p>
+      <p class="body-copy reveal">For the first time, there is a system that addresses the <strong>actual root cause.</strong></p>
+      <p class="body-copy reveal">Every approach you have tried assumed your problem was behavioral. Eat differently. Move more. Track your macros. Build a routine. All of those instructions were aimed at the symptom. None of them were aimed at the source.</p>
+
+      <div class="key-insight reveal" style="margin-top: 36px;">
+        <p>The source is the gap between who you say you are and how you actually live. That gap — <em>the Identity Gap</em> — is the reason every mechanism-based solution eventually fails. Not because the mechanisms are wrong. Because they were applied to the wrong layer of the problem.</p>
+      </div>
+
+      <p class="body-copy reveal">The COA Identity Gap Framework is the first system built specifically to close that gap. Not to give you another tactic. <strong>To change the identity that is driving every tactic you try.</strong> When the identity shifts, the behaviors that match it become automatic. The friction dissolves. The war inside goes quiet.</p>
+      <p class="body-copy reveal" style="color: var(--parchment);">That is not a promise about weight loss. It is a structural observation about how human behavior actually works.</p>
+    </div>
+  </section>
+
+  <!-- =============================================
+       SECTION 5 — FUTURE PACING
+  ============================================= -->
+  <section class="future-pacing">
+    <div class="container">
+      <span class="section-label reveal">30 Days From Now</span>
+      <p class="tuesday reveal">Picture a Tuesday morning,<br>30 days from now.</p>
+
+      <p class="body-copy reveal">You wake up and the first thought in your head is not a replay of last night. There is no inventory of what you should have done differently. There is no low-grade dread about the day ahead. You are not already negotiating with yourself about whether today will be the day you get back on track.</p>
+
+      <p class="body-copy reveal">You made a small, aligned choice yesterday. And the day before. And the day before that. Nothing dramatic. Nothing that required white-knuckling through a craving or forcing yourself through a workout you hated. <strong>Small decisions that matched the person you have been quietly declaring yourself to be for years.</strong> And you noticed them. You logged them. You watched the evidence accumulate.</p>
+
+      <p class="body-copy reveal">You are not at the finish line. You know that. You are not pretending to be someone you haven't become yet. But something has shifted in a way that feels different from every other time you have tried to shift it. The internal war — the one you have been fighting in the deep recesses of your mind while presenting a successful, happy person to the world — is quieter. Not gone. Quieter. And you can feel, for the first time in a long time, that it is actually ending.</p>
+
+      <p class="grace-line reveal">You have grace for yourself today.<br><em>Not the performed kind. The real kind.</em></p>
+    </div>
+  </section>
+
+  <!-- =============================================
+       SECTION 6 — STORY / CREDIBILITY
+  ============================================= -->
+  <section>
+    <div class="container">
+      <span class="section-label reveal">The Story Behind the Framework</span>
+      <span class="story-from reveal">From Cody Martin, Founder — Lucid Life Co</span>
+
+      <p class="story-hook reveal">For 33 years, I numbed daily with cannabis. I built a successful career, publicly declared myself a health-conscious person, and then went to sleep every single night replaying the bad choices I had made that directly contradicted the man I claimed to be.</p>
+
+      <p class="body-copy reveal">I was a high-functioning professional drowning in quiet shame. On the outside, I was respected, capable, and driven. I knew exactly what I needed to do to be healthy — I had spent over 15 years researching clean living. But privately, I was at war with myself. I was eating emotionally, drinking alcohol, and smoking cannabis every single day. Every time I numbed myself, a voice in my head would say, <em>"I want to stop doing this. This is not serving my future self."</em> And then, the very next day, I would do it again.</p>
+
+      <p class="body-copy reveal">The exhaustion wasn't just physical. It was the heavy, silent weight of performing wellness while secretly believing I was broken in a way others weren't.</p>
+
+      <div class="story-divider reveal"><span>The Failed Attempts</span></div>
+
+      <p class="body-copy reveal">It wasn't for lack of trying. Over 15 years, I tried everything. I did Clean by Dr. Alejandro Junger. The Primal Blueprint, The Body Code, Keto, Atkins, the Medical Medium Protocol. I did HCG, went Vegan, survived P90X, and hired personal trainers at 24 Hour Fitness. I worked with multiple nutritionists and functional medicine doctors. None of it produced lasting results. I would gain momentum, rely entirely on willpower, and eventually collapse back into the same numbing behaviors.</p>
+
+      <p class="body-copy reveal">In early 2024, my partner Lorri — who had been on this frustrating ride right alongside me, trying everything I tried — convinced me to try Optavia. We did it together, and I lost 70 pounds in six months. I had energy again. Playing pickleball, riding the Peloton, doing yoga and meditating. But I stopped after six months. I couldn't reconcile the ingredient list — GMO corn, soy, wheat, fillers, preservatives. I had gone in knowing the ingredients were compromised, making a conscious, temporary truce to get the momentum I desperately needed. But the moment I felt strong enough, <strong>my identity rejected staying on something that contradicted my values.</strong> That rejection was the first real sign that a deeper, internal shift was finally happening.</p>
+
+      <div class="story-divider reveal"><span>January 9th, 2026</span></div>
+
+      <div class="date-callout reveal">
+        <span class="date">01.09.2026</span>
+        <p>I finally acknowledged that cannabis and alcohol no longer served the version of me I was becoming. I quit both on that day. I have been 100% sober since.</p>
+      </div>
+
+      <p class="body-copy reveal">The aftermath was brutal. Without my usual ways to numb, I was forced to sit in emotions I had been blocking for decades. I spent nights processing past traumas, releasing the shame I held for my younger self, and recalibrating my nervous system. During those dark, quiet weeks, the COA Framework materialized. It wasn't a concept I sat down to design — <strong>it was the exact process I was living through to survive.</strong> I realized my problem was never a lack of willpower or the wrong diet. It was an identity gap. I had to consciously construct the self-image that made healthy behavior the path of least resistance.</p>
+
+      <div class="story-divider reveal"><span>Where I Am Today</span></div>
+
+      <p class="body-copy reveal">My life is brighter today than it has been in decades. I eat cleaner. I move my body. When I want something that tastes good, I have it without a spiral of shame, and I get right back on track the next day. I am currently around 240 pounds, steadily working toward 220. I am not a guru, and I am not perfect. But I have changed my identity to such a degree that the daily internal war is over. I no longer have mood swings. I am steady, quietly confident, and I finally have grace for myself.</p>
+
+      <p class="body-copy reveal">And for the first time in 33 years, the desire to numb isn't suppressed — <strong>it is completely gone.</strong></p>
+
+      <p class="body-copy reveal">Lorri has been on every step of this path alongside me. This is something we built together.</p>
+
+      <blockquote class="power-quote reveal">
+        "I wasn't failing because I lacked willpower or the right diet. I was failing because my daily behaviors were at war with my identity — and identity always wins."
+      </blockquote>
+
+      <p class="body-copy reveal">I created <em>Stop Faking Fine</em> because I know exactly how exhausting it is to be smart, successful, and entirely unable to make yourself do what you know you should do. I'm not selling weight loss. <strong>I'm selling the end of the internal friction that makes you choose against yourself.</strong> If you are tired of performing wellness and ready to actually build it, this is how we close the gap. I built the COA Framework so you don't have to spend 33 years finding it.</p>
+    </div>
+  </section>
+
+  <!-- =============================================
+       SECTION 7 — MECHANISM
+  ============================================= -->
+  <section class="mechanism">
+    <div class="container">
+      <span class="section-label reveal">The Framework</span>
+      <h2 class="h2 reveal">The <em>COA Identity Gap Framework</em></h2>
+
+      <div class="mechanism-elevator reveal">
+        A proprietary three-phase identity architecture system that eliminates the internal friction of healthy choices by aligning your daily actions with your core self-image.
+      </div>
+
+      <p class="body-copy reveal">It is not a diet. It is not a workout plan. It is not a productivity system. It is the structural work that every other program skips — and the reason every other program eventually fails.</p>
+
+      <div class="phase-grid reveal">
+        <div class="phase-card">
+          <span class="phase-number">Phase 01</span>
+          <h3 class="phase-name">Clarity</h3>
+          <p>Most programs start by telling you what to do. The COA Framework starts by asking you to <strong>see clearly what is actually happening.</strong> Clarity is the honest naming of the gap — without judgment, without shame, without the performance of being fine. You will complete the <strong>Identity Audit</strong>: writing your declared health identity, then honestly listing your last seven days of actual behavior. The gap between those two things is your diagnosis. For most people, it is the first time they have ever named it directly. The brain cannot hold conflicting identities indefinitely. Naming the gap is the first step to closing it.</p>
+        </div>
+        <div class="phase-card">
+          <span class="phase-number">Phase 02</span>
+          <h3 class="phase-name">Ownership</h3>
+          <p>Ownership is not self-punishment. It is the opposite — it is <strong>the release of the shame spiral</strong> that has kept you stuck. You will complete the <strong>Willpower Autopsy</strong>: walking through your past failed attempts and identifying the identity-gap root in each one. Every program that collapsed. Every resolution that didn't hold. Every moment you told yourself you were broken. You will see, clearly and specifically, that those failures were not evidence of weakness. They were the predictable outcome of a flawed sequence. Willpower was never the answer. The sequence was always wrong. When you understand that, the shame lifts. And when the shame lifts, you can move.</p>
+        </div>
+        <div class="phase-card">
+          <span class="phase-number">Phase 03</span>
+          <h3 class="phase-name">Alignment</h3>
+          <p>Alignment is where the <strong>architecture gets built.</strong> You will craft your <strong>Identity Declaration</strong> — a present-tense statement of who you are, not who you want to be. You will install the daily anchor practices that reinforce that identity. And you will start the <strong>Small Wins Engine</strong>: three micro-decisions per day that align with your new self-image, tracked over 30 days. Each aligned decision builds neurological evidence that you are the person you declared. Confidence compounds. Friction decreases. The identity and the behavior converge.</p>
+        </div>
+      </div>
+
+      <p class="mechanism-close reveal">When they converge — <em>the war ends.</em></p>
+    </div>
+  </section>
+
+  <!-- =============================================
+       SECTION 8 — PROOF
+  ============================================= -->
+  <section>
+    <div class="container">
+      <span class="section-label reveal">The Proof</span>
+
+      <div class="proof-stats reveal">
+        <div class="stat-card">
+          <span class="stat-number">100+</span>
+          <span class="stat-label">Pounds Lost</span>
+        </div>
+        <div class="stat-card">
+          <span class="stat-number">109</span>
+          <span class="stat-label">Days Sober</span>
+        </div>
+        <div class="stat-card">
+          <span class="stat-number">33</span>
+          <span class="stat-label">Years. Finally Free.</span>
+        </div>
+      </div>
+
+      <div class="proof-honest reveal">
+        <p>There are no before-and-after photos here. There are no transformation testimonials from people you don't know. <strong>This product is new, and fabricating social proof is not something this brand does.</strong></p>
+        <p>What there is: Cody's story. And it is enough. 109 days sober. Over 100 pounds lost. Currently at 240 pounds, working steadily toward 220. <strong>Not a guru. Not a finished product.</strong> A person who is on the path — the same path this framework describes — and who is further down it than he has ever been in his adult life.</p>
+        <p>The proof is not transformation complete. The proof is <strong>transformation real and ongoing.</strong> The proof is that the internal war, which ran for 33 years, is quiet. The proof is that the desire to numb — which was a daily battle for three decades — is not suppressed. It is gone. Lorri has been on every step of this path alongside him. This is something they built together.</p>
+        <p>That is what this framework produces. Not a perfect body. Not a finished story. <strong>The end of the internal war and the beginning of a life that actually matches the one you've been claiming to live.</strong></p>
+      </div>
+    </div>
+  </section>
+
+  <!-- =============================================
+       SECTION 9 — WHAT YOU GET
+  ============================================= -->
+  <section id="get-access">
+    <div class="container">
+      <span class="section-label reveal">What's Included</span>
+      <h2 class="h2 reveal">Everything in <em>Stop Faking Fine</em> today:</h2>
+
+      <div class="offer-stack reveal">
+        <div class="offer-item">
+          <div>
+            <span class="offer-badge">Core Product</span>
+            <h3 class="offer-title">Stop Faking Fine: The High Performer's 30-Day Identity Reset</h3>
+            <p class="offer-desc">The complete 6-pillar COA Identity Gap Framework, delivered as a PDF guide with a full 30-day transformation system. Each pillar follows the PERC method and delivers a 15-minute actionable exercise. Built on identity psychology and behavioral science. Written by someone who lost 100+ pounds after 40 using this exact framework. The six pillars: The Diagnosis, The Inventory, The Reframe, The Anchor, The Small Wins Engine, and The Clean Foundation.</p>
+          </div>
+          <div class="offer-value"><s>$97</s></div>
+        </div>
+
+        <div class="offer-item">
+          <div>
+            <span class="offer-badge">Bonus 01</span>
+            <h3 class="offer-title">The Identity Audit Workbook</h3>
+            <p class="offer-desc">The interactive worksheet that walks you through the complete gap assessment process. Designed to be revisited at 30, 60, and 90 days so the clarity compounds over time. The more precisely you can see the gap, the faster it closes.</p>
+          </div>
+          <div class="offer-value"><s>$47</s></div>
+        </div>
+
+        <div class="offer-item">
+          <div>
+            <span class="offer-badge">Bonus 02</span>
+            <h3 class="offer-title">The 15-Minute Morning Anchor Protocol</h3>
+            <p class="offer-desc">The daily practice system that sets the behavioral context for your entire day. Actionable on Day 1. Identity reinforcement, visualization, and intention-setting — simplified into 15 minutes. No journaling expertise required. No special equipment. This is the daily practice that makes the identity declaration real.</p>
+          </div>
+          <div class="offer-value"><s>$37</s></div>
+        </div>
+
+        <div class="offer-item">
+          <div>
+            <span class="offer-badge">Bonus 03</span>
+            <h3 class="offer-title">The Clean Start Checklist</h3>
+            <p class="offer-desc">The first 10 clean living swaps that require zero willpower. Sourced from 15+ years of clean living research. Designed to work with the identity shift already in motion — not against it. The natural bridge to the broader Lucid Life Co ecosystem.</p>
+          </div>
+          <div class="offer-value"><s>$27</s></div>
+        </div>
+
+        <div class="offer-item">
+          <div>
+            <span class="offer-badge">Fast Action Bonus</span>
+            <h3 class="offer-title">The Small Wins Tracker</h3>
+            <p class="offer-desc">The 30-day tracking tool that makes your momentum visible and tangible. Printable and digital versions. A running record of every aligned decision, compounding in front of you — building the neurological evidence that you are exactly who you declared yourself to be.</p>
+          </div>
+          <div class="offer-value"><s>$17</s></div>
+        </div>
+      </div>
+
+      <table class="value-table reveal">
+        <tr><td>Stop Faking Fine: The 30-Day Identity Reset</td><td>$97</td></tr>
+        <tr><td>The Identity Audit Workbook</td><td>$47</td></tr>
+        <tr><td>The 15-Minute Morning Anchor Protocol</td><td>$37</td></tr>
+        <tr><td>The Clean Start Checklist</td><td>$27</td></tr>
+        <tr><td>The Small Wins Tracker</td><td>$17</td></tr>
+        <tr class="total"><td><strong>Total Stack Value</strong></td><td><strong>$225</strong></td></tr>
+        <tr class="price-row"><td><strong>Your Price Today</strong></td><td><strong>$27</strong></td></tr>
+      </table>
+
+      <div style="text-align: center; margin-top: 40px;">
+        <a href="#checkout" class="cta-primary reveal">I'm Ready to Close the Gap — $27</a>
+        <span class="cta-price-note reveal">One-time payment · Instant digital access · No subscription</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- =============================================
+       SECTION 10 — PRICE STACK
+  ============================================= -->
+  <section class="price-section">
+    <div class="container">
+      <span class="section-label reveal">Before We Talk About $27</span>
+      <h2 class="h2 reveal">Let's talk about what you've <em>already spent.</em></h2>
+
+      <div class="cost-layer reveal">
+        <span class="cost-layer-label">The Hidden Cost — Not Money. Time.</span>
+        <p class="body-copy">Think about the Sunday nights you have spent dreading the week ahead because you know you are going to make the same choices again. The mornings you woke up disappointed before the day even started. The years of performing wellness publicly while drowning privately. The energy you have spent maintaining the gap between who you claim to be and how you actually live. <strong>That cost does not show up on a credit card statement. But it is the most expensive thing in your life.</strong></p>
+      </div>
+
+      <div class="cost-layer reveal">
+        <span class="cost-layer-label">The Financial Cost</span>
+        <p class="body-copy">Conservative estimate: if you have been trying to solve this problem for five years — a nutritionist here, a gym membership there, a program, a trainer, a supplement stack — <strong>you have spent somewhere between $8,000 and $15,000.</strong> Probably more. Not because you were foolish. Because you were trying to solve an identity problem with tactical solutions, and nobody told you that was the wrong tool for the job.</p>
+      </div>
+
+      <div class="price-final reveal">
+        <div>
+          <span class="price-final-label">Stop Faking Fine</span>
+          <p class="price-final-note">Not because it's worth $27. Because removing every financial excuse is the point. The price is not the obstacle. It was never the price. It was always the decision.</p>
+        </div>
+        <span class="price-number">$27</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- =============================================
+       SECTION 11 — GUARANTEE
+  ============================================= -->
+  <section>
+    <div class="container">
+      <span class="section-label reveal">The Promise</span>
+      <div class="guarantee-box reveal">
+        <p>Complete the framework. Work through all six pillars. Do the Identity Audit. Complete the Willpower Autopsy. Write your Identity Declaration. Run the Small Wins Engine for 30 days.</p>
+        <p>If you do the work and do not experience a measurable shift in your daily decision-making — if the gap between who you say you are and how you actually live has not begun to close — email <a href="mailto:hello@lucidlifeco.com" style="color: var(--gold);">hello@lucidlifeco.com</a> for a full refund.</p>
+        <p><strong>You have to show you tried.</strong> This guarantee is for people who engage with the framework honestly, not for people who download it and do nothing. That is a fair ask. The framework asks you to be honest with yourself. The guarantee asks the same.</p>
+        <p>If you do the work and it does not move the needle, you pay nothing. That is the commitment.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- =============================================
+       SECTION 12 — URGENCY
+  ============================================= -->
+  <section>
+    <div class="container">
+      <span class="section-label reveal">One Honest Thing About Timing</span>
+      <p class="body-copy reveal">There are no countdown timers on this page. No "offer expires at midnight" language. No artificial scarcity.</p>
+      <p class="body-copy reveal"><em>Stop Faking Fine</em> is currently priced at $27 as launch pricing. That price will increase after the initial launch period. That is the honest statement of urgency, and it is the only one being made here.</p>
+
+      <blockquote class="urgency-real reveal">
+        The real urgency is not the price.<br>
+        The real urgency is <em>another day of the internal war.</em>
+      </blockquote>
+
+      <p class="body-copy reveal">Another Sunday night. Another morning that starts with a replay of yesterday's choices. Another year of performing wellness while privately knowing the gap is still there. You already know what another year of the same looks like. You have lived it. The question is not whether you can afford $27. <strong>The question is whether you are ready to stop performing and start building.</strong></p>
+    </div>
+  </section>
+
+  <!-- =============================================
+       SECTION 13 — CTA
+  ============================================= -->
+  <section class="cta-section">
+    <div class="container">
+      <span class="section-label reveal">Your Choice</span>
+      <div class="cta-paths reveal">
+        <div class="path-card path-no">
+          <span class="path-label">Continue as you are</span>
+          <p>Keep searching for the right program. Keep applying tactical solutions to an identity-level problem. Keep falling asleep replaying the day. Keep performing wellness for an audience that includes yourself.</p>
+        </div>
+        <div class="path-card path-yes">
+          <span class="path-label">Close the gap</span>
+          <p>Not perfectly. Not overnight. But honestly, specifically, and with a framework built by someone who lived through the same war you are fighting right now.</p>
+        </div>
+      </div>
+
+      <p class="cta-close reveal">If you are tired of performing wellness<br>and ready to actually build it —<br><em>this is how we close the gap.</em></p>
+
+      <a href="#checkout" class="cta-primary reveal">I'm Ready to Close the Gap — $27</a>
+      <span class="cta-price-note reveal">$225 in value · One-time · Instant access · First Win Guarantee</span>
+    </div>
+  </section>
+
+  <!-- =============================================
+       SECTION 14 — FAQ
+  ============================================= -->
+  <section>
+    <div class="container">
+      <span class="section-label reveal">Frequently Asked Questions</span>
+
+      <div class="faq-item reveal">
+        <div class="faq-q">Is this another diet program?</div>
+        <div class="faq-a">No. Stop Faking Fine is not a diet program, a nutrition guide, or a workout plan. It does not tell you what to eat, when to eat, or how to exercise. It addresses the layer beneath all of that — the identity gap that causes every diet and every program to eventually collapse. If you want another set of dietary rules, this is not it. If you want to understand why every set of dietary rules has failed you, and what to do about it, this is exactly it.</div>
+      </div>
+
+      <div class="faq-item reveal">
+        <div class="faq-q">I've tried everything and nothing has worked. Why would this be different?</div>
+        <div class="faq-a">Because everything you have tried addressed what you were doing. This addresses who you believe you are. That is a different problem, and it requires a different solution. Every program you tried assumed that if you followed the right protocol, the behavior would stick. It didn't stick because your identity didn't shift. When your identity shifts, the behavior follows automatically — without the white-knuckling, without the willpower depletion, without the inevitable collapse. That is not a motivational claim. It is a structural observation about how human behavior works.</div>
+      </div>
+
+      <div class="faq-item reveal">
+        <div class="faq-q">I'm not sure I have time for this.</div>
+        <div class="faq-a">Each pillar delivers a 15-minute exercise. The full framework is designed to be completed in 30 days at 15 minutes per day. That is the equivalent of one episode of a show you have already watched. The question is not whether you have 15 minutes. The question is whether you are willing to spend 15 minutes per day on the thing that is quietly costing you everything else.</div>
+      </div>
+
+      <div class="faq-item reveal">
+        <div class="faq-q">What if I'm not ready to be this honest with myself?</div>
+        <div class="faq-a">That is the most important question on this page, and it deserves a direct answer. The COA Framework requires honesty. The Identity Audit, the Willpower Autopsy, the Identity Declaration — all of it asks you to see clearly what is actually happening, without the performance of being fine. If you are not ready for that, this is not the right moment for this framework. There is no judgment in that. But if you are reading this page and feeling the recognition — if some part of you is tired enough of the war to finally look at it directly — then you are ready. The framework will meet you exactly where you are.</div>
+      </div>
+
+      <div class="faq-item reveal">
+        <div class="faq-q">Is this only for people who want to lose weight?</div>
+        <div class="faq-a">No. The Identity Gap is not a weight loss problem — it is a human problem. The gap between who you say you are and how you actually live shows up in health, in relationships, in professional performance, and in the private experience of your own mind. Stop Faking Fine was built in the context of health and wellness because that is where Cody's story lives. But the COA Framework applies to any area of your life where your declared identity and your enacted identity are in conflict. Weight loss is one downstream result of closing the gap. It is not the only one.</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- =============================================
+       SECTION 15 — FINAL CLOSE
+  ============================================= -->
+  <section class="final-close" id="checkout">
+    <div class="container">
+      <span class="section-label reveal">Still Here</span>
+
+      <p class="final-p reveal">You are still here because something on this page named something you have not been able to name out loud.</p>
+      <p class="final-p reveal">You are not broken. You are not uniquely incapable. You have been applying the wrong solution to the right problem for a very long time, and nobody told you that was the issue.</p>
+      <p class="final-p reveal">The Identity Gap is real. The internal war is real. And the framework to close it — built not in a laboratory but in the weeks after January 9th, 2026, when there was no other way through — is real.</p>
+
+      <h2 class="final-close-headline reveal">
+        <em>I built the COA Framework so you don't have to spend 33 years finding it.</em>
+      </h2>
+
+      <a href="#" class="cta-primary reveal">I'm Ready to Close the Gap — $27</a>
+      <span class="cta-price-note reveal">Protected by the First Win Guarantee · $225 in value · Instant access</span>
+
+      <span class="final-signature reveal">— Cody Martin, Founder · Lucid Life Co</span>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="container">
+      <p>
+        <a href="https://lucidlifeco.com">Lucid Life Co</a> &nbsp;·&nbsp;
+        <a href="mailto:hello@lucidlifeco.com">hello@lucidlifeco.com</a> &nbsp;·&nbsp;
+        lucidlifeco.com
+      </p>
+      <p style="margin-top: 8px;">Questions about your purchase? Email hello@lucidlifeco.com — we respond within 24 hours.</p>
+    </div>
+  </footer>
+
+  <script>
+    // Scroll reveal
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+        }
+      });
+    }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+
+    document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+    // FAQ accordion
+    document.querySelectorAll('.faq-q').forEach(q => {
+      q.addEventListener('click', () => {
+        const item = q.parentElement;
+        const isOpen = item.classList.contains('open');
+        document.querySelectorAll('.faq-item').forEach(i => i.classList.remove('open'));
+        if (!isOpen) item.classList.add('open');
+      });
+    });
+  </script>
+
+</body>
+</html>
