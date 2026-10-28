@@ -1,0 +1,358 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Profit Chain Scorecard · Lucid Life Co</title>
+<meta name="description" content="A free 10-minute scorecard for small business owners. Score your five profit links, find your weakest one, and get three fixes for the next 30 days.">
+<meta property="og:title" content="The Profit Chain Scorecard · Lucid Life Co">
+<meta property="og:description" content="20 questions. About 10 minutes. Find where your business is leaking profit.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Josefin+Sans:wght@300;400;600&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+/* Layout: one reading column. Questions → optional numbers → email → results */
+:root{
+  --obsidian:#0C0C0E; --obsidian-2:#131316; --obsidian-3:#1A1A1E;
+  --gold:#C4A052; --gold-soft:#D4B56A; --gold-line:rgba(196,160,82,.35);
+  --parchment:#EDE9E3; --parchment-dim:#B7B1A8; --rule:rgba(237,233,227,.12);
+  --good:#6FBF8E; --warn:#E0A94A; --bad:#E07A66;
+  --display:'Cormorant Garamond', Georgia, 'Times New Roman', serif;
+  --body:'Josefin Sans', 'Helvetica Neue', Arial, sans-serif;
+  --mono:'DM Mono', ui-monospace, Menlo, Consolas, monospace;
+  color-scheme:dark;
+}
+*,*::before,*::after{box-sizing:border-box}
+body{margin:0;background:var(--obsidian);color:var(--parchment);font-family:var(--body);font-weight:300;font-size:17px;line-height:1.6}
+a{color:var(--gold-soft)}
+h1,h2,h3{font-family:var(--display);font-weight:600;line-height:1.1;margin:0;text-wrap:balance}
+p{margin:0}
+.wrap{max-width:780px;margin:0 auto;padding-left:max(20px,env(safe-area-inset-left,0px));padding-right:max(20px,env(safe-area-inset-right,0px))}
+header.top{border-bottom:1px solid var(--rule)}
+header.top .wrap{display:flex;align-items:center;justify-content:space-between;height:64px;max-width:1080px}
+.brand{font-family:var(--display);font-size:24px;font-weight:600;color:var(--parchment);text-decoration:none}
+.brand span{color:var(--gold)}
+header.top a.back{color:var(--parchment-dim);font-size:14px;text-decoration:none;letter-spacing:.06em;text-transform:uppercase}
+main .wrap{display:flex;flex-direction:column;gap:56px;padding-block:56px 80px}
+.eyebrow{font-family:var(--mono);font-size:12px;letter-spacing:.16em;text-transform:uppercase;color:var(--gold)}
+section{display:flex;flex-direction:column;gap:20px}
+h1{font-size:clamp(42px,7vw,64px)}
+h2{font-size:clamp(30px,5vw,40px)}
+h3{font-size:28px}
+.lede{font-size:19px;color:var(--parchment-dim);max-width:62ch}
+.muted{color:var(--parchment-dim);font-size:15px}
+.chain{display:flex;flex-wrap:wrap;gap:8px;list-style:none;margin:0;padding:0}
+.chain li{border:1px solid var(--gold-line);border-radius:999px;padding:6px 14px 4px;font-family:var(--mono);font-size:13px;letter-spacing:.06em;text-transform:uppercase}
+
+.group{display:flex;flex-direction:column;border-top:2px solid var(--gold);padding-top:18px;gap:4px}
+.group-head{display:flex;justify-content:space-between;align-items:baseline;gap:12px;flex-wrap:wrap;margin-bottom:6px}
+.group-head p{color:var(--parchment-dim);font-size:15px}
+.q{padding:14px 0;border-bottom:1px solid var(--rule);display:grid;grid-template-columns:minmax(0,1fr) auto;gap:10px 20px;align-items:center}
+.qt{font-size:16px;line-height:1.45}
+.qt .num{font-family:var(--mono);color:var(--gold);font-size:13px;margin-right:8px}
+.seg{display:flex;border:1px solid var(--rule);border-radius:4px;overflow:hidden;background:var(--obsidian-2)}
+.seg input{position:absolute;opacity:0;width:1px;height:1px}
+.seg label{padding:10px 13px 8px;font-size:14px;cursor:pointer;min-width:48px;text-align:center;border-left:1px solid var(--rule);white-space:nowrap;user-select:none}
+.seg label:first-of-type{border-left:0}
+.seg input:checked+label{background:var(--gold);color:var(--obsidian);font-weight:600}
+.seg input:focus-visible+label{outline:2px solid var(--gold);outline-offset:-2px}
+@media (max-width:560px){.q{grid-template-columns:1fr}.seg label{flex:1}}
+
+.panel{background:var(--obsidian-2);border:1px solid var(--rule);border-radius:6px;padding:26px;display:flex;flex-direction:column;gap:20px}
+.fields{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:16px}
+.field{display:flex;flex-direction:column;gap:6px}
+.field label{font-size:14px;color:var(--parchment-dim)}
+.field input{font:400 17px var(--mono);padding:12px;border:1px solid var(--rule);border-radius:4px;background:var(--obsidian);color:var(--parchment);width:100%;font-variant-numeric:tabular-nums}
+.field input:focus-visible{outline:2px solid var(--gold);outline-offset:1px}
+.ledger{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:8px 16px;font-family:var(--mono);font-size:15px;font-variant-numeric:tabular-nums;border-top:1px solid var(--rule);padding-top:16px}
+.ledger .v{text-align:right}
+.ledger .total{font-size:18px;color:var(--gold)}
+.note{font-size:14px;color:var(--parchment-dim);font-style:italic}
+
+.btn{display:inline-flex;align-items:center;justify-content:center;font:600 16px/1 var(--body);padding:17px 26px 15px;border-radius:4px;background:var(--gold);color:var(--obsidian);text-decoration:none;border:0;cursor:pointer;min-height:48px}
+.btn:hover{background:var(--gold-soft)}
+.btn:disabled{opacity:.4;cursor:not-allowed}
+.btn-ghost{background:transparent;color:var(--parchment);border:1px solid var(--gold-line)}
+.btn:focus-visible{outline:2px solid var(--gold);outline-offset:3px}
+.actions{display:flex;flex-wrap:wrap;gap:14px;align-items:center}
+.err{color:var(--bad);font-size:15px}
+
+.score-row{display:flex;align-items:flex-end;gap:24px;flex-wrap:wrap}
+.big{font-family:var(--display);font-size:104px;line-height:.85;font-weight:700;color:var(--gold)}
+.big small{font-size:34px;color:var(--parchment-dim);font-weight:500}
+.bars{display:flex;flex-direction:column;gap:12px}
+.bar{display:grid;grid-template-columns:96px minmax(0,1fr) 130px;gap:12px;align-items:center;font-family:var(--mono);font-size:14px}
+.track{height:12px;background:var(--obsidian-3);border-radius:6px;overflow:hidden}
+.fill{height:100%;border-radius:6px;width:0}
+@media (prefers-reduced-motion:no-preference){.fill{transition:width .7s ease}}
+.tag{font-size:12px;text-transform:uppercase;letter-spacing:.06em}
+@media (max-width:480px){.bar{grid-template-columns:76px minmax(0,1fr)}.bar .tag{grid-column:2}}
+.weak{border:1px solid var(--gold);border-radius:6px;padding:28px;display:flex;flex-direction:column;gap:14px;background:var(--obsidian-2)}
+.weak ol{margin:0;padding-left:22px;display:flex;flex-direction:column;gap:10px}
+.next{border-top:2px solid var(--gold);padding-top:24px}
+.addr{font-family:var(--mono);font-size:17px;user-select:all}
+footer{border-top:1px solid var(--rule);padding-block:32px;color:var(--parchment-dim);font-size:14px}
+</style>
+</head>
+<body>
+<header class="top">
+  <div class="wrap">
+    <a class="brand" href="/">Lucid Life <span>Co</span></a>
+    <a class="back" href="/">← Home</a>
+  </div>
+</header>
+
+<main>
+<div class="wrap">
+  <section>
+    <div class="eyebrow">Free · 20 questions · About 10 minutes</div>
+    <h1>The Profit Chain Scorecard</h1>
+    <p class="lede">Every business makes money through the same five links. A weak link leaks profit no matter how hard you work the others. Score yours, find your weakest link, and get three fixes you can start this week.</p>
+    <ol class="chain" aria-label="The five links">
+      <li>Attract</li><li>Convert</li><li>Deliver</li><li>Collect</li><li>Keep</li>
+    </ol>
+  </section>
+
+  <section aria-labelledby="q-title">
+    <div class="eyebrow">Part 1</div>
+    <h2 id="q-title">Score your chain</h2>
+    <p class="muted">Answer honestly. "Sometimes" counts as half.</p>
+    <div id="groups"></div>
+  </section>
+
+  <section aria-labelledby="n-title">
+    <div class="eyebrow">Part 2 · Optional</div>
+    <h2 id="n-title">What 10% is worth to you</h2>
+    <div class="panel">
+      <p class="note">These start as example numbers. Replace them with yours. Rough estimates are fine.</p>
+      <div class="fields">
+        <div class="field"><label for="n-leads">New inquiries per month</label><input id="n-leads" type="number" inputmode="decimal" min="0" value="40"></div>
+        <div class="field"><label for="n-close">Close rate (%)</label><input id="n-close" type="number" inputmode="decimal" min="0" max="100" value="25"></div>
+        <div class="field"><label for="n-ticket">Average sale ($)</label><input id="n-ticket" type="number" inputmode="decimal" min="0" value="1200"></div>
+        <div class="field"><label for="n-freq">Purchases per customer per year</label><input id="n-freq" type="number" inputmode="decimal" min="0" step="0.1" value="1.5"></div>
+        <div class="field"><label for="n-margin">Gross margin (%)</label><input id="n-margin" type="number" inputmode="decimal" min="0" max="100" value="40"></div>
+      </div>
+      <div class="ledger" aria-live="polite">
+        <span>Annual revenue today</span><span class="v" id="o-rev">–</span>
+        <span>Annual gross profit today</span><span class="v" id="o-gp">–</span>
+        <span>Gross profit at 10% better on all five</span><span class="v" id="o-gp2">–</span>
+        <span class="total">Profit left on the table</span><span class="v total" id="o-gap">–</span>
+      </div>
+      <p class="note">Gross margin is price minus direct costs (materials, labor, subcontractors). Collect doesn't change this math, but it decides when profit becomes cash in your account.</p>
+    </div>
+  </section>
+
+  <section aria-labelledby="e-title">
+    <div class="eyebrow">Part 3</div>
+    <h2 id="e-title">Where should we send your results?</h2>
+    <form class="panel" id="lead" novalidate>
+      <div class="fields">
+        <div class="field"><label for="f-name">First name</label><input id="f-name" name="first_name" autocomplete="given-name" required></div>
+        <div class="field"><label for="f-email">Email</label><input id="f-email" name="email_address" type="email" autocomplete="email" required></div>
+        <div class="field"><label for="f-biz">Business name (optional)</label><input id="f-biz" name="business" autocomplete="organization"></div>
+      </div>
+      <p class="muted">You'll see your results right away and get a copy by email, plus the first workshop date when it's set. No spam. Unsubscribe anytime.</p>
+      <div class="actions">
+        <button class="btn" id="see" type="submit" disabled>See my results</button>
+        <span class="muted" id="progress" aria-live="polite">0 of 20 answered</span>
+      </div>
+      <p class="err" id="err" hidden></p>
+    </form>
+  </section>
+
+  <section id="results" aria-labelledby="r-title" hidden>
+    <div class="eyebrow">Your results</div>
+    <h2 id="r-title">Your Profit Chain</h2>
+    <div class="score-row">
+      <div class="big" id="r-total">0<small>/100</small></div>
+      <p id="r-summary" class="lede"></p>
+    </div>
+    <div class="bars" id="r-bars"></div>
+    <div class="weak">
+      <div class="eyebrow">Your weakest link</div>
+      <h3 id="w-title"></h3>
+      <p id="w-diag" class="muted" style="font-size:17px"></p>
+      <p><strong style="font-weight:600">Three fixes for the next 30 days</strong></p>
+      <ol id="w-fixes"></ol>
+    </div>
+    <div class="next">
+      <section>
+        <h3>Want help fixing it?</h3>
+        <p class="muted" style="font-size:17px">Reply to the results email or reach out directly to book a free 45-minute Operator Review. We'll look at your numbers together and map the fix. Spots are limited each month.</p>
+        <div class="actions">
+          <span class="addr">cody@lucidlifeco.com</span>
+          <a class="btn" href="mailto:cody@lucidlifeco.com?subject=Operator%20Review">Book an Operator Review</a>
+          <a class="btn btn-ghost" href="https://www.linkedin.com/in/codycode/" target="_blank" rel="noopener">Message on LinkedIn</a>
+        </div>
+      </section>
+    </div>
+  </section>
+</div>
+</main>
+
+<footer><div class="wrap" style="padding-block:0">Lucid Life Co · Clarity for your business and your life · Wilmington, NC. Scores are a starting point for a conversation, not a financial audit.</div></footer>
+
+<script>
+// Kit form that receives scorecard sign-ups. Replace with the Profit Chain form ID once it exists in Kit.
+var KIT_FORM_ID = "9271420";
+
+var LINKS = [
+  {key:'attract', name:'Attract', blurb:'How customers find you and why they pick you.',
+   qs:['Do you know where your last 10 customers came from?',
+       'Do you have at least one source of new customers you control, beyond referrals and word of mouth?',
+       'Could a stranger say in one sentence why someone should choose you over a competitor?',
+       'Do you know roughly what it costs you to win a new customer?'],
+   title:'Attract: your growth runs on luck',
+   diag:'New business shows up when it shows up. Without a clear reason to choose you and a source you control, every slow month feels like a mystery.',
+   fixes:['Ask your last 10 customers how they found you and why they chose you. Write down their exact words.',
+          'Turn those words into one sentence about why people choose you. Put it at the top of your website, your quotes and your email signature.',
+          'Pick one lead source you control (a monthly note to past customers, a referral partner, a local event) and commit to it for 90 days.']},
+  {key:'convert', name:'Convert', blurb:'How inquiries become paying customers.',
+   qs:['Does every new inquiry get a response within one business day?',
+       'Do you follow up at least three times with people who don’t buy right away?',
+       'Do you know your close rate, meaning how many inquiries become customers?',
+       'Do you present your offer and price the same way every time instead of improvising?'],
+   title:'Convert: you’re paying for leads you don’t close',
+   diag:'Interested people are slipping away between the first conversation and the sale. Most deals are lost to slow replies and no follow-up, not to competitors.',
+   fixes:['Set a same-day reply rule and write one template you can send in under two minutes.',
+          'Build a three-touch follow-up: day 1, day 4 and day 10 after the first conversation.',
+          'Track every inquiry for 30 days in a simple sheet: date, source, outcome. Your real close rate will be right there.']},
+  {key:'deliver', name:'Deliver', blurb:'How efficiently you do the work, and at what margin.',
+   qs:['Do you know your gross margin on your top three products or services?',
+       'Have you raised prices in the last 12 months?',
+       'Is the way you deliver your main service written down so someone else could follow it?',
+       'Do you know which customers or jobs make you the least money?'],
+   title:'Deliver: busy is not the same as profitable',
+   diag:'Revenue is the scoreboard, margin is the game. If you don’t know what each offer actually earns, you may be working hardest on the work that pays least.',
+   fixes:['Calculate gross margin on your top three offers: price minus materials, labor and subcontractors.',
+          'Rank last year’s customers by profit, not revenue, and look hard at the bottom 20%.',
+          'Raise the price of your most requested offer by 5–10% for new customers and watch what happens.']},
+  {key:'collect', name:'Collect', blurb:'How reliably and quickly cash arrives.',
+   qs:['Do you collect a deposit or payment before or at the time of delivery for most work?',
+       'Do you send invoices within 24 hours of finishing the work?',
+       'Is less than 10% of what customers owe you more than 30 days overdue?',
+       'Do you look at money in and money out at least once a week?'],
+   title:'Collect: you’ve earned money you don’t have yet',
+   diag:'Profit on paper doesn’t pay payroll. Slow invoicing and loose payment terms turn good months into cash crunches.',
+   fixes:['Require a deposit on all new work starting this week.',
+          'Invoice the same day the work is done, and turn on automatic payment reminders.',
+          'Hold a 15-minute cash review every Monday: what came in, what went out, what’s owed.']},
+  {key:'keep', name:'Keep', blurb:'How often customers return, refer and stay happy.',
+   qs:['Do you contact past customers who haven’t bought in 90 days or more?',
+       'Is asking happy customers for a referral or review a standard step after every job?',
+       'Do you have a regular way to measure customer satisfaction, such as a short survey or check-in call?',
+       'Do you offer something customers can buy again or subscribe to?'],
+   title:'Keep: you win customers, then let them go',
+   diag:'Your cheapest new revenue is sitting in your customer list. Past customers already trust you, and most businesses never ask them back.',
+   fixes:['List every customer who hasn’t bought in 90 days and contact them this week with a real reason to come back.',
+          'Add a referral or review request as a fixed step at the end of every job.',
+          'Call your five best customers and ask one question: what would make you buy more from us?']}
+];
+var OPTS=[['2','Yes'],['1','Sometimes'],['0','No']];
+var answers={};
+var STORE='pcs-answers-v1';
+try{Object.assign(answers, JSON.parse(localStorage.getItem(STORE)||'{}'))}catch(e){}
+
+var groupsEl=document.getElementById('groups'), n=0;
+LINKS.forEach(function(L){
+  var g=document.createElement('div');g.className='group';
+  var head=document.createElement('div');head.className='group-head';
+  var h=document.createElement('h3');h.textContent=L.name;
+  var p=document.createElement('p');p.textContent=L.blurb;
+  head.append(h,p);g.append(head);
+  L.qs.forEach(function(q,i){
+    n++;var id=L.key+'-'+i;
+    var row=document.createElement('div');row.className='q';row.setAttribute('role','radiogroup');row.setAttribute('aria-labelledby',id+'-t');
+    var t=document.createElement('p');t.className='qt';t.id=id+'-t';
+    var num=document.createElement('span');num.className='num';num.textContent=String(n).padStart(2,'0');
+    t.append(num,document.createTextNode(q));
+    var seg=document.createElement('div');seg.className='seg';
+    OPTS.forEach(function(o){
+      var inp=document.createElement('input');inp.type='radio';inp.name=id;inp.id=id+'-'+o[0];inp.value=o[0];
+      if(answers[id]===o[0])inp.checked=true;
+      inp.addEventListener('change',function(){answers[id]=o[0];save();update()});
+      var lb=document.createElement('label');lb.htmlFor=inp.id;lb.textContent=o[1];
+      seg.append(inp,lb);
+    });
+    row.append(t,seg);g.append(row);
+  });
+  groupsEl.append(g);
+});
+function save(){try{localStorage.setItem(STORE,JSON.stringify(answers))}catch(e){}}
+
+var see=document.getElementById('see'),prog=document.getElementById('progress');
+function count(){return Object.keys(answers).length}
+function update(){var c=count();see.disabled=c<20;prog.textContent=c<20?(c+' of 20 answered'):'All 20 answered'}
+
+var money=function(v){return '$'+Math.round(v).toLocaleString('en-US')};
+var val=function(id){return Math.max(0,parseFloat(document.getElementById(id).value)||0)};
+function calc(){
+  var leads=val('n-leads'),close=Math.min(100,val('n-close'))/100,ticket=val('n-ticket'),freq=val('n-freq'),m=Math.min(100,val('n-margin'))/100;
+  var rev=leads*12*close*ticket*freq, gp=rev*m;
+  var gp2=leads*1.1*12*Math.min(1,close*1.1)*ticket*1.1*freq*1.1*Math.min(1,m*1.1);
+  document.getElementById('o-rev').textContent=money(rev);
+  document.getElementById('o-gp').textContent=money(gp);
+  document.getElementById('o-gp2').textContent=money(gp2);
+  document.getElementById('o-gap').textContent=money(gp2-gp);
+  return {gp:gp,gp2:gp2};
+}
+['n-leads','n-close','n-ticket','n-freq','n-margin'].forEach(function(id){document.getElementById(id).addEventListener('input',calc)});
+
+function band(s){return s>=80?['Strong','var(--good)']:s>=50?['Gaps','var(--warn)']:['Leaking','var(--bad)']}
+
+function sendToKit(fields){
+  try{
+    var name='kit_'+Date.now();
+    var ifr=document.createElement('iframe');ifr.name=name;ifr.style.display='none';document.body.appendChild(ifr);
+    var f=document.createElement('form');f.method='POST';f.action='https://app.convertkit.com/forms/'+KIT_FORM_ID+'/subscriptions';f.target=name;f.style.display='none';
+    Object.keys(fields).forEach(function(k){var i=document.createElement('input');i.type='hidden';i.name=k;i.value=fields[k];f.appendChild(i)});
+    document.body.appendChild(f);f.submit();
+    setTimeout(function(){f.remove();ifr.remove()},6000);
+  }catch(e){}
+}
+
+document.getElementById('lead').addEventListener('submit',function(ev){
+  ev.preventDefault();
+  var err=document.getElementById('err');
+  var fname=document.getElementById('f-name').value.trim();
+  var email=document.getElementById('f-email').value.trim();
+  var biz=document.getElementById('f-biz').value.trim();
+  if(count()<20){err.textContent='Answer all 20 questions first.';err.hidden=false;return}
+  if(!fname||!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)){err.textContent='Enter your first name and a valid email address.';err.hidden=false;return}
+  err.hidden=true;
+
+  var scores=LINKS.map(function(L){var t=0;L.qs.forEach(function(_,i){t+=+(answers[L.key+'-'+i]||0)});return {L:L,s:Math.round(t/8*100)}});
+  var total=Math.round(scores.reduce(function(a,b){return a+b.s},0)/5);
+  var weakest=scores.reduce(function(a,b){return b.s<a.s?b:a});
+  var r=calc();
+
+  document.getElementById('r-total').firstChild.nodeValue=total;
+  document.getElementById('r-summary').textContent=total>=80?'Your chain is strong. The gains now come from sharpening your weakest link.':total>=50?'Your chain holds, but it has gaps that are costing you profit every month.':'Your chain is leaking in several places. The fixes are simple, and they compound.';
+  var bars=document.getElementById('r-bars');bars.textContent='';
+  scores.forEach(function(x){
+    var b=band(x.s);
+    var row=document.createElement('div');row.className='bar';
+    var nm=document.createElement('span');nm.textContent=x.L.name;
+    var tr=document.createElement('div');tr.className='track';tr.setAttribute('role','img');tr.setAttribute('aria-label',x.L.name+': '+x.s+' out of 100');
+    var f=document.createElement('div');f.className='fill';f.style.background=b[1];tr.append(f);
+    var tg=document.createElement('span');tg.className='tag';tg.style.color=b[1];tg.textContent=x.s+' · '+b[0];
+    row.append(nm,tr,tg);bars.append(row);
+    requestAnimationFrame(function(){requestAnimationFrame(function(){f.style.width=x.s+'%'})});
+  });
+  var W=weakest.L;
+  document.getElementById('w-title').textContent=W.title;
+  document.getElementById('w-diag').textContent=W.diag;
+  var ol=document.getElementById('w-fixes');ol.textContent='';
+  W.fixes.forEach(function(x){var li=document.createElement('li');li.textContent=x;ol.append(li)});
+
+  var fields={email_address:email,first_name:fname,'fields[business_name]':biz,'fields[pc_score]':String(total),'fields[pc_weakest_link]':W.name,'fields[pc_profit_gap]':String(Math.round(r.gp2-r.gp))};
+  scores.forEach(function(x){fields['fields[pc_'+x.L.key+']']=String(x.s)});
+  sendToKit(fields);
+
+  var res=document.getElementById('results');res.hidden=false;
+  res.scrollIntoView({behavior:matchMedia('(prefers-reduced-motion: reduce)').matches?'auto':'smooth',block:'start'});
+});
+
+calc();update();
+</script>
+</body>
+</html>
