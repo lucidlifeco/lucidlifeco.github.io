@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Cape Fear Revenue Recovery Briefing · Lucid Life Co</title>
+<meta name="description" content="7 days. 7 daily emails. 7 immediate profit leaks fixed. Free for business owners in Wilmington and the Cape Fear region.">
+<meta property="og:title" content="The Cape Fear Revenue Recovery Briefing">
+<meta property="og:description" content="7 days. 7 daily emails. 7 immediate profit leaks fixed. No ads. No new customers. No cost.">
+<meta property="og:image" content="https://lucidlifeco.com/cody-martin.jpg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,500&family=Josefin+Sans:wght@300;400;600&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+/* Layout: two-column hero with the opt-in form beside the promise; the seven leaks below as a numbered week */
+:root{
+  --obsidian:#0C0C0E; --obsidian-2:#131316; --obsidian-3:#1A1A1E;
+  --gold:#C4A052; --gold-soft:#D4B56A; --gold-line:rgba(196,160,82,.35);
+  --parchment:#EDE9E3; --parchment-dim:#B7B1A8; --rule:rgba(237,233,227,.12); --bad:#E07A66;
+  --display:'Cormorant Garamond', Georgia, 'Times New Roman', serif;
+  --body:'Josefin Sans', 'Helvetica Neue', Arial, sans-serif;
+  --mono:'DM Mono', ui-monospace, Menlo, Consolas, monospace;
+  color-scheme:dark;
+}
+*,*::before,*::after{box-sizing:border-box}
+body{margin:0;background:var(--obsidian);color:var(--parchment);font-family:var(--body);font-weight:300;font-size:17px;line-height:1.6}
+img{max-width:100%;display:block}
+a{color:var(--gold-soft)}
+h1,h2,h3{font-family:var(--display);font-weight:600;line-height:1.08;margin:0;text-wrap:balance}
+p{margin:0}
+.wrap{max-width:1080px;margin:0 auto;padding-left:max(20px,env(safe-area-inset-left,0px));padding-right:max(20px,env(safe-area-inset-right,0px))}
+.eyebrow{font-family:var(--mono);font-size:12px;letter-spacing:.16em;text-transform:uppercase;color:var(--gold)}
+header.top{border-bottom:1px solid var(--rule)}
+header.top .wrap{display:flex;align-items:center;justify-content:space-between;height:64px}
+.brand{font-family:var(--display);font-size:24px;font-weight:600;color:var(--parchment);text-decoration:none}
+.brand span{color:var(--gold)}
+header.top a.back{color:var(--parchment-dim);font-size:14px;text-decoration:none;letter-spacing:.06em;text-transform:uppercase}
+section{padding-block:72px;border-top:1px solid var(--rule)}
+.hero{border-top:0;padding-block:64px 72px}
+.hero .wrap{display:grid;grid-template-columns:minmax(0,1.15fr) minmax(0,.85fr);gap:56px;align-items:start}
+@media (max-width:900px){.hero .wrap{grid-template-columns:1fr;gap:36px}}
+.pitch{display:flex;flex-direction:column;gap:22px}
+.pitch h1{font-size:clamp(42px,6.4vw,72px);letter-spacing:-.01em}
+.sub{font-family:var(--mono);font-size:15px;color:var(--gold);letter-spacing:.04em}
+.lede{font-size:clamp(17px,2vw,19px);color:var(--parchment-dim);max-width:56ch}
+.nocost{font-family:var(--display);font-style:italic;font-size:26px;color:var(--parchment)}
+form.optin{background:var(--obsidian-2);border:1px solid var(--gold-line);border-radius:6px;padding:28px;display:flex;flex-direction:column;gap:16px}
+form.optin h2{font-size:30px}
+.field{display:flex;flex-direction:column;gap:6px}
+.field label{font-size:14px;color:var(--parchment-dim)}
+.field input{font:400 17px var(--body);padding:13px 12px 11px;border:1px solid var(--rule);border-radius:4px;background:var(--obsidian);color:var(--parchment);width:100%}
+.field input:focus-visible{outline:2px solid var(--gold);outline-offset:1px}
+.btn{display:inline-flex;align-items:center;justify-content:center;font:600 16px/1 var(--body);padding:17px 26px 15px;border-radius:4px;background:var(--gold);color:var(--obsidian);border:0;cursor:pointer;min-height:50px;text-decoration:none}
+.btn:hover{background:var(--gold-soft)}
+.btn:focus-visible{outline:2px solid var(--gold);outline-offset:3px}
+.btn:disabled{opacity:.5;cursor:wait}
+.fine{font-size:13px;color:var(--parchment-dim)}
+.err{color:var(--bad);font-size:15px}
+.week{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;border-top:1px solid var(--rule)}
+.week li{display:grid;grid-template-columns:90px minmax(0,1fr) minmax(0,140px);gap:20px;align-items:baseline;padding:18px 0;border-bottom:1px solid var(--rule)}
+.week .d{font-family:var(--mono);font-size:13px;color:var(--gold);letter-spacing:.08em}
+.week h3{font-size:24px}
+.week p{color:var(--parchment-dim);font-size:15px;margin-top:4px}
+.week .l{font-family:var(--mono);font-size:12px;letter-spacing:.1em;text-transform:uppercase;color:var(--parchment-dim);text-align:right}
+@media (max-width:640px){.week li{grid-template-columns:64px minmax(0,1fr)}.week .l{grid-column:2;text-align:left}}
+.split{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.1fr);gap:40px;align-items:start}
+@media (max-width:820px){.split{grid-template-columns:1fr;gap:20px}}
+.split h2{font-size:clamp(32px,5vw,46px)}
+.stack{display:flex;flex-direction:column;gap:28px}
+.about{display:grid;grid-template-columns:minmax(0,200px) minmax(0,1fr);gap:36px;align-items:center}
+@media (max-width:640px){.about{grid-template-columns:1fr}.about img{max-width:180px}}
+.about img{border-radius:6px;aspect-ratio:4/5;object-fit:cover;width:100%}
+.about p{color:var(--parchment-dim);max-width:62ch}
+footer{border-top:1px solid var(--rule);padding-block:32px;color:var(--parchment-dim);font-size:14px}
+</style>
+</head>
+<body>
+<header class="top">
+  <div class="wrap">
+    <a class="brand" href="/">Lucid Life <span>Co</span></a>
+    <a class="back" href="/">← Home</a>
+  </div>
+</header>
+
+<main>
+  <section class="hero">
+    <div class="wrap">
+      <div class="pitch">
+        <div class="eyebrow">Free for Cape Fear business owners</div>
+        <h1>The Cape Fear Revenue Recovery Briefing</h1>
+        <p class="sub">7 Days. 7 Daily Emails. 7 Immediate Profit Leaks Fixed.</p>
+        <p class="lede">Most small businesses are leaking money they've already earned. Customers who stopped calling. Quotes that went quiet. Invoices nobody chased. Prices set years ago. For the next seven days, I'll send you one leak each morning, a fix you can finish in 30 minutes, and the exact words to use.</p>
+        <p class="nocost">No ads. No new customers. No cost.</p>
+      </div>
+
+      <form class="optin" id="optin" novalidate>
+        <h2>Send me Day 1</h2>
+        <div class="field"><label for="f-name">First name</label><input id="f-name" name="first_name" autocomplete="given-name" required></div>
+        <div class="field"><label for="f-email">Email</label><input id="f-email" name="email_address" type="email" autocomplete="email" required></div>
+        <div class="field"><label for="f-biz">Business name</label><input id="f-biz" name="business" autocomplete="organization"></div>
+        <div class="field"><label for="f-phone">Phone (optional)</label><input id="f-phone" name="phone" type="tel" autocomplete="tel"></div>
+        <button class="btn" id="go" type="submit">Send me Day 1</button>
+        <p class="err" id="err" hidden></p>
+        <p class="fine">One email a day for seven days, starting with a short prep email right now. Unsubscribe anytime.</p>
+      </form>
+    </div>
+  </section>
+
+  <section aria-labelledby="w-h">
+    <div class="wrap stack">
+      <div class="split">
+        <div>
+          <div class="eyebrow">Your week</div>
+          <h2 id="w-h">Seven leaks. Thirty minutes a day.</h2>
+        </div>
+        <p style="color:var(--parchment-dim)">Each email names one leak almost every small business has, gives you a fix you can finish in half an hour, and hands you the scripts word for word. You log what you recover on a one-page tracker. On Day 7, we add it up.</p>
+      </div>
+      <ol class="week">
+        <li><span class="d">DAY 1</span><div><h3>Bring back customers who quietly stopped buying</h3><p>The two questions that reopen the conversation without sounding like a sales call.</p></div><span class="l">Keep</span></li>
+        <li><span class="d">DAY 2</span><div><h3>Close the quotes you'd given up on</h3><p>Three messages, and the one question that brings dead quotes back to life.</p></div><span class="l">Convert</span></li>
+        <li><span class="d">DAY 3</span><div><h3>Stop losing inquiries to whoever answers first</h3><p>A same-day reply rule and replies that sound like the expert, not a vendor.</p></div><span class="l">Convert</span></li>
+        <li><span class="d">DAY 4</span><div><h3>Collect money you've already earned</h3><p>Calm, clear messages for overdue invoices, and a deposit policy going forward.</p></div><span class="l">Collect</span></li>
+        <li><span class="d">DAY 5</span><div><h3>Raise your most popular price without losing good customers</h3><p>The math, and what to say when someone asks why.</p></div><span class="l">Deliver</span></li>
+        <li><span class="d">DAY 6</span><div><h3>Add the easy yes you forget to offer</h3><p>The natural next thing your customers need, raised as a question, not a pitch.</p></div><span class="l">Deliver</span></li>
+        <li><span class="d">DAY 7</span><div><h3>Get referrals and reviews from customers who already love you</h3><p>Then we count what you recovered.</p></div><span class="l">Attract</span></li>
+      </ol>
+    </div>
+  </section>
+
+  <section aria-labelledby="a-h">
+    <div class="wrap about">
+      <img src="/cody-martin.jpg" alt="Cody Martin" width="200" height="250" loading="lazy">
+      <div style="display:flex;flex-direction:column;gap:14px">
+        <div class="eyebrow">Who's sending these</div>
+        <h2 id="a-h" style="font-size:clamp(30px,4.4vw,40px)">I'm Cody Martin.</h2>
+        <p>I've spent 25 years on the revenue side of businesses, from door-to-door sales at 17 to co-founding a company we grew from $0 to $2M. Now I work as a fractional revenue leader for owners in Wilmington, Leland, Southport and across the Cape Fear region, helping them find the profit already in their business.</p>
+        <div><a class="btn" href="#optin">Send me Day 1</a></div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer><div class="wrap">Lucid Life Co · Clarity for your business and your life · Wilmington, NC · <a href="/">lucidlifeco.com</a></div></footer>
+
+<script>
+// Kit form for the Briefing. Create the "Revenue Recovery Briefing" form in Kit and paste its ID here.
+var KIT_BRIEFING_FORM_ID = "REPLACE_WITH_KIT_FORM_ID";
+
+document.getElementById('optin').addEventListener('submit', function(ev){
+  ev.preventDefault();
+  var err = document.getElementById('err'), go = document.getElementById('go');
+  var fname = document.getElementById('f-name').value.trim();
+  var email = document.getElementById('f-email').value.trim();
+  var biz = document.getElementById('f-biz').value.trim();
+  var phone = document.getElementById('f-phone').value.trim();
+  if(!fname || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)){
+    err.textContent = 'Enter your first name and a valid email address.'; err.hidden = false; return;
+  }
+  err.hidden = true; go.disabled = true; go.textContent = 'Sending…';
+  var done = function(){ location.href = '/briefing-thanks.html'; };
+  if (KIT_BRIEFING_FORM_ID.indexOf('REPLACE') === 0) { done(); return; }
+  try{
+    var name = 'kit_' + Date.now();
+    var ifr = document.createElement('iframe'); ifr.name = name; ifr.style.display = 'none'; document.body.appendChild(ifr);
+    var f = document.createElement('form'); f.method = 'POST'; f.target = name; f.style.display = 'none';
+    f.action = 'https://app.convertkit.com/forms/' + KIT_BRIEFING_FORM_ID + '/subscriptions';
+    var fields = {email_address: email, first_name: fname, 'fields[business_name]': biz, 'fields[phone]': phone};
+    Object.keys(fields).forEach(function(k){ var i = document.createElement('input'); i.type = 'hidden'; i.name = k; i.value = fields[k]; f.appendChild(i); });
+    document.body.appendChild(f);
+    ifr.addEventListener('load', done);
+    f.submit();
+    setTimeout(done, 2500);
+  }catch(e){ done(); }
+});
+</script>
+</body>
+</html>

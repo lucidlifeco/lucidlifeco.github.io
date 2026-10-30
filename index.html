@@ -3,10 +3,10 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Lucid Life Co · Clarity for Small Business</title>
-<meta name="description" content="Lucid Life Co helps small business owners in Wilmington and the Cape Fear region find the profit already in their business. Take the free Profit Chain Scorecard.">
+<title>Lucid Life Co · Fractional Revenue Leadership</title>
+<meta name="description" content="Fractional revenue leadership for small businesses in Wilmington and the Cape Fear region. Fix the profit leaks before you spend another dollar on marketing. Start with the free Revenue Recovery Briefing.">
 <meta property="og:title" content="Find the profit already in your business · Lucid Life Co">
-<meta property="og:description" content="A free 10-minute scorecard for small business owners. Find your weakest link and three fixes for the next 30 days.">
+<meta property="og:description" content="7 days. 7 daily emails. 7 profit leaks fixed. Free for Cape Fear business owners.">
 <meta property="og:image" content="https://lucidlifeco.com/cody-martin.jpg">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,500&family=Josefin+Sans:wght@300;400;600&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
@@ -85,6 +85,9 @@ nav a.navcta{color:var(--obsidian);background:var(--gold);padding:10px 16px 8px;
 
 /* how it works */
 .steps{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:20px}
+.steps-4{grid-template-columns:repeat(4,minmax(0,1fr))}
+@media (max-width:1040px){.steps-4{grid-template-columns:repeat(2,minmax(0,1fr))}}
+.ctas-row{display:flex;flex-wrap:wrap;gap:14px}
 @media (max-width:820px){.steps{grid-template-columns:1fr}}
 .steps li{background:var(--obsidian-2);border:1px solid var(--rule);border-radius:6px;padding:26px;display:flex;flex-direction:column;gap:12px}
 .steps .n{font-family:var(--mono);font-size:13px;color:var(--gold)}
@@ -129,9 +132,9 @@ footer a{color:var(--parchment-dim)}
     <nav aria-label="Main">
       <ul>
         <li class="hide-sm"><a href="#how">How it works</a></li>
+        <li class="hide-sm"><a href="/scorecard.html">Scorecard</a></li>
         <li class="hide-sm"><a href="#about">About</a></li>
-        <li class="hide-sm"><a href="#workshop">Workshop</a></li>
-        <li><a class="navcta" href="/scorecard.html">Free scorecard</a></li>
+        <li><a class="navcta" href="/briefing.html">Free Briefing</a></li>
       </ul>
     </nav>
   </div>
@@ -140,14 +143,14 @@ footer a{color:var(--parchment-dim)}
 <main>
   <section class="hero">
     <div class="wrap">
-      <div class="eyebrow">Clarity for your business and your life · Wilmington, NC</div>
+      <div class="eyebrow">Fractional revenue leadership · Wilmington, NC</div>
       <h1>Find the profit <em>already</em> in your business.</h1>
-      <p class="lede">Most owners aren't short on effort. They're short on visibility. Lucid Life Co helps founders, sole proprietors and small teams across the Cape Fear region see exactly where their business leaks money, and fix it.</p>
+      <p class="lede">Before you spend another dollar on marketing, fix the leaks. Lucid Life Co helps founders, sole proprietors and small teams across the Cape Fear region find the money already in their customers, quotes, invoices and prices, then build the system that keeps it coming.</p>
       <div class="ctas">
-        <a class="btn" href="/scorecard.html">Take the free Profit Chain Scorecard →</a>
-        <a class="btn btn-ghost" href="#how">How it works</a>
+        <a class="btn" href="/briefing.html">Get the free Revenue Recovery Briefing →</a>
+        <a class="btn btn-ghost" href="/scorecard.html">Take the 10-minute scorecard</a>
       </div>
-      <p class="fine">20 questions · about 10 minutes · free</p>
+      <p class="fine">7 days · 7 daily emails · 7 profit leaks fixed · free</p>
     </div>
   </section>
 
@@ -171,6 +174,26 @@ footer a{color:var(--parchment-dim)}
         <li><span class="k">05</span><h3>Keep</h3><p>How often customers return, refer and stay happy.</p></li>
       </ol>
       <div class="math"><strong>+61%</strong><span>profit from improving five numbers by just 10% each · 1.1 × 1.1 × 1.1 × 1.1 × 1.1</span></div>
+    </div>
+  </section>
+
+  <section aria-labelledby="b-h">
+    <div class="wrap" style="display:flex;flex-direction:column;gap:40px">
+      <div class="split">
+        <div>
+          <div class="eyebrow">How we work</div>
+          <h2 id="b-h">Fix the bucket before you pour in more water.</h2>
+        </div>
+        <div class="body">
+          <p>When revenue feels flat, most owners reach for more marketing. But in most small businesses, new leads wait a day for a reply, quotes get one message and then silence, and past customers never hear from you again.</p>
+          <p><strong>More leads into a leaky business just means paying for more leaks.</strong> So the work happens in this order.</p>
+        </div>
+      </div>
+      <ol class="steps steps-3">
+        <li><span class="n">First</span><h3>Fix the leaks</h3><p>Speed to reply, open quotes, pricing, collections, repeat business and referrals. Most owners find real money here without spending anything.</p></li>
+        <li><span class="n">Then</span><h3>Build the system</h3><p>Turn the fixes into routines that run without anyone remembering them: scripts, rhythms, a simple pipeline and clear owners.</p></li>
+        <li><span class="n">Then</span><h3>Turn up the marketing</h3><p>Once every lead is worth more, marketing earns more. Content, email and ads become an investment instead of a gamble.</p></li>
+      </ol>
     </div>
   </section>
 
@@ -205,28 +228,50 @@ footer a{color:var(--parchment-dim)}
       <div>
         <div class="eyebrow">How it works</div>
         <h2 id="how-h" style="font-size:clamp(34px,5vw,52px);margin-top:12px">Start free. Go deeper only if it's useful.</h2>
+        <p style="color:var(--parchment-dim);max-width:60ch;margin-top:14px">Small businesses can't afford a full-time revenue executive. They can afford a fractional one: someone who owns the number and makes operations, sales, marketing and delivery work together.</p>
       </div>
-      <ol class="steps">
+      <ol class="steps steps-4">
         <li>
           <span class="n">Step 1</span>
-          <h3>Score your chain</h3>
-          <p>Answer 20 questions about your business. Get your score on each link, your weakest link, and three fixes you can start this week.</p>
-          <span class="meta">Free · 10 minutes</span>
+          <h3>Fix seven leaks</h3>
+          <p>The Revenue Recovery Briefing: one profit leak a day for seven days, a 30-minute fix for each, and the exact words to use. Or take the 10-minute scorecard to find your weakest link.</p>
+          <span class="meta">Free · Starts today</span>
         </li>
         <li>
           <span class="n">Step 2</span>
-          <h3>Join the workshop</h3>
-          <p>A 90-minute, in-person session for local owners. Bring your scorecard, work through each link, and leave with a 30-day action plan.</p>
-          <span class="meta">Free · In person · Cape Fear region</span>
+          <h3>Operator Review</h3>
+          <p>A focused 45-minute conversation about your business. We look at your numbers and talk through where the biggest opportunity is, just to see whether I could even help.</p>
+          <span class="meta">Free · Limited spots each month</span>
         </li>
         <li>
           <span class="n">Step 3</span>
-          <h3>Operator Review</h3>
-          <p>A focused 45-minute conversation about your business specifically. We look at your numbers together and map the fix for your weakest link.</p>
-          <span class="meta">Free · Limited spots each month</span>
+          <h3>Profit Chain Assessment</h3>
+          <p>Two to three weeks. A dollar value on every leak in your business, your weakest link and what it costs you, and a 90-day plan in order.</p>
+          <span class="meta">Paid · Credited toward working together</span>
+        </li>
+        <li>
+          <span class="n">Step 4</span>
+          <h3>Fractional revenue leader</h3>
+          <p>I build and run the revenue system with you: sales, operations and follow-through, with marketing added once the leaks are fixed.</p>
+          <span class="meta">Monthly · 90-day start</span>
         </li>
       </ol>
-      <div><a class="btn" href="/scorecard.html">Start with the scorecard →</a></div>
+      <div class="ctas-row"><a class="btn" href="/briefing.html">Start the free Briefing →</a><a class="btn btn-ghost" href="mailto:cody@lucidlifeco.com?subject=Operator%20Review">Request an Operator Review</a></div>
+    </div>
+  </section>
+
+  <section id="work" aria-labelledby="w-h">
+    <div class="wrap" style="display:flex;flex-direction:column;gap:40px">
+      <div>
+        <div class="eyebrow">Ways to work together</div>
+        <h2 id="w-h" style="font-size:clamp(34px,5vw,52px);margin-top:12px">Three levels, one goal: a business that makes money on purpose.</h2>
+      </div>
+      <div class="qs">
+        <div class="qcard"><div class="links">Build</div><h3>I install the system</h3><p>Scripts, follow-up rhythms, pricing, collections and the automations behind them. Your team runs it. Best when you have people and need a system.</p></div>
+        <div class="qcard"><div class="links">Lead</div><h3>I run it with you</h3><p>Everything in Build, plus I run the weekly revenue meeting, coach whoever sells and own the scorecard. Best when you sell everything yourself and you're stretched.</p></div>
+        <div class="qcard"><div class="links">Partner</div><h3>I help you grow it</h3><p>Everything in Lead, plus the content and marketing engine, automated. Best when the leaks are fixed and you're ready to grow.</p></div>
+      </div>
+      <p style="color:var(--parchment-dim);max-width:62ch">Every engagement starts with a Profit Chain Assessment, so the plan is built on your numbers, not guesses. Pricing depends on scope and is covered in the Operator Review.</p>
     </div>
   </section>
 
@@ -242,7 +287,7 @@ footer a{color:var(--parchment-dim)}
           <li><span class="fig">12% → 20%</span><span>average margin lift at a wireless distributor, from pricing around what customers valued</span></li>
           <li><span class="fig">$0 → $2M</span><span>revenue as co-founder of a managed services firm, with $300K in recurring revenue</span></li>
         </ul>
-        <p>Now I work with owners in Wilmington, Leland, Southport and across Brunswick and New Hanover counties. I look at your business the way an operator would, find the weakest link between first lead and cash collected, and help you close it.</p>
+        <p>Now I work as a fractional revenue leader for owners in Wilmington, Leland, Southport and across Brunswick and New Hanover counties. I look at your business the way an operator would, find the weakest link between first lead and cash collected, and help you close it.</p>
         <p class="life">When you can see your numbers clearly, the business stops following you home. That's the clarity in Lucid Life.</p>
       </div>
     </div>
@@ -258,8 +303,8 @@ footer a{color:var(--parchment-dim)}
         <li>Why you: a one-sentence promise that ends price shopping</li>
         <li>Pipeline by design: follow-up, referrals and repeat business</li>
       </ul>
-      <p><strong style="color:var(--parchment);font-weight:400">First date and location coming soon.</strong> Take the scorecard and you'll be the first to hear.</p>
-      <div><a class="btn" href="/scorecard.html">Take the scorecard →</a></div>
+      <p><strong style="color:var(--parchment);font-weight:400">First date and location coming soon.</strong> Start the Briefing and you'll be the first to hear.</p>
+      <div><a class="btn" href="/briefing.html">Start the free Briefing →</a></div>
     </div>
   </section>
 
@@ -280,7 +325,7 @@ footer a{color:var(--parchment-dim)}
 <footer>
   <div class="wrap">
     <span>Lucid Life Co · Clarity for your business and your life · Wilmington, NC</span>
-    <span><a href="/scorecard.html">Profit Chain Scorecard</a></span>
+    <span><a href="/briefing.html">Revenue Recovery Briefing</a> · <a href="/scorecard.html">Profit Chain Scorecard</a></span>
   </div>
 </footer>
 

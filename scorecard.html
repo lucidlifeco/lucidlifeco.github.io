@@ -177,11 +177,12 @@ footer{border-top:1px solid var(--rule);padding-block:32px;color:var(--parchment
     <div class="next">
       <section>
         <h3>Want help fixing it?</h3>
-        <p class="muted" style="font-size:17px">Reply to the results email or reach out directly to book a free 45-minute Operator Review. We'll look at your numbers together and map the fix. Spots are limited each month.</p>
+        <p class="muted" style="font-size:17px">Start with the free Revenue Recovery Briefing: seven days, one profit leak a day, and the exact words to fix it. Or, if you'd like to see whether I could help with your weakest link directly, request a free 45-minute Operator Review. Spots are limited each month.</p>
+        <div class="actions"><a class="btn" href="/briefing.html">Start the free Briefing</a></div>
         <div class="actions">
           <span class="addr">cody@lucidlifeco.com</span>
-          <a class="btn" href="mailto:cody@lucidlifeco.com?subject=Operator%20Review">Book an Operator Review</a>
-          <a class="btn btn-ghost" href="https://www.linkedin.com/in/codycode/" target="_blank" rel="noopener">Message on LinkedIn</a>
+          <a class="btn btn-ghost" href="mailto:cody@lucidlifeco.com?subject=Operator%20Review">Request an Operator Review</a>
+          <a class="btn btn-ghost" href="https://www.linkedin.com/in/codycode/" target="_blank" rel="noopener">LinkedIn</a>
         </div>
       </section>
     </div>
@@ -192,8 +193,8 @@ footer{border-top:1px solid var(--rule);padding-block:32px;color:var(--parchment
 <footer><div class="wrap" style="padding-block:0">Lucid Life Co · Clarity for your business and your life · Wilmington, NC. Scores are a starting point for a conversation, not a financial audit.</div></footer>
 
 <script>
-// Kit form that receives scorecard sign-ups. Replace with the Profit Chain form ID once it exists in Kit.
-var KIT_FORM_ID = "9271420";
+// Kit form for scorecard sign-ups. Create the "Profit Chain Scorecard" form in Kit and paste its ID here.
+var KIT_FORM_ID = "REPLACE_WITH_KIT_FORM_ID";
 
 var LINKS = [
   {key:'attract', name:'Attract', blurb:'How customers find you and why they pick you.',
@@ -300,6 +301,7 @@ function calc(){
 function band(s){return s>=80?['Strong','var(--good)']:s>=50?['Gaps','var(--warn)']:['Leaking','var(--bad)']}
 
 function sendToKit(fields){
+  if(KIT_FORM_ID.indexOf('REPLACE')===0) return;
   try{
     var name='kit_'+Date.now();
     var ifr=document.createElement('iframe');ifr.name=name;ifr.style.display='none';document.body.appendChild(ifr);
