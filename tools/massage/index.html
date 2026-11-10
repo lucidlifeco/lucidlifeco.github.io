@@ -1,0 +1,496 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="robots" content="noindex, nofollow">
+<style>:root{color-scheme:light;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}body{margin:0;font:14px system-ui,sans-serif}img{max-width:100%}[hidden]{display:none!important}</style>
+<title>The Full Table Kit</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600&family=DM+Mono:wght@400;500&family=Josefin+Sans:wght@400;600&display=swap">
+<style>
+/* Layout concept: a page from the appointment book, with one live answer, the week in hour squares and the trade's own limit drawn beneath it. */
+:root{
+  --bg:#EDE9E3;--surface:#F7F4EF;--ink:#141317;--muted:#5C574D;--rule:#CDC6B8;
+  --gold:#C4A052;--gold-ink:#6F5518;--leak:#9B2C1F;--watch:#7E5300;--ok:#2B6545;
+  --display:"Cormorant Garamond",Georgia,serif;
+  --body:"Josefin Sans","Avenir Next","Segoe UI",sans-serif;
+  --mono:"DM Mono",ui-monospace,Menlo,monospace;
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+  --bg:#0C0C0E;--surface:#17171B;--ink:#EDE9E3;--muted:#A9A397;--rule:#35332F;
+  --gold:#C4A052;--gold-ink:#DABB70;--leak:#EC8A79;--watch:#E0B45E;--ok:#82C7A0;color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#0C0C0E;--surface:#17171B;--ink:#EDE9E3;--muted:#A9A397;--rule:#35332F;
+  --gold:#C4A052;--gold-ink:#DABB70;--leak:#EC8A79;--watch:#E0B45E;--ok:#82C7A0;color-scheme:dark}
+*{box-sizing:border-box}
+body{background:var(--bg);color:var(--ink);font-family:var(--body);font-size:17px;line-height:1.5}
+.wrap{max-width:680px;margin:0 auto;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));padding-block:28px 56px;display:grid;gap:24px}
+.wrap>*{min-width:0}
+h1,h2,h3{font-family:var(--display);font-weight:600;line-height:1.08;margin:0;text-wrap:balance}
+h1{font-size:clamp(2.7rem,11vw,3.7rem);letter-spacing:-.01em}
+h2{font-size:clamp(1.9rem,7vw,2.5rem)}
+h3{font-size:1.5rem}
+p{margin:0}
+.label{font-family:var(--mono);font-size:.74rem;letter-spacing:.09em;text-transform:uppercase;color:var(--gold-ink)}
+.muted{color:var(--muted)}
+.small{font-size:.92rem}
+header{display:grid;gap:10px}
+.private{font-size:.95rem;color:var(--muted)}
+.seg{display:grid;grid-template-columns:repeat(3,1fr);border:1px solid var(--rule)}
+.seg button{all:unset;box-sizing:border-box;text-align:center;padding:13px 4px 10px;font-weight:600;cursor:pointer;color:var(--muted)}
+.seg button+button{border-left:1px solid var(--rule)}
+.seg button[aria-pressed="true"]{background:var(--ink);color:var(--bg)}
+.answer{display:grid;gap:14px;background:var(--surface);border:1px solid var(--gold);padding:20px 18px}
+.answer-top{display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap}
+.tag{font-family:var(--mono);font-size:.7rem;letter-spacing:.06em;text-transform:uppercase;border:1px solid var(--rule);padding:3px 7px 2px;color:var(--muted)}
+.worth{font-family:var(--mono);font-size:1.02rem;color:var(--gold-ink)}
+.book{display:grid;gap:8px}
+.squares{display:grid;grid-template-columns:repeat(10,1fr);gap:3px}
+.sq{height:20px;display:flex;border:1px solid var(--rule);overflow:hidden}
+.sq i{display:block;height:100%}
+.f-b{background:var(--gold)}
+.f-l{background:repeating-linear-gradient(135deg,var(--leak) 0 2px,transparent 2px 5px)}
+.legend{display:flex;flex-wrap:wrap;gap:4px 14px;font-family:var(--mono);font-size:.76rem;color:var(--muted)}
+.legend span{display:inline-flex;align-items:center;gap:6px}
+.key{width:11px;height:11px;border:1px solid var(--rule);display:inline-block}
+.stats{display:grid;grid-template-columns:1fr 1fr;gap:12px;border-top:1px solid var(--rule);padding-top:12px}
+.stat b{display:block;font-family:var(--mono);font-weight:500;font-size:1.35rem;font-variant-numeric:tabular-nums}
+.tabs{display:grid;grid-template-columns:repeat(3,1fr);border-bottom:1px solid var(--rule)}
+.tabs button{all:unset;box-sizing:border-box;text-align:center;padding:10px 2px;cursor:pointer;font-family:var(--mono);font-size:.8rem;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);border-bottom:3px solid transparent}
+.tabs button[aria-selected="true"]{color:var(--ink);border-bottom-color:var(--gold)}
+button:focus-visible,summary:focus-visible,input:focus-visible,textarea:focus-visible,a:focus-visible{outline:2px solid var(--gold-ink);outline-offset:2px}
+.panel{display:grid;gap:22px}
+.panel>*{min-width:0}
+.group{display:grid;gap:12px}
+.field{display:grid;gap:5px}
+.field label,.mini label{font-weight:600;line-height:1.3}
+.hint{font-size:.9rem;color:var(--muted);line-height:1.35}
+input[type=number],input[type=text],textarea{width:100%;font:500 17px/1.3 var(--mono);color:var(--ink);background:var(--surface);border:1px solid var(--rule);border-radius:0;padding:10px}
+input[type=text]{font-family:var(--body);font-weight:600}
+textarea{font-family:var(--body);font-weight:400;resize:vertical}
+.two{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.two>*{min-width:0}
+.svc{display:grid;gap:8px;padding-bottom:14px;border-bottom:1px solid var(--rule)}
+.svc-nums{display:grid;grid-template-columns:repeat(4,1fr);gap:7px}
+.mini{display:grid;gap:3px;min-width:0;align-content:end}
+.mini label{font-family:var(--mono);font-weight:400;font-size:.68rem;letter-spacing:.02em;color:var(--muted);text-transform:uppercase}
+.mini input{padding:9px 6px}
+.svc-foot{display:flex;justify-content:space-between;gap:10px;align-items:center;font-family:var(--mono);font-size:.84rem}
+.link{all:unset;cursor:pointer;color:var(--gold-ink);text-decoration:underline;text-underline-offset:3px;font-size:.92rem}
+.btn{all:unset;box-sizing:border-box;cursor:pointer;background:var(--ink);color:var(--bg);font-weight:600;padding:13px 16px 10px;text-align:center}
+.btn[disabled]{opacity:.45;cursor:default}
+.btn.line{background:transparent;color:var(--ink);border:1px solid var(--ink)}
+details{border-top:1px solid var(--rule)}
+details:last-of-type{border-bottom:1px solid var(--rule)}
+summary{list-style:none;cursor:pointer;display:flex;justify-content:space-between;gap:12px;padding:15px 0 13px;align-items:flex-start}
+summary::-webkit-details-marker{display:none}
+.sum-name{font-family:var(--display);font-weight:600;font-size:1.4rem;line-height:1.12;min-width:0}
+.sum-right{text-align:right;flex:none;display:grid;gap:3px;justify-items:end}
+.sum-val{font-family:var(--mono);font-size:.95rem;font-variant-numeric:tabular-nums}
+.chip{font-family:var(--mono);font-size:.68rem;letter-spacing:.05em;text-transform:uppercase}
+.chip.leak{color:var(--leak)}.chip.watch{color:var(--watch)}.chip.ok{color:var(--ok)}
+.fix{display:grid;gap:14px;padding-bottom:20px}
+.fix>*{min-width:0}
+.first{background:var(--surface);border:1px solid var(--gold);padding:0 16px;margin-bottom:6px}
+.first summary{padding-top:16px}
+ol.steps{margin:0;padding-left:1.35em;display:grid;gap:9px}
+.script{border-left:2px solid var(--gold);padding:2px 0 2px 12px;display:grid;gap:6px}
+.script p{font-family:var(--display);font-size:1.28rem;line-height:1.25}
+.math{font-size:.92rem;color:var(--muted);border-top:1px dashed var(--rule);padding-top:10px}
+.tw{overflow-x:auto}
+table{border-collapse:collapse;width:100%;font-size:.92rem}
+th,td{padding:9px 6px 7px;text-align:right;border-bottom:1px solid var(--rule);vertical-align:top;font-family:var(--mono);font-variant-numeric:tabular-nums;font-weight:400}
+th:first-child,td:first-child{text-align:left;font-family:var(--body);padding-left:0}
+thead th{font-size:.7rem;letter-spacing:.05em;text-transform:uppercase;color:var(--muted)}
+td small,th small{display:block;font-size:.76rem;letter-spacing:0;text-transform:none}
+.up{color:var(--ok)}.down{color:var(--leak)}
+.snap{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
+.snap .btn{font-size:.92rem;padding-inline:4px}
+.check{display:flex;gap:10px;align-items:flex-start}
+.check input{margin-top:5px;flex:none;width:18px;height:18px;accent-color:var(--gold-ink)}
+.sources{display:grid;gap:12px;border-top:1px solid var(--rule);padding-top:20px}
+.sources ul{margin:0;padding-left:1.1em;display:grid;gap:7px;font-size:.93rem}
+a{color:var(--gold-ink);text-underline-offset:3px}
+footer{font-size:.9rem;color:var(--muted);display:grid;gap:5px}
+@media (max-width:370px){.svc-nums{grid-template-columns:1fr 1fr}.two{grid-template-columns:1fr}}
+@media (prefers-reduced-motion:no-preference){.answer h2{transition:opacity .15s}}
+
+.sig{display:grid;gap:7px;border-top:1px solid var(--rule);padding-top:12px}
+.cells{display:grid;grid-template-columns:repeat(10,1fr);gap:3px}
+.cells .sq{height:14px}
+.bar{display:flex;height:16px;border:1px solid var(--rule);overflow:hidden}
+.bar i{display:block;height:100%}
+.track{position:relative;height:16px;border:1px solid var(--rule);overflow:hidden}
+.track i{position:absolute;top:0;bottom:0;display:block}
+.scale{display:flex;justify-content:space-between;font-family:var(--mono);font-size:.72rem;color:var(--muted)}
+</style>
+</head>
+<body>
+
+
+<div class="wrap">
+  <header>
+    <div class="label">Lucid Life Co</div>
+    <h1>The Full Table Kit</h1>
+    <p>Find the one change that fills your table without wearing out your hands. Built for massage therapists who work on their own.</p>
+    <p class="private">Your numbers stay on this phone. Nobody sees them unless you send them.</p>
+  </header>
+
+  <section class="answer" aria-live="polite">
+    <div class="answer-top"><span class="label" id="a-eyebrow">Fix this first</span><span class="tag" id="a-tag">Sample numbers</span></div>
+    <h2 id="a-name"></h2>
+    <div class="worth" id="a-worth"></div>
+    <div class="book">
+      <div class="squares" id="squares" aria-hidden="true"></div>
+      <div class="legend" id="legend"></div>
+    </div>
+    <div class="sig" id="sig"></div>
+    <div class="stats">
+      <div class="stat"><span class="small muted">Time booked</span><b id="s-booked"></b></div>
+      <div class="stat"><span class="small muted">Earned per open hour</span><b id="s-rate"></b></div>
+    </div>
+  </section>
+
+  <div class="tabs" role="tablist">
+    <button type="button" role="tab" id="tab-numbers" data-tab="numbers" aria-selected="true">1 Numbers</button>
+    <button type="button" role="tab" id="tab-fixes" data-tab="fixes" aria-selected="false">2 Fixes</button>
+    <button type="button" role="tab" id="tab-proof" data-tab="proof" aria-selected="false">3 Proof</button>
+  </div>
+
+  <section class="panel" id="p-numbers" role="tabpanel" aria-labelledby="tab-numbers">
+    <p id="n-intro"></p>
+    <div class="group">
+      <h3>Your menu</h3>
+      <p class="hint">Minutes means door to door, with setup and cleanup. Supplies means product used per appointment. Per week is your average over the last four weeks.</p>
+      <div id="services" class="group"></div>
+      <div><button type="button" class="link" id="add-svc">Add a service</button></div>
+    </div>
+    <div class="group">
+      <h3>Your calendar</h3>
+      <div id="fields" class="group"></div>
+    </div>
+    <div class="group">
+      <button type="button" class="btn" id="go-fixes">See what to fix first</button>
+      <div style="text-align:center"><button type="button" class="link" id="reset"></button></div>
+    </div>
+  </section>
+
+  <section class="panel" id="p-fixes" role="tabpanel" aria-labelledby="tab-fixes" hidden>
+    <p>Ranked by what each could add in a year, after supplies. These overlap and draw on the same open hours, so don't add them together. Finish one, then measure.</p>
+    <div id="fixlist"></div>
+  </section>
+
+  <section class="panel" id="p-proof" role="tabpanel" aria-labelledby="tab-proof" hidden>
+    <div class="group">
+      <h3>Before and after</h3>
+      <p>Save your numbers before you change anything. Update the Numbers tab at day 30 and day 60, then save again.</p>
+      <p class="hint" id="next-date"></p>
+    </div>
+    <div class="tw"><table id="proof-table"></table></div>
+    <div class="snap" id="snap-btns"></div>
+    <div class="group">
+      <h3>Share your result</h3>
+      <p class="hint">This sends percent changes only. Your dollars, hours and client counts stay here.</p>
+      <div class="field">
+        <label for="quote">In your own words, what changed?</label>
+        <textarea id="quote" rows="3" placeholder="One or two honest sentences."></textarea>
+      </div>
+      <label class="check" for="consent">
+        <input type="checkbox" id="consent">
+        <span>Cody may publish this with my first name and trade, and say the kit was free and that we're friends.</span>
+      </label>
+      <textarea id="share" rows="9" readonly aria-label="Text to send"></textarea>
+      <button type="button" class="btn line" id="copy-share">Copy my result</button>
+    </div>
+  </section>
+
+  <section class="sources">
+    <h3>What's behind the numbers</h3>
+    <p class="small" id="src-note"></p>
+    <ul id="src-list"></ul>
+  </section>
+
+  <footer>
+    <p>Estimates, not promises. This assumes you keep the full service price. It isn't tax or legal advice. Before changing a policy, check your booking app, your card processor and your licensing board.</p>
+    <p>Built by Cody Martin · Lucid Life Co · cody@lucidlifeco.com</p>
+  </footer>
+</div>
+
+<script>
+var COMMON_SRC={
+  cancel:'About 1 in 10 appointments is cancelled or missed, mostly cancelled: <a href="https://www.kitomba.com/blog/?p=4180" target="_blank" rel="noopener">Kitomba</a>',
+  deposit:'29% fewer cancellations and no-shows with full prepayment: <a href="https://www.kitomba.com/blog/deposits-vs-cancellation-fees-salons/" target="_blank" rel="noopener">Kitomba</a>',
+  range:'Deposits of 20 to 50% and Square’s online-only deposits: <a href="https://schedulingkit.com/statistics/appointment-deposit-statistics" target="_blank" rel="noopener">SchedulingKit, citing Acuity and Square</a>',
+  rebook:'Rebooking averages disagree: <a href="https://www.zenoti.com/blog/hidden-revenue-leaks-salon-ai-business-advisor" target="_blank" rel="noopener">10% within 24 hours at Zenoti</a>, <a href="https://whito.co.uk/?p=10315" target="_blank" rel="noopener">40 to 45% at Whito</a>, <a href="https://kitomba.com/blog/?p=6760" target="_blank" rel="noopener">52% in Australian hair salons at Kitomba</a>',
+  fragile:'72% of appointments rebooked once were later cancelled: <a href="https://www.zenoti.com/en-uk/thecheckin/how-salons-can-make-more-money-without-raising-prices" target="_blank" rel="noopener">Zenoti</a>',
+  retail:'Retail target of 10 to 20% of services, margins of 40 to 50%: <a href="https://resources.rework.com/libraries/beauty-center-growth/retail-product-sales-salons" target="_blank" rel="noopener">Rework, citing the Professional Beauty Association</a>'
+};
+function hundred(v){return '$'+(Math.round(v/100)*100).toLocaleString('en-US');}
+function money(v){return '$'+Math.round(v).toLocaleString('en-US');}
+function esc(s){return String(s==null?'':s).replace(/[&<>"]/g,function(c){return{'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c];});}
+function num(x){var n=parseFloat(x);return isFinite(n)&&n>0?n:0;}
+var SHARED={
+  slotsScripts:[{l:'Deposit policy',t:'To hold your time, I take a [$] deposit that comes off your total. Move or cancel with 48 hours’ notice and it carries over. Inside 48 hours, it covers the time I held for you.'},{l:'Waitlist text',t:'[Day] at [time] just opened. Want it? First reply gets it.'}],
+  slotsMath:function(m){return 'How this was figured: 20% fewer lost appointments, about '+(m.N*.2).toFixed(1)+' a week, at '+money(m.margin)+' each after supplies. Kitomba saw 29% with full prepayment, so a partial deposit is set lower.';},
+  rebookMath:function(m){return 'How this was figured: about '+Math.round(m.C)+' active clients, with the '+Math.round((1-m.r)*100)+'% who leave without a date moving halfway from '+m.Wa+' weeks to your '+m.Wi+'. Capped by your open hours, at '+money(m.margin)+' a visit after supplies.';},
+  priceWhy:function(m){return m.months<12?'You raised within the past year. Leave this one alone and work on something else.':(m.full?'You’re close to full, so the book can absorb a raise.':'Your costs rise whether or not your prices do. With open time on the book, test this on one service first.');},
+  priceMath:function(m){return m.months<12?'How this was figured: no raise counted within 12 months of your last one.':(m.full?'How this was figured: an 8% raise on '+hundred(m.rev*m.W)+' a year, assuming freed slots refill.':'How this was figured: an 8% raise on '+hundred(m.rev*m.W)+' a year, assuming 1 client in 20 leaves.');},
+  priceSteps:['Pick your most-booked service.','Raise it about 8% and round to a clean number.','Charge new clients the new price today.','Give regulars 30 days’ notice.','Hold it for 60 days before you judge it.'],
+  priceScripts:[{l:'Text to regulars',t:'Starting [date], [service] goes to [$]. Book before then at today’s price. Thank you for trusting me with this.'}],
+  priceCaution:'Under 75% booked, the bigger problem is empty time. Fix that first.',
+  handsMath:function(){return 'How this was figured: closing half the gap to product sales of 10% of services, at a 45% margin.';}
+};
+</script>
+<script>
+var CFG={
+  key:'full-table-massage-v2',title:'The Full Table Kit',
+  sample:{hours:28,weeks:48,maxSessions:20,lost:2,rebook:8,actual:7,ideal:4,members:0,raised:24,services:[
+    {n:'60-minute massage',p:95,m:75,s:3,c:9},{n:'90-minute massage',p:135,m:105,s:4,c:5},
+    {n:'30-minute focus',p:55,m:45,s:2,c:2},{n:'Hot stone',p:115,m:90,s:6,c:1}]},
+  fields:[
+    {k:'hours',l:'Hours your room is open for booking, per week',h:'Include the gaps between clients.'},
+    {k:'maxSessions',l:'Most sessions a week your hands can sustain',h:'The number you could hold for a year without paying for it.'},
+    {k:'weeks',l:'Weeks you work per year'},
+    {k:'lost',l:'Cancellations and no-shows you couldn’t refill, per week',h:'Count the last four weeks and divide by four.'},
+    {k:'rebook',l:'Of your last 20 clients, how many left with the next session booked?',h:'Scroll back through your calendar and count.'},
+    {k:'actual',l:'Weeks your regulars actually go between sessions'},
+    {k:'ideal',l:'Weeks you would recommend',h:'Your judgment. Massage has no standard schedule.'},
+    {k:'members',l:'Clients on a membership or prepaid package now'},
+    {k:'raised',l:'Months since your last price raise'}
+  ],
+  capacity:function(m,d){return Math.min(m.maxAdd,num(d.maxSessions)-m.A);},
+  extra:function(m,d){
+    var mem=num(d.members),target=m.C*.1,join=Math.max(0,target-mem);m.join=join;
+    var curVisits=m.Wa?m.W/m.Wa:0,memberPrice=m.avgP*.8;
+    var addPerWeek=m.W?join*Math.max(0,12-curVisits)/m.W:0;
+    var capped=addPerWeek?Math.min(1,m.maxAdd/addPerWeek):1;
+    var gain=join*(12*(memberPrice-m.avgS)-curVisits*m.margin);
+    m.v.hands=Math.max(0,gain*capped);
+    var share=m.C?mem/m.C:0;m.status.hands=share>=.1?'ok':share>=.03?'watch':'leak';
+    if(m.r<.4){m.v.hands=0;m.note.hands='Fix rebooking first';}
+    m.handsLeft=Math.max(0,num(d.maxSessions)-m.A);
+  },
+  sig:function(m,d){
+    var cap=Math.min(40,Math.ceil(num(d.maxSessions))),h='';
+    for(var i=0;i<cap;i++){h+='<div class="sq">'+(i<m.A?'<i class="f-b" style="width:100%"></i>':'')+'</div>';}
+    return '<span class="label">Your hands</span><div class="cells" aria-hidden="true">'+h+'</div><div class="legend"><span>'+Math.round(m.A*10)/10+' of '+num(d.maxSessions)+' sessions a week used</span></div>';
+  },
+  metrics:[{k:'members',l:'Members',fmt:'whole',good:1,get:function(m,d){return num(d.members);}}],
+  srcNote:'Most of this comes from companies that sell salon and spa software, and much of it covers hair salons. Almost none is massage research, and none is specific to your town. Treat it as rough guidance. Your own before and after is the evidence that counts.',
+  sources:[COMMON_SRC.cancel,COMMON_SRC.deposit,COMMON_SRC.range,COMMON_SRC.rebook,COMMON_SRC.fragile,
+    'Memberships at 15 to 25% below session price: <a href="https://loop.fans/blog/massage-membership-program" target="_blank" rel="noopener">Loop</a>',
+    'How independent therapists structure memberships: <a href="https://www.massagemag.com/gael-wood-massage-membership-model-116645/" target="_blank" rel="noopener">MASSAGE Magazine</a>'],
+  levers:{
+    slots:{name:'Protect the hour you held',
+      why:'An empty hour on your table can’t be sold later. Most lost appointments are cancellations, so you need a reason for clients to keep the time and a fast way to refill it.',
+      steps:['Confirm your booking app can take deposits. Square, for one, takes them on online bookings but not on appointments you enter yourself.','Start with new clients, 90-minute sessions and anyone who has missed before. Leave proven regulars alone for now.','Set the deposit at 20 to 50% of the session, and take it off the total.','Start a text waitlist. Ask each client if they want a text when something opens sooner.','Send a reminder 48 hours ahead so cancellations land while you can still refill them.'],
+      scripts:SHARED.slotsScripts,measure:'Empty slots per week. Count them every Friday.',
+      caution:'Clients sometimes cancel because they’re sick or injured. Keep a grace rule for that, so nobody comes in unwell to save a deposit.',math:SHARED.slotsMath},
+    rebook:{name:'Book the next session before they leave',
+      why:'Clients who felt great today forget how they felt three weeks from now. Published rebooking averages run from 10% to 52% because each company counts differently, so compare yourself to yourself.',
+      steps:['Ask what they noticed as they come out of the room, before payment.','Tie the next date to what they told you at intake.','Offer one specific day and time. Let them change it.','Send a reminder one week before. One software company found 72% of appointments rebooked once were later cancelled, so a date alone won’t hold.','Text anyone who left without a date one week before they are due.','Tally every client this month: booked or not booked.'],
+      scripts:[{l:'As they come out of the room',t:'You mentioned your shoulders tighten up around week four. Would [date] make sense, before that hits? I have [time] open.'},{l:'Text when they are due',t:'It’s been about [weeks] weeks. I have [day] at [time] or [day] at [time]. Which works better?'}],
+      measure:'Clients booked before leaving, out of your next 20.',
+      caution:'Recommend the interval you believe in. Talk about how the client feels, and don’t promise to treat a condition.',math:SHARED.rebookMath},
+    price:{name:'Raise the price that’s gone stale',why:SHARED.priceWhy,steps:SHARED.priceSteps,scripts:SHARED.priceScripts,measure:'Sessions per week, and earned per open hour.',
+      caution:'If your hands are near their limit, price is your main lever. Under 75% booked, fix the empty time first.',math:SHARED.priceMath},
+    best:{name:'Give your table to your best-paying session',
+      why:function(m){return m.list.length>1?esc(m.top.n)+' earns '+money(m.top.rate)+' an hour after supplies. '+esc(m.low.n)+' earns '+money(m.low.rate)+'. Every session carries one turnover, so short sessions pay for it most often.':'Add at least two services on the Numbers tab to compare them.';},
+      steps:['Time your next five turnovers: linens, notes, water, reset.','Keep your most-requested windows for your top earner.','Offer the longer session when the client names more than one problem area.','Add one upgrade that fits inside the session you already sold.','Reprice or retire your lowest earner if it falls below what your hour needs to pay.'],
+      scripts:[{l:'At intake',t:'You’ve named your neck and your low back. In 60 minutes I can do one of them well. Would 90 be more useful today, or should we pick the one that matters most?'}],
+      measure:'Earned per open hour.',caution:'A longer session uses the same hands. Watch your weekly limit when you shift the mix.',
+      math:function(m){return m.list.length>1?'How this was figured: 10% of the time on your lowest earner moved to your top earner. Counted only at 75% booked or more, because an open book needs clients first.':'How this was figured: needs at least two services.';}},
+    hands:{name:'Start a membership',
+      why:'Your hands are the ceiling. A membership doesn’t raise it. It keeps clients on a steady schedule and makes your income easier to predict.',
+      steps:['Fix rebooking first. A membership won’t rescue clients who don’t return.','Offer one plan: one session a month at 15 to 25% below your session price.','Let an unused session roll over one month. Put cancellation terms in writing.','Check how your booking app handles recurring billing before you announce it.','Offer it to your ten most regular clients first.'],
+      scripts:[{l:'To a regular, at the end',t:'You come in most months anyway. Would it be useful to lock that in at [$] a month, with your time held?'}],
+      measure:'Members, and sessions per week against your limit.',caution:'Sell only what your hands can deliver. Keep open sessions for the members you sign, and stop when the plan fills your limit.',
+      math:function(m){return 'How this was figured: 10% of about '+Math.round(m.C)+' active clients on one session a month at 20% off, compared with how often they come now. Capped by your hands and open hours.';}}
+  }
+};
+
+</script>
+<script>
+(function(){
+var KEY=CFG.key;
+function clone(x){return JSON.parse(JSON.stringify(x));}
+function fresh(){var d=clone(CFG.sample);d.edited=false;return d;}
+var state={data:fresh(),snaps:{},quote:'',consent:false};
+try{var raw=localStorage.getItem(KEY);if(raw){var got=JSON.parse(raw);if(got&&got.data&&got.snaps)state=got;}}catch(e){}
+function save(){try{localStorage.setItem(KEY,JSON.stringify(state));}catch(e){}}
+function $(id){return document.getElementById(id);}
+function d(){return state.data;}
+
+function calc(d){
+  var list=(d.services||[]).map(function(x){return{n:x.n||'Service',p:num(x.p),m:num(x.m),s:num(x.s),c:num(x.c)};}).filter(function(x){return x.c>0&&x.m>0&&x.p>0;});
+  var A=0,rev=0,sup=0,used=0;
+  list.forEach(function(x){A+=x.c;rev+=x.c*x.p;sup+=x.c*x.s;used+=x.c*x.m;x.rate=(x.p-x.s)/(x.m/60);});
+  var extra=CFG.extraUsed?CFG.extraUsed(d):0;
+  var H=num(d.hours),W=num(d.weeks),open=H*60,free=Math.max(0,open-used-extra);
+  var booked=open?Math.min(1,(used+extra)/open):0,avgP=A?rev/A:0,avgS=A?sup/A:0,avgL=A?used/A:0,margin=avgP-avgS;
+  var N=num(d.lost),retail=num(d.retail),months=num(d.raised),r=Math.min(1,num(d.rebook)/20),Wa=num(d.actual),Wi=num(d.ideal);
+  var m={ready:A>0&&H>0&&W>0,list:list,A:A,rev:rev,sup:sup,used:used,extra:extra,H:H,W:W,free:free,booked:booked,avgP:avgP,avgS:avgS,avgL:avgL,margin:margin,N:N,retail:retail,months:months,r:r,Wa:Wa,Wi:Wi,full:booked>=.85,v:{},status:{},note:{}};
+  m.maxAdd=avgL?free/avgL:0;
+  if(CFG.capacity)m.maxAdd=Math.max(0,CFG.capacity(m,d));
+  var sorted=list.slice().sort(function(a,b){return b.rate-a.rate;});m.sorted=sorted;m.top=sorted[0];m.low=sorted[sorted.length-1];
+  m.v.slots=Math.min(N*.2,m.maxAdd)*margin*W;
+  var lostRate=(A+N)?N/(A+N):0;m.status.slots=lostRate<=.05?'ok':lostRate<=.10?'watch':'leak';
+  var add=0;m.C=A*Wa;m.newI=Wa;
+  if(Wa>Wi&&Wi>0){m.newI=Wa-(Wa-Wi)*.5;add=Math.min(m.C*(1-r)*(1/m.newI-1/Wa),m.maxAdd);}
+  m.v.rebook=add*margin*W;m.status.rebook=r>=.7?'ok':r>=.4?'watch':'leak';
+  var annual=rev*W;
+  m.v.price=months<12?0:annual*(m.full?.08:(1.08*.95-1));
+  m.status.price=months<12?'ok':months<24?'watch':'leak';if(months<12)m.note.price='Raised this year';
+  m.v.best=0;m.status.best='ok';
+  if(list.length>1){
+    var ratio=m.top.rate>0?m.low.rate/m.top.rate:1;m.status.best=ratio>=.75?'ok':ratio>=.5?'watch':'leak';
+    if(booked>=.75)m.v.best=(m.low.c*m.low.m*.1/60)*(m.top.rate-m.low.rate)*W;else m.note.best='Fill the book first';
+  }else m.note.best='Needs two services';
+  var pct=rev?retail/rev:0,gap=Math.max(0,rev*.1-retail);
+  m.v.hands=gap*.5*.45*W;m.status.hands=pct>=.1?'ok':pct>=.05?'watch':'leak';
+  if(CFG.extra)CFG.extra(m,d);
+  m.order=Object.keys(CFG.levers).sort(function(a,b){return m.v[b]-m.v[a];});
+  m.bookedH=Math.min(H,(used+extra)/60);m.lostH=Math.min(N*avgL/60,free/60);m.perOpen=H?(rev-sup+retail*.45)/H:0;
+  return m;
+}
+window.__kitCalc=calc;window.__kitSample=CFG.sample;
+
+var openKey=null,clearArm=null,resetArm=false;
+function renderServices(){
+  $('services').innerHTML=d().services.map(function(x,i){
+    function mini(k,l){return '<div class="mini"><label for="svc-'+i+'-'+k+'">'+l+'</label><input type="number" inputmode="decimal" min="0" id="svc-'+i+'-'+k+'" data-i="'+i+'" data-k="'+k+'" value="'+esc(x[k])+'"></div>';}
+    return '<div class="svc"><div class="field"><label for="svc-'+i+'-n" class="small">Service '+(i+1)+'</label><input type="text" id="svc-'+i+'-n" data-i="'+i+'" data-k="n" value="'+esc(x.n)+'"></div><div class="svc-nums">'+mini('p','Price')+mini('m','Minutes')+mini('s','Supplies')+mini('c','Per week')+'</div><div class="svc-foot"><span id="rate-'+i+'"></span>'+(d().services.length>1?'<button type="button" class="link" data-rm="'+i+'" id="rm-'+i+'">Remove</button>':'')+'</div></div>';
+  }).join('');
+}
+function renderFields(){
+  $('fields').innerHTML=CFG.fields.map(function(f){
+    return '<div class="field"><label for="f-'+f.k+'">'+f.l+'</label>'+(f.h?'<span class="hint">'+f.h+'</span>':'')+'<input type="number" inputmode="decimal" min="0" id="f-'+f.k+'" data-f="'+f.k+'" value="'+esc(d()[f.k])+'"></div>';
+  }).join('');
+}
+function renderIntro(){
+  $('n-intro').textContent=d().edited?'These are your numbers. Change any of them and the answer above updates.':'These are made-up sample numbers. Replace them with yours. It takes about 15 minutes with your calendar open.';
+  $('reset').textContent=resetArm?'Tap again to confirm':(d().edited?'Start over with sample numbers':'Clear the sample numbers');
+}
+function renderLive(){
+  var m=calc(d());
+  d().services.forEach(function(x,i){var el=$('rate-'+i);if(!el)return;var p=num(x.p),mi=num(x.m),s=num(x.s);el.textContent=(p&&mi)?money((p-s)/(mi/60))+' an hour after supplies':'';});
+  $('a-tag').hidden=!!d().edited;
+  var key=m.order[0],val=m.ready?m.v[key]:0;
+  if(!m.ready){$('a-eyebrow').textContent='Fix this first';$('a-name').textContent='Enter your numbers';$('a-worth').textContent='Add your hours and at least one service below.';}
+  else if(val<100){$('a-eyebrow').textContent='Good news';$('a-name').textContent='No big leak on these numbers';$('a-worth').textContent='Protect what you have. Measure again in 60 days.';}
+  else{$('a-eyebrow').textContent='Fix this first';$('a-name').textContent=CFG.levers[key].name;$('a-worth').textContent='Could add about '+hundred(val)+' a year after supplies';}
+  var H=Math.min(80,Math.ceil(m.H)),b=m.bookedH,l=m.lostH,html='';
+  for(var i=0;i<H;i++){var fb=Math.max(0,Math.min(1,b-i)),fl=Math.max(0,Math.min(1,b+l-i)-fb);html+='<div class="sq"><i class="f-b" style="width:'+(fb*100).toFixed(1)+'%"></i><i class="f-l" style="width:'+(fl*100).toFixed(1)+'%"></i></div>';}
+  $('squares').innerHTML=html;
+  var open=Math.max(0,m.H-b-l);
+  $('legend').innerHTML='<span><i class="key f-b"></i>'+b.toFixed(1)+' hrs booked</span><span><i class="key f-l"></i>'+l.toFixed(1)+' lost</span><span><i class="key"></i>'+open.toFixed(1)+' open</span>';
+  $('sig').innerHTML=CFG.sig(m,d());
+  $('s-booked').textContent=m.H?Math.round(m.booked*100)+'%':'·';
+  $('s-rate').textContent=m.H?money(m.perOpen):'·';
+  renderProof();
+}
+var CHIP={leak:'Leaking',watch:'Watch',ok:'Healthy'};
+function resolve(x,m){return typeof x==='function'?x(m):x;}
+function renderFixes(){
+  var m=calc(d());
+  if(!m.ready){$('fixlist').innerHTML='<p class="muted">Add your hours and at least one service on the Numbers tab, and your ranked fixes will appear here.</p>';return;}
+  if(openKey===null)openKey=m.order[0];
+  $('fixlist').innerHTML=m.order.map(function(k,i){
+    var L=CFG.levers[k],isFirst=i===0&&m.v[k]>=100,v=m.v[k],st=m.status[k];
+    var valText=m.note[k]?m.note[k]:(v>=100?'~'+hundred(v)+'/yr':'Under $100');
+    var scripts=L.scripts.map(function(s,j){return '<div class="script"><span class="label">'+s.l+'</span><p id="sc-'+k+'-'+j+'">'+s.t+'</p><div><button type="button" class="link" data-copy="sc-'+k+'-'+j+'">Copy</button></div></div>';}).join('');
+    return '<details data-key="'+k+'"'+(isFirst?' class="first"':'')+(openKey===k?' open':'')+'><summary><span class="sum-name">'+L.name+'</span><span class="sum-right"><span class="sum-val">'+valText+'</span><span class="chip '+st+'">'+CHIP[st]+'</span></span></summary><div class="fix"><p>'+resolve(L.why,m)+'</p><div class="group"><span class="label">This week</span><ol class="steps">'+L.steps.map(function(s){return '<li>'+s+'</li>';}).join('')+'</ol></div><div class="group">'+scripts+'</div><p><strong>Measure:</strong> '+L.measure+'</p><p><strong>Watch out:</strong> '+L.caution+'</p><p class="math">'+resolve(L.math,m)+'</p></div></details>';
+  }).join('');
+}
+var one=function(v){return (Math.round(v*10)/10)+'';},whole=function(v){return Math.round(v)+'';};
+var BASE_METRICS=[
+  {k:'booked',l:'Time booked',f:function(v){return Math.round(v)+'%';},good:1,get:function(m){return m.booked*100;}},
+  {k:'appts',l:'Appointments a week',f:one,good:1,get:function(m){return m.A;}},
+  {k:'lost',l:'Empty slots a week',f:one,good:-1,get:function(m){return m.N;}},
+  {k:'rebook',l:'Rebooked, of 20',f:whole,good:1,get:function(m,dd){return num(dd.rebook);}},
+  {k:'perOpen',l:'Earned per open hour',f:money,good:1,get:function(m){return m.perOpen;}}
+];
+var METRICS=BASE_METRICS.concat((CFG.metrics||[]).map(function(x){if(x.fmt==='money')x.f=money;else if(x.fmt==='whole')x.f=whole;else x.f=one;return x;}));
+function snapshot(){var m=calc(d()),o={date:new Date().toISOString()};METRICS.forEach(function(x){o[x.k]=x.get(m,d());});return o;}
+function pct(a,b){if(!a)return null;return Math.round((b-a)/a*100);}
+function pctText(p){return p===null?'':(p>0?'+':'')+p+'%';}
+function dateText(s){return new Date(s).toLocaleDateString('en-US',{month:'short',day:'numeric'});}
+function renderProof(){
+  var sn=state.snaps,cols=[['start','Start'],['d30','Day 30'],['d60','Day 60']];
+  var head='<thead><tr><th scope="col">Measure</th>'+cols.map(function(c){return '<th scope="col">'+c[1]+(sn[c[0]]?'<small>'+dateText(sn[c[0]].date)+'</small>':'')+'</th>';}).join('')+'</tr></thead>';
+  var body='<tbody>'+METRICS.map(function(mt){
+    return '<tr><td>'+mt.l+'</td>'+cols.map(function(c,i){var s=sn[c[0]];if(!s)return '<td class="muted">·</td>';var ch='';if(i>0&&sn.start){var p=pct(sn.start[mt.k],s[mt.k]);if(p!==null&&p!==0){ch='<small class="'+((p*mt.good)>0?'up':'down')+'">'+pctText(p)+'</small>';}}return '<td>'+mt.f(s[mt.k])+ch+'</td>';}).join('')+'</tr>';
+  }).join('')+'</tbody>';
+  $('proof-table').innerHTML=head+body;
+  $('snap-btns').innerHTML=cols.map(function(c){
+    var has=!!sn[c[0]],locked=c[0]!=='start'&&!sn.start;
+    var label=has?(clearArm===c[0]?'Tap again':'Clear '+c[1]):'Save '+c[1];
+    return '<button type="button" class="btn'+(has?' line':'')+'" id="snap-'+c[0]+'" data-snap="'+c[0]+'"'+(locked?' disabled':'')+'>'+label+'</button>';
+  }).join('');
+  var nd=$('next-date');
+  if(!sn.start)nd.textContent=d().edited?'Save your Start before you change anything.':'Replace the sample numbers first, then save your Start.';
+  else if(!sn.d30)nd.textContent='Day 30 falls on '+dateText(new Date(new Date(sn.start.date).getTime()+30*864e5).toISOString())+'.';
+  else if(!sn.d60)nd.textContent='Day 60 falls on '+dateText(new Date(new Date(sn.start.date).getTime()+60*864e5).toISOString())+'.';
+  else nd.textContent='You have your 60-day result.';
+  if($('snap-start'))$('snap-start').disabled=(!sn.start&&!d().edited);
+  renderShare();
+}
+function renderShare(){
+  var sn=state.snaps,latest=sn.d60?['60',sn.d60]:sn.d30?['30',sn.d30]:null,lines=[CFG.title];
+  if(sn.start&&latest){lines.push('After '+latest[0]+' days:');METRICS.forEach(function(mt){var p=pct(sn.start[mt.k],latest[1][mt.k]);if(p!==null&&p!==0)lines.push(mt.l+': '+pctText(p));});}
+  else lines.push('Save a Start and a Day 30 to fill this in.');
+  if(state.quote.trim())lines.push('','In my words: '+state.quote.trim());
+  lines.push('',state.consent?'OK to publish with my first name and trade. The kit was free and we are friends.':'Private. Please don’t publish.');
+  $('share').value=lines.join('\n');
+}
+function copyText(text,btn,el){
+  function done(ok){var old=btn.textContent;btn.textContent=ok?'Copied':'Press and hold to copy';setTimeout(function(){btn.textContent=old;},1400);}
+  function fallback(){if(el&&el.select){el.focus();el.select();}done(false);}
+  try{navigator.clipboard.writeText(text).then(function(){done(true);},fallback);}catch(e){fallback();}
+}
+function setTab(name){
+  ['numbers','fixes','proof'].forEach(function(n){$('p-'+n).hidden=n!==name;$('tab-'+n).setAttribute('aria-selected',n===name?'true':'false');});
+  if(name==='fixes')renderFixes();
+}
+function renderAll(){openKey=null;resetArm=false;clearArm=null;renderServices();renderFields();renderIntro();renderLive();renderFixes();}
+document.addEventListener('input',function(e){
+  var el=e.target;
+  if(el.dataset.f){d()[el.dataset.f]=el.value;d().edited=true;}
+  else if(el.dataset.k){d().services[+el.dataset.i][el.dataset.k]=el.value;d().edited=true;}
+  else if(el.id==='quote'){state.quote=el.value;save();renderShare();return;}
+  else return;
+  save();resetArm=false;renderIntro();renderLive();
+});
+document.addEventListener('change',function(e){if(e.target.id==='consent'){state.consent=e.target.checked;save();renderShare();}});
+document.addEventListener('toggle',function(e){var el=e.target;if(el.tagName==='DETAILS'&&el.open)openKey=el.dataset.key;},true);
+document.addEventListener('click',function(e){
+  var b=e.target.closest('button');if(!b)return;
+  if(b.dataset.tab){setTab(b.dataset.tab);}
+  else if(b.id==='go-fixes'){setTab('fixes');$('tab-fixes').scrollIntoView({block:'start'});}
+  else if(b.id==='add-svc'){if(d().services.length<8){d().services.push({n:'',p:'',m:'',s:'',c:''});d().edited=true;save();renderServices();renderIntro();renderLive();}}
+  else if(b.dataset.rm){d().services.splice(+b.dataset.rm,1);d().edited=true;save();renderServices();renderIntro();renderLive();}
+  else if(b.id==='reset'){
+    if(d().edited&&!resetArm){resetArm=true;renderIntro();return;}
+    if(d().edited){state.data=fresh();}
+    else{CFG.fields.forEach(function(f){d()[f.k]='';});d().services=[{n:'',p:'',m:'',s:'',c:''}];d().edited=true;}
+    resetArm=false;save();renderAll();
+  }
+  else if(b.dataset.snap){
+    var k=b.dataset.snap,sn=state.snaps;
+    if(sn[k]){if(clearArm===k){delete sn[k];clearArm=null;save();}else{clearArm=k;}}
+    else{sn[k]=snapshot();clearArm=null;save();}
+    renderProof();
+  }
+  else if(b.dataset.copy){copyText($(b.dataset.copy).textContent,b);}
+  else if(b.id==='copy-share'){copyText($('share').value,b,$('share'));}
+});
+$('src-note').textContent=CFG.srcNote;
+$('src-list').innerHTML=CFG.sources.map(function(s){return '<li>'+s+'</li>';}).join('');
+$('quote').value=state.quote||'';$('consent').checked=!!state.consent;
+renderAll();
+})();
+</script>
+
+</body>
+</html>
