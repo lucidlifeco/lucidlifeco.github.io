@@ -14,7 +14,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@700;800&family=Inter:wght@400;600&family=IBM+Plex+Mono:wght@500&display=swap" rel="stylesheet">
 <style>
-/* Layout: buyer first. Hero → sound familiar → the cost → why the usual fixes fail → fix the bucket → guide → plan → levels → workshop → contact */
+/* Layout: hero → proof → the leak → fix the bucket → about → how it works → fit → FAQ → contact */
 :root{
   --obsidian:#13283D; --obsidian-2:#0F2133; --obsidian-3:#1C3651;
   --gold:#6CC7B9; --gold-soft:#F28C38; --gold-line:rgba(108,199,185,.35);
@@ -94,7 +94,7 @@ nav a.navcta{color:var(--obsidian);background:var(--gold);padding:10px 16px 8px;
 .try{border:1px solid var(--gold-line);border-radius:6px;padding:26px;background:rgba(108,199,185,.06);display:grid;grid-template-columns:auto minmax(0,1fr);gap:20px;align-items:center;max-width:780px}
 .try .ic{width:40px;height:40px}
 .try p{font-size:18px}
-.try strong{font-weight:400;color:var(--gold-soft)}
+.try strong{font-weight:600;color:#F6F3EC}
 @media (max-width:520px){.try{grid-template-columns:1fr}}
 
 /* usual fixes */
@@ -204,6 +204,21 @@ em{font-style:normal}
 nav a.navcta{background:#F28C38;color:#13283D}
 .sub,.pull{font-style:normal;color:#B9C6D2}
 .brand{display:inline-flex;align-items:center}
+.proofbar{padding-block:28px;border-top:1px solid var(--rule)}
+.proofbar ul{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:24px}
+.proofbar li{display:flex;flex-direction:column;gap:6px;font-size:15px;line-height:1.45;color:#B9C6D2}
+.proofbar .fig{font-family:var(--mono);font-weight:500;font-size:30px;line-height:1.1;color:#F6F3EC}
+@media (max-width:760px){.proofbar ul{grid-template-columns:1fr;gap:18px}}
+.moments-4{grid-template-columns:repeat(2,minmax(0,1fr))}
+@media (max-width:600px){.moments-4{grid-template-columns:1fr}}
+.faq{display:flex;flex-direction:column;max-width:760px;border-top:1px solid var(--rule)}
+.faq details{border-bottom:1px solid var(--rule);padding:18px 0}
+.faq summary{cursor:pointer;font-weight:600;font-size:18px;list-style:none;display:flex;justify-content:space-between;gap:16px}
+.faq summary::-webkit-details-marker{display:none}
+.faq summary::after{content:"+";font-family:var(--mono);color:#F28C38}
+.faq details[open] summary::after{content:"−"}
+.faq p{color:var(--parchment-dim);margin-top:10px;max-width:64ch}
+.faq summary:focus-visible{outline:2px solid #F28C38;outline-offset:4px}
 </style>
 </head>
 <body>
@@ -268,87 +283,36 @@ nav a.navcta{background:#F28C38;color:#13283D}
     </div>
   </section>
 
+  <section class="proofbar" aria-label="Track record">
+    <div class="wrap">
+      <ul>
+        <li><span class="fig">12% → 20%</span><span>average margin at a wireless distributor, same customers, same volume</span></li>
+        <li><span class="fig">$0 → $2M</span><span>a company I co-founded, grew and sold</span></li>
+        <li><span class="fig">Top 1%</span><span>producer in every sales role I've held</span></li>
+      </ul>
+    </div>
+  </section>
+
   <section class="band" aria-labelledby="sf-h">
     <div class="wrap stack">
       <div>
         <div class="eyebrow">A normal week</div>
         <h2 id="sf-h" class="sec-h">Where the money goes while you're busy</h2>
       </div>
-      <ul class="moments">
+      <ul class="moments moments-4">
         <li><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M7 3h7l4 4v14H7z"/><path d="M14 3v4h4M10 12h5M10 16h5"/></svg><span>You sent a quote last week. You haven't heard back. You haven't chased it either.</span></li>
-        <li><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg><span>An inquiry came in while you were on a job. You replied the next day. They had already booked someone else.</span></li>
-        <li><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><rect x="4" y="5" width="16" height="15" rx="1"/><path d="M4 10h16M8 3v4M16 3v4"/></svg><span>A regular you used to see every month hasn't been in since spring. You only just noticed.</span></li>
+        <li><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg><span>An inquiry came in while you were on a job. You replied the next day. They'd already booked someone else.</span></li>
+        <li><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><rect x="4" y="5" width="16" height="15" rx="1"/><path d="M4 10h16M8 3v4M16 3v4"/></svg><span>A regular you used to see every month hasn't been in since spring.</span></li>
         <li><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 3h12v18l-3-2-3 2-3-2-3 2z"/><path d="M9 8h6M9 12h6"/></svg><span>There's an invoice 45 days old that you keep meaning to chase.</span></li>
-        <li><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M3 12V4h8l10 10-8 8z"/><circle cx="8" cy="9" r="1.5"/></svg><span>You haven't raised your prices in two years because you're afraid of who you'd lose.</span></li>
-        <li><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="6" width="18" height="13" rx="1"/><path d="M3 10h18M16 15h2"/></svg><span>You check the bank balance before payroll and hope.</span></li>
       </ul>
       <div class="named">
         <p class="big">If two of these are your week, you don't have a marketing problem. You have a <em>leak</em> problem.</p>
-        <p class="keep">You're already earning the money. You're just not keeping all of it.</p>
-        <p>That doesn't mean you're bad at business. It means you're busy doing the work, and nobody is watching the gaps between the work.</p>
-        <p class="keep">Don't let another week of it go by. Start plugging the first one tomorrow morning.</p>
-        <div class="ctas-row"><a class="btn" href="/briefing.html">Send me Day 1 →</a><a class="btn btn-ghost" href="/scorecard.html">Find my weakest spot in 10 minutes</a></div>
-      </div>
-    </div>
-  </section>
-
-  <section aria-labelledby="cost-h">
-    <div class="wrap stack">
-      <div>
-        <div class="eyebrow">The impact</div>
-        <h2 id="cost-h" class="sec-h">What it's costing you</h2>
-      </div>
-      <div class="costs">
-        <div class="cost">
-          <h3><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M14.500 9.500C14 8.500 13 8 12 8c-1.500 0-2.500.8-2.500 2s1 1.700 2.500 2 2.500.8 2.500 2-1 2-2.500 2c-1.200 0-2.200-.5-2.700-1.500M12 6v2M12 16v2"/></svg>Money</h3>
-          <p>Every quote that went quiet is a job you already paid to find. Every late invoice is a loan you're giving away for free. Every regular who drifts off has to be replaced by a stranger, and strangers cost more to win.</p>
-        </div>
-        <div class="cost">
-          <h3><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>Time</h3>
-          <p>You make up the difference with hours. More jobs, longer days, the same number at the end of the month.</p>
-        </div>
-        <div class="cost">
-          <h3><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 11l8-7 8 7v9H4z"/><path d="M10 20v-6h4v6"/></svg>Life</h3>
-          <p>It comes home with you. The Sunday night math. The phone at dinner. The feeling that the business owns you, when it was supposed to be the other way round.</p>
-        </div>
+        <p>More ads, more sales and more hours all pour more water into the same leaky bucket. You pay for the lead and lose it anyway.</p>
       </div>
       <div class="try">
         <svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><rect x="5" y="3" width="14" height="18" rx="1"/><path d="M8 7h8M8 12h2M12 12h2M16 12h0M8 16h2M12 16h2M16 16h0"/></svg>
-        <p><strong>Try this.</strong> Count the quotes you sent in the last 90 days that never got an answer. Multiply by your average job. That's one leak. There are four more places to look.</p>
+        <p><strong>Try this.</strong> Count the quotes you sent in the last 90 days that never got an answer. Multiply by your average job. That's one leak.</p>
       </div>
-    </div>
-  </section>
-
-  <section class="band" aria-labelledby="sq-h">
-    <div class="wrap stack">
-      <div>
-        <div class="eyebrow">The standard advice</div>
-        <h2 id="sq-h" class="sec-h">Why the usual fixes don't work</h2>
-        <p class="sec-p">When money feels tight, the standard advice is more. More sales. More ads. More posts. A new website. More hours.</p>
-      </div>
-      <ul class="fixes">
-        <li class="wide">
-          <h3><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 20V4M4 20h16"/><path d="M7 15l4-4 3 3 5-6"/><path d="M15 8h4v4"/></svg><s>More sales</s></h3>
-          <p>More revenue through the same leaks means more unpaid invoices, more thin-margin jobs and more work for the same result. And you can't spend revenue. You can only spend what's left.</p>
-        </li>
-        <li>
-          <h3><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 10v4h3l8 4V6l-8 4z"/><path d="M18 9a4 4 0 010 6"/></svg><s>More marketing</s></h3>
-          <p>It sends more people into the same gaps. If inquiries wait a day for a reply, twice the inquiries means twice the lost jobs. You pay for the lead and lose it anyway.</p>
-        </li>
-        <li>
-          <h3><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg><s>More hours</s></h3>
-          <p>You can't outwork a leak. There are only so many hours in a week, and you're already using them.</p>
-        </li>
-        <li>
-          <h3><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M3 12V4h8l10 10-8 8z"/><circle cx="8" cy="9" r="1.5"/></svg><s>Lower prices</s></h3>
-          <p>They win the job and give away the margin. You end up busier and no better off.</p>
-        </li>
-        <li>
-          <h3><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><circle cx="9" cy="8" r="3"/><path d="M3 20c0-3.300 2.700-6 6-6s6 2.700 6 6"/><path d="M16 5a3 3 0 010 6M18 14c2 .8 3 2.800 3 6"/></svg><s>More outside help</s></h3>
-          <p>Most of it is measured on leads, clicks and posts. Almost none of it is measured on what you keep.</p>
-        </li>
-      </ul>
-      <p class="pull">Pouring more water into a leaky bucket just means paying for more leaks.</p>
     </div>
   </section>
 
@@ -377,50 +341,22 @@ nav a.navcta{background:#F28C38;color:#13283D}
         </figure>
       </div>
       <ol class="steps">
-        <li><span class="n">First</span><h3>Plug the leaks</h3><p>Faster replies, open quotes, overdue invoices, old prices, past customers and referrals. None of it needs an ad budget.</p></li>
-        <li><span class="n">Then</span><h3>Make the fixes stick</h3><p>Turn them into simple routines that run without anyone having to remember: the words to use, a weekly rhythm and a clear owner for each.</p></li>
-        <li><span class="n">Then</span><h3>Turn up the marketing</h3><p>Once every inquiry is worth more, marketing becomes an investment and stops being a gamble.</p></li>
+        <li><span class="n">First</span><h3>Plug the leaks</h3><p>Faster replies, open quotes, overdue invoices, old prices, past customers. None of it needs an ad budget.</p></li>
+        <li><span class="n">Then</span><h3>Make the fixes stick</h3><p>Simple routines with the words to use, a weekly rhythm and a clear owner for each.</p></li>
+        <li><span class="n">Then</span><h3>Turn up the marketing</h3><p>Once every inquiry is worth more, marketing stops being a gamble.</p></li>
       </ol>
-      <ul class="why">
-        <li><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12l5 5 9-10"/></svg><span>It's money you already earned, so you don't wait for new customers to find you.</span></li>
-        <li><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12l5 5 9-10"/></svg><span>It costs time, not ad spend.</span></li>
-        <li><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12l5 5 9-10"/></svg><span>It makes every dollar of marketing you spend later go further.</span></li>
-      </ul>
       <div>
         <div class="eyebrow">Where to look</div>
         <h2 class="sec-h" style="font-size:clamp(28px,4vw,40px)">The five places money hides</h2>
       </div>
       <ol class="chain">
-        <li><span class="k">01 · Attract</span><h3>Why would they pick me over the cheaper one?</h3><p>A one-sentence promise, so you stop competing on price.</p></li>
-        <li><span class="k">02 · Convert</span><h3>Why do inquiries and quotes go quiet?</h3><p>Same-day replies and follow-up that isn't pushy.</p></li>
-        <li><span class="k">03 · Deliver</span><h3>Which jobs actually make me money?</h3><p>Pricing and margin on the work you already do.</p></li>
-        <li><span class="k">04 · Collect</span><h3>Why am I always waiting to get paid?</h3><p>Deposits, clear terms and calm reminders.</p></li>
-        <li><span class="k">05 · Keep</span><h3>Why don't they come back?</h3><p>A reason to return, and a referral habit.</p></li>
+        <li><span class="k">01 · Attract</span><h3>Why would they pick me over the cheaper one?</h3></li>
+        <li><span class="k">02 · Convert</span><h3>Why do inquiries and quotes go quiet?</h3></li>
+        <li><span class="k">03 · Deliver</span><h3>Which jobs actually make me money?</h3></li>
+        <li><span class="k">04 · Collect</span><h3>Why am I always waiting to get paid?</h3></li>
+        <li><span class="k">05 · Keep</span><h3>Why don't they come back?</h3></li>
       </ol>
-      <div class="compound">
-        <div>
-          <div class="fig">61% more</div>
-          <p>Improve each of the five by 10% and the gains multiply. Five small fixes, with no big push on any one of them.</p>
-          <div class="eq">1.1 × 1.1 × 1.1 × 1.1 × 1.1 = 1.61</div>
-        </div>
-        <figure>
-          <svg viewBox="0 0 560 250" role="img" aria-label="Bar chart: starting at 1.00, each 10% improvement multiplies the last, reaching 1.61 after five">
-            <line x1="10" y1="205" x2="550" y2="205" stroke="rgba(246,243,236,.2)"/>
-            <rect x="20" y="95" width="62" height="110" fill="none" stroke="#B9C6D2" stroke-width="1.5"/>
-            <rect x="110" y="84" width="62" height="121" fill="#6CC7B9" opacity=".35"/>
-            <rect x="200" y="72" width="62" height="133" fill="#6CC7B9" opacity=".5"/>
-            <rect x="290" y="59" width="62" height="146" fill="#6CC7B9" opacity=".65"/>
-            <rect x="380" y="44" width="62" height="161" fill="#6CC7B9" opacity=".8"/>
-            <rect x="470" y="28" width="62" height="177" fill="#6CC7B9"/>
-            <g class="svgtxt" text-anchor="middle" style="font-size:16px">
-              <text x="51" y="86">1.00</text><text x="141" y="75">1.10</text><text x="231" y="63">1.21</text><text x="321" y="50">1.33</text><text x="411" y="35">1.46</text><text x="501" y="19" style="fill:#6CC7B9;font-weight:600">1.61</text>
-            </g>
-            <g class="svgmono" text-anchor="middle" style="font-size:11px;letter-spacing:.06em;fill:#B9C6D2">
-              <text x="51" y="228">TODAY</text><text x="141" y="228">ATTRACT</text><text x="231" y="228">CONVERT</text><text x="321" y="228">DELIVER</text><text x="411" y="228">COLLECT</text><text x="501" y="228">KEEP</text>
-            </g>
-          </svg>
-        </figure>
-      </div>
+      <div class="ctas-row"><a class="btn btn-ghost" href="/scorecard.html">Score all five in 10 minutes</a></div>
     </div>
   </section>
 
@@ -430,47 +366,10 @@ nav a.navcta{background:#F28C38;color:#13283D}
       <div class="body">
         <div class="eyebrow">Who you'd be working with</div>
         <h2 id="about-h">I've sat in your chair.</h2>
-        <p>I'm Cody Martin. I've run my own businesses and I know what it takes to make payroll. I know what it's like to be the one who sells the work, does the work, bills for it and then lies awake over it.</p>
-        <p>Most owners I meet don't need more effort. They need to see clearly where the money goes.</p>
-        <p>That's what I've done my whole career on the revenue side of businesses, and it's what I now do only for local owners in Wilmington, Leland, Southport and across Brunswick and New Hanover counties.</p>
-        <ul class="proof">
-          <li><span class="fig">12% → 20%</span><span>average margin at a wireless distributor, with the same customers and the same volume</span></li>
-          <li><span class="fig">$0 → $2M</span><span>a company I co-founded, grew and sold</span></li>
-          <li><span class="fig">Top 1%</span><span>producer in every sales role I've held, starting door to door at 17</span></li>
-        </ul>
+        <p>I'm Cody Martin. I've run my own businesses and I know what it takes to make payroll: selling the work, doing the work, billing for it and then lying awake over it.</p>
+        <p>I've spent my career on the revenue side of businesses. Now I do it only for local owners in Wilmington, Leland, Southport and across Brunswick and New Hanover counties.</p>
         <p class="life">When you can see your numbers clearly, the business stops following you home. That's the clarity in Lucid Life.</p>
       </div>
-    </div>
-  </section>
-
-  <section id="fit" aria-labelledby="fit-h">
-    <div class="wrap stack">
-      <div>
-        <div class="eyebrow">A straight answer</div>
-        <h2 id="fit-h" class="sec-h">Who this is for, and who it isn't</h2>
-      </div>
-      <div class="fit">
-        <div class="fitcol yes">
-          <h3>This is for you if</h3>
-          <ul>
-          <li><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12l5 5 9-10"/></svg><span>You already have customers and money coming in.</span></li>
-          <li><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12l5 5 9-10"/></svg><span>You're willing to open your numbers.</span></li>
-          <li><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12l5 5 9-10"/></svg><span>You'll change a price, a policy or a habit when the numbers say so.</span></li>
-          <li><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12l5 5 9-10"/></svg><span>Your business is in Brunswick or New Hanover County.</span></li>
-          </ul>
-        </div>
-        <div class="fitcol no">
-          <h3>This isn't for you if</h3>
-          <ul>
-          <li><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg><span>You're pre-launch. There's nothing leaking yet.</span></li>
-          <li><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg><span>You want marketing first. Ads and content come after the leaks are fixed, not before.</span></li>
-          <li><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg><span>You want a quick trick. The fixes are simple, but you have to do them.</span></li>
-          <li><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg><span>You'd rather not know your numbers.</span></li>
-          <li><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg><span>You want someone to agree with you.</span></li>
-          </ul>
-        </div>
-      </div>
-      <p style="color:var(--parchment-dim);max-width:62ch">The free Briefing is open to any owner. This is about working together after it.</p>
     </div>
   </section>
 
@@ -483,58 +382,68 @@ nav a.navcta{background:#F28C38;color:#13283D}
       <ol class="steps">
         <li>
           <span class="n">Step 1</span>
-          <h3>Fix seven leaks this week</h3>
-          <p>One email a morning for seven days. Each names a leak, gives you a fix you can finish in 30 minutes and hands you the exact words to use.</p>
+          <h3>The Revenue Recovery Briefing</h3>
+          <p>One email a morning for seven days. Each names a leak, gives you a 30-minute fix and the exact words to use.</p>
           <span class="meta">Free · Starts today</span>
         </li>
         <li>
           <span class="n">Step 2</span>
-          <h3>Sit down for 45 minutes</h3>
-          <p>We look at your numbers together and talk through where the biggest opportunity is. If I can't help, I'll say so.</p>
+          <h3>The Profit Sit-Down</h3>
+          <p>45 minutes with your numbers to find the biggest opportunity. If I can't help, I'll say so.</p>
           <span class="meta">Free · Limited spots each month</span>
         </li>
         <li>
           <span class="n">Step 3</span>
-          <h3>Get a dollar figure on every leak</h3>
-          <p>Two to three weeks. You get your weakest spot, what it costs you and a 90-day plan in order.</p>
+          <h3>The Operator Review</h3>
+          <p>Two to three weeks. A dollar figure on every leak, your weakest spot and a 90-day plan in order.</p>
           <span class="meta">Paid · Credited toward working together</span>
         </li>
       </ol>
-      <div class="ctas-row"><a class="btn" href="/briefing.html">Send me Day 1 →</a><a class="btn btn-ghost" href="mailto:cody@lucidlifeco.com?subject=45-minute%20sit-down">Book a 45-minute sit-down</a></div>
-      <div class="working">
-        <div class="eyebrow" style="margin-bottom:10px">What it looks like when it's working</div>
-        <p>Inquiries get a reply the same day. Quotes get followed up without you remembering. Invoices get paid on time. Regulars come back and send their friends. And on a Tuesday afternoon, you know your numbers.</p>
-      </div>
+      <p class="sec-p" style="margin-top:0">After that, I can build the system with your team, run it alongside you, or add the marketing once the leaks are fixed. Pricing depends on scope, and we cover it in the Sit-Down.</p>
+      <div class="ctas-row"><a class="btn" href="/briefing.html">Send me Day 1 →</a><a class="btn btn-ghost" href="mailto:cody@lucidlifeco.com?subject=Profit%20Sit-Down">Book a Profit Sit-Down</a></div>
     </div>
   </section>
 
-  <section id="work" class="band" aria-labelledby="w-h">
+  <section id="fit" class="band" aria-labelledby="fit-h">
     <div class="wrap stack">
       <div>
-        <div class="eyebrow">Ways to work together</div>
-        <h2 id="w-h" class="sec-h">If you want help carrying it out</h2>
+        <div class="eyebrow">A straight answer</div>
+        <h2 id="fit-h" class="sec-h">Who this is for, and who it isn't</h2>
       </div>
-      <div class="qs">
-        <div class="qcard"><div class="links">If this is you</div><h3>You have people but no system</h3><p>I set up the scripts, follow-up rhythm, pricing and collections. Your team runs it.</p></div>
-        <div class="qcard"><div class="links">If this is you</div><h3>You sell everything yourself and you're stretched</h3><p>All of that, plus I run the weekly revenue meeting, coach whoever sells and keep the scorecard.</p></div>
-        <div class="qcard"><div class="links">If this is you</div><h3>The leaks are fixed and you're ready to grow</h3><p>All of that, plus the content and marketing engine.</p></div>
+      <div class="fit">
+        <div class="fitcol yes">
+          <h3>This is for you if</h3>
+          <ul>
+          <li><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12l5 5 9-10"/></svg><span>You already have customers and money coming in.</span></li>
+          <li><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12l5 5 9-10"/></svg><span>You're willing to open your numbers and change a price, a policy or a habit.</span></li>
+          <li><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12l5 5 9-10"/></svg><span>Your business is in Brunswick or New Hanover County.</span></li>
+          </ul>
+        </div>
+        <div class="fitcol no">
+          <h3>This isn't for you if</h3>
+          <ul>
+          <li><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg><span>You're pre-launch. There's nothing leaking yet.</span></li>
+          <li><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg><span>You want marketing first, or a quick trick.</span></li>
+          <li><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg><span>You want someone to agree with you.</span></li>
+          </ul>
+        </div>
       </div>
-      <p style="color:var(--parchment-dim);max-width:62ch">Every engagement starts from your numbers, not guesses. Pricing depends on scope, and we cover it in the sit-down.</p>
     </div>
   </section>
 
-  <section id="workshop" aria-labelledby="ws-h">
-    <div class="wrap ws">
-      <div class="eyebrow">Free local workshop</div>
-      <h2 id="ws-h">Bring your numbers. Leave with a 30-day plan.</h2>
-      <p>90 minutes, in person, for owners in the Cape Fear region. No slides full of theory. You'll score your own business in five places, hear how other local owners fixed theirs and leave with a plan for your weakest spot.</p>
-      <ul>
-        <li><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12l5 5 9-10"/></svg><span>Know which work actually makes you money</span></li>
-        <li><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12l5 5 9-10"/></svg><span>Say in one sentence why someone should pick you</span></li>
-        <li><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12l5 5 9-10"/></svg><span>Stop relying on luck for your next customer</span></li>
-      </ul>
-      <p><strong style="color:var(--parchment);font-weight:400">First date and location coming soon.</strong> Start the Briefing and you'll be the first to hear.</p>
-      <div><a class="btn" href="/briefing.html">Send me Day 1 →</a></div>
+  <section id="faq" aria-labelledby="faq-h">
+    <div class="wrap stack">
+      <div>
+        <div class="eyebrow">Fair questions</div>
+        <h2 id="faq-h" class="sec-h">Before you reach out</h2>
+      </div>
+      <div class="faq">
+        <details><summary>What does it cost?</summary><p>The Briefing and the Profit Sit-Down are free. The Operator Review is a flat fee, credited toward any work we do together after it. Ongoing work is priced by scope, and you'll know the number before you agree to anything.</p></details>
+        <details><summary>How much of my time does it take?</summary><p>The Briefing takes about 30 minutes a day for a week. The Sit-Down is 45 minutes. After that, most owners spend an hour or two a week putting fixes in place.</p></details>
+        <details><summary>Do I have to share my numbers?</summary><p>Yes, at the Sit-Down and after. Your sales, your quotes and what's owed to you are where the leaks show up. They stay between us.</p></details>
+        <details><summary>What if it doesn't work for my business?</summary><p>Then I'll tell you at the Sit-Down, before you spend anything. I'd rather say no than take money for work that won't pay you back.</p></details>
+        <details><summary>Do you do marketing, ads or websites?</summary><p>Not first. Marketing comes after the leaks are fixed. When you're ready, I set the strategy and bring in trusted partners for the content and the website.</p></details>
+      </div>
     </div>
   </section>
 
@@ -542,18 +451,17 @@ nav a.navcta{background:#F28C38;color:#13283D}
     <div class="wrap contact">
       <div class="eyebrow">Get in touch</div>
       <h2 id="c-h"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 9h11v6a4 4 0 01-4 4H9a4 4 0 01-4-4z"/><path d="M16 10h2a2 2 0 010 5h-2M8 3v3M12 3v3"/></svg>Coffee's on me.</h2>
-      <p>If you own a business in the Cape Fear region and something feels stuck, send me a note. Tell me a little about what's going on and we'll find a time.</p>
+      <p>If you own a business in the Cape Fear region and something feels stuck, start the Briefing tomorrow morning, or send me a note and we'll find a time.</p>
       <div class="row">
-        <span class="addr">cody@lucidlifeco.com</span>
-        <a class="btn btn-ghost" href="mailto:cody@lucidlifeco.com">Email Cody</a>
-        <a class="btn btn-ghost" href="https://www.linkedin.com/in/codycode/" target="_blank" rel="noopener">LinkedIn</a>
+        <a class="btn" href="/briefing.html">Send me Day 1 →</a>
+        <a class="btn btn-ghost" href="mailto:cody@lucidlifeco.com">cody@lucidlifeco.com</a>
       </div>
     </div>
   </section>
 
   <section aria-label="About Lucid Life Co" style="padding-block:48px">
     <div class="wrap">
-      <p class="seo">Lucid Life Co works with owners of small businesses in Wilmington, Leland, Southport and across Brunswick and New Hanover counties who are busy but not keeping enough of what they earn. We start by fixing what's already leaking: slow replies, quiet quotes, late invoices, old prices and customers who stopped coming back. Then we turn those fixes into simple routines, and only then add marketing. Owners end up with a business that makes money on purpose, and one they can stop thinking about at dinner.</p>
+      <p class="seo">Lucid Life Co helps owners of small businesses in Wilmington, Leland, Southport and across Brunswick and New Hanover counties keep more of what they earn. We fix what's already leaking first: slow replies, quiet quotes, late invoices, old prices and customers who stopped coming back. Then we make the fixes stick, and only then add marketing.</p>
     </div>
   </section>
 </main>
