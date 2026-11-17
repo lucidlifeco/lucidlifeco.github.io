@@ -8,17 +8,20 @@
 <meta property="og:title" content="The Cape Fear Revenue Recovery Briefing">
 <meta property="og:description" content="7 days. 7 daily emails. 7 immediate profit leaks fixed. No ads. No new customers. No cost.">
 <meta property="og:image" content="https://lucidlifeco.com/cody-martin.jpg">
+<link rel="icon" type="image/png" href="/brand/lucid-mark.png">
+<link rel="apple-touch-icon" href="/brand/lucid-mark.png">
+<meta name="theme-color" content="#13283D">
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,500&family=Josefin+Sans:wght@300;400;600&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@700;800&family=Inter:wght@400;600&family=IBM+Plex+Mono:wght@500&display=swap" rel="stylesheet">
 <style>
 /* Layout: two-column hero with the opt-in form beside the promise; the seven leaks below as a numbered week */
 :root{
-  --obsidian:#0C0C0E; --obsidian-2:#131316; --obsidian-3:#1A1A1E;
-  --gold:#C4A052; --gold-soft:#D4B56A; --gold-line:rgba(196,160,82,.35);
-  --parchment:#EDE9E3; --parchment-dim:#B7B1A8; --rule:rgba(237,233,227,.12); --bad:#E07A66;
-  --display:'Cormorant Garamond', Georgia, 'Times New Roman', serif;
-  --body:'Josefin Sans', 'Helvetica Neue', Arial, sans-serif;
-  --mono:'DM Mono', ui-monospace, Menlo, Consolas, monospace;
+  --obsidian:#13283D; --obsidian-2:#0F2133; --obsidian-3:#1C3651;
+  --gold:#6CC7B9; --gold-soft:#F28C38; --gold-line:rgba(108,199,185,.35);
+  --parchment:#F6F3EC; --parchment-dim:#B9C6D2; --rule:rgba(246,243,236,.12); --bad:#F29A86;
+  --display:'Archivo', 'Arial Narrow', Arial, sans-serif;
+  --body:'Inter', 'Helvetica Neue', Arial, sans-serif;
+  --mono:'IBM Plex Mono', ui-monospace, Menlo, Consolas, monospace;
   color-scheme:dark;
 }
 *,*::before,*::after{box-sizing:border-box}
@@ -42,7 +45,7 @@ section{padding-block:72px;border-top:1px solid var(--rule)}
 .pitch h1{font-size:clamp(42px,6.4vw,72px);letter-spacing:-.01em}
 .sub{font-family:var(--mono);font-size:15px;color:var(--gold);letter-spacing:.04em}
 .lede{font-size:clamp(17px,2vw,19px);color:var(--parchment-dim);max-width:56ch}
-.nocost{font-family:var(--display);font-style:italic;font-size:26px;color:var(--parchment)}
+.nocost{font-family:var(--display);font-style:normal;font-size:26px;color:var(--parchment)}
 form.optin{background:var(--obsidian-2);border:1px solid var(--gold-line);border-radius:6px;padding:28px;display:flex;flex-direction:column;gap:16px}
 form.optin h2{font-size:30px}
 .field{display:flex;flex-direction:column;gap:6px}
@@ -71,12 +74,26 @@ form.optin h2{font-size:30px}
 .about img{border-radius:6px;aspect-ratio:4/5;object-fit:cover;width:100%}
 .about p{color:var(--parchment-dim);max-width:62ch}
 footer{border-top:1px solid var(--rule);padding-block:32px;color:var(--parchment-dim);font-size:14px}
+
+/* Harbor brand overrides */
+body{font-weight:400}
+h1,h2{font-weight:800;letter-spacing:-.015em}
+h3{font-weight:700;letter-spacing:-.01em}
+em{font-style:normal}
+h1 em,.named .big em{color:#F29A86}
+.btn{background:#F28C38;color:#13283D;font-weight:600}
+.btn:hover{background:#F59D52}
+.btn-ghost{background:transparent;color:#F6F3EC;border:1px solid rgba(246,243,236,.35)}
+.btn-ghost:hover{background:rgba(246,243,236,.08)}
+nav a.navcta{background:#F28C38;color:#13283D}
+.sub,.pull{font-style:normal;color:#B9C6D2}
+.brand{display:inline-flex;align-items:center}
 </style>
 </head>
 <body>
 <header class="top">
   <div class="wrap">
-    <a class="brand" href="/">Lucid Life <span>Co</span></a>
+    <a class="brand" href="/"><img src="/brand/lucid-lockup-sand.svg" alt="Lucid Life Co" width="139" height="36" style="height:36px;width:auto;display:block"></a>
     <a class="back" href="/">← Home</a>
   </div>
 </header>

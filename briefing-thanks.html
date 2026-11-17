@@ -5,14 +5,17 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="robots" content="noindex">
 <title>You're In · Lucid Life Co</title>
+<link rel="icon" type="image/png" href="/brand/lucid-mark.png">
+<link rel="apple-touch-icon" href="/brand/lucid-mark.png">
+<meta name="theme-color" content="#13283D">
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600&family=Josefin+Sans:wght@300;400;600&family=DM+Mono:wght@400&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@700;800&family=Inter:wght@400;600&family=IBM+Plex+Mono:wght@500&display=swap" rel="stylesheet">
 <style>
 /* Layout: one centered column, three next steps */
 :root{
-  --obsidian:#0C0C0E; --obsidian-2:#131316; --gold:#C4A052; --gold-soft:#D4B56A; --gold-line:rgba(196,160,82,.35);
-  --parchment:#EDE9E3; --parchment-dim:#B7B1A8; --rule:rgba(237,233,227,.12);
-  --display:'Cormorant Garamond', Georgia, serif; --body:'Josefin Sans', 'Helvetica Neue', Arial, sans-serif; --mono:'DM Mono', ui-monospace, Menlo, monospace;
+  --obsidian:#13283D; --obsidian-2:#0F2133; --gold:#6CC7B9; --gold-soft:#F28C38; --gold-line:rgba(108,199,185,.35);
+  --parchment:#F6F3EC; --parchment-dim:#B9C6D2; --rule:rgba(246,243,236,.12);
+  --display:'Archivo', 'Arial Narrow', Arial, sans-serif; --body:'Inter', 'Helvetica Neue', Arial, sans-serif; --mono:'IBM Plex Mono', ui-monospace, Menlo, monospace;
   color-scheme:dark;
 }
 *,*::before,*::after{box-sizing:border-box}
@@ -36,10 +39,24 @@ li h2{font-size:26px}
 li p{color:var(--parchment-dim);font-size:16px}
 .btn{display:inline-flex;align-self:flex-start;font:600 15px/1 var(--body);padding:14px 20px 12px;border-radius:4px;background:var(--gold);color:var(--obsidian);text-decoration:none;margin-top:6px}
 .btn:focus-visible{outline:2px solid var(--gold);outline-offset:3px}
+
+/* Harbor brand overrides */
+body{font-weight:400}
+h1,h2{font-weight:800;letter-spacing:-.015em}
+h3{font-weight:700;letter-spacing:-.01em}
+em{font-style:normal}
+h1 em,.named .big em{color:#F29A86}
+.btn{background:#F28C38;color:#13283D;font-weight:600}
+.btn:hover{background:#F59D52}
+.btn-ghost{background:transparent;color:#F6F3EC;border:1px solid rgba(246,243,236,.35)}
+.btn-ghost:hover{background:rgba(246,243,236,.08)}
+nav a.navcta{background:#F28C38;color:#13283D}
+.sub,.pull{font-style:normal;color:#B9C6D2}
+.brand{display:inline-flex;align-items:center}
 </style>
 </head>
 <body>
-<header><div class="wrap"><a class="brand" href="/">Lucid Life <span>Co</span></a></div></header>
+<header><div class="wrap"><a class="brand" href="/"><img src="/brand/lucid-lockup-sand.svg" alt="Lucid Life Co" width="139" height="36" style="height:36px;width:auto;display:block"></a></div></header>
 <main><div class="wrap">
   <div class="eyebrow">The Cape Fear Revenue Recovery Briefing</div>
   <h1>You're in.</h1>

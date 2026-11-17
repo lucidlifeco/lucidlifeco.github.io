@@ -7,18 +7,21 @@
 <meta name="description" content="A free 10-minute scorecard for small business owners. Score your five profit links, find your weakest one, and get three fixes for the next 30 days.">
 <meta property="og:title" content="The Profit Chain Scorecard · Lucid Life Co">
 <meta property="og:description" content="20 questions. About 10 minutes. Find where your business is leaking profit.">
+<link rel="icon" type="image/png" href="/brand/lucid-mark.png">
+<link rel="apple-touch-icon" href="/brand/lucid-mark.png">
+<meta name="theme-color" content="#13283D">
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Josefin+Sans:wght@300;400;600&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@700;800&family=Inter:wght@400;600&family=IBM+Plex+Mono:wght@500&display=swap" rel="stylesheet">
 <style>
 /* Layout: one reading column. Questions → optional numbers → email → results */
 :root{
-  --obsidian:#0C0C0E; --obsidian-2:#131316; --obsidian-3:#1A1A1E;
-  --gold:#C4A052; --gold-soft:#D4B56A; --gold-line:rgba(196,160,82,.35);
-  --parchment:#EDE9E3; --parchment-dim:#B7B1A8; --rule:rgba(237,233,227,.12);
-  --good:#6FBF8E; --warn:#E0A94A; --bad:#E07A66;
-  --display:'Cormorant Garamond', Georgia, 'Times New Roman', serif;
-  --body:'Josefin Sans', 'Helvetica Neue', Arial, sans-serif;
-  --mono:'DM Mono', ui-monospace, Menlo, Consolas, monospace;
+  --obsidian:#13283D; --obsidian-2:#0F2133; --obsidian-3:#1C3651;
+  --gold:#6CC7B9; --gold-soft:#F28C38; --gold-line:rgba(108,199,185,.35);
+  --parchment:#F6F3EC; --parchment-dim:#B9C6D2; --rule:rgba(246,243,236,.12);
+  --good:#6CC7B9; --warn:#E0A94A; --bad:#F29A86;
+  --display:'Archivo', 'Arial Narrow', Arial, sans-serif;
+  --body:'Inter', 'Helvetica Neue', Arial, sans-serif;
+  --mono:'IBM Plex Mono', ui-monospace, Menlo, Consolas, monospace;
   color-scheme:dark;
 }
 *,*::before,*::after{box-sizing:border-box}
@@ -66,7 +69,7 @@ h3{font-size:28px}
 .ledger{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:8px 16px;font-family:var(--mono);font-size:15px;font-variant-numeric:tabular-nums;border-top:1px solid var(--rule);padding-top:16px}
 .ledger .v{text-align:right}
 .ledger .total{font-size:18px;color:var(--gold)}
-.note{font-size:14px;color:var(--parchment-dim);font-style:italic}
+.note{font-size:14px;color:var(--parchment-dim);font-style:normal}
 
 .btn{display:inline-flex;align-items:center;justify-content:center;font:600 16px/1 var(--body);padding:17px 26px 15px;border-radius:4px;background:var(--gold);color:var(--obsidian);text-decoration:none;border:0;cursor:pointer;min-height:48px}
 .btn:hover{background:var(--gold-soft)}
@@ -77,7 +80,7 @@ h3{font-size:28px}
 .err{color:var(--bad);font-size:15px}
 
 .score-row{display:flex;align-items:flex-end;gap:24px;flex-wrap:wrap}
-.big{font-family:var(--display);font-size:104px;line-height:.85;font-weight:700;color:var(--gold)}
+.big{font-family:var(--mono);font-size:96px;line-height:.9;font-weight:500;color:var(--gold)}
 .big small{font-size:34px;color:var(--parchment-dim);font-weight:500}
 .bars{display:flex;flex-direction:column;gap:12px}
 .bar{display:grid;grid-template-columns:96px minmax(0,1fr) 130px;gap:12px;align-items:center;font-family:var(--mono);font-size:14px}
@@ -91,12 +94,26 @@ h3{font-size:28px}
 .next{border-top:2px solid var(--gold);padding-top:24px}
 .addr{font-family:var(--mono);font-size:17px;user-select:all}
 footer{border-top:1px solid var(--rule);padding-block:32px;color:var(--parchment-dim);font-size:14px}
+
+/* Harbor brand overrides */
+body{font-weight:400}
+h1,h2{font-weight:800;letter-spacing:-.015em}
+h3{font-weight:700;letter-spacing:-.01em}
+em{font-style:normal}
+h1 em,.named .big em{color:#F29A86}
+.btn{background:#F28C38;color:#13283D;font-weight:600}
+.btn:hover{background:#F59D52}
+.btn-ghost{background:transparent;color:#F6F3EC;border:1px solid rgba(246,243,236,.35)}
+.btn-ghost:hover{background:rgba(246,243,236,.08)}
+nav a.navcta{background:#F28C38;color:#13283D}
+.sub,.pull{font-style:normal;color:#B9C6D2}
+.brand{display:inline-flex;align-items:center}
 </style>
 </head>
 <body>
 <header class="top">
   <div class="wrap">
-    <a class="brand" href="/">Lucid Life <span>Co</span></a>
+    <a class="brand" href="/"><img src="/brand/lucid-lockup-sand.svg" alt="Lucid Life Co" width="139" height="36" style="height:36px;width:auto;display:block"></a>
     <a class="back" href="/">← Home</a>
   </div>
 </header>
