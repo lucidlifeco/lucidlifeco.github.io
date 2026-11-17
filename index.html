@@ -218,6 +218,12 @@ nav a.navcta{background:#F28C38;color:#13283D}
 .faq summary::after{content:"+";font-family:var(--mono);color:#F28C38}
 .faq details[open] summary::after{content:"−"}
 .faq p{color:var(--parchment-dim);margin-top:10px;max-width:64ch}
+.place-grid{display:grid;grid-template-columns:minmax(0,.9fr) minmax(0,1.1fr);gap:56px;align-items:center}
+@media (max-width:820px){.place-grid{grid-template-columns:1fr;gap:28px}}
+.place figure{margin:0}
+.place img{width:100%;height:auto;border-radius:8px;aspect-ratio:4/5;object-fit:cover}
+@media (max-width:820px){.place img{aspect-ratio:4/3;object-position:50% 62%}}
+.place figcaption{font-family:var(--mono);font-size:12px;letter-spacing:.08em;color:var(--parchment-dim);margin-top:10px}
 .faq summary:focus-visible{outline:2px solid #F28C38;outline-offset:4px}
 </style>
 </head>
@@ -312,6 +318,20 @@ nav a.navcta{background:#F28C38;color:#13283D}
       <div class="try">
         <svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><rect x="5" y="3" width="14" height="18" rx="1"/><path d="M8 7h8M8 12h2M12 12h2M16 12h0M8 16h2M12 16h2M16 16h0"/></svg>
         <p><strong>Try this.</strong> Count the quotes you sent in the last 90 days that never got an answer. Multiply by your average job. That's one leak.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="place" aria-labelledby="pl-h">
+    <div class="wrap place-grid">
+      <figure>
+        <img src="/img/port-of-wilmington.jpg" alt="Container cranes at the Port of Wilmington, seen from the Cape Fear River" width="800" height="1000" loading="lazy">
+        <figcaption>Port of Wilmington, from the Cape Fear River</figcaption>
+      </figure>
+      <div class="place-copy">
+        <div class="eyebrow">Local by design</div>
+        <h2 id="pl-h" class="sec-h">Built here. For the businesses that keep it running.</h2>
+        <p class="sec-p">I live in Leland and work only with owners in Brunswick and New Hanover counties. Same tides, same seasons, same customers.</p>
       </div>
     </div>
   </section>
