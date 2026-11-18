@@ -3,111 +3,102 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Profit Chain Scorecard · Lucid Life Co</title>
-<meta name="description" content="A free 10-minute scorecard for small business owners. Score your five profit links, find your weakest one, and get three fixes for the next 30 days.">
-<meta property="og:title" content="The Profit Chain Scorecard · Lucid Life Co">
-<meta property="og:description" content="20 questions. About 10 minutes. Find where your business is leaking profit.">
+<title>The 5-Minute Leak Check · Lucid Life Co</title>
+<meta name="description" content="A free 5-minute check for plumbers, HVAC, electricians, contractors and auto shops. Find the one leak costing you the most, and the fix for it.">
+<meta property="og:title" content="The 5-Minute Leak Check · Lucid Life Co">
+<meta property="og:description" content="15 quick questions. Find the one leak costing your shop the most, and how to fix it.">
 <link rel="icon" type="image/png" href="/brand/lucid-mark.png">
 <link rel="apple-touch-icon" href="/brand/lucid-mark.png">
 <meta name="theme-color" content="#13283D">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@700;800&family=Inter:wght@400;600&family=IBM+Plex+Mono:wght@500&display=swap" rel="stylesheet">
 <style>
-/* Layout: one reading column. Questions → optional numbers → email → results */
+/* Layout: one step on screen at a time. Start → trade → five short sections → email → result */
 :root{
-  --obsidian:#13283D; --obsidian-2:#0F2133; --obsidian-3:#1C3651;
-  --gold:#6CC7B9; --gold-soft:#F28C38; --gold-line:rgba(108,199,185,.35);
-  --parchment:#F6F3EC; --parchment-dim:#B9C6D2; --rule:rgba(246,243,236,.12);
-  --good:#6CC7B9; --warn:#E0A94A; --bad:#F29A86;
-  --display:'Archivo', 'Arial Narrow', Arial, sans-serif;
-  --body:'Inter', 'Helvetica Neue', Arial, sans-serif;
-  --mono:'IBM Plex Mono', ui-monospace, Menlo, Consolas, monospace;
+  --navy:#13283D; --navy-2:#0F2133; --navy-3:#1C3651;
+  --sand:#F6F3EC; --sand-dim:#B9C6D2; --rule:rgba(246,243,236,.12);
+  --teal:#6CC7B9; --beacon:#F28C38; --leak:#F29A86; --warn:#E0A94A;
+  --display:'Archivo','Arial Narrow',Arial,sans-serif;
+  --body:'Inter','Helvetica Neue',Arial,sans-serif;
+  --mono:'IBM Plex Mono',ui-monospace,Menlo,Consolas,monospace;
   color-scheme:dark;
 }
 *,*::before,*::after{box-sizing:border-box}
-body{margin:0;background:var(--obsidian);color:var(--parchment);font-family:var(--body);font-weight:300;font-size:17px;line-height:1.6}
-a{color:var(--gold-soft)}
-h1,h2,h3{font-family:var(--display);font-weight:600;line-height:1.1;margin:0;text-wrap:balance}
+body{margin:0;background:var(--navy);color:var(--sand);font-family:var(--body);font-size:17px;line-height:1.6}
+a{color:var(--beacon)}
+h1,h2,h3{font-family:var(--display);font-weight:800;line-height:1.1;margin:0;letter-spacing:-.015em;text-wrap:balance}
+h3{font-weight:700}
 p{margin:0}
-.wrap{max-width:780px;margin:0 auto;padding-left:max(20px,env(safe-area-inset-left,0px));padding-right:max(20px,env(safe-area-inset-right,0px))}
+.wrap{max-width:720px;margin:0 auto;padding-left:max(20px,env(safe-area-inset-left,0px));padding-right:max(20px,env(safe-area-inset-right,0px))}
 header.top{border-bottom:1px solid var(--rule)}
 header.top .wrap{display:flex;align-items:center;justify-content:space-between;height:64px;max-width:1080px}
-.brand{font-family:var(--display);font-size:24px;font-weight:600;color:var(--parchment);text-decoration:none}
-.brand span{color:var(--gold)}
-header.top a.back{color:var(--parchment-dim);font-size:14px;text-decoration:none;letter-spacing:.06em;text-transform:uppercase}
-main .wrap{display:flex;flex-direction:column;gap:56px;padding-block:56px 80px}
-.eyebrow{font-family:var(--mono);font-size:12px;letter-spacing:.16em;text-transform:uppercase;color:var(--gold)}
-section{display:flex;flex-direction:column;gap:20px}
-h1{font-size:clamp(42px,7vw,64px)}
-h2{font-size:clamp(30px,5vw,40px)}
-h3{font-size:28px}
-.lede{font-size:19px;color:var(--parchment-dim);max-width:62ch}
-.muted{color:var(--parchment-dim);font-size:15px}
-.chain{display:flex;flex-wrap:wrap;gap:8px;list-style:none;margin:0;padding:0}
-.chain li{border:1px solid var(--gold-line);border-radius:999px;padding:6px 14px 4px;font-family:var(--mono);font-size:13px;letter-spacing:.06em;text-transform:uppercase}
+header.top a.back{color:var(--sand-dim);font-size:14px;text-decoration:none;letter-spacing:.06em;text-transform:uppercase}
+main .wrap{padding-block:40px 80px}
+.eyebrow{font-family:var(--mono);font-size:12px;letter-spacing:.16em;text-transform:uppercase;color:var(--teal)}
+.step{display:flex;flex-direction:column;gap:22px}
+.step[hidden]{display:none}
+h1{font-size:clamp(38px,7vw,56px)}
+h2{font-size:clamp(28px,5vw,38px)}
+.lede{font-size:19px;color:var(--sand-dim);max-width:58ch}
+.muted{color:var(--sand-dim);font-size:15px}
+.promise{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:10px}
+.promise li{display:flex;gap:12px;align-items:flex-start}
+.promise li::before{content:"";flex:none;width:8px;height:8px;border-radius:50%;background:var(--teal);margin-top:10px}
 
-.group{display:flex;flex-direction:column;border-top:2px solid var(--gold);padding-top:18px;gap:4px}
-.group-head{display:flex;justify-content:space-between;align-items:baseline;gap:12px;flex-wrap:wrap;margin-bottom:6px}
-.group-head p{color:var(--parchment-dim);font-size:15px}
-.q{padding:14px 0;border-bottom:1px solid var(--rule);display:grid;grid-template-columns:minmax(0,1fr) auto;gap:10px 20px;align-items:center}
-.qt{font-size:16px;line-height:1.45}
-.qt .num{font-family:var(--mono);color:var(--gold);font-size:13px;margin-right:8px}
-.seg{display:flex;border:1px solid var(--rule);border-radius:4px;overflow:hidden;background:var(--obsidian-2)}
+.meter{display:flex;flex-direction:column;gap:8px;margin-bottom:28px}
+.meter[hidden]{display:none}
+.meter .row{display:flex;justify-content:space-between;font-family:var(--mono);font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--sand-dim)}
+.meter .track{height:8px;background:var(--navy-3);border-radius:4px;overflow:hidden}
+.meter .fill{height:100%;background:var(--teal);width:0;border-radius:4px}
+@media (prefers-reduced-motion:no-preference){.meter .fill{transition:width .4s ease}}
+
+.choices{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
+@media (max-width:520px){.choices{grid-template-columns:1fr}}
+.choice{position:relative}
+.choice input{position:absolute;opacity:0;width:1px;height:1px}
+.choice label{display:flex;align-items:center;min-height:56px;padding:14px 18px;border:1px solid var(--rule);border-radius:8px;background:var(--navy-2);cursor:pointer;font-size:17px}
+.choice input:checked+label{border-color:var(--teal);background:rgba(108,199,185,.12)}
+.choice input:focus-visible+label{outline:2px solid var(--beacon);outline-offset:2px}
+
+.q{padding:18px 0;border-bottom:1px solid var(--rule);display:flex;flex-direction:column;gap:12px}
+.q:first-child{border-top:1px solid var(--rule)}
+.qt{font-size:18px;line-height:1.45}
+.seg{display:flex;border:1px solid var(--rule);border-radius:8px;overflow:hidden;background:var(--navy-2)}
 .seg input{position:absolute;opacity:0;width:1px;height:1px}
-.seg label{padding:10px 13px 8px;font-size:14px;cursor:pointer;min-width:48px;text-align:center;border-left:1px solid var(--rule);white-space:nowrap;user-select:none}
+.seg label{flex:1;padding:12px 10px;font-size:16px;cursor:pointer;text-align:center;border-left:1px solid var(--rule);user-select:none}
 .seg label:first-of-type{border-left:0}
-.seg input:checked+label{background:var(--gold);color:var(--obsidian);font-weight:600}
-.seg input:focus-visible+label{outline:2px solid var(--gold);outline-offset:-2px}
-@media (max-width:560px){.q{grid-template-columns:1fr}.seg label{flex:1}}
+.seg input:checked+label{background:var(--teal);color:var(--navy);font-weight:600}
+.seg input:focus-visible+label{outline:2px solid var(--beacon);outline-offset:-2px}
 
-.panel{background:var(--obsidian-2);border:1px solid var(--rule);border-radius:6px;padding:26px;display:flex;flex-direction:column;gap:20px}
+.panel{background:var(--navy-2);border:1px solid var(--rule);border-radius:8px;padding:24px;display:flex;flex-direction:column;gap:18px}
 .fields{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:16px}
 .field{display:flex;flex-direction:column;gap:6px}
-.field label{font-size:14px;color:var(--parchment-dim)}
-.field input{font:400 17px var(--mono);padding:12px;border:1px solid var(--rule);border-radius:4px;background:var(--obsidian);color:var(--parchment);width:100%;font-variant-numeric:tabular-nums}
-.field input:focus-visible{outline:2px solid var(--gold);outline-offset:1px}
-.ledger{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:8px 16px;font-family:var(--mono);font-size:15px;font-variant-numeric:tabular-nums;border-top:1px solid var(--rule);padding-top:16px}
-.ledger .v{text-align:right}
-.ledger .total{font-size:18px;color:var(--gold)}
-.note{font-size:14px;color:var(--parchment-dim);font-style:normal}
+.field label{font-size:14px;color:var(--sand-dim)}
+.field input{font:400 17px var(--body);padding:12px;border:1px solid var(--rule);border-radius:6px;background:var(--navy);color:var(--sand);width:100%}
+.field input[type=number]{font-family:var(--mono)}
+.field input:focus-visible{outline:2px solid var(--beacon);outline-offset:1px}
 
-.btn{display:inline-flex;align-items:center;justify-content:center;font:600 16px/1 var(--body);padding:17px 26px 15px;border-radius:4px;background:var(--gold);color:var(--obsidian);text-decoration:none;border:0;cursor:pointer;min-height:48px}
-.btn:hover{background:var(--gold-soft)}
-.btn:disabled{opacity:.4;cursor:not-allowed}
-.btn-ghost{background:transparent;color:var(--parchment);border:1px solid var(--gold-line)}
-.btn:focus-visible{outline:2px solid var(--gold);outline-offset:3px}
-.actions{display:flex;flex-wrap:wrap;gap:14px;align-items:center}
-.err{color:var(--bad);font-size:15px}
-
-.score-row{display:flex;align-items:flex-end;gap:24px;flex-wrap:wrap}
-.big{font-family:var(--mono);font-size:96px;line-height:.9;font-weight:500;color:var(--gold)}
-.big small{font-size:34px;color:var(--parchment-dim);font-weight:500}
-.bars{display:flex;flex-direction:column;gap:12px}
-.bar{display:grid;grid-template-columns:96px minmax(0,1fr) 130px;gap:12px;align-items:center;font-family:var(--mono);font-size:14px}
-.track{height:12px;background:var(--obsidian-3);border-radius:6px;overflow:hidden}
-.fill{height:100%;border-radius:6px;width:0}
-@media (prefers-reduced-motion:no-preference){.fill{transition:width .7s ease}}
-.tag{font-size:12px;text-transform:uppercase;letter-spacing:.06em}
-@media (max-width:480px){.bar{grid-template-columns:76px minmax(0,1fr)}.bar .tag{grid-column:2}}
-.weak{border:1px solid var(--gold);border-radius:6px;padding:28px;display:flex;flex-direction:column;gap:14px;background:var(--obsidian-2)}
-.weak ol{margin:0;padding-left:22px;display:flex;flex-direction:column;gap:10px}
-.next{border-top:2px solid var(--gold);padding-top:24px}
-.addr{font-family:var(--mono);font-size:17px;user-select:all}
-footer{border-top:1px solid var(--rule);padding-block:32px;color:var(--parchment-dim);font-size:14px}
-
-/* Harbor brand overrides */
-body{font-weight:400}
-h1,h2{font-weight:800;letter-spacing:-.015em}
-h3{font-weight:700;letter-spacing:-.01em}
-em{font-style:normal}
-h1 em,.named .big em{color:#F29A86}
-.btn{background:#F28C38;color:#13283D;font-weight:600}
+.btn{display:inline-flex;align-items:center;justify-content:center;font:600 16px/1 var(--body);padding:17px 26px 15px;border-radius:8px;background:var(--beacon);color:var(--navy);text-decoration:none;border:0;cursor:pointer;min-height:52px}
 .btn:hover{background:#F59D52}
-.btn-ghost{background:transparent;color:#F6F3EC;border:1px solid rgba(246,243,236,.35)}
+.btn:focus-visible{outline:2px solid var(--sand);outline-offset:3px}
+.btn-ghost{background:transparent;color:var(--sand);border:1px solid rgba(246,243,236,.35)}
 .btn-ghost:hover{background:rgba(246,243,236,.08)}
-nav a.navcta{background:#F28C38;color:#13283D}
-.sub,.pull{font-style:normal;color:#B9C6D2}
-.brand{display:inline-flex;align-items:center}
+.nav{display:flex;justify-content:space-between;align-items:center;gap:14px;flex-wrap:wrap}
+.linkbtn{background:none;border:0;color:var(--sand-dim);font:400 15px var(--body);cursor:pointer;padding:8px 0;text-decoration:underline;text-underline-offset:3px}
+.err{color:var(--leak);font-size:15px}
+
+.leak-card{border:1px solid var(--leak);border-radius:8px;padding:26px;display:flex;flex-direction:column;gap:14px;background:var(--navy-2)}
+.worth{font-family:var(--mono);font-size:clamp(34px,7vw,52px);line-height:1;color:var(--sand)}
+.worth-line{color:var(--sand-dim);font-size:15px}
+.fix{border-top:2px solid var(--teal);padding-top:20px;display:flex;flex-direction:column;gap:12px}
+.fix ol{margin:0;padding-left:22px;display:flex;flex-direction:column;gap:10px}
+.bars{display:flex;flex-direction:column;gap:10px}
+.bar{display:grid;grid-template-columns:150px minmax(0,1fr);gap:12px;align-items:center;font-family:var(--mono);font-size:13px}
+.bar .t{height:10px;background:var(--navy-3);border-radius:5px;overflow:hidden}
+.bar .f{height:100%;border-radius:5px}
+@media (max-width:480px){.bar{grid-template-columns:118px minmax(0,1fr)}}
+.offer{background:var(--navy-3);border-radius:8px;padding:26px;display:flex;flex-direction:column;gap:14px}
+footer{border-top:1px solid var(--rule);padding-block:28px;color:var(--sand-dim);font-size:14px}
 </style>
 </head>
 <body>
@@ -120,205 +111,231 @@ nav a.navcta{background:#F28C38;color:#13283D}
 
 <main>
 <div class="wrap">
-  <section>
-    <div class="eyebrow">Free · 20 questions · About 10 minutes</div>
-    <h1>The Profit Chain Scorecard</h1>
-    <p class="lede">Every business makes money through the same five links. A weak link leaks profit no matter how hard you work the others. Score yours, find your weakest link, and get three fixes you can start this week.</p>
-    <ol class="chain" aria-label="The five links">
-      <li>Attract</li><li>Convert</li><li>Deliver</li><li>Collect</li><li>Keep</li>
-    </ol>
+  <div class="meter" id="meter" hidden>
+    <div class="row"><span id="m-label">Step 1 of 7</span><span id="m-pct">0%</span></div>
+    <div class="track" role="progressbar" aria-labelledby="m-label" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0" id="m-bar"><div class="fill" id="m-fill"></div></div>
+  </div>
+
+  <!-- 0 · Start -->
+  <section class="step" data-step="start">
+    <div class="eyebrow">Free · 15 questions · About 5 minutes</div>
+    <h1>Find the one leak costing your shop the most.</h1>
+    <p class="lede">For plumbers, HVAC techs, electricians, contractors and auto shops. Answer a few yes-or-no questions and you'll get:</p>
+    <ul class="promise">
+      <li><span>Your biggest leak, in plain words</span></li>
+      <li><span>A rough dollar figure on what it costs you each year</span></li>
+      <li><span>The fix, in three steps you can start this week</span></li>
+    </ul>
+    <div><button class="btn" type="button" data-next>Start the check →</button></div>
+    <p class="muted">No business runs without leaks. The point is to find the biggest one first.</p>
   </section>
 
-  <section aria-labelledby="q-title">
-    <div class="eyebrow">Part 1</div>
-    <h2 id="q-title">Score your chain</h2>
-    <p class="muted">Answer honestly. "Sometimes" counts as half.</p>
-    <div id="groups"></div>
-  </section>
-
-  <section aria-labelledby="n-title">
-    <div class="eyebrow">Part 2 · Optional</div>
-    <h2 id="n-title">What 10% is worth to you</h2>
+  <!-- 1 · Trade -->
+  <section class="step" data-step="trade" hidden>
+    <h2>What kind of work do you do?</h2>
+    <div class="choices" role="radiogroup" aria-label="Your trade" id="trades"></div>
     <div class="panel">
-      <p class="note">These start as example numbers. Replace them with yours. Rough estimates are fine.</p>
-      <div class="fields">
-        <div class="field"><label for="n-leads">New inquiries per month</label><input id="n-leads" type="number" inputmode="decimal" min="0" value="40"></div>
-        <div class="field"><label for="n-close">Close rate (%)</label><input id="n-close" type="number" inputmode="decimal" min="0" max="100" value="25"></div>
-        <div class="field"><label for="n-ticket">Average sale ($)</label><input id="n-ticket" type="number" inputmode="decimal" min="0" value="1200"></div>
-        <div class="field"><label for="n-freq">Purchases per customer per year</label><input id="n-freq" type="number" inputmode="decimal" min="0" step="0.1" value="1.5"></div>
-        <div class="field"><label for="n-margin">Gross margin (%)</label><input id="n-margin" type="number" inputmode="decimal" min="0" max="100" value="40"></div>
-      </div>
-      <div class="ledger" aria-live="polite">
-        <span>Annual revenue today</span><span class="v" id="o-rev">–</span>
-        <span>Annual gross profit today</span><span class="v" id="o-gp">–</span>
-        <span>Gross profit at 10% better on all five</span><span class="v" id="o-gp2">–</span>
-        <span class="total">Profit left on the table</span><span class="v total" id="o-gap">–</span>
-      </div>
-      <p class="note">Gross margin is price minus direct costs (materials, labor, subcontractors). Collect doesn't change this math, but it decides when profit becomes cash in your account.</p>
+      <div class="field"><label for="n-ticket">About what's your average job? ($, a ballpark is fine)</label><input id="n-ticket" type="number" inputmode="decimal" min="0" placeholder="850"></div>
     </div>
+    <p class="err" data-err hidden></p>
+    <div class="nav"><button class="linkbtn" type="button" data-back>Back</button><button class="btn" type="button" data-next>Next →</button></div>
   </section>
 
-  <section aria-labelledby="e-title">
-    <div class="eyebrow">Part 3</div>
-    <h2 id="e-title">Where should we send your results?</h2>
+  <div id="sections"></div>
+
+  <!-- Email -->
+  <section class="step" data-step="email" hidden>
+    <h2>Where should I send your results?</h2>
+    <p class="lede">You'll see them on the next screen. I'll email you a copy, plus one practical fix a week. Unsubscribe anytime.</p>
     <form class="panel" id="lead" novalidate>
       <div class="fields">
         <div class="field"><label for="f-name">First name</label><input id="f-name" name="first_name" autocomplete="given-name" required></div>
         <div class="field"><label for="f-email">Email</label><input id="f-email" name="email_address" type="email" autocomplete="email" required></div>
         <div class="field"><label for="f-biz">Business name (optional)</label><input id="f-biz" name="business" autocomplete="organization"></div>
       </div>
-      <p class="muted">You'll see your results right away. You'll also get the free 7-day Revenue Recovery Briefing by email, one profit leak a day, plus the first workshop date when it's set. Unsubscribe anytime.</p>
-      <div class="actions">
-        <button class="btn" id="see" type="submit" disabled>See my results</button>
-        <span class="muted" id="progress" aria-live="polite">0 of 20 answered</span>
-      </div>
       <p class="err" id="err" hidden></p>
+      <div class="nav"><button class="linkbtn" type="button" data-back>Back</button><button class="btn" type="submit">Show my biggest leak →</button></div>
     </form>
   </section>
 
-  <section id="results" aria-labelledby="r-title" hidden>
-    <div class="eyebrow">Your results</div>
-    <h2 id="r-title">Your Profit Chain</h2>
-    <div class="score-row">
-      <div class="big" id="r-total">0<small>/100</small></div>
-      <p id="r-summary" class="lede"></p>
+  <!-- Result -->
+  <section class="step" data-step="result" id="result" hidden>
+    <div class="eyebrow">Your biggest leak</div>
+    <h2 id="r-title"></h2>
+    <div class="leak-card">
+      <p id="r-diag" style="font-size:18px"></p>
+      <div>
+        <div class="worth" id="r-worth"></div>
+        <p class="worth-line" id="r-worth-line"></p>
+      </div>
     </div>
-    <div class="bars" id="r-bars"></div>
-    <div class="weak">
-      <div class="eyebrow">Your weakest link</div>
-      <h3 id="w-title"></h3>
-      <p id="w-diag" class="muted" style="font-size:17px"></p>
-      <p><strong style="font-weight:600">Three fixes for the next 30 days</strong></p>
-      <ol id="w-fixes"></ol>
+    <div class="fix">
+      <div class="eyebrow">Your fix</div>
+      <h3 id="r-kit"></h3>
+      <ol id="r-steps"></ol>
+      <p id="r-kit-link" hidden><a href="/fix/follow-up.html">Get the full 3-5-7 Follow-Up Plan, with the exact messages →</a></p>
     </div>
-    <div class="next">
-      <section>
-        <h3>Want help fixing it?</h3>
-        <p class="muted" style="font-size:17px">Start with the free Revenue Recovery Briefing: seven days, one profit leak a day, and the exact words to fix it. Or, if you'd like to see whether I could help with your weakest link directly, request a free 45-minute Operator Review. Spots are limited each month.</p>
-        <div class="actions"><a class="btn" href="/briefing.html">Start the free Briefing</a></div>
-        <div class="actions">
-          <span class="addr">cody@lucidlifeco.com</span>
-          <a class="btn btn-ghost" href="mailto:cody@lucidlifeco.com?subject=Operator%20Review">Request an Operator Review</a>
-          <a class="btn btn-ghost" href="https://www.linkedin.com/in/codycode/" target="_blank" rel="noopener">LinkedIn</a>
-        </div>
-      </section>
+    <div class="offer">
+      <h3>Want it fixed, not just found?</h3>
+      <p class="muted" style="font-size:17px">That's the Fix Sprint. We work on this one leak together for 30 days, with your numbers, until it's closed. It starts with a free 45-minute Profit Sit-Down, so you know exactly what it involves and costs before you agree to anything.</p>
+      <div class="nav" style="justify-content:flex-start"><a class="btn" id="r-book" href="mailto:cody@lucidlifeco.com?subject=Profit%20Sit-Down">Book my Profit Sit-Down</a></div>
     </div>
+    <div>
+      <div class="eyebrow" style="margin-bottom:12px">All five areas</div>
+      <div class="bars" id="r-bars"></div>
+    </div>
+    <p class="muted">Rough numbers based on your answers, not a financial audit.</p>
   </section>
 </div>
 </main>
 
-<footer><div class="wrap" style="padding-block:0">Lucid Life Co · Clarity for your business and your life · Wilmington, NC. Scores are a starting point for a conversation, not a financial audit.</div></footer>
+<footer><div class="wrap">Lucid Life Co · Revenue and profit advisory for Cape Fear businesses · Wilmington, NC</div></footer>
 
 <script>
-// Kit form for scorecard sign-ups. Create the "Profit Chain Scorecard" form in Kit and paste its ID here.
 var KIT_FORM_ID = "10131955";
 
+var TRADES = [
+  ['plumbing','Plumbing'],['hvac','HVAC'],['electrical','Electrical'],
+  ['contractor','Contractor or remodeling'],['auto','Auto repair'],['other','Another trade']
+];
+function quoteWord(){return trade==='auto'?'estimate':'quote'}
+
 var LINKS = [
-  {key:'attract', name:'Attract', blurb:'How customers find you and why they pick you.',
+  {key:'attract', name:'Getting found',
    qs:['Do you know where your last 10 customers came from?',
-       'Do you have at least one source of new customers you control, beyond referrals and word of mouth?',
-       'Could a stranger say in one sentence why someone should choose you over a competitor?',
-       'Do you know roughly what it costs you to win a new customer?'],
-   title:'Attract: your growth runs on luck',
-   diag:'New business shows up when it shows up. Without a clear reason to choose you and a source you control, every slow month feels like a mystery.',
-   fixes:['Ask your last 10 customers how they found you and why they chose you. Write down their exact words.',
-          'Turn those words into one sentence about why people choose you. Put it at the top of your website, your quotes and your email signature.',
-          'Pick one lead source you control (a monthly note to past customers, a referral partner, a local event) and commit to it for 90 days.']},
-  {key:'convert', name:'Convert', blurb:'How inquiries become paying customers.',
-   qs:['Does every new inquiry get a response within one business day?',
-       'Do you follow up at least three times with people who don’t buy right away?',
-       'Do you know your close rate, meaning how many inquiries become customers?',
-       'Do you present your offer and price the same way every time instead of improvising?'],
-   title:'Convert: you’re paying for leads you don’t close',
-   diag:'Interested people are slipping away between the first conversation and the sale. Most deals are lost to slow replies and no follow-up, not to competitors.',
-   fixes:['Set a same-day reply rule and write one template you can send in under two minutes.',
-          'Build a three-touch follow-up: day 1, day 4 and day 10 after the first conversation.',
-          'Track every inquiry for 30 days in a simple sheet: date, source, outcome. Your real close rate will be right there.']},
-  {key:'deliver', name:'Deliver', blurb:'How efficiently you do the work, and at what margin.',
-   qs:['Do you know your gross margin on your top three products or services?',
-       'Have you raised prices in the last 12 months?',
-       'Is the way you deliver your main service written down so someone else could follow it?',
-       'Do you know which customers or jobs make you the least money?'],
-   title:'Deliver: busy is not the same as profitable',
-   diag:'Revenue is the scoreboard, margin is the game. If you don’t know what each offer actually earns, you may be working hardest on the work that pays least.',
-   fixes:['Calculate gross margin on your top three offers: price minus materials, labor and subcontractors.',
-          'Rank last year’s customers by profit, not revenue, and look hard at the bottom 20%.',
-          'Raise the price of your most requested offer by 5–10% for new customers and watch what happens.']},
-  {key:'collect', name:'Collect', blurb:'How reliably and quickly cash arrives.',
-   qs:['Do you collect a deposit or payment before or at the time of delivery for most work?',
-       'Do you send invoices within 24 hours of finishing the work?',
-       'Is less than 10% of what customers owe you more than 30 days overdue?',
-       'Do you look at money in and money out at least once a week?'],
-   title:'Collect: you’ve earned money you don’t have yet',
-   diag:'Profit on paper doesn’t pay payroll. Slow invoicing and loose payment terms turn good months into cash crunches.',
-   fixes:['Require a deposit on all new work starting this week.',
-          'Invoice the same day the work is done, and turn on automatic payment reminders.',
-          'Hold a 15-minute cash review every Monday: what came in, what went out, what’s owed.']},
-  {key:'keep', name:'Keep', blurb:'How often customers return, refer and stay happy.',
-   qs:['Do you contact past customers who haven’t bought in 90 days or more?',
-       'Is asking happy customers for a referral or review a standard step after every job?',
-       'Do you have a regular way to measure customer satisfaction, such as a short survey or check-in call?',
-       'Do you offer something customers can buy again or subscribe to?'],
-   title:'Keep: you win customers, then let them go',
-   diag:'Your cheapest new revenue is sitting in your customer list. Past customers already trust you, and most businesses never ask them back.',
-   fixes:['List every customer who hasn’t bought in 90 days and contact them this week with a real reason to come back.',
-          'Add a referral or review request as a fixed step at the end of every job.',
-          'Call your five best customers and ask one question: what would make you buy more from us?']}
+       'Do you have a way to get new work besides referrals and waiting for the phone to ring?',
+       'Could a customer say in one sentence why they picked you over the cheaper guy?'],
+   title:'New work shows up when it shows up.',
+   diag:'You\'re good at the work, but nothing steady brings it in. So slow months feel like bad luck, and the answer becomes dropping your price.',
+   per:'Winning one more customer a month', kit:'The One-Sentence Reason',
+   steps:['Ask your last 10 customers why they picked you. Write down their exact words.',
+          'Turn the words that repeat into one sentence. Put it on your truck, your {q}s and your Google profile.',
+          'Pick one way to bring in work you control, like a note to past customers each season, and stick with it for 90 days.']},
+  {key:'convert', name:'Winning the job',
+   qs:['Does every call or message get a reply the same day, even when you\'re on a job?',
+       'Do you contact every {q} that hasn\'t been answered within a week?',
+       'Do you know about how many of your {q}s turn into jobs?'],
+   title:'{Q}s go quiet, and nobody asks again.',
+   diag:'You already paid to find these customers. You took the call, did the visit and wrote the {q}. Most of the ones that go quiet never said no. Nobody asked them again.',
+   per:'Winning back one more {q} a month', kit:'The 3-5-7 Follow-Up Plan', link:true,
+   steps:['Three messages per open {q}: day 3, day 5 and day 7 after you send it.',
+          'Each one takes under five minutes. Write them once and reuse them on every {q}.',
+          'Keep a simple list of open {q}s and clear it every Friday.']},
+  {key:'deliver', name:'Pricing and profit',
+   qs:['Have you raised your prices in the last 12 months?',
+       'Do you know which kinds of jobs make you the most money after materials and labor?',
+       'Do you charge for extras and changes instead of absorbing them?'],
+   title:'You\'re busy, but your prices are working against you.',
+   diag:'Materials and wages went up. If your prices didn\'t, every job pays you a little less than it used to, and you make it up with longer days.',
+   per:'One more job a month at the right price', kit:'The Price Check',
+   steps:['List your five most common jobs and what you charge for each.',
+          'For each one, add up materials and labor. Circle any with the thinnest margin.',
+          'Raise those prices 5 to 10% for new customers this month, and write a one-line answer for anyone who asks why.']},
+  {key:'collect', name:'Getting paid',
+   qs:['Do you take a deposit before starting bigger jobs?',
+       'Do you send the invoice the same day the job is done?',
+       'Is almost nothing you\'re owed more than 30 days late?'],
+   title:'You\'ve done the work, but the money isn\'t in the bank.',
+   diag:'Every late invoice is a loan you never agreed to. It\'s why a good month can still feel tight at payroll.',
+   per:'Collecting one more late invoice a month', kit:'The Same-Day Invoice',
+   steps:['Take a deposit on every job over a set amount, starting with your next {q}.',
+          'Send the invoice from the job site, before you leave. Make it payable by card.',
+          'Every Monday, send one calm reminder on anything past due, with the amount and the date.']},
+  {key:'keep', name:'Repeat and referral',
+   qs:['Do past customers hear from you after the job is done, like a maintenance reminder?',
+       'Do you ask every happy customer for a review or a referral?',
+       'Do you offer work customers can book again on a schedule, like a maintenance plan?'],
+   title:'You win customers, then never hear from them again.',
+   diag:'Your cheapest next job is with someone who already trusts you. Most shops never ask them back.',
+   per:'One more past customer coming back each month', kit:'The Come-Back List',
+   steps:['Pull everyone you\'ve done work for in the last two years who hasn\'t called since.',
+          'Send each one a short, useful reminder this week, like a seasonal service or an inspection.',
+          'Ask for a review at the end of every job, while they\'re happy and you\'re still there.']}
 ];
 var OPTS=[['2','Yes'],['1','Sometimes'],['0','No']];
-var answers={};
-var STORE='pcs-answers-v1';
-try{Object.assign(answers, JSON.parse(localStorage.getItem(STORE)||'{}'))}catch(e){}
+var answers={}, trade='', stepIdx=0;
 
-var groupsEl=document.getElementById('groups'), n=0;
-LINKS.forEach(function(L){
-  var g=document.createElement('div');g.className='group';
-  var head=document.createElement('div');head.className='group-head';
-  var h=document.createElement('h3');h.textContent=L.name;
-  var p=document.createElement('p');p.textContent=L.blurb;
-  head.append(h,p);g.append(head);
+function fill(s){var q=quoteWord();return s.replace(/\{q\}/g,q).replace(/\{Q\}/g,q.charAt(0).toUpperCase()+q.slice(1))}
+
+/* trade choices */
+var tEl=document.getElementById('trades');
+TRADES.forEach(function(t){
+  var d=document.createElement('div');d.className='choice';
+  var i=document.createElement('input');i.type='radio';i.name='trade';i.id='t-'+t[0];i.value=t[0];
+  i.addEventListener('change',function(){trade=t[0];renderQs()});
+  var l=document.createElement('label');l.htmlFor=i.id;l.textContent=t[1];
+  d.append(i,l);tEl.append(d);
+});
+
+/* one section per link */
+var secWrap=document.getElementById('sections');
+LINKS.forEach(function(L,k){
+  var s=document.createElement('section');s.className='step';s.hidden=true;s.dataset.step='link';s.dataset.key=L.key;
+  var h=document.createElement('h2');h.textContent=L.name;
+  var list=document.createElement('div');list.className='qs';
+  var err=document.createElement('p');err.className='err';err.hidden=true;err.dataset.err='';
+  var nav=document.createElement('div');nav.className='nav';
+  var b=document.createElement('button');b.type='button';b.className='linkbtn';b.dataset.back='';b.textContent='Back';
+  var n=document.createElement('button');n.type='button';n.className='btn';n.dataset.next='';n.textContent=k===LINKS.length-1?'See my result →':'Next →';
+  nav.append(b,n);
   L.qs.forEach(function(q,i){
-    n++;var id=L.key+'-'+i;
+    var id=L.key+'-'+i;
     var row=document.createElement('div');row.className='q';row.setAttribute('role','radiogroup');row.setAttribute('aria-labelledby',id+'-t');
-    var t=document.createElement('p');t.className='qt';t.id=id+'-t';
-    var num=document.createElement('span');num.className='num';num.textContent=String(n).padStart(2,'0');
-    t.append(num,document.createTextNode(q));
+    var t=document.createElement('p');t.className='qt';t.id=id+'-t';t.dataset.raw=q;
     var seg=document.createElement('div');seg.className='seg';
     OPTS.forEach(function(o){
       var inp=document.createElement('input');inp.type='radio';inp.name=id;inp.id=id+'-'+o[0];inp.value=o[0];
-      if(answers[id]===o[0])inp.checked=true;
-      inp.addEventListener('change',function(){answers[id]=o[0];save();update()});
+      inp.addEventListener('change',function(){answers[id]=o[0];err.hidden=true});
       var lb=document.createElement('label');lb.htmlFor=inp.id;lb.textContent=o[1];
       seg.append(inp,lb);
     });
-    row.append(t,seg);g.append(row);
+    row.append(t,seg);list.append(row);
   });
-  groupsEl.append(g);
+  s.append(h,list,err,nav);secWrap.append(s);
 });
-function save(){try{localStorage.setItem(STORE,JSON.stringify(answers))}catch(e){}}
+function renderQs(){document.querySelectorAll('.qt[data-raw]').forEach(function(t){t.textContent=fill(t.dataset.raw)})}
+renderQs();
 
-var see=document.getElementById('see'),prog=document.getElementById('progress');
-function count(){return Object.keys(answers).length}
-function update(){var c=count();see.disabled=c<20;prog.textContent=c<20?(c+' of 20 answered'):'All 20 answered'}
-
-var money=function(v){return '$'+Math.round(v).toLocaleString('en-US')};
-var val=function(id){return Math.max(0,parseFloat(document.getElementById(id).value)||0)};
-function calc(){
-  var leads=val('n-leads'),close=Math.min(100,val('n-close'))/100,ticket=val('n-ticket'),freq=val('n-freq'),m=Math.min(100,val('n-margin'))/100;
-  var rev=leads*12*close*ticket*freq, gp=rev*m;
-  var gp2=leads*1.1*12*Math.min(1,close*1.1)*ticket*1.1*freq*1.1*Math.min(1,m*1.1);
-  document.getElementById('o-rev').textContent=money(rev);
-  document.getElementById('o-gp').textContent=money(gp);
-  document.getElementById('o-gp2').textContent=money(gp2);
-  document.getElementById('o-gap').textContent=money(gp2-gp);
-  return {gp:gp,gp2:gp2};
+/* stepper */
+var steps=[].slice.call(document.querySelectorAll('.step'));
+var meter=document.getElementById('meter'), mFill=document.getElementById('m-fill'), mBar=document.getElementById('m-bar');
+var TOTAL=steps.length-2; // counted steps: trade, five sections, email
+function show(i){
+  steps.forEach(function(s,j){s.hidden=j!==i});
+  stepIdx=i;
+  var counted=i>=1&&i<=TOTAL;
+  meter.hidden=!counted;
+  if(counted){
+    var pct=Math.round((i-1)/TOTAL*100);
+    document.getElementById('m-label').textContent='Step '+i+' of '+TOTAL;
+    document.getElementById('m-pct').textContent=pct+'%';
+    mFill.style.width=pct+'%';mBar.setAttribute('aria-valuenow',pct);
+  }
+  window.scrollTo({top:0,behavior:'auto'});
+  var h=steps[i].querySelector('h1,h2');if(h){h.setAttribute('tabindex','-1');h.focus({preventScroll:true})}
 }
-['n-leads','n-close','n-ticket','n-freq','n-margin'].forEach(function(id){document.getElementById(id).addEventListener('input',calc)});
+function valid(i){
+  var s=steps[i], e=s.querySelector('[data-err]');
+  if(s.dataset.step==='trade'){
+    if(!trade){e.textContent='Pick the kind of work you do.';e.hidden=false;return false}
+  }
+  if(s.dataset.step==='link'){
+    var L=LINKS.filter(function(x){return x.key===s.dataset.key})[0];
+    for(var k=0;k<L.qs.length;k++){if(!answers[L.key+'-'+k]){e.textContent='Answer all three to keep going. "Sometimes" is fine.';e.hidden=false;return false}}
+  }
+  if(e)e.hidden=true;return true;
+}
+document.addEventListener('click',function(ev){
+  var t=ev.target.closest('[data-next],[data-back]');if(!t)return;
+  if(t.hasAttribute('data-next')){if(valid(stepIdx))show(stepIdx+1)}
+  else show(Math.max(0,stepIdx-1));
+});
 
-function band(s){return s>=80?['Strong','var(--good)']:s>=50?['Gaps','var(--warn)']:['Leaking','var(--bad)']}
+/* result */
+var money=function(v){return '$'+Math.round(v).toLocaleString('en-US')};
+var num=function(id){return Math.max(0,parseFloat(document.getElementById(id).value)||0)};
 
 function sendToKit(fields){
-  if(KIT_FORM_ID.indexOf('REPLACE')===0) return;
   try{
     var name='kit_'+Date.now();
     var ifr=document.createElement('iframe');ifr.name=name;ifr.style.display='none';document.body.appendChild(ifr);
@@ -335,43 +352,47 @@ document.getElementById('lead').addEventListener('submit',function(ev){
   var fname=document.getElementById('f-name').value.trim();
   var email=document.getElementById('f-email').value.trim();
   var biz=document.getElementById('f-biz').value.trim();
-  if(count()<20){err.textContent='Answer all 20 questions first.';err.hidden=false;return}
   if(!fname||!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)){err.textContent='Enter your first name and a valid email address.';err.hidden=false;return}
   err.hidden=true;
 
-  var scores=LINKS.map(function(L){var t=0;L.qs.forEach(function(_,i){t+=+(answers[L.key+'-'+i]||0)});return {L:L,s:Math.round(t/8*100)}});
-  var total=Math.round(scores.reduce(function(a,b){return a+b.s},0)/5);
-  var weakest=scores.reduce(function(a,b){return b.s<a.s?b:a});
-  var r=calc();
+  var scores=LINKS.map(function(L){var t=0;L.qs.forEach(function(_,i){t+=+(answers[L.key+'-'+i]||0)});return {L:L,s:Math.round(t/6*100)}});
+  var W=scores.reduce(function(a,b){return b.s<a.s?b:a}).L;
+  var ticket=num('n-ticket');
 
-  document.getElementById('r-total').firstChild.nodeValue=total;
-  document.getElementById('r-summary').textContent=total>=80?'Your chain is strong. The gains now come from sharpening your weakest link.':total>=50?'Your chain holds, but it has gaps that are costing you profit every month.':'Your chain is leaking in several places. The fixes are simple, and they compound.';
+  document.getElementById('r-title').textContent=fill(W.title);
+  document.getElementById('r-diag').textContent=fill(W.diag);
+  if(ticket>0){
+    document.getElementById('r-worth').textContent=money(ticket*12)+' a year';
+    document.getElementById('r-worth-line').textContent=fill(W.per)+' is worth this much a year at your average job of '+money(ticket)+'.';
+  } else {
+    document.getElementById('r-worth').textContent='';
+    document.getElementById('r-worth-line').textContent='Add your average job next time and I\'ll put a dollar figure on it.';
+  }
+  document.getElementById('r-kit').textContent=W.kit;
+  var ol=document.getElementById('r-steps');ol.textContent='';
+  W.steps.forEach(function(x){var li=document.createElement('li');li.textContent=fill(x);ol.append(li)});
+  document.getElementById('r-kit-link').hidden=!W.link;
+  document.getElementById('r-book').href='mailto:cody@lucidlifeco.com?subject='+encodeURIComponent('Profit Sit-Down: '+W.name);
+
   var bars=document.getElementById('r-bars');bars.textContent='';
   scores.forEach(function(x){
-    var b=band(x.s);
+    var c=x.s>=80?'var(--teal)':x.s>=50?'var(--warn)':'var(--leak)';
     var row=document.createElement('div');row.className='bar';
     var nm=document.createElement('span');nm.textContent=x.L.name;
-    var tr=document.createElement('div');tr.className='track';tr.setAttribute('role','img');tr.setAttribute('aria-label',x.L.name+': '+x.s+' out of 100');
-    var f=document.createElement('div');f.className='fill';f.style.background=b[1];tr.append(f);
-    var tg=document.createElement('span');tg.className='tag';tg.style.color=b[1];tg.textContent=x.s+' · '+b[0];
-    row.append(nm,tr,tg);bars.append(row);
-    requestAnimationFrame(function(){requestAnimationFrame(function(){f.style.width=x.s+'%'})});
+    var tr=document.createElement('div');tr.className='t';tr.setAttribute('role','img');tr.setAttribute('aria-label',x.L.name+': '+x.s+' out of 100');
+    var f=document.createElement('div');f.className='f';f.style.background=c;f.style.width=Math.max(4,x.s)+'%';
+    tr.append(f);row.append(nm,tr);bars.append(row);
   });
-  var W=weakest.L;
-  document.getElementById('w-title').textContent=W.title;
-  document.getElementById('w-diag').textContent=W.diag;
-  var ol=document.getElementById('w-fixes');ol.textContent='';
-  W.fixes.forEach(function(x){var li=document.createElement('li');li.textContent=x;ol.append(li)});
 
-  var fields={email_address:email,first_name:fname,'fields[business_name]':biz,'fields[pc_score]':String(total),'fields[pc_weakest_link]':W.name,'fields[pc_profit_gap]':String(Math.round(r.gp2-r.gp))};
+  var tradeName=(TRADES.filter(function(t){return t[0]===trade})[0]||['',''])[1];
+  var fields={email_address:email,first_name:fname,'fields[business_name]':biz,'fields[trade]':tradeName,'fields[pc_weakest_link]':W.name,'fields[avg_job]':String(ticket)};
   scores.forEach(function(x){fields['fields[pc_'+x.L.key+']']=String(x.s)});
   sendToKit(fields);
 
-  var res=document.getElementById('results');res.hidden=false;
-  res.scrollIntoView({behavior:matchMedia('(prefers-reduced-motion: reduce)').matches?'auto':'smooth',block:'start'});
+  show(steps.length-1);
 });
 
-calc();update();
+show(0);
 </script>
 </body>
 </html>
